@@ -1,0 +1,38 @@
+Transfer started at Wed Mar  9 18:31:49 2016
+PID is 284528
+Log file is LOG_imapsync/2016_03_09_18_31_49_o.eberlein@wayna.com.pe.txt  ( to change it, use --logfile filepath ; or use --nolog to turn off logging )
+$RCSfile: imapsync,v $ $Revision: 1.637 $ $Date: 2015/04/01 01:36:37 $ 
+Here is a [linux] system (Linux tx2.fcomet.com 2.6.32-604.16.2.lve1.3.54.el6.x86_64 #1 SMP Mon Jul 27 11:32:29 EDT 2015 x86_64)
+With perl 5.10.1 Mail::IMAPClient  3.34
+Command line used:
+/usr/bin/imapsync --host1 imap.zoho.com --authmech1 LOGIN --user1 o.eberlein@wayna.com.pe --password1 MASKED --sep1 / --prefix1 / --host2 tx2.fcomet.com --authmech2 PLAIN --user2 o.eberlein@wayna.com.pe --password2 MASKED
+Temp directory is /tmp  ( to change it use --tmpdir dirpath )
+PID file is /tmp/imapsync.pid ( to change it use --pidfile filepath ; to avoid it use --pidfile "" )
+Modules version list:
+Mail::IMAPClient     3.34
+IO::Socket           1.31
+IO::Socket::IP       ?
+IO::Socket::INET     1.31
+IO::Socket::SSL      1.79_01
+Net::SSLeay          1.72
+Compress::Zlib       2.021
+Digest::MD5          2.54
+Digest::HMAC_MD5     1.01
+Digest::HMAC_SHA1    1.03
+Term::ReadKey        2.33
+File::Spec           3.3
+Time::HiRes          1.9721
+Unicode::String      2.09
+IO::Tee              0.64
+File::Copy::Recursive 0.38
+Authen::NTLM         1.09
+URI::Escape          3.31
+Data::Uniqid         0.12
+( use --no-modules_version to turn off printing this Perl modules list )
+Info: turned ON syncinternaldates, will set the internal dates (arrival dates) on host2 same as host1.
+Info: will try to use LOGIN authentication on host1
+Info: will try to use PLAIN authentication on host2
+Info: imap connexions timeout is 120 seconds
+Host1: IMAP server [imap.zoho.com] port [143] user [o.eberlein@wayna.com.pe]
+Host2: IMAP server [tx2.fcomet.com] port [143] user [o.eberlein@wayna.com.pe]
+Failure: can not open imap connection on host1 [imap.zoho.com] with user [o.eberlein@wayna.com.pe]: Unable to connect to imap.zoho.com: 
