@@ -180,10 +180,10 @@
                                             </h2>
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
-                                                    <button class="btn  btn-danger cart-btn" disabled>
+                                                    <button class="btn btn-danger cart-btn btn-block" disabled>
                                                         <span class="fa fa-shopping-cart"></span>{{ trans('text.add_to_cart') }}
                                                     </button>
-                                                    <button class="btn  btn-success checkout-btn" disabled>
+                                                    <button class="btn btn-success checkout-btn btn-block" disabled>
                                                         <span class="fa fa-dollar"></span>{{ trans('text.buy') }}
                                                     </button>
                                                 </div>
