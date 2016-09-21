@@ -133,6 +133,25 @@ function getLocPrice2($product_id){
     }
 }
 
+function getLocPriceFresh($product_id){
+    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck('price1');
+
+    if (isset($price)) {
+        return number_format($price, 2);
+    }else{
+        return 0;
+    }
+}
+function getLocPrice2Fresh($product_id){
+    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck('price2');
+
+    if (isset($price)) {
+        return number_format($price, 2);
+    }else{
+        return 0;
+    }
+}
+
 function getLocPriceOrder($product_id){
     $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck('price1');
 
