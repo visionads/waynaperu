@@ -1337,7 +1337,7 @@ form#product-add .select_row .bootstrap-select button.dropdown-toggle {font-size
 .row.count_loc .col-md-3 {display: inline-block;float: none;padding: 0 10px;width: 28%;}
 .proceed_next.span15 {margin-bottom: 50px;}
 #product-add .btn.btn-success.checkout-btn {
-  margin-left: 10px;
+  /*margin-left: 10px;*/
   min-width: 150px; text-align:center;
 }
 #product-add .btn.btn-success.checkout-btn .fa-dollar:before {
@@ -1841,3 +1841,26 @@ header .right-side {display: none;}
     width: 100%;
   }
 }
+
+/*=====For Slider===========*/
+.slider {
+  width: 100%;
+  /*margin: 100px auto;*/
+}
+
+.slick-slide {
+  /*margin: 0px 20px;*/
+}
+
+.slick-slide img {
+  width: 100%;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+}
+/*
+* {  box-sizing: border-box; }
+    */
+/*=====For Slider Ends======*/
