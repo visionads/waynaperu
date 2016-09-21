@@ -202,19 +202,19 @@
                                             <div class="form_row text-center">
                                                 <ul class="payments_methods clearfix">
                                                     <li>
-                                                        <img src="{{ asset('images/pay_visa.png') }}" alt="Visa" width="50" height="30" />
+                                                        <img src="{{ asset('images/pay_visa.png') }}" alt="Visa" class="img-responsive" />
                                                     </li>
                                                     <li>
-                                                        <img src="{{ asset('images/pay_mastercard.png') }}" alt="Mastercard" width="40" />
+                                                        <img src="{{ asset('images/pay_mastercard.png') }}" alt="Mastercard"  class="img-responsive" />
                                                     </li>
                                                     <li>
-                                                        <img src="{{ asset('images/pay_dinersclub.png') }}" alt="Diners Club" width="40" />
+                                                        <img src="{{ asset('images/pay_dinersclub.png') }}" alt="Diners Club"  class="img-responsive" />
                                                     </li>
                                                     <li>
-                                                        <img src="{{ asset('images/pay_amex.png') }}" alt="American Express" width="40" />
+                                                        <img src="{{ asset('images/pay_amex.png') }}" alt="American Express" class="img-responsive" />
                                                     </li>
                                                     <li>
-                                                        <img src="{{ asset('images/pay_bcpagente.png') }}" alt="BCP Agente" width="40" />
+                                                        <img src="{{ asset('images/pay_bcpagente.png') }}" alt="BCP Agente"  class="img-responsive" />
                                                     </li>
                                                 </ul>
                                            </div>

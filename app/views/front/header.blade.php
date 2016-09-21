@@ -41,6 +41,30 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    {{-- For Slider--}}
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="{{ asset('slick/slick.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).on('ready', function() {
+            $(".regular").slick({
+                dots: true,
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                mobileFirst: true,
+                //fade: true,
+                focusOnSelect: true,
+                waitForAnimate: true,
+                verticalSwiping: true,
+                lazyLoad:'progressive',
+                easing:''
+            });
+        });
+    </script>
+    {{-- Slider End--}}
     <title>Wayna - New experiences for you!</title>
 </head>
 <body>
@@ -273,31 +297,8 @@
 <!--header end here-->
 
 {{--Slider Start--}}
-{{-- For Slider--}}
-<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-<script src="{{ asset('slick/slick.js') }}" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-    $(document).on('ready', function() {
-        $(".regular").slick({
-            dots: true,
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            mobileFirst: true,
-            //fade: true,
-            focusOnSelect: true,
-            waitForAnimate: true,
-            verticalSwiping: true,
-            lazyLoad:'progressive',
-            easing:''
-
-
-        });
-    });
-</script>
-{{-- Slider End--}}
+<?php $page_name = Route::getCurrentRoute()->getName(); ?>
+@if($page_name == 'home')
 <div class="container-fluid" style=" padding: 0!important; margin: 0!important;">
     <div class="regular slider">
         <div>
@@ -314,5 +315,6 @@
         </div>
     </div>
 </div>
+@endif
 {{--Slider End--}}
 @stop

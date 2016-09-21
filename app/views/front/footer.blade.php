@@ -24,8 +24,13 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="clearfix">
-                                    <br>
-                                    <div class="text-center">
+                                    <div class="col-md-5 text-right">
+                                        <a href="#">
+                                        <img src="{{ url('images/comodo_secure_seal_100x85_transp.png') }}">
+                                        </a> &nbsp;
+                                    </div>
+                                    <div class="col-md-7 text-center">
+                                        <br>
                                         <a href="http://www.up.edu.pe/aplicaciones/boletines/EmprendeUP/ver_articulo.aspx?idsec=630&idnum=42&utm_source=Icommarketing&utm_medium=Email&utm_content=Boletin%20t2%20120416%20fin&utm_campaign=Icommarketing%20-%20Emprende%20UP%20-%20Boletin%20t2%20120416">
                                             <img src="{{ url('images/logo_emprende_up.jpg') }}">
                                         </a>
