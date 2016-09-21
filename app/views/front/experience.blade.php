@@ -96,6 +96,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <a class="exp_facebookvp" href="https://www.facebook.com/sharer/sharer.php?u={{ route('category_experience_id', array(Str::slug($category->title), Str::slug($p_content->title), $p_content->product_id)) }}" target="_blank">
+                                                <img src="{{ asset('images/facebook.png') }}" alt="facebook" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="payment_wrapper clearfix">
@@ -211,15 +220,6 @@
                                            </div>
                                         @endif
                                     </form>
-                                </div>
-                                <div class="col-lg-12">
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a class="exp_facebookvp" href="https://www.facebook.com/sharer/sharer.php?u={{ route('category_experience_id', array(Str::slug($category->title), Str::slug($p_content->title), $p_content->product_id)) }}" target="_blank">
-                                                <img src="{{ asset('images/facebook.png') }}" alt="facebook" />
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                             <div class="col-lg-12">
