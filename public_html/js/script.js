@@ -367,7 +367,10 @@ $(document).ready(function() {
             }
         });
 
-        $('#modal-newsletter').modal('show');
+        function loadNewsletterModal() {
+            $('#modal-newsletter').modal('show');
+        }
+        setTimeout(loadNewsletterModal,20000);
         $.cookie('modalnewsletter', true);        
     }
 });
