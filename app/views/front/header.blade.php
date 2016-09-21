@@ -27,6 +27,9 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-select.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <!-- For Slider-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick-theme.css') }}">
     <!-- Custom CSS -->
     <link href="{{ asset('css/menu-sidebar.css') }}" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
@@ -268,4 +271,23 @@
     </div>
 </header>
 <!--header end here-->
+
+{{--Slider Start--}}
+<div class="container-fluid" style=" padding: 0!important; margin: 0!important;">
+    <div class="regular slider">
+        <div>
+            <img src="{{ asset('images/slider/slide-1.jpg') }}">
+        </div>
+        <div>
+            <img src="{{ asset('images/slider/slide-2.jpg') }}">
+        </div>
+        <div>
+            <img src="{{ asset('images/slider/slide-3.jpg') }}">
+        </div>
+        <div>
+            <img src="{{ asset('images/slider/slide-4.png') }}">
+        </div>
+    </div>
+</div>
+{{--Slider End--}}
 @stop
