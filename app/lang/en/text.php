@@ -237,4 +237,6 @@ return array(
     "experience_pin_boy" => 'Boy',
     "experience_pin_adult" => 'Adult',
     "order_number" => 'Confirmation Number',
+    "confirm" => 'Confirm',
+    "confirm_payment" => 'Confirm your purchase',
 );

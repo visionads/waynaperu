@@ -8,8 +8,6 @@
         <!-- Page Content -->
 <div class="checkout_wrapper-main">
     <div class="container">
-
-
         <div class="checkout_wrapper">
             {{  Form::open(array('route' => 'process_checkout', 'data-toggle'=>'validator', 'id' => 'ajaxform')) }}
             <div class="cart_top_row row bdr_none">
@@ -83,6 +81,12 @@
                              </div> --}}
 
                             <input type="submit" value="{{ trans('text.buy') }}" class="btn btn-success" id="smt"/>
+                                <span id="lodding" style="display: none">Lodding......</span>
+                            <div id="paymentBtn" style="display: none;">
+                                <a href="javascript:void(0);" id="btn-pay" class="btn btn-success btn-lg" >{{ trans('text.confirm') }}</a>
+                                <br>
+                                <span style="font-size: 10px;color: red;">{{ trans('text.confirm_payment') }}</span>
+                            </div>
 
                         </div>
 
@@ -308,7 +312,7 @@
                     <img src="{{ asset('images/culqi_tooltip.png') }}" alt='' class="img-responsive">
                 </p>
                 <p class="text-center">
-                    <a href="javascript:void(0);" id="btn-pay" class="btn btn-success">{{ trans('text.buy') }}</a>
+                    {{--<a href="javascript:void(0);" id="btn-pay" class="btn btn-success">{{ trans('text.buy') }}</a>--}}
                 </p>
             </div>
 
@@ -337,6 +341,8 @@
             //callback handler for form submit
             $("#ajaxform").submit(function(e)
             {
+                $('#smt').hide();
+                $('#lodding').show();
                 var postData = $(this).serializeArray();
                 var formURL = $(this).attr("action");
                 $.ajax(
@@ -351,7 +357,9 @@
                                     checkout.informacion_venta = data.informacionVenta;
 
                                     $.cookie('order_number', data.order_number);
-                                    $( '#modal-culqi-button').modal();
+                                    $('#lodding').hide();
+                                    $('#paymentBtn').show();
+//                                    $( '#modal-culqi-button').modal();
                                 }
                                 if(data.method == 'agente_bcp' && data.state == 'success'){
                                     /*var home_url = '{{ route("home") }}';
