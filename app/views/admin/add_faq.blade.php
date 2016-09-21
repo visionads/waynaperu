@@ -1,0 +1,71 @@
+@extends('admin.layout')
+
+@section('content')
+
+<div class="row">
+    <div class="col-md-6 col-lg-8 col-sm-6">
+
+        <div class="box-login">
+           
+            {{ Form::open(array('route' => 'save_add_faq','class' => 'form-horizontal','files' =>true)) }}
+
+            @if(Session::has('message'))
+            <div class="alert alert-info">
+                {{ Session::get('message') }}
+            </div>
+            @endif
+            
+            <fieldset>
+            <br><br><br>
+
+            <div class="tabbable-panel">
+                <div class="tabbable-line">
+                    <ul class="nav nav-tabs ">
+                        @foreach($languages as $index => $language)
+                            <li class="@if($index == 0) active @endif">
+                                <a href="#{{ $language->name }}" data-toggle="tab"> {{ $language->name }} </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <div class="tab-content">
+                        @foreach($languages as $index => $language)
+                            <div class="tab-pane @if($index == 0)active @endif" id="{{ $language->name }}">
+                                <div class="form-group">
+                                    {{ Form::label('que', 'Question', array('class' => 'col-sm-3 control-label')) }}
+                                    
+                                    <div class="col-sm-9">
+                                         <input type="text" name="que[{{ $language->code }}]" placeholder="Question" class="form-control"/>
+                                        {{ $errors->first('que['. $language->code .']') }}
+                                    </div>
+                                </div>
+
+                               
+
+                                <div class="form-group">
+                                    {{ Form::label('ans', 'Answer', array('class' => 'col-sm-3 control-label')) }}
+                                    
+                                    <div class="col-sm-9">
+                                        <textarea name="ans[{{ $language->code }}]" class="editor form-control" placeholder="Answer" ></textarea>
+                                        {{ $errors->first('ans['. $language->code .']') }}
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+                
+            </fieldset>
+
+            <div class="form-actions">
+                {{ Form::submit('Save', $attributes = ['class' => 'btn btn-green pull-right']) }}
+                    
+                </div>
+
+            {{ Form::close() }}
+        </div>
+    </div>
+</div>
+
+@stop
