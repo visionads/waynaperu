@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="desed">
-                            <span class="price">{{ getLocPrice2($product->product_id) }}</span>
+                            <p class="price-old">{{ getLocPrice2($product->product_id) }}</p>
                             <p class="price">{{ getLocPrice($product->product_id) }}</p>
                             <p class="location"><span><img src="{{ asset('images/icon/location.png') }}" alt="location"></span>
                                 {{ getLocCount($product->product_id) }}
