@@ -5,7 +5,7 @@
 <!-- Page Content -->         
 <div id="page-content-wrapper">
     <div class="container-fluid">
-        <br>
+        {{--<br>--}}
         <!--como end here-->
         <div class="como">
             <div class="row">

@@ -273,6 +273,31 @@
 <!--header end here-->
 
 {{--Slider Start--}}
+{{-- For Slider--}}
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="{{ asset('slick/slick.js') }}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(document).on('ready', function() {
+        $(".regular").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            mobileFirst: true,
+            //fade: true,
+            focusOnSelect: true,
+            waitForAnimate: true,
+            verticalSwiping: true,
+            lazyLoad:'progressive',
+            easing:''
+
+
+        });
+    });
+</script>
+{{-- Slider End--}}
 <div class="container-fluid" style=" padding: 0!important; margin: 0!important;">
     <div class="regular slider">
         <div>

@@ -29,7 +29,7 @@ return array(
     "for_whom_couples" => "Parejas",
     "for_whom_groups" => "Grupos",
     "price" => "PRECIO",
-    "filter" => "FILTRO",
+    "filter" => "EXPERIENCIAS",
     "who_we_are" => "¿Quiénes somos?",
     "terms" => "Términos y condiciones",
     "newsletter" => "Newsletter",

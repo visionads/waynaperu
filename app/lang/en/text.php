@@ -30,7 +30,7 @@ return array(
     "for_whom_couples" => "Couples",
     "for_whom_groups" => "Groups",
     "price" => "PRICE",
-    "filter" => "FILTER",
+    "filter" => "EXPERIENCE",
     "who_we_are" => "About us",
     "terms" => "Terms and Conditions",
     "newsletter" => "Newsletter",

@@ -2,7 +2,11 @@
     <div class="text-left">
         <form action="{{ route('filter') }}" method="get" id="filter_form">
             <ul class="sidebar-nav filtro">
-                <h2 class="sidebar-brand">{{ trans('text.filter') }}</h2>
+                <h2 class="">
+                    <div style="border-bottom: 2px solid #909090; width: 100%; height: 20px; margin-bottom: 20px; text-align: center;">
+                        <span style="width: auto; padding: 5px; margin-bottom: -20px; background: #fff;">{{ trans('text.filter') }}</span>
+                    </div>
+                </h2>
                 <li role="presentation" class="dropdown cats">                  
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="cat">

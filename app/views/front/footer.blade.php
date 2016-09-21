@@ -161,7 +161,7 @@
     </div>
 
     <!-- jQuery -->
-    <script src="{{ asset('js/jquery.js') }}"></script>
+    {{--<script src="{{ asset('js/jquery.js') }}"></script>--}}
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
@@ -171,44 +171,6 @@
     <script src="//1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
 
-    {{-- For Slider--}}
-    <script src="{{ asset('slick/slick.js') }}" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript">
-        $(document).on('ready', function() {
-            $(".regular").slick({
-                dots: true,
-                infinite: true,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                mobileFirst: true,
-                //fade: true,
-                focusOnSelect: true,
-                waitForAnimate: true,
-                verticalSwiping: true,
-                lazyLoad:'progressive',
-                easing:''
-
-
-            });
-            /*
-             $(".center").slick({
-             dots: true,
-             infinite: true,
-             centerMode: true,
-             slidesToShow: 3,
-             slidesToScroll: 3
-             });
-             $(".variable").slick({
-             dots: true,
-             infinite: true,
-             variableWidth: true
-             });
-             */
-        });
-    </script>
-    {{-- Slider End--}}
 
 
 
