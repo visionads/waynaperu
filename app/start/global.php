@@ -115,6 +115,23 @@ function getLocPrice($product_id){
         return '<span>N/A</span>';
     }
 }
+function getLocPrice2($product_id){
+    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck('price2');
+
+    if (isset($price)) {
+        $price = number_format($price, 2);
+        $p = explode(".", $price);
+        return "<span>S/.</span>".$p[0] .".<span>".$p[1]."</span>";
+        /*
+        $price = number_format((float) $price, 2);
+        $p = explode(".", $price);
+    	return "<span>S/.</span>".$p[0] .".<span>".$p[1]."</span>";
+        */
+        # code...
+    }else{
+        return '<span>N/A</span>';
+    }
+}
 
 function getLocPriceOrder($product_id){
     $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck('price1');
