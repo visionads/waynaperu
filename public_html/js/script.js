@@ -370,7 +370,11 @@ $(document).ready(function() {
         function loadNewsletterModal() {
             $('#modal-newsletter').modal('show');
         }
-        setTimeout(loadNewsletterModal,20000);
+        /**
+         * Automatic Newsletter
+         *
+         * */
+        //setTimeout(loadNewsletterModal,20000);
         $.cookie('modalnewsletter', true);        
     }
 });

@@ -299,8 +299,16 @@
 {{--Slider Start--}}
 <?php $page_name = Route::getCurrentRoute()->getName(); ?>
 @if($page_name == 'home')
+@if(isset($sliders) && is_object($sliders))
 <div class="container-fluid" style=" padding: 0!important; margin: 0!important;">
     <div class="regular slider">
+        @foreach($sliders as $slider)
+        <div>
+            <img class="img-responsive" src="{{ asset($slider->path) }}" alt="{{ $slider->caption }}">
+        </div>
+        @endforeach
+    </div>
+    {{--<div class="regular slider">
         <div>
             <img src="{{ asset('images/slider/slide-1.jpg') }}">
         </div>
@@ -313,8 +321,9 @@
         <div>
             <img src="{{ asset('images/slider/slide-4.png') }}">
         </div>
-    </div>
+    </div>--}}
 </div>
+@endif
 @endif
 {{--Slider End--}}
 @stop

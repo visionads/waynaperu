@@ -5,7 +5,7 @@ class UsersController extends UserController {
 	private  $url_language_id;
     public function __construct()
     {
-        
+
             $lang_code = LaravelLocalization::getCurrentLocale();
             $this->url_language_id    = getLangId($lang_code);
        
