@@ -46,21 +46,10 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 |
 */
 
-App::error(function(Exception $exception, $code)
+/*App::error(function(Exception $exception, $code)
 {
     Log::error($exception);
-});
-
-/*
-|--------------------------------------------------------------------------
-| Maintenance Mode Handler
-|--------------------------------------------------------------------------
-|
-| The "down" Artisan command gives you the ability to put an application
-| into maintenance mode. Here, you will define what is displayed back
-| to the user if maintenance mode is in effect for the application.
-|
-*/
+});*/
 
 App::down(function()
 {

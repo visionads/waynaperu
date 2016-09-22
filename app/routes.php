@@ -95,6 +95,15 @@ Route::group(array('before' => 'basicAuth'), function () {
 	Route::get('admin/order/{id}', array('as' => 'edit_order', 'uses' => 'OrdersController@edit'));
 	Route::post('admin/order/update', array('as' => 'update_order', 'uses' => 'OrdersController@update'));
 
+    //Slider Manager
+    Route::get('admin/slider',['as'=>'slider','uses'=>'SliderController@index']);
+    Route::get('admin/slider/add',['as'=>'add_slide','uses'=>'SliderController@create']);
+    Route::post('admin/slider/store',['as'=>'store_slide','uses'=>'SliderController@store']);
+    Route::get('admin/slider/edit/{id}',['as'=>'edit_slide','uses'=>'SliderController@edit']);
+    Route::post('admin/slider/update',['as'=>'update_slide','uses'=>'SliderController@update']);
+    Route::get('admin/slider/change_status/{status}/{id}',['as'=>'change_slide_status','uses'=>'SliderController@change_status']);
+    Route::get('admin/slider/delete/{id}',['as'=>'delete_slide','uses'=>'SliderController@destroy']);
+
 });
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter'], function()
