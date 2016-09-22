@@ -32,6 +32,7 @@ class HomeController extends BaseController {
 	{
 		//$profit = (20.1*100)/100;
 		//dd($profit);
+        $sliders= Slider::where('status','active')->orderBy('sequence')->get();
 		$categories = DB::table('category_content')
 		            ->join('categories', 'category_content.cat_id', '=', 'categories.id')
 		            ->select('category_content.id','category_content.cat_id', 'categories.state', 'categories.image','categories.icon', 'category_content.title', 'category_content.description')
@@ -67,6 +68,7 @@ class HomeController extends BaseController {
 		->with('products',$products)
 		->with('districts',$districts)
 		->with('tags',$tags)
+		->with('sliders',$sliders)
 		->with('how_wayna_work',$how_wayna_work);
 	}
 
