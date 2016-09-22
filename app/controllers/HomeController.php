@@ -30,6 +30,8 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
+		//$profit = (20.1*100)/100;
+		//dd($profit);
 		$categories = DB::table('category_content')
 		            ->join('categories', 'category_content.cat_id', '=', 'categories.id')
 		            ->select('category_content.id','category_content.cat_id', 'categories.state', 'categories.image','categories.icon', 'category_content.title', 'category_content.description')
