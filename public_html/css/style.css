@@ -446,24 +446,17 @@ header .logo {
 }
 .desed span{ font-size:12px; font-weight:bold;color: #595959;}
 .desed p.price {
-  color: #992233;
+  color: #214294;
   font-size: 19px;
   font-weight: bold;
   letter-spacing: -1px;
   line-height: 20px;
   margin: 0;
 }
-.desed p.price span{ width:13px;color:#992233;}
-.desed p.price-old {
-  color: #ea9336;
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: -1px;
-  line-height: 20px;
-  margin: 0;
-  text-decoration: line-through;
-}
-.desed p.price-old span{ width:12px;color: #ea9336;}
+.desed p.price span{ width:13px;color:#214294;}
+.desed p.price-old { color: #f39200; font-size: 16px; font-weight: bold; letter-spacing: -1px; line-height: 20px; margin: 0; text-decoration: line-through; }
+.desed p.price-old span{ width:12px;color: #f39200;}
+.profit-price { position: absolute; top: 10px; right: 10px; z-index: 100; padding: 10px 20px; border: 2px solid #f39400; border-radius: 30px; color: #f39400; font-size: 20px; font-weight: bold;}
 
 .bloque-caption .desed .location {color: #000;}
 .bloque-caption-text > h2 {color: #030303;}
@@ -473,7 +466,7 @@ height:2px;margin: 5px 0;width:49px;}
 .bloque-caption .icon {float: left;margin-right: 15px;width:35px;height:35px;background-image:url(../images/icon/blog-adven-icon.png);
 background-repeat:no-repeat;}
 .bloque-box:hover .bloque-caption .icon{ background-image:url(../images/icon/blog-adven-icon.png); background-position:-35px;}
-.bloque-box:hover .bloque-caption-text > h2{ color:#ea9336;}
+.bloque-box:hover .bloque-caption-text > h2{ color:#214294;}
 .bloque-caption-text {float: left;}
 .bloque-caption-text > p {color: #2d2d2d;font-size: 11px;height: 15px;}
 footer{bottom: 0;color: #fff;height:30px;position: fixed;width: 100%;background: url(../images/footer-pattren.png) repeat-x center #383838;

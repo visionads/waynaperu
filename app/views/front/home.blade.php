@@ -37,7 +37,7 @@
                                 }
                             ?>
                             <img src="{{ asset('uploads/products/'.$product->image) }}" alt="blog" class="img-responsive">
-                            <div style="position: absolute; top: 10px; right: 10px; z-index: 100; padding: 10px 20px; border: 2px solid orange; border-radius: 30px; color: orange; font-size: 20px; font-weight: bold;">{{ number_format($profit,2) }}%</div>
+                            <div class="profit-price">{{ number_format($profit,2) }}%</div>
                         </div>
                         <div class="bloque-caption">
                             <span class="icon" @if(getProIcon($product->product_id) !='') style="background-image:url({{ asset('uploads/categories/'.getProIcon($product->product_id)) }})"@endif>&nbsp; </span>                              

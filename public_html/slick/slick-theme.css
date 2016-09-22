@@ -70,7 +70,7 @@
     font-size: 50px;
     line-height: 1;
 
-    opacity: .75;
+    opacity: .25;
     color: white !important;
 
     -webkit-font-smoothing: antialiased;
@@ -196,7 +196,7 @@
     /*content: ' \25CF';*/
     text-align: center;
 
-    opacity: 1;
+    opacity: 0.25;
     color: white;
 
     -webkit-font-smoothing: antialiased;
@@ -205,6 +205,6 @@
 }
 .slick-dots li.slick-active button:before
 {
-    opacity: 1;
+    opacity: 0.75;
     color: red;
 }
