@@ -456,7 +456,7 @@ header .logo {
 .desed p.price span{ width:13px;color:#214294;}
 .desed p.price-old { color: #f39200; font-size: 16px; font-weight: bold; letter-spacing: -1px; line-height: 20px; margin: 0; text-decoration: line-through; }
 .desed p.price-old span{ width:12px;color: #f39200;}
-.profit-price { position: absolute; top: 10px; right: 10px; z-index: 100; padding: 10px 20px; border: 2px solid #f39400; border-radius: 30px; color: #f39400; font-size: 20px; font-weight: bold;}
+.profit-price { position: absolute; top: 10px; right: 10px; z-index: 100; padding: 0px 15px; border: 2px solid #f39400; border-radius: 30px; color: #f39400; font-size: 20px; font-weight: bold;}
 
 .bloque-caption .desed .location {color: #000;}
 .bloque-caption-text > h2 {color: #030303;}
@@ -1846,7 +1846,7 @@ header .right-side {display: none;}
   }
 }
 
-/*=====For Slider===========*/
+/*=====For Slider ETS===========*/
 .slider {
   width: 100%;
   /*margin: 100px auto;*/
@@ -1869,6 +1869,20 @@ header .right-side {display: none;}
     */
 /*=====For Slider Ends======*/
 
-/* For filter lined header*/
+/* For filter lined header ETS*/
 .fltr-header {border-bottom: 2px solid #909090; width: 100%; height: 20px; margin-bottom: 20px; text-align: center; position: relative;}
 .fltr-header span { width:auto; padding:10px 6%; display:inline-block; position:absolute; left:41%; bottom:-20px; background: #f5f5f4;}
+
+/* For Cart Button ETS*/
+.cart-btn {background: #214294; color:#fff; box-shadow: none; transition: ease-in-out 0.20s;}
+.cart-btn:hover { background: #f39400; color: #fff; transform: scale(1.02,1.02);}
+
+.checkout-btn { background: #f39400; color: #fff; box-shadow: none; transition: ease-in-out 0.20s;}
+.checkout-btn:hover { background: #214294; color: #fff; transform: scale(1.02,1.02);}
+
+/* For Payment Card Images ETS*/
+ul.crdt-ul { padding: 0 !important; margin: 0 !important;}
+ul.crdt-ul img { max-width:40px !important; height:20px !important; margin: 5px !important; padding:0px; border:0px solid #909090; display: inline-block;}
+/* Misc ETS */
+.logo-emprende { border: 0px solid #909090; padding: 15% 0; text-align: center;}
+.logo-emprende p { font-weight: normal; font-size: 16px;}

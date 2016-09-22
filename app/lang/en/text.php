@@ -152,6 +152,7 @@ return array(
     "tooltip_content1" => "Select the quantity of tickets you want to receive via email",
     "tooltip_content2" => "Select the quantity of tickets  you want to receive via post mail",
     "tooltip_content3" => "Select the quantity of present boxes  you want to receive via post  mail",
+    "emprende_text" => "¡Trust in us! We are part of the",
 
     // Filter
 

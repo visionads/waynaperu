@@ -151,6 +151,7 @@ return array(
     "tooltip_content1" => "Selecciona la cantidad de entradas que deseas recibir por correo electrónico",
     "tooltip_content2" => "Selecciona la cantidad de entradas que deseas recibir por correo",
     "tooltip_content3" => "Selecciona la cantidad de cajas de regalo que deseas recibir por correo",
+    "emprende_text" => "¡Confía en nosotros! Somos de",
 
     // Filter
 

@@ -189,39 +189,58 @@
                                             </h2>
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
-                                                    <button class="btn btn-danger cart-btn btn-block" disabled>
+                                                    <button class="btn cart-btn btn-block" disabled>
                                                         <span class="fa fa-shopping-cart"></span>{{ trans('text.add_to_cart') }}
                                                     </button>
-                                                    <button class="btn btn-success checkout-btn btn-block" disabled>
+                                                    <button class="btn checkout-btn btn-block" disabled>
                                                         <span class="fa fa-dollar"></span>{{ trans('text.buy') }}
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
                                         @if($p->is_lead != '1')
-                                            <div class="form_row text-center">
-                                                <ul class="payments_methods clearfix">
-                                                    <li>
-                                                        <img src="{{ asset('images/pay_visa.png') }}" alt="Visa" class="img-responsive" />
+                                            <div class="form_row text-center" >
+                                                <ul class="payments_methods crdt-ul clearfix">
+
+                                                        <img src="{{ asset('images/visa-card.jpg') }}" alt="Visa" title="Visa" class="img-responsive" />
+
+                                                        <img src="{{ asset('images/master-card.jpg') }}" alt="Mastercard" title="Mastercard"  class="img-responsive" />
+
+                                                        <img src="{{ asset('images/diners-card.jpg') }}" alt="Diners Club" title="Diners Club"  class="img-responsive" />
+
+                                                        <img src="{{ asset('images/american-card.jpg') }}" alt="American Express" title="American Express" class="img-responsive" />
+
+                                                        <img src="{{ asset('images/bcp-card.jpg') }}" alt="BCP Agente" title="BCP Agente"  class="img-responsive" />
+
+
+                                                    {{--<li class="credit-card">
+                                                        <img src="{{ asset('images/visa-card.jpg') }}" alt="Visa" class="img-responsive" />
                                                     </li>
-                                                    <li>
-                                                        <img src="{{ asset('images/pay_mastercard.png') }}" alt="Mastercard"  class="img-responsive" />
+                                                    <li class="credit-card">
+                                                        <img src="{{ asset('images/master-card.jpg') }}" alt="Mastercard"  class="img-responsive" />
                                                     </li>
-                                                    <li>
-                                                        <img src="{{ asset('images/pay_dinersclub.png') }}" alt="Diners Club"  class="img-responsive" />
+                                                    <li class="credit-card">
+                                                        <img src="{{ asset('images/diners-card.jpg') }}" alt="Diners Club"  class="img-responsive" />
                                                     </li>
-                                                    <li>
-                                                        <img src="{{ asset('images/pay_amex.png') }}" alt="American Express" class="img-responsive" />
+                                                    <li class="credit-card">
+                                                        <img src="{{ asset('images/american-card.jpg') }}" alt="American Express" class="img-responsive" />
                                                     </li>
-                                                    <li>
-                                                        <img src="{{ asset('images/pay_bcpagente.png') }}" alt="BCP Agente"  class="img-responsive" />
-                                                    </li>
+                                                    <li class="credit-card">
+                                                        <img src="{{ asset('images/bcp-card.jpg') }}" alt="BCP Agente"  class="img-responsive" />
+                                                    </li>--}}
                                                 </ul>
                                            </div>
                                         @endif
                                     </form>
                                 </div>
+                                <div class="logo-emprende">
+                                    <p>{{ trans('text.emprende_text') }}</p>
+                                    <a href="http://www.up.edu.pe/aplicaciones/boletines/EmprendeUP/ver_articulo.aspx?idsec=630&idnum=42&utm_source=Icommarketing&utm_medium=Email&utm_content=Boletin%20t2%20120416%20fin&utm_campaign=Icommarketing%20-%20Emprende%20UP%20-%20Boletin%20t2%20120416">
+                                        <img src="{{ url('images/logo_emprende_up.jpg') }}">
+                                    </a>
+                                </div>
                             </div>
+
                             <div class="col-lg-12">
                                 <div class="accordion" id="accordion1">
                                     <div class="accordion-group">
