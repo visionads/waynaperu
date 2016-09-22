@@ -48,6 +48,8 @@
 
             <div class="form-actions">
                 {{ Form::submit('Save', $attributes = ['class' => 'btn btn-primary pull-left']) }}
+                &nbsp;
+                <a href="{{ url('admin/slider') }}" class="btn btn-info">Cancel</a>
             </div>
 
             {{ Form::close() }}

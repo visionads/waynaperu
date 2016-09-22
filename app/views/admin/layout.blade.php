@@ -118,6 +118,9 @@
                             @if($currentUser->hasAccess(Config::get('usermanager::permissions.faq_management')))
                                 <li ><a href="{{ URL::to('/') }}/admin/faqs">FAQ's<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tasks"></span></a></li>
                             @endif
+                            @if($currentUser->hasAccess(Config::get('usermanager::permissions.slider')))
+                                <li ><a href="{{ URL::to('/') }}/admin/slider">Slider<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tasks"></span></a></li>
+                            @endif
                             @if($currentUser->hasAccess(Config::get('usermanager::permissions.media_management')))
                                 <li ><a href="{{ URL::to('/') }}/filemanager/show"  target="_blank">Media Manager<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-globe"></span></a></li>
                             @endif
