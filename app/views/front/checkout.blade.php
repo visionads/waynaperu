@@ -81,7 +81,7 @@
                              </div> --}}
 
                             <input type="submit" value="{{ trans('text.buy') }}" class="btn btn-success" id="smt"/>
-                                <span id="lodding" style="display: none">Lodding......</span>
+                                <span id="lodding" style="display: none">Loading......</span>
                             <div id="paymentBtn" style="display: none;">
                                 <a href="javascript:void(0);" id="btn-pay" class="btn btn-success btn-lg" >{{ trans('text.confirm') }}</a>
                                 <br>
