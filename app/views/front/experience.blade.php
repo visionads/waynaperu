@@ -357,7 +357,7 @@
                                                 <a href="{{ route('category_experience_id', array(Str::slug($product->category_name), Str::slug($product->product_title), $product->product_id)) }}" title="{{ $product->product_title }}">
                                                     <div class="bloque-box">
                                                         <div class="bloque-image">
-                                                            <img src="{{ asset('uploads/products/'.$product->image) }}" alt="blog" class="img-responsive">
+                                                            <img src="{{ asset('uploads/products/'.$product->image) }}" alt="Exploor" class="img-responsive">
                                                         </div>
                                                         <div class="bloque-caption">
                                                             <div class="bloque-caption-text">

@@ -171,7 +171,7 @@
                             <div class="bloque-box">                           
                               <div class="bloque-image">                              
                                 <!--<span class="like-icon"></span>-->
-                                <img src="{{ asset('uploads/products/'.$product->image) }}" alt="blog" class="img-responsive">
+                                <img src="{{ asset('uploads/products/'.$product->image) }}" alt="Exploor" class="img-responsive">
                               </div>
                             <div class="bloque-caption">                              
                               <div class="desed">

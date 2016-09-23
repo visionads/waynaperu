@@ -34,7 +34,7 @@
                                     <div class="bloque-box">
                                         <div class="bloque-image">
                                             <!-- <span class="like-icon"></span> -->
-                                            <img src="{{ asset('uploads/products/'.getLocImage($cart->options['loc_id'])) }}" alt="blog" class="img-responsive">
+                                            <img src="{{ asset('uploads/products/'.getLocImage($cart->options['loc_id'])) }}" alt="Exploor" class="img-responsive">
                                         </div>
                                         <div class="bloque-caption">
                                             <span class="icon " @if(getProIcon($cart->id) !='') style="background-image:url({{ asset('uploads/categories/'.getProIcon($cart->id)) }})"@endif>&nbsp;</span>

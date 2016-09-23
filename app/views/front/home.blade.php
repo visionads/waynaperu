@@ -36,7 +36,7 @@
                                     $profit = (($old-$new)*100)/$old;
                                 }
                             ?>
-                            <img src="{{ asset('uploads/products/'.$product->image) }}" alt="blog" class="img-responsive">
+                            <img src="{{ asset('uploads/products/'.$product->image) }}" alt="Exploor" class="img-responsive">
                             <div class="profit-price">{{ number_format($profit,2) }}%</div>
                         </div>
                         <div class="bloque-caption">
