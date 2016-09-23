@@ -37,7 +37,12 @@
                                 }
                             ?>
                             <img src="{{ asset('uploads/products/'.$product->image) }}" alt="Exploor" class="img-responsive">
-                            <div class="profit-price">{{ number_format($profit,2) }}%</div>
+                            @if(isset($profit) != 0)
+                                @if($profit != 0)
+                                    <div class="profit-price">{{ number_format($profit,2) }}%</div>
+                                @endif
+                            @endif
+
                         </div>
                         <div class="bloque-caption">
                             <span class="icon" @if(getProIcon($product->product_id) !='') style="background-image:url({{ asset('uploads/categories/'.getProIcon($product->product_id)) }})"@endif>&nbsp; </span>                              
