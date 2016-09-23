@@ -88,7 +88,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div class="navbar-brand navbar-brand-centered"><a href="/"><img src="{{ asset('images/logo.png') }}" alt="Wayna-logo"></a></div>
+                <div class="navbar-brand navbar-brand-centered"><a href="/"><img src="{{ asset('images/logo.png') }}" alt="Exploor | Wayna Peru" width="100%"></a></div>
 
                 <div class="right-side">
                     <ul class="nav navbar-nav ">
