@@ -236,7 +236,7 @@
                                 <div class="logo-emprende">
                                     <p>{{ trans('text.emprende_text') }}</p>
                                     <a href="http://www.up.edu.pe/aplicaciones/boletines/EmprendeUP/ver_articulo.aspx?idsec=630&idnum=42&utm_source=Icommarketing&utm_medium=Email&utm_content=Boletin%20t2%20120416%20fin&utm_campaign=Icommarketing%20-%20Emprende%20UP%20-%20Boletin%20t2%20120416">
-                                        <img src="{{ url('images/logo_emprende_up.jpg') }}">
+                                        <img src="{{ url('images/logo_emprende_up.png') }}">
                                     </a>
                                 </div>
                             </div>
