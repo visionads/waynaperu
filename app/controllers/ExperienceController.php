@@ -268,7 +268,14 @@ class ExperienceController extends BaseController {
 
 
 
-		return Response::json(array('details' => $details, 'priceHTML' => $priceHTML, 'price1' => $data->price1, 'price2' => $data->price2, 'price3' => $data->price3));
+        $discount_price1=0;
+        $discount_price2=0;
+        if(isset($data->price3) && $data->price3 != 0.00)
+        {
+            $discount_price1= $data->price1-(($data->price1/100))*$data->price3;
+            $discount_price2= $data->price2-(($data->price2/100))*$data->price3;
+        }
+		return Response::json(array('details' => $details, 'priceHTML' => $priceHTML, 'price1' => $data->price1, 'price2' => $data->price2, 'price3' => $data->price3, 'discount_price1' => $discount_price1, 'discount_price2' => $discount_price2));
 	}
 
 	public function show($category_name, $product_name, $product_id)

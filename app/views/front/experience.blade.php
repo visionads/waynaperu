@@ -150,6 +150,7 @@
                                                                 <option value="{{ $i }}" @if($i==1) selected @endif>{{ $i }}</option>
                                                             @endfor
                                                         </select>
+                                                        <old></old>
                                                         <em></em>
                                                     </div>
                                                 </div>
@@ -165,6 +166,7 @@
                                                                 <option value="{{ $i }}">{{ $i }}</option>
                                                             @endfor
                                                         </select>
+                                                        <old></old>
                                                         <em></em>
                                                     </div>
                                                 </div>
@@ -364,7 +366,7 @@
                                                                 <h2>{{ str_limit($product->product_title, $limit = 20, $end = '...') }}</h2>
                                                                 <span class="bdr"></span>
                                                                 <div class="clearfix"></div>
-                                                                <p class="price">{{ getLocPrice($product->product_id,'price1') }}</p>
+                                                                <p class="price">{{ makePrintablePrice(getLocPrice($product->product_id,'price1')) }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -499,7 +501,7 @@
 
 @section('meta')
 <!-- for Facebook -->
-<meta property="og:title" content="{{{ $p_content->title }}}" />
+<meta property="og:title" content="{{ $p_content->title }}" />
 <meta property="og:type" content="article" />
 <meta property="og:image" content="{{ asset('uploads/products/'.$p_images[0]->image) }}" />
 <meta property="og:url" content="{{ route('category_experience_id', array(Str::slug($product->category_name), Str::slug($p_content->title), $p_content->product_id)) }}" />

@@ -285,6 +285,8 @@
                     'success': function(result) {
                         var details = result.details;
                         var priceHTML = result.priceHTML;
+                        var discount_price1 = result.discount_price1;
+                        var discount_price2 = result.discount_price2;
                         var price1 = result.price1;
                         var price2 = result.price2;
                         var price3 = result.price3;
@@ -292,8 +294,11 @@
                         var mail_count = $('#mail-price').val();
                         var gift_count = $('#gift-price').val();
                         var total_price;
-                        total_price = (pdf_count * price1) + (mail_count * price2) + (gift_count * price3);
-
+                        if(discount_price1 != 0) {
+                            total_price = (pdf_count * discount_price1) + (mail_count * discount_price2) + (gift_count * price3);
+                        }else{
+                            total_price = (pdf_count * price1) + (mail_count * price2) + (gift_count * price3);
+                        }
                         var total_count = parseInt(pdf_count) + parseInt(mail_count) + parseInt(gift_count);
                         $("form#product-add input#total_qty").val(total_count);
                         $("form#product-add input#total_price").val(parseFloat(total_price).toFixed(2));
@@ -303,8 +308,17 @@
                         //$('.payment_wrapper button.cart-btn').removeAttr('disabled');
                         // $('.payment_wrapper button.wishlist-btn').removeAttr('disabled');
                         $('.payment_wrapper button.checkout-btn').removeAttr('disabled');
-                        $("select#pdf-price").siblings('em').html('S/. <span>' + price1 + '</span>');
-                        $("select#mail-price").siblings('em').html('S/. <span>' + price2 + '</span>');
+                        if(discount_price1 != 0)
+                        {
+                            $("select#pdf-price").siblings('old').html('S/. <span>' + price1 + '</span>');
+                            $("select#pdf-price").siblings('em').html('S/. <span>' + discount_price1 + '</span>');
+
+                            $("select#mail-price").siblings('old').html('S/. <span>' + price2 + '</span>');
+                            $("select#mail-price").siblings('em').html('S/. <span>' + discount_price2 + '</span>');
+                        }else{
+                            $("select#pdf-price").siblings('em').html('S/. <span>' + price1 + '</span>');
+                            $("select#mail-price").siblings('em').html('S/. <span>' + price2 + '</span>');
+                        }
                         $("select#gift-price").siblings('em').html('S/. <span>' + price3 + '</span>');
                         $('div#collapseOne .col-md-8').html(details);
 
@@ -326,7 +340,6 @@
             });
         </script>
     @endif
-    <?php //print_r(count($locations)); die();?>
     @if(isset($locations) && count($locations) ==1 && !isset($first_loc))
     <script type="text/javascript">
         $(function(){
