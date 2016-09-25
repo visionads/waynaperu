@@ -5,20 +5,19 @@
             <div class="bloque-box">
                 <div class="bloque-image" style="position: relative">
                     <?php
-                    $profit = 0;
-                    $old = getLocPrice2Fresh($product->product_id);
-                    //$old = 50;
-                    $new = getLocPriceFresh($product->product_id);
-                    $diff = $old - $new;
-                    if($old != 0){
-                        $profit = (($old-$new)*100)/$old;
-                    }
+                        $new_price = 0;
+                        $discount=getLocPrice($product->product_id,'price3');
+                        $adult_price = getLocPrice($product->product_id,'price1');
+                        if($discount!='0.00'){
+                            $price= $adult_price-(($adult_price/100)*$discount);
+                            $new_price=makePrintablePrice($price);
+                        }else{
+                            $adult_price=makePrintablePrice($adult_price);
+                        }
                     ?>
                     <img src="{{ asset('uploads/products/'.$product->image) }}" alt="Exploor" class="img-responsive">
-                    @if(isset($profit) != 0)
-                        @if($profit != 0)
-                            <div class="profit-price">{{ number_format($profit,2) }}%</div>
-                        @endif
+                    @if(isset($discount) && $discount!=0.00)
+                        <div class="profit-price">{{ number_format($discount,2) }}%</div>
                     @endif
 
                 </div>
@@ -32,8 +31,13 @@
                     </div>
                 </div>
                 <div class="desed">
-                    <p class="price-old">{{ getLocPrice2($product->product_id) }}</p>
-                    <p class="price">{{ getLocPrice($product->product_id) }}</p>
+                    @if(isset($discount) && $discount!=0.00)
+                        <p class="price-old">{{ $adult_price }}</p>
+                        <p class="price">{{ $new_price }}</p>
+                    @else
+                        <p class="price-old"></p>
+                        <p class="price">{{ $adult_price }}</p>
+                    @endif
                     <p class="location"><span><img src="{{ asset('images/icon/location.png') }}" alt="location"></span>
                         {{ getLocCount($product->product_id) }}
                     </p>

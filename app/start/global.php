@@ -87,13 +87,39 @@ function getLangId($code){
     return DB::table('languages')->where('code','=', $code)->pluck('id');
 }
 
-function getLocPrice($product_id){
-    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck('price1');
+//function getLocPrice($product_id,$column){
+//    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck($column);
+//
+//    if (isset($price)) {
+//        $price = number_format($price, 2);
+//        $p = explode(".", $price);
+//        return "<span>S/.</span>".$p[0] .".<span>".$p[1]."</span>";
+//        /*
+//        $price = number_format((float) $price, 2);
+//        $p = explode(".", $price);
+//    	return "<span>S/.</span>".$p[0] .".<span>".$p[1]."</span>";
+//        */
+//        # code...
+//    }else{
+//        return '<span>N/A</span>';
+//    }
+//}
+
+function getLocPrice($product_id,$column){
+    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck($column);
 
     if (isset($price)) {
+        return number_format($price, 2);
+    }else{
+        return 0;
+    }
+}
+function makePrintablePrice($price=false){
+    if (isset($price) && is_numeric($price)) {
         $price = number_format($price, 2);
         $p = explode(".", $price);
-        return "<span>S/.</span>".$p[0] .".<span>".$p[1]."</span>";
+        $s="<span>S/.</span>".$p[0] .".<span>".$p[1]."</span>";
+        return $s;
         /*
         $price = number_format((float) $price, 2);
         $p = explode(".", $price);
@@ -104,43 +130,6 @@ function getLocPrice($product_id){
         return '<span>N/A</span>';
     }
 }
-function getLocPrice2($product_id){
-    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck('price2');
-
-    if (isset($price)) {
-        $price = number_format($price, 2);
-        $p = explode(".", $price);
-        return "<span>S/.</span>".$p[0] .".<span>".$p[1]."</span>";
-        /*
-        $price = number_format((float) $price, 2);
-        $p = explode(".", $price);
-    	return "<span>S/.</span>".$p[0] .".<span>".$p[1]."</span>";
-        */
-        # code...
-    }else{
-        return '<span>N/A</span>';
-    }
-}
-
-function getLocPriceFresh($product_id){
-    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck('price1');
-
-    if (isset($price)) {
-        return number_format($price, 2);
-    }else{
-        return 0;
-    }
-}
-function getLocPrice2Fresh($product_id){
-    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck('price2');
-
-    if (isset($price)) {
-        return number_format($price, 2);
-    }else{
-        return 0;
-    }
-}
-
 function getLocPriceOrder($product_id){
     $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck('price1');
 
