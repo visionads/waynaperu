@@ -430,13 +430,13 @@ header .logo {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid #918b87;
   border-radius: 50%;
-  height: 78px;
+  height: 90px;
   padding-top: 6px;
   position: absolute;
   right:10px;
   text-align: center;
   top: -50px;
-  width: 78px;
+  width: 90px;
 }
 .bloque-caption {
   padding: 15px 15px 0;
@@ -456,6 +456,9 @@ header .logo {
 .desed p.price span{ width:13px;color:#214294;}
 .desed p.price-old { color: #f39200; font-size: 16px; font-weight: bold; letter-spacing: -1px; line-height: 20px; margin: 0; text-decoration: line-through; }
 .desed p.price-old span{ width:12px;color: #f39200;}
+
+.desed p.price-old-null { color: transparent; font-size: 16px; font-weight: bold; letter-spacing: -1px; line-height: 20px; margin: 0; text-decoration: line-through; }
+.desed p.price-old-null span{ width:12px;color: transparent;}
 .profit-price { 
   position: absolute; 
   top: 10px; 
@@ -463,11 +466,19 @@ header .logo {
   z-index: 0; 
   /*z-index: 100; */
   padding: 0px 15px; 
-  border: 2px solid #f39400; 
-  border-radius: 30px; 
-  color: #f39400; 
-  font-size: 20px; 
+  /*border: 2px solid #f39400;*/
+  border: 2px solid #214294;
+  border-radius: 30px;
+  /*color: #f39400;*/
+  /*color: #214294;*/
+  color: #103183;
+  font-size: 20px;
   font-weight: bold;
+  /*background: #214294;*/
+  /*background: rgba(241, 175, 0, 0.8) !*#f39400*!;*/
+  background: rgba(120, 175, 255, 0.9) /*#f39400*/;
+
+  /*opacity: 0.7;*/
 }
 
 .bloque-caption .desed .location {color: #000;}

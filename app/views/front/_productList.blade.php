@@ -35,7 +35,7 @@
                         <p class="price-old">{{ $adult_price }}</p>
                         <p class="price">{{ $new_price }}</p>
                     @else
-                        <p class="price-old"></p>
+                        <p class="price-old-null">&nbsp;</p>
                         <p class="price">{{ $adult_price }}</p>
                     @endif
                     <p class="location"><span><img src="{{ asset('images/icon/location.png') }}" alt="location"></span>
