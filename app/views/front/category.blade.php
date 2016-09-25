@@ -163,36 +163,8 @@
                         </div>   
                   </div>
                  
-                 <div class="row categoryy">                     
-                                       	
-                        @foreach($products as $product)                     
-                        <div class="item-grid" data-myorder="{{ getLocPriceOrder($product->product_id) }}" data-myhits="{{ getProductHits($product->product_id) }}">                        
-                          <a href="{{ route('category_experience_id', array(Str::slug($product->category_name), Str::slug($product->product_title), $product->product_id)) }}" title="{{ $product->title }}">
-                            <div class="bloque-box">                           
-                              <div class="bloque-image">                              
-                                <!--<span class="like-icon"></span>-->
-                                <img src="{{ asset('uploads/products/'.$product->image) }}" alt="Exploor" class="img-responsive">
-                              </div>
-                            <div class="bloque-caption">                              
-                              <div class="desed">
-{{--                                <span>{{ getLocationName($product->product_id) }}</span>--}}
-                                  <p class="price-old">{{ getLocPrice2($product->product_id) }}</p>
-                                <p class="price">{{ getLocPrice($product->product_id) }}</p>
-                                <p class="location"><span><img src="{{ asset('images/icon/location.png') }}" alt="location"></span>{{ getLocCount($product->product_id) }}</p>
-                              </div>                              
-                              <span class="icon"  @if(getProIcon($product->product_id) !='') style="background-image:url({{ asset('uploads/categories/'.getProIcon($product->product_id)) }})"@endif> &nbsp;</span>
-                              <div class="bloque-caption-text">
-                                <h2>{{ str_limit($product->product_title, $limit = 25, $end = '...') }}</h2>
-                                <span class="bdr"></span>                                 
-                                <div class="clearfix"></div>
-                                <p>{{ str_limit($product->mini_description, $limit = 50, $end = '...') }}</p>
-                              </div>                          
-                            </div>                        
-                          </div>                     
-                        </a>                     
-                      </div>                     
-                      @endforeach                  
-                    </div>               
+                 <div class="row categoryy">
+                        @include('front._productList')
                   </div><!--bloque end here-->            
               </div>
            </div>
