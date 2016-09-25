@@ -310,10 +310,10 @@
                         $('.payment_wrapper button.checkout-btn').removeAttr('disabled');
                         if(discount_price1 != 0)
                         {
-                            $("select#pdf-price").siblings('old').html('S/. <span>' + price1 + '</span>');
+                            $("select#pdf-price").siblings('old').html(' <span class="throgh-line">' + price1 + '</span>');
                             $("select#pdf-price").siblings('em').html('S/. <span>' + discount_price1 + '</span>');
 
-                            $("select#mail-price").siblings('old').html('S/. <span>' + price2 + '</span>');
+                            $("select#mail-price").siblings('old').html(' <span class="throgh-line">' + price2 + '</span>');
                             $("select#mail-price").siblings('em').html('S/. <span>' + discount_price2 + '</span>');
                         }else{
                             $("select#pdf-price").siblings('em').html('S/. <span>' + price1 + '</span>');

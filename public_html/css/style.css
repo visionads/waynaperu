@@ -1909,3 +1909,5 @@ ul.crdt-ul img { max-width:40px !important; height:20px !important; margin: 5px 
 /* Misc ETS */
 .logo-emprende { border: 0px solid #909090; padding: 15% 0; text-align: center;}
 .logo-emprende p { font-weight: normal; font-size: 16px;}
+
+.throgh-line { text-decoration: line-through !important; color: #f39400; font-size: 13px !important; display: block !important;}
