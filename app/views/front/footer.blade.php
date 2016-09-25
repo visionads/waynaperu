@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-
+<br>
     <!-- /#page-content-wrapper -->
     <footer class="footer">
         <!-- main footer section  -->

@@ -485,8 +485,8 @@ footer{bottom: 0;color: #fff;height:30px;position: fixed;width: 100%;background:
 line-height:30px; left: 0px;}
 .footer-gray {background:#383838;text-align: center;}
 .text-muted > span {padding: 0 5px;}
-.text-muted {color: #fcfcfc;font-size: 10px;font-weight: bold;line-height:30px;}
-.footer-right{ float:right;background:#383838; margin-right: 0px;}
+.text-muted {color: #fcfcfc; font-size:10px; font-weight: bold;line-height:30px;}
+.footer-right{ float:right;background:#383838; margin-right: -20px !important;}
 .footer-right ul{ float:left; margin:0px; padding:0px;}
 .footer-right ul li.contact{ font-size:10px; padding-right:20px;}
 .footer-right ul li {display: inline-block;float: left;font-weight: bold;list-style: outside none none;padding: 0 5px;}
