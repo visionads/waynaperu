@@ -138,7 +138,7 @@
                       <p>Hemos encontrado estas experiencias de <span class="q">“{{ Input::get('q') }}”</span> para tí:</p>                     @else                     
                       <p>Desafortunadamente, no hay ningún resultado para <span class="q">“{{ Input::get('q') }}”</span></p>                     @endif                  	
                  </div>                   
-                @foreach($products as $product)  
+                {{--@foreach($products as $product)
                   
                   <div class="col-lg-4 col-sm-6">
                 <a href="{{ route('category_experience_id', array(Str::slug($product->category_name), Str::slug($product->product_title), $product->product_id)) }}" title="{{ $product->product_title }}">
@@ -154,7 +154,8 @@
                                  </div>                              
                                  <span class="icon"  @if(getProIcon($product->product_id) !='') style="background-image:url({{ asset('uploads/categories/'.getProIcon($product->product_id)) }})"@endif> &nbsp; </span>                              <div class="bloque-caption-text">                                 <h2>{{ str_limit($product->product_title, $limit = 25, $end = '...') }}</h2>                                 <span class="bdr"></span>                                 <div class="clearfix"></div>                                 <p>{{ str_limit($product->mini_description, $limit = 50, $end = '...') }}</p>                              </div>                           </div>                        </div>                     </a>                     </div>                     
                   
-                  @endforeach                    
+                  @endforeach--}}
+                  @include('front._productList')
                  
                  <div class="row "> 
                       <div class="col-lg-12 col-sm-12">                      

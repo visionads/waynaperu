@@ -134,7 +134,7 @@
               <div class="row ">                     
                 
                                    
-                @foreach($products as $product)  
+                {{--@foreach($products as $product)
                   
                   <div class="col-lg-4 col-sm-6">                        
                        <a href="{{ route('experience', array($product->product_id)) }}?search=1" title="{{ $product->title }}">                         <div class="bloque-box">                           
@@ -149,7 +149,8 @@
                                  </div>                              
                                  <span class="icon"  @if(getProIcon($product->product_id) !='') style="background-image:url({{ asset('uploads/categories/'.getProIcon($product->product_id)) }})"@endif> &nbsp; </span>                              <div class="bloque-caption-text">                                 <h2>{{ str_limit($product->title, $limit = 25, $end = '...') }}</h2>                                 <span class="bdr"></span>                                 <div class="clearfix"></div>                                 <p>{{ str_limit($product->mini_description, $limit = 50, $end = '...') }}</p>                              </div>                           </div>                        </div>                     </a>                     </div>                     
                   
-                  @endforeach                    
+                  @endforeach--}}
+                  @include('front._productList')
                  
                  
                

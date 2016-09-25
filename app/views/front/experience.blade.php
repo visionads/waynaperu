@@ -364,7 +364,7 @@
                                                                 <h2>{{ str_limit($product->product_title, $limit = 20, $end = '...') }}</h2>
                                                                 <span class="bdr"></span>
                                                                 <div class="clearfix"></div>
-                                                                <p class="price">{{ getLocPrice($product->product_id) }}</p>
+                                                                <p class="price">{{ getLocPrice($product->product_id,'price1') }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
