@@ -1548,7 +1548,16 @@ form.checkout_form {max-width: 500px;width: 100%;}
 }
 .bloque-image {max-height: 100%;position:relative;} 
 .slogen {display:block;}
-.mobile-menu .navbar-brand {display: inline-block;float: none;font-size: 18px;height: 50px;line-height: 20px;padding: 6px 0 0;}
+.mobile-menu .navbar-brand {
+	/*display: inline-block; */
+	float: none;
+	font-size: 18px;
+	height: 50px;
+	line-height: 20px;
+	padding: 6px 0 0;
+	margin-left: -40%;
+	margin-right: 16%;
+}
 #sidebar-wrapper{ display:none;}
 .mobile-menu{ display:block;}
 header .logo {display: none;}
@@ -1581,7 +1590,11 @@ footer {height: auto;position: relative;}
 .right-side {width: 100%;}
 .mobile-menu .navbar-header {margin: 0;text-align: center;}
 .mobile-menu .navbar-toggle {float: left;}
-.mobile-menu .right-side {float: right;width: auto;}
+.mobile-menu .right-side {
+	float: right;
+	width: auto;
+	margin-top: -14%;
+}
 .mobile-menu .right-side .nav.navbar-nav {float: left;margin: 0;padding-right:0px;}
 header .right-side {display: none;}
 .mobile-menu.second-sticky {left: 0;position: fixed;top: 0;width: 100%;z-index: 99999;}
