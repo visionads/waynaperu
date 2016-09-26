@@ -24,7 +24,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="clearfix">
-                                    <div class="col-md-5 text-right">
+                                    <div class="col-md-5 text-right" style="text-align: center;">
                                         <a href="#">
                                         <img src="{{ url('images/comodo_secure_seal_100x85_transp.png') }}">
                                         </a> &nbsp;
