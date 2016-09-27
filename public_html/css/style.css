@@ -467,17 +467,19 @@ header .logo {
   /*z-index: 100; */
   padding: 0px 15px; 
   /*border: 2px solid #f39400;*/
-  border: 2px solid #214294;
+  /*border: 2px solid #214294;*/
+  border: 2px solid #963500;
   border-radius: 30px;
   /*color: #f39400;*/
   /*color: #214294;*/
-  color: #103183;
+  /*color: #103183;*/
+  color: #963500;
   font-size: 20px;
   font-weight: bold;
   /*background: #214294;*/
   /*background: rgba(241, 175, 0, 0.8) !*#f39400*!;*/
-  background: rgba(120, 175, 255, 0.9) /*#f39400*/;
-
+  /*background: rgba(120, 175, 255, 0.9) !*#f39400*!;*/
+  background: #ff9f00;
   /*opacity: 0.7;*/
 }
 
