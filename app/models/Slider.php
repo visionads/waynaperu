@@ -12,6 +12,7 @@ class Slider extends Eloquent
     protected $fillable=[
         'caption',
         'path',
+        'url',
         'status',
         'sequence',
     ];

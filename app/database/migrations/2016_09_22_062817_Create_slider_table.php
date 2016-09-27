@@ -16,6 +16,7 @@ class CreateSliderTable extends Migration {
 		{
 			$table->increments('id');
             $table->text('caption')->nullable();
+            $table->text('url')->nullable();
             $table->text('path')->nullable();
             $table->enum('status',['active','inactive'])->nullable();
             $table->unsignedInteger('sequence')->nullable();

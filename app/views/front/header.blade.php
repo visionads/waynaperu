@@ -304,7 +304,9 @@
     <div class="regular slider">
         @foreach($sliders as $slider)
         <div>
-            <img class="img-responsive" src="{{ asset($slider->path) }}" alt="{{ $slider->caption }}">
+            <a href="@if(!empty($slider->url)) {{ $slider->url }} @else # @endif">
+                <img class="img-responsive" src="{{ asset($slider->path) }}" alt="{{ $slider->caption }}">
+            </a>
         </div>
         @endforeach
     </div>

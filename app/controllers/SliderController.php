@@ -19,7 +19,7 @@ class SliderController extends BaseController
     }
     public function store()
     {
-        $data=Input::only('caption','status','sequence');
+        $data=Input::only('caption','status','sequence','url');
         $file=Input::file('path');
         $name = time().'-'.$file->getClientOriginalName();
         $file = $file->move('images/slider/', $name);
@@ -37,9 +37,10 @@ class SliderController extends BaseController
     public function update()
     {
         $id=Input::get('id');
-        $data=Input::only('caption','status','sequence');
+        $data=Input::only('caption','status','sequence','url');
         $slider= Slider::find($id);
         $slider->caption=$data['caption'];
+        $slider->url=$data['url'];
         $slider->sequence=$data['sequence'];
         $slider->status=$data['status'];
         $slider->save();
