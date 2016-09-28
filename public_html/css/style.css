@@ -456,7 +456,7 @@ header .logo {
 .desed p.price:hover { color:#f39200 !important; }
 .desed p.price span{ width:13px; color: inherit;}
 
-.desed p.price-old { color: #f39200; font-size: 16px; font-weight: bold; letter-spacing: -1px; line-height: 20px; margin:10px 0 0 0; text-decoration: line-through; }
+.desed p.price-old { color: #f39200; font-size: 16px; font-weight: bold; letter-spacing: -1px; line-height: 20px; margin:5px 0 0 0; text-decoration: line-through; }
 .desed p.price-old:hover { color:#963500;}
 .desed p.price-old span{ width:12px;color: #f39200;}
 
