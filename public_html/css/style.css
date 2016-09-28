@@ -437,7 +437,9 @@ header .logo {
   text-align: center;
   top: -50px;
   width: 90px;
+  color: #214294;
 }
+.desed:hover { color:#f39200 !important;}
 .bloque-caption {
   padding: 15px 15px 0;
   position: relative;
@@ -446,14 +448,15 @@ header .logo {
 }
 .desed span{ font-size:12px; font-weight:bold;color: #595959;}
 .desed p.price {
-  color: #214294 !important;
+  /*color: #214294 !important;*/
+  color: inherit;
   font-size: 25px;
   font-weight: bold;
   letter-spacing: -1px;
   line-height: 20px;
   margin:10px 0 0 0;
 }
-.desed p.price:hover { color:#f39200 !important; }
+/*.desed p.price:hover { color:#f39200 !important; }*/
 .desed p.price span{ width:13px; color: inherit;}
 
 .desed p.price-old { color: #f39200; font-size: 16px; font-weight: bold; letter-spacing: -1px; line-height: 20px; margin:5px 0 0 0; text-decoration: line-through; }
