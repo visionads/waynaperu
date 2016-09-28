@@ -498,6 +498,7 @@ height:2px;margin: 5px 0;width:49px;}
 background-repeat:no-repeat;}
 .bloque-box:hover .bloque-caption .icon{ background-image:url(../images/icon/blog-adven-icon.png); background-position:-35px;}
 .bloque-box:hover .bloque-caption-text > h2{ color:#214294;}
+.bloque-box:hover .desed{ color:#f39200;}
 .bloque-caption-text {float: left;}
 .bloque-caption-text > p {color: #2d2d2d;font-size: 11px;height: 15px;}
 footer{bottom: 0;color: #fff;height:30px;position: fixed;width: 100%;background: url(../images/footer-pattren.png) repeat-x center #383838;
