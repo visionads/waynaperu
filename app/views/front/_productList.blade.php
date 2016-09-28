@@ -38,9 +38,9 @@
                         <p class="price-old-null">&nbsp;</p>
                         <p class="price">{{ $adult_price }}</p>
                     @endif
-                    <p class="location"><span><img src="{{ asset('images/icon/location.png') }}" alt="location"></span>
+                    {{--<p class="location"><span><img src="{{ asset('images/icon/location.png') }}" alt="location"></span>
                         {{ getLocCount($product->product_id) }}
-                    </p>
+                    </p>--}}
                 </div>
             </div>
         </a>
