@@ -62,8 +62,8 @@
                     <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
                       <ul class="nav navbar-nav">
                         <li class="active"><a href="{{ URL::route('indexDashboard') }}">{{ trans('usermanager::navigation.index') }}<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-                        @if (Sentry::check())
-                            @if($currentUser->hasAccess(Config::get('usermanager::permissions.listUsers')) || $currentUser->hasAccess(Config::get('usermanager::permissions.listGroups')))
+{{--                        @if (Sentry::check())--}}
+{{--                            @if($currentUser->hasAccess(Config::get('usermanager::permissions.listUsers')) || $currentUser->hasAccess(Config::get('usermanager::permissions.listGroups')))--}}
                                 <li class="dropdown">
                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('usermanager::navigation.users') }} <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
                                   <ul class="dropdown-menu forAnimate" role="menu">
@@ -78,11 +78,11 @@
                                     @endif
                                   </ul>
                                 </li>  
-                            @endif   
+                            {{--@endif   --}}
                             {{ (!empty($navPages)) ? $navPages : '' }}
-                        @endif
-                        @if (Sentry::check())
-                            @if($currentUser->hasAccess(Config::get('usermanager::permissions.lang_management')) )     
+                        {{--@endif--}}
+                        {{--@if (Sentry::check())--}}
+                            {{--@if($currentUser->hasAccess(Config::get('usermanager::permissions.lang_management')) )     --}}
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-filter"></span></a>
                                      <ul class="dropdown-menu">
@@ -96,10 +96,10 @@
                                         </li>
                                     </ul>
                                 </li>        
-                            @endif
+                            {{--@endif--}}
                                 {{ (!empty($navPages)) ? $navPages : '' }}
-                        @endif
-                        @if (Sentry::check())
+                        {{--@endif--}}
+{{--                        @if (Sentry::check())--}}
                             @if($currentUser->hasAccess(Config::get('usermanager::permissions.content_management')))
                                  <li ><a href="{{ URL::to('/') }}/admin/pages">Content<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tasks"></span></a></li>
                             @endif
@@ -126,7 +126,7 @@
                             @endif
                            
                             {{ (!empty($navPages)) ? $navPages : '' }}
-                        @endif
+                        {{--@endif--}}
                       </ul>
                     </div>
                   </div>

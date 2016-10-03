@@ -11,7 +11,6 @@ Class PagesController extends BaseController{
 		            ->orderBy('contents.id', 'asc')
                     ->groupBy('contents.page_id')
 		            ->get();
-
         return View::make('admin.list_pages', array('list_pages' => $list_pages));
     }
     public function addPage()

@@ -11,10 +11,12 @@
 */
 use \AdamWathan\EloquentOAuth\Exceptions\ApplicationRejectedException;
 use \AdamWathan\EloquentOAuth\Exceptions\InvalidAuthorizationCodeException;
-
+// admin login route
+Route::get('admin/login', array('as' => 'admin-login', 'uses' => 'UsersController@admin_login'));
 // Admin Routes
-Route::group(array('before' => 'basicAuth'), function () {
+Route::group(array('before' => 'adminFilter'), function () {
 
+    Route::get('admin', 'DashboardController@index');
     Route::controller('filemanager', 'FilemanagerLaravelController');
 	//Languages
 	Route::get('/admin/languages','LanguagesController@index');

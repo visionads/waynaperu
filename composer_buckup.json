@@ -5,10 +5,10 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"zizaco/entrust": "1.2.*@dev",
 		"vrigzalejo/usermanager": "1.0.x",
-		"vovanmix/filemanager-laravel4-s3": "1.*",
 		"mcamara/laravel-localization": "0.15.*",
+		"intervention/imaglaravele": "^2.3",
+		"vovanmix/filemanager-4-s3": "1.*",
 		"gloudemans/shoppingcart": "~1.2",
 		"greggilbert/recaptcha": "1.1.5",
 		"adamwathan/eloquent-oauth-l4": "^0.2.0",
@@ -16,8 +16,7 @@
 		"forestry/form-validator": "^0.1.1",
 		"codezero/session": "^1.0",
 		"behance/kong": "^0.1.9",
-		"infrajs/template": "^1.1",
-		"intervention/image": "^2.3"
+		"infrajs/template": "^1.1"
 	},
 	"autoload": {
 		"classmap": [

@@ -10,6 +10,9 @@ class UsersController extends UserController {
             $this->url_language_id    = getLangId($lang_code);
        
     }
+	public function admin_login(){
+        return View::make('admin.login');
+    }
 	public function postLogin(){
 		if (Auth::check())
 		{
@@ -28,7 +31,14 @@ class UsersController extends UserController {
 			}
 			
 			if(Auth::attempt(array('email' => $email, 'password' => $password))){
-				return Redirect::route('home');
+//			    dd(Auth::user()->type);
+			    if(Auth::user()->type=='client')
+                {
+                    return Redirect::route('home');
+
+                }elseif(Auth::user()->type=='admin'){
+                    return Redirect::route('admin');
+                }
 			}else{
 				 return Redirect::to('?error=2')->withInput();
 			}

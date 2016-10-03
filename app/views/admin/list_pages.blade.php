@@ -22,7 +22,7 @@
         </tr>
         </thead>
         <tbody>
-        
+
         @foreach ($list_pages as $page)
 
         <tr>
@@ -57,6 +57,7 @@
                 </div>
             </td>
         </tr>
+
         @endforeach
         </tbody>	
            
