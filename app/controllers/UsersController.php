@@ -37,7 +37,7 @@ class UsersController extends UserController {
                     return Redirect::route('home');
 
                 }elseif(Auth::user()->type=='admin'){
-                    return Redirect::route('admin');
+                    return Redirect::to('admin');
                 }
 			}else{
 				 return Redirect::to('?error=2')->withInput();

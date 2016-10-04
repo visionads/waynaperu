@@ -86,6 +86,16 @@ function convertAmount($amount)
 function getLangId($code){
     return DB::table('languages')->where('code','=', $code)->pluck('id');
 }
+function getSerialNum($per_page){
+    $page_id=Input::get('page');
+    if(isset($page_id) && !empty($page_id))
+    {
+        $serial=($per_page*($page_id-1))+1;
+    }else{
+        $serial=1;
+    }
+    return $serial;
+}
 
 //function getLocPrice($product_id,$column){
 //    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck($column);

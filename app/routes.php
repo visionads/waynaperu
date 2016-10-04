@@ -17,6 +17,15 @@ Route::get('admin/login', array('as' => 'admin-login', 'uses' => 'UsersControlle
 Route::group(array('before' => 'adminFilter'), function () {
 
     Route::get('admin', 'DashboardController@index');
+
+    Route::get('users',['as'=>'users','uses'=>'UserController@index']);
+    Route::get('user/add',['as'=>'add-user','uses'=>'UserController@create']);
+    Route::post('user/store',['as'=>'store-user','uses'=>'UserController@store']);
+    Route::get('user/edit/{user_id}',['as'=>'edit-user','uses'=>'UserController@edit']);
+    Route::post('user/update/{user_id}',['as'=>'update-user','uses'=>'UserController@update']);
+    Route::get('user/delete/{user_id}',['as'=>'delete-user','uses'=>'UserController@destroy']);
+
+
     Route::controller('filemanager', 'FilemanagerLaravelController');
 	//Languages
 	Route::get('/admin/languages','LanguagesController@index');

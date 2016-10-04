@@ -30,7 +30,7 @@
                 <div class="checkbox-table">
                     <label>
                         {{ $page->page_id }}
-                       
+
                     </label>
                 </div></td>
             <td>{{ $page->title }}</td>
@@ -39,13 +39,13 @@
                    Published
                 @else
                    Unpublished
-                @endif    
+                @endif
             </td>
 
             <td class="hidden-xs">
                 {{ substr(strip_tags($page->description), 0, 20) }}
             </td>
-            
+
              <td>
                     {{ $page->name }}
             </td>
@@ -59,9 +59,8 @@
         </tr>
 
         @endforeach
-        </tbody>	
-           
+        </tbody>
+
     </table>
 </div>
-
 @stop
