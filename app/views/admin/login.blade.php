@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Half-Way - Login</title>
+    <title>Waynaperu - Login</title>
 
     <!-- BEGIN META -->
     <meta charset="utf-8">
