@@ -20,38 +20,69 @@ class UsersController extends UserController {
     }
     public function admin_login_check()
     {
-        if (Auth::check())
+        if (!Auth::check())
         {
-            return Redirect::route('admin');
-        }else{
             $auth=UsersController::authCheck();
-            return Redirect::route('admin');
+            if($auth==false)
+            {
+                return Redirect::route('admin-admin');
+            }
         }
+        return Redirect::route('admin');
     }
-	private static function authCheck(){
-		if (Auth::check())
-		{
-    		return Redirect::route('home');
-    	}else{
-			$email = Input::get('login-email');
-			$password = Input::get('login-password');
-			$rules = array(
-				        'login-email' => 'required|email',
-				        'login-password'  => 'required|min:6',
-				    );
-			$validator = Validator::make(Input::all(), $rules);
-			if ($validator->fails())
-			{
-			   return $validator;
-			}
-			
-			if(Auth::attempt(array('email' => $email, 'password' => $password))){
-			    return true;
-			}else{
-				 return false;
-			}
-		}
-	}
+
+    private static function authCheck()
+    {
+        $data = Input::all();
+        date_default_timezone_set("Asia/Dacca");
+        $field = filter_var($data['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        $user_data = User::where($field, $data['email'])->first();
+
+
+        if(count($user_data) ==1){
+            $attempt = Auth::attempt([
+                $field => $data['email'],
+                'password' => $data['password'],
+            ]);
+            if($attempt){
+                Session::put('email', $user_data->email);
+                Session::put('user_id', $user_data->id);
+                Session::put('type', $user_data->type);
+                Session::flash('message', "Successfully  Logged In.");
+                return true;
+            }else{
+                Session::flash('danger', "Password Incorrect.Please Try Again");
+            }
+        }else{
+            Session::flash('danger', "Invalid Email/Username.Please Try Again");
+        }
+        return false;
+    }
+//	private static function authCheck(){
+//		if (Auth::check())
+//		{
+//    		return Redirect::route('home');
+//    	}else{
+//			$email = Input::get('login-email');
+//			$password = Input::get('login-password');
+//			$rules = array(
+//				        'login-email' => 'required|email',
+//				        'login-password'  => 'required|min:6',
+//				    );
+//			$validator = Validator::make(Input::all(), $rules);
+//			if ($validator->fails())
+//			{
+//			   return $validator;
+//			}
+//
+//			if(Auth::attempt(array('email' => $email, 'password' => $password))){
+//			    return true;
+//			}else{
+//				 return false;
+//			}
+//		}
+//	}
 	public function postRegister(){
 		$rules = array(
 					'username' => 'required|min:3|unique:users',

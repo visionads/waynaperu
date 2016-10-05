@@ -16,7 +16,7 @@ use \AdamWathan\EloquentOAuth\Exceptions\InvalidAuthorizationCodeException;
 // Admin Routes
 Route::group(array('before' => 'adminFilter'), function () {
 
-    Route::get('admin', 'DashboardController@index');
+    Route::get('admin',['as'=>'admin','uses'=>'DashboardController@index']);
 
     Route::get('users',['as'=>'users','uses'=>'UserController@index']);
     Route::get('user/add',['as'=>'add-user','uses'=>'UserController@create']);
