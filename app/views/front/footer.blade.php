@@ -132,7 +132,7 @@
                             <div class="text-center"><button type="submit" class="btn btn-success">{{ trans('text.login_btn_text') }}</button></div>
 
                             <div class="login_socail">
-                                <a class="login_facebook" href="{{ URL::to('facebook/authorize') }}"><img src="{{ asset('images/login_facebook.png') }}" alt="" /></a>
+                                <a class="login_facebook" href="{{ URL::route('facebook_login') }}"><img src="{{ asset('images/login_facebook.png') }}" alt="" /></a>
                                 <a class="login_facebook" href="{{ URL::to('google/authorize') }}"><img src="{{ asset('images/login_google+.png') }}" alt="" /></a>
                             </div>
 

@@ -17,7 +17,8 @@
 		"codezero/session": "^1.0",
 		"behance/kong": "^0.1.9",
 		"infrajs/template": "^1.1",
-		"intervention/image": "^2.3"
+		"intervention/image": "^2.3",
+		"facebook/php-sdk-v4" : "~5.0"
 	},
 	"autoload": {
 		"classmap": [
