@@ -117,8 +117,8 @@ class CartController extends BaseController {
 		{
 			return Redirect::route('checkout');
 		}else{
-			$f_name = Input::get('f-name');
-			$l_name = Input::get('l-name');
+			$f_name = Input::get('first_name');
+			$l_name = Input::get('last_name');
 			$email = Input::get('email');
 			$passport = Input::get('passport');
 			$direction = Input::get('direction');
@@ -128,8 +128,8 @@ class CartController extends BaseController {
 			$city = Input::get('city');
 			$province = Input::get('province');
 			$phone = Input::get('phone');
-			$rules = array( 'f-name' => 'required|Between:2,49',
-				'l-name' => 'required|Between:2,49',
+			$rules = array( 'first_name' => 'required|Between:2,49',
+				'last_name' => 'required|Between:2,49',
 				'email' => 'required|email|Between:5,49|unique:users',
 				'direction' => 'required|Between:2,49',
 				'district' => 'required',
@@ -141,6 +141,13 @@ class CartController extends BaseController {
 			{
 				return Redirect::to('login-checkout')->withInput()->withErrors($validator);
 			}else{
+			    $data=Input::except('_token');
+                $data['type']='guest';
+                $data['username']='guest'.time();
+//                dd($data);
+                $user=User::create($data);
+//                dd($user);
+				Session::push('guest.id', $user->id);
 				Session::push('guest.f_name', $f_name);
 				Session::push('guest.l_name', $l_name);
 				Session::push('guest.email', $email);
@@ -306,7 +313,9 @@ class CartController extends BaseController {
 		if (Auth::check())
 		{
 			$order->user_id = Auth::id();
-		}
+		}else{
+		    $order->user_id=Session::get('guest.id.0');
+        }
 		$order->status = $status;
 		$order->qty = $total_qty;
 		$order->price = $total_price;

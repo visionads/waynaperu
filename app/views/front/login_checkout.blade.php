@@ -52,15 +52,15 @@
                              <p>{{ trans('text.checkout_register') }}</p>
                              {{  Form::open(array('route' => 'process_guest_checkout', 'class' => 'client_login_form')) }}
                                <div class="form_row">
-                                    <input class="cart_form2int inputbtn1" type="text" id="f-name" name="f-name" placeholder="{{ trans('text.first_name') }}" value="{{ Input::old('f-name') }}"/>
-                                    @if ($errors->has('f-name')) 
-                                        <div class="alert alert-danger" role="alert">{{ $errors->first('f-name') }}</div> 
+                                    <input class="cart_form2int inputbtn1" type="text" id="f-name" name="first_name" placeholder="{{ trans('text.first_name') }}" value="{{ Input::old('first_name') }}"/>
+                                    @if ($errors->has('first_name'))
+                                        <div class="alert alert-danger" role="alert">{{ $errors->first('first_name') }}</div>
                                     @endif
                                </div>
                                <div class="form_row">
-                                    <input class="cart_form2int inputbtn1" type="text" id="l-name" name="l-name" placeholder="{{ trans('text.surname') }}" value="{{ Input::old('l-name') }}"/>
-                                    @if ($errors->has('l-name')) 
-                                        <div class="alert alert-danger" role="alert">{{ $errors->first('l-name') }}</div> 
+                                    <input class="cart_form2i1nt inputbtn1" type="text" id="last_name" name="last_name" placeholder="{{ trans('text.surname') }}" value="{{ Input::old('last_name') }}"/>
+                                    @if ($errors->has('last_name'))
+                                        <div class="alert alert-danger" role="alert">{{ $errors->first('last_name') }}</div>
                                     @endif
                               </div>
                               <div class="form_row">
