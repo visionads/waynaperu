@@ -169,7 +169,7 @@
 <div class="container" id="main-container">
     <div class="row" style="margin-top: 20px;">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 col-xs-offset-2">
-            <form id="login-form" method="post" action="{{ url('login') }}" class="form-horizontal">
+            <form id="login-form" method="post" action="{{ url('admin_login') }}" class="form-horizontal">
                 <div class="form-group account-username">
                     @if($loginAttribute === 'email')
                     <input type="text" class="col-lg-12 form-control" placeholder="{{ trans('usermanager::all.email') }}========" name="email" id="email">

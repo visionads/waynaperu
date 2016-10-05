@@ -11,9 +11,24 @@ class UsersController extends UserController {
        
     }
 	public function admin_login(){
-        return View::make('admin.login');
+        if (Auth::check())
+        {
+            return Redirect::route('admin');
+        }else{
+            return View::make('admin.login');
+        }
     }
-	public function postLogin(){
+    public function admin_login_check()
+    {
+        if (Auth::check())
+        {
+            return Redirect::route('admin');
+        }else{
+            $auth=UsersController::authCheck();
+            return Redirect::route('admin');
+        }
+    }
+	private static function authCheck(){
 		if (Auth::check())
 		{
     		return Redirect::route('home');
@@ -27,20 +42,13 @@ class UsersController extends UserController {
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->fails())
 			{
-			   return Redirect::to('?error=1')->withInput()->withErrors($validator);
+			   return $validator;
 			}
 			
 			if(Auth::attempt(array('email' => $email, 'password' => $password))){
-//			    dd(Auth::user()->type);
-			    if(Auth::user()->type=='client')
-                {
-                    return Redirect::route('home');
-
-                }elseif(Auth::user()->type=='admin'){
-                    return Redirect::to('admin');
-                }
+			    return true;
 			}else{
-				 return Redirect::to('?error=2')->withInput();
+				 return false;
 			}
 		}
 	}
