@@ -25,7 +25,7 @@ class UsersController extends UserController {
             $auth=UsersController::authCheck();
             if($auth==false)
             {
-                return Redirect::route('admin-admin');
+                return Redirect::route('admin-login');
             }
         }
         return Redirect::route('admin');
@@ -34,28 +34,31 @@ class UsersController extends UserController {
     private static function authCheck()
     {
         $data = Input::all();
-        date_default_timezone_set("Asia/Dacca");
-        $field = filter_var($data['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        if(isset($data['email']) && isset($data['password']))
+        {
+            date_default_timezone_set("Asia/Dacca");
+            $field = filter_var($data['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        $user_data = User::where($field, $data['email'])->first();
+            $user_data = User::where($field, $data['email'])->first();
 
 
-        if(count($user_data) ==1){
-            $attempt = Auth::attempt([
-                $field => $data['email'],
-                'password' => $data['password'],
-            ]);
-            if($attempt){
-                Session::put('email', $user_data->email);
-                Session::put('user_id', $user_data->id);
-                Session::put('type', $user_data->type);
-                Session::flash('message', "Successfully  Logged In.");
-                return true;
+            if(count($user_data) ==1){
+                $attempt = Auth::attempt([
+                    $field => $data['email'],
+                    'password' => $data['password'],
+                ]);
+                if($attempt){
+                    Session::put('email', $user_data->email);
+                    Session::put('user_id', $user_data->id);
+                    Session::put('type', $user_data->type);
+                    Session::flash('message', "Successfully  Logged In.");
+                    return true;
+                }else{
+                    Session::flash('danger', "Password Incorrect.Please Try Again");
+                }
             }else{
-                Session::flash('danger', "Password Incorrect.Please Try Again");
+                Session::flash('danger', "Invalid Email/Username.Please Try Again");
             }
-        }else{
-            Session::flash('danger', "Invalid Email/Username.Please Try Again");
         }
         return false;
     }

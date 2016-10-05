@@ -35,7 +35,9 @@
     <div class="card contain-sm style-transparent">
         <div class="card-body">
             <div class="row">
+                @include('admin.theme.errormessage')
                 <div class="col-sm-6">
+
                     <br/>
                     <span class="text-lg text-bold text-primary">Waynaperu</span>
                     <br/><br/>
@@ -47,7 +49,7 @@
                                     <label for="username">Email</label>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="{{ trans('usermanager::all.password') }}" name="login-password" id="pass">
+                                    <input type="password" class="form-control" placeholder="{{ trans('usermanager::all.password') }}" name="password" id="pass">
                                     <label for="password">Password</label>
                                     <p class="help-block"><a href="#">Forgotten?</a></p>
                                 </div>
