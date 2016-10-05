@@ -21,13 +21,14 @@ class SocialMediaController extends BaseController
         ];
         return new Facebook($config);
     }
-    public function facebook_login()
+    public function facebook_login($from=false)
     {
+        Session::put('facebook_return_url',$from);
         $fb = SocialMediaController::_facebookInstance();
         $helper = $fb->getRedirectLoginHelper();
         // Optional permissions
         $permissions=Config::get('settingData.permissions');
-        $callback='http://exploor.dev/en/facebook';
+        $callback='http://exploor.dev/facebook';
         $callback= url($callback);
         $url=$helper->getLoginUrl($callback, ['public_profile','email']);
         return Redirect::to($url);
@@ -56,7 +57,11 @@ class SocialMediaController extends BaseController
             Auth::login($user);
 
             Session::flash('success', "Successfully login via Facebook");
-            if(Auth::user()->type=='client')
+            if(Session::get('facebook_return_url')=='checkout' && Auth::user()->type=='client')
+            {
+                Session::forget('facebook_return_url');
+                return Redirect::route('login_checkout');
+            }elseif(Auth::user()->type=='client')
             {
                 return Redirect::route('account');
             }elseif(Auth::user()->type=='admin')

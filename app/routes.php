@@ -17,6 +17,11 @@ Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showWelcome'));
 Route::get('admin_login', array('as' => 'admin-login', 'uses' => 'UsersController@admin_login'));
 Route::post('admin_login', array('as' => 'admin-login', 'uses' => 'UsersController@admin_login_check'));
 
+
+// Facebook routes
+Route::get('facebook/login/{from?}',['as'=>'facebook_login','uses'=>'SocialMediaController@facebook_login']);
+Route::get('facebook', array('as' => 'facebook', 'uses' => 'SocialMediaController@fb_return'));
+
 // Admin Routes
 Route::group(array('before' => 'adminFilter'), function () {
 
@@ -124,9 +129,6 @@ Route::group(array('before' => 'adminFilter'), function () {
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter'], function()
 {
 
-    // Facebook routes
-    Route::get('facebook/login',['as'=>'facebook_login','uses'=>'SocialMediaController@facebook_login']);
-
 
     Route::post('newsletter', array('as' => 'newsletter', 'uses' => 'CampaignController@newsletter'));
 	// admin login route here
@@ -166,7 +168,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'Laravel
 	Route::any('culqi-ipn', array('as' => 'culqi_ipn', 'uses' => 'CartController@culqiIPN'));
 
     Route::post('update-account', array('as' => 'update_account', 'uses' => 'CartController@update_account'));
-    Route::get('facebook', array('as' => 'facebook', 'uses' => 'SocialMediaController@fb_return'));
+
 
     Route::get('facebook/authorize', function() {
 	    return OAuth::authorize('facebook');

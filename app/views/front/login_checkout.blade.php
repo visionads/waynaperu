@@ -119,7 +119,7 @@
                               <input type="submit" name="continue" value="{{ trans('text.continue') }}" class="btn btn_login"/>
                              {{ Form::close() }}
                                <div class="socail_login">
-                                 <a href="{{ URL::route('facebook_login') }}"><img src="{{ asset('images/facebook-btn.png') }}" alt="" /></a>
+                                 <a href="{{ URL::route('facebook_login','checkout') }}"><img src="{{ asset('images/facebook-btn.png') }}" alt="" /></a>
                                  <a href="{{ URL::to('google/authorize') }}"><img src="{{ asset('images/google+.png') }}" alt="" /></a>
                              </div> 
                            </div>
