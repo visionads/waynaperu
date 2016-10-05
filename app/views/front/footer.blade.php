@@ -79,6 +79,7 @@
             <div class="modal-content">
                 <div class="modal-body login_main_wrapper">
                     <div class="row">
+                        @include('admin.theme.errormessage')
                         <div class="col-md-6 col-sm-12 register">
                             {{  Form::open(array('route' => 'post_register', 'class' => 'registration-form fomrm_left')) }}
                             <p>{{ trans('text.still_not_register') }}<br/>
@@ -115,18 +116,18 @@
                             {{ Form::close() }}
                         </div>
                         <div class="col-md-6 col-sm-12 login">
-                            {{  Form::open(array('route' => 'post_login', 'class' => 'registration-form')) }}
+                            {{  Form::open(array('route' => 'client-login', 'class' => 'registration-form')) }}
                             <p>{{ trans('text.please') }}, <span>{{ trans('text.login_btn_text') }}.</span></p>
                             <div class="user_title"><strong>{{ trans('text.user') }}</strong></div>
 
                             <div class="form-group">
                                 <label class="sr-only" for="login-email">{{ trans('text.email') }}</label>
-                                <input type="text" name="login-email" placeholder="{{ trans('text.email') }}..." class="email form-control" id="email">
+                                <input type="text" name="email" placeholder="{{ trans('text.email') }}..." class="email form-control" id="email">
                             </div>
 
                             <div class="form-group">
-                                <label class="sr-only" for="login-password">{{ trans('text.password') }}</label>
-                                <input type="password" name="login-password" placeholder="{{ trans('text.password') }}..." class="password form-control" id="password">
+                                <label class="sr-only" for="password">{{ trans('text.password') }}</label>
+                                <input type="password" name="password" placeholder="{{ trans('text.password') }}..." class="password form-control" id="password">
                             </div>
                             <p class="no_marr">{{ trans('text.forget_password') }}</p>
                             <div class="text-center"><button type="submit" class="btn btn-success">{{ trans('text.login_btn_text') }}</button></div>
@@ -180,6 +181,19 @@
     <script src="{{ asset('js/script.js') }}"></script>
 
 
+    <?php
+    if(Session::has('login-modal'))
+    {
+    ?>
+
+    <script type="text/javascript">
+        $('#myModal').modal('hide');
+        $('#modal-register').modal('show');
+    </script>
+    <?php
+    }
+
+    ?>
 
 
     <!-- Menu Toggle Script -->

@@ -28,7 +28,35 @@ class UsersController extends UserController {
                 return Redirect::route('admin-login');
             }
         }
+        if(Session::get('type')!='admin')
+        {
+            Auth::logout();
+            return Redirect::back();
+        }
+
         return Redirect::route('admin');
+    }
+    public function client_login_check()
+    {
+        if (!Auth::check())
+        {
+            $auth=UsersController::authCheck();
+            if($auth==false)
+            {
+                Session::flash('login-modal','yes');
+                return Redirect::route('home');
+            }
+        }
+        if(Session::get('type')!='client')
+        {
+            Session::forget('message');
+            session::flash('danger','Sorry, Invalid email or password.');
+            Session::flash('login-modal','yes');
+            Auth::logout();
+            return Redirect::back();
+        }
+
+        return Redirect::route('account');
     }
 
     private static function authCheck()
