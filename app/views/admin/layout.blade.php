@@ -13,6 +13,7 @@
             <section>
                 <div class="section-body">
                     <div class="row">
+                        @include('admin.theme.errormessage')
                         @yield('content')
                     </div>
                 </div>
