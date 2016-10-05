@@ -14,89 +14,93 @@
 
     @if(count($locations) > 0)
 
-    <table class="table table-striped table-hover" id="sample-table-2">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped table-hover" id="sample-table-2">
 
-        <thead>
+                <thead>
 
-        <tr>
+                <tr>
 
-            <th class="center">
+                    <th class="center">
 
-                <div class="checkbox-table">
+                        <div class="checkbox-table">
 
-                    <label>
+                            <label>
 
-                        Location ID
+                                Location ID
 
-                    </label>
+                            </label>
 
-                </div></th>
-
-
-
-            <th >Name</th>
-
-            
-
-            <th></th>
-
-        </tr>
-
-        </thead>
-
-        <tbody>
-
-        
-
-        @foreach ($locations as $location)
+                        </div></th>
 
 
 
-        <tr>
+                    <th >Name</th>
 
-            <td class="center">
 
-                <div class="checkbox-table">
 
-                    <label>
+                    <th></th>
 
-                        {{ $location->loc_id }}
+                </tr>
 
-                       
+                </thead>
 
-                    </label>
+                <tbody>
 
-                </div></td>
 
-            <td>{{ $location->name }}</td>
 
-           
+                @foreach ($locations as $location)
 
-            <td class="center">
 
-                <div class="visible-md visible-lg hidden-sm hidden-xs">
 
-                    <a data-locid ="{{ $location->loc_id }}" class="editloc btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                    <tr>
 
-                   
+                        <td class="center">
 
-                    <a href="#" class="btn btn-xs btn-red tooltips" data-placement="top" data-original-title="Remove" onclick="return common_delete({{$location->loc_id}},'locations/delete')"><i class="fa fa-times fa fa-white"></i></a>
+                            <div class="checkbox-table">
 
-                </div>
+                                <label>
 
-            </td>
+                                    {{ $location->loc_id }}
 
-        </tr>
 
-        @endforeach
 
-       
+                                </label>
 
-        </tbody>	
+                            </div></td>
 
-           
+                        <td>{{ $location->name }}</td>
 
-    </table>
+
+
+                        <td class="center">
+
+                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+
+                                <a data-locid ="{{ $location->loc_id }}" class="editloc btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+
+
+
+                                <a href="#" class="btn btn-xs btn-red tooltips" data-placement="top" data-original-title="Remove" onclick="return common_delete({{$location->loc_id}},'locations/delete')"><i class="fa fa-times fa fa-white"></i></a>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                @endforeach
+
+
+
+                </tbody>
+
+
+
+            </table>
+        </div>
+    </div>
 
      @else
 
