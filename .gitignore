@@ -9,6 +9,6 @@ Thumbs.db
 .idea
 .idea/
 
-/app/storage/
+#/app/storage/
 #/public/
 #/bootstrap/start.php
