@@ -20,27 +20,25 @@
                       </div>
 
                    <div class="row">
+
                        <div class="col-md-3 col-sm-12">
+                           @include('admin.theme.errormessage')
                            <div class="checkout_form2">
                                <h2>{{ trans('text.personalization') }}</h2>
-                               {{  Form::open(array('route' => 'process_login_checkout', 'class' => 'cart_form2')) }}
+                               {{  Form::open(array('route' => 'client-login-checkout', 'class' => 'cart_form2')) }}
                                <h5>{{ trans('text.ret_customer') }}</h5>
                                <p>{{ trans('text.checkout_login') }}</p>
                                @if(Auth::check())
                                  {{ Auth::user()->email }}
                                @else
                                 <div class="form_row">
-                                 <input class="cart_form2int" type="text" id="login-email" name="login-email" placeholder="Email"/>
-                                  @if ($errors->has('login-email')) 
-                                      <div class="alert alert-danger" role="alert">{{ $errors->first('login-email') }}</div> 
-                                  @endif
-                                 
+                                 <input class="cart_form2int" type="text" id="email" name="email" placeholder="Email or Username"/>
                                </div>
                                <div class="form_row">
-                                 <input class="cart_form2int" type="password" id="login-password" name="login-password" placeholder="{{ trans('text.password') }}"/>
-                                 @if ($errors->has('login-password')) 
-                                      <div class="alert alert-danger" role="alert">{{ $errors->first('login-password') }}</div> 
-                                  @endif
+                                 <input class="cart_form2int" type="password" id="password" name="password" placeholder="{{ trans('text.password') }}"/>
+                                 {{--@if ($errors->has('login-password'))--}}
+                                      {{--<div class="alert alert-danger" role="alert">{{ $errors->first('login-password') }}</div>--}}
+                                  {{--@endif--}}
                                  <span class="msg1">{{ trans('text.checkout_forget_pswd') }}</span>
                                </div>
                                <input type="submit" name="login" value="{{ trans('text.login_btn_text') }}" class="btn btn_login"/>
@@ -121,7 +119,7 @@
                               <input type="submit" name="continue" value="{{ trans('text.continue') }}" class="btn btn_login"/>
                              {{ Form::close() }}
                                <div class="socail_login">
-                                 <a href="{{ URL::to('facebook/authorize') }}"><img src="{{ asset('images/facebook-btn.png') }}" alt="" /></a>
+                                 <a href="{{ URL::route('facebook_login') }}"><img src="{{ asset('images/facebook-btn.png') }}" alt="" /></a>
                                  <a href="{{ URL::to('google/authorize') }}"><img src="{{ asset('images/google+.png') }}" alt="" /></a>
                              </div> 
                            </div>

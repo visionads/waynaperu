@@ -58,6 +58,26 @@ class UsersController extends UserController {
 
         return Redirect::route('account');
     }
+    public function client_login_check_checkout()
+    {
+        if (!Auth::check())
+        {
+            $auth=UsersController::authCheck();
+            if($auth==false)
+            {
+                return Redirect::route('login_checkout');
+            }
+        }
+        if(Session::get('type')!='client')
+        {
+            Session::forget('message');
+            session::flash('danger','Sorry, Invalid email or password.');
+            Auth::logout();
+            return Redirect::route('login_checkout');
+        }
+
+        return Redirect::route('checkout');
+    }
 
     private static function authCheck()
     {

@@ -131,6 +131,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'Laravel
     Route::post('newsletter', array('as' => 'newsletter', 'uses' => 'CampaignController@newsletter'));
 	// admin login route here
 	Route::post('client_login', array('as' => 'client-login', 'uses' => 'UsersController@client_login_check'));
+	Route::post('client_login_checkout', array('as' => 'client-login-checkout', 'uses' => 'UsersController@client_login_check_checkout'));
 	Route::post('login', array('as' => 'post_login', 'uses' => 'UsersController@postLogin'));
 	Route::post('register', array('as' => 'post_register', 'uses' => 'UsersController@postRegister'));
 	Route::get('logout', array('as' => 'site_logout', 'uses' => 'UsersController@logout'));
