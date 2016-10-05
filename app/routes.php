@@ -12,7 +12,7 @@
 use \AdamWathan\EloquentOAuth\Exceptions\ApplicationRejectedException;
 use \AdamWathan\EloquentOAuth\Exceptions\InvalidAuthorizationCodeException;
 // admin login route
-Route::get('admin/login', array('as' => 'admin-login', 'uses' => 'UsersController@admin_login'));
+
 // Admin Routes
 Route::group(array('before' => 'adminFilter'), function () {
 
@@ -120,9 +120,15 @@ Route::group(array('before' => 'adminFilter'), function () {
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter'], function()
 {
 	Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showWelcome'));
-	
-	Route::post('newsletter', array('as' => 'newsletter', 'uses' => 'CampaignController@newsletter'));
-	
+
+    // Facebook routes
+    Route::get('facebook/login',['as'=>'facebook_login','uses'=>'SocialMediaController@facebook_login']);
+
+
+    Route::post('newsletter', array('as' => 'newsletter', 'uses' => 'CampaignController@newsletter'));
+	// admin login route here
+	Route::get('login', array('as' => 'admin_login', 'uses' => 'UsersController@admin_login'));
+
 	Route::post('login', array('as' => 'post_login', 'uses' => 'UsersController@postLogin'));
 	Route::post('register', array('as' => 'post_register', 'uses' => 'UsersController@postRegister'));
 	Route::get('logout', array('as' => 'site_logout', 'uses' => 'UsersController@logout'));
@@ -166,32 +172,32 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'Laravel
 	    return OAuth::authorize('google');
 	});
 
-	Route::get('facebook/login', function() {
-		if(Input::has('error')){
-			 return Redirect::intended();
-		}
-	    try {
-	       
-	        OAuth::login('facebook', function($user, $details) {
-			    $user->email = $details->email;
-			    $user->first_name = $details->nickname;
-			    $user->username = 'facebook-'.$details->email;
-			    $user->save();
-			});
-	    } catch (ApplicationRejectedException $e) {
-	        // User rejected application
-	        return Redirect::intended();
-	    } catch (InvalidAuthorizationCodeException $e) {
-	        // Authorization was attempted with invalid
-	        // code,likely forgery attempt
-	        return Redirect::intended();
-	    }
-
-	    // Current user is now available via Auth facade
-	    $user = Auth::user();
-
-	    return Redirect::intended();
-	});
+//	Route::get('facebook/login', function() {
+//		if(Input::has('error')){
+//			 return Redirect::intended();
+//		}
+//	    try {
+//
+//	        OAuth::login('facebook', function($user, $details) {
+//			    $user->email = $details->email;
+//			    $user->first_name = $details->nickname;
+//			    $user->username = 'facebook-'.$details->email;
+//			    $user->save();
+//			});
+//	    } catch (ApplicationRejectedException $e) {
+//	        // User rejected application
+//	        return Redirect::intended();
+//	    } catch (InvalidAuthorizationCodeException $e) {
+//	        // Authorization was attempted with invalid
+//	        // code,likely forgery attempt
+//	        return Redirect::intended();
+//	    }
+//
+//	    // Current user is now available via Auth facade
+//	    $user = Auth::user();
+//
+//	    return Redirect::intended();
+//	});
 
 	Route::get('google/login', function() {
 		if(Input::has('error')){
