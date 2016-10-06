@@ -2,7 +2,6 @@
 
 @section('content')
 
-<div class="row">
     <div class="col-md-6 col-lg-8 col-sm-6">
         <div class="card">
             <div class="card-body">
@@ -17,10 +16,7 @@
                     @if(isset($language))
                         {{Form::hidden('id',$language->id) }}
                     @endif
-                    <fieldset>
-                        <br>
-                        <br>
-                        <br>
+
                         <div class="form-group">
                             {{ Form::label('name','Name :', $attributes = ['class' => 'col-sm-3 control-label']) }}
                             <div class="col-sm-9">
@@ -58,12 +54,12 @@
                                 {{ Form::submit('Add', $attributes = ['class' => 'btn btn-green pull-right']) }}
                             @endif
                         </div>
-                    </fieldset>
+                    
 
                     {{ Form::close() }}
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 @stop

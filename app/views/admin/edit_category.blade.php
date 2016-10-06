@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('content')
-<div class="row">
+
     <div class="col-md-12 col-lg-12 col-sm-12">
         <div class="card">
             <div class="card-body">
@@ -11,10 +11,7 @@
                             {{ Session::get('message') }}
                         </div>
                     @endif
-                    <fieldset class="col-md-12 col-lg-12 col-sm-12">
-                        <br>
-                        <br>
-                        <br>
+
                         <div class="col-md-8 col-lg-8 col-sm-12">
                             <div class="tabbable-panel">
                                 <div class="tabbable-line">
@@ -59,7 +56,6 @@
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
 
                     <!-- Image Section -->
                     <div class="container">
@@ -181,5 +177,5 @@
             </div>
         </div>
     </div>
-</div>
+
 @stop
