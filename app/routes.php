@@ -130,16 +130,11 @@ Route::group(array('before' => 'adminFilter'), function () {
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter'], function()
 {
-
-<<<<<<< HEAD
 	// root route of this site
 	Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showWelcome'));
-=======
     // clients orders
     Route::get('orders',['as'=>'orders','uses'=>'OrdersController@orders']);
     Route::get('order/{order_id}',['as'=>'order-details','uses'=>'OrdersController@order_details']);
-
->>>>>>> 7fd27272f805a14836ed1c1b737c735b978261c8
 
     Route::post('newsletter', array('as' => 'newsletter', 'uses' => 'CampaignController@newsletter'));
 	// admin login route here
