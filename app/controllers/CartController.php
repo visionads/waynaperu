@@ -396,6 +396,31 @@ class CartController extends BaseController {
 				$order_items->save();
 			}
 
+			/*
+			 * Start Sent mail to provider,admin and client with order details
+			 * */
+            $data['order'] = Order::find($order->id);
+            $data['order_items'] = DB::table('order_items')
+                ->where('order_items.order_id', $order->id)
+                ->get();
+
+            Mail::send('emails.order_details', $data, function($message)
+            {
+                $message->subject('A new Order has been placed');
+                $message->from('us@example.com', 'Expoor');
+
+                $message->to('devdhaka404@gmail.com')->cc('devdhaka405@gmail.com');
+
+//                $message->attach($pathToFile);
+            });
+
+			/*
+			 * End Sent mail to provider,admin and client with order details
+			 * */
+
+
+
+
 			if(Input::get('payment_gateway') == 'culqi'){
 				$price = DB::table('orders')->where('order_number','=', $order_number)->pluck('price');
 				if (Auth::check())
@@ -718,5 +743,35 @@ class CartController extends BaseController {
 			return Redirect::route('home');
 		}
 	}
+
+	public static function sentOrderConfirmMail($order_id)
+    {
+
+        $data['order'] = Order::find($order_id);
+        $data['order_items'] = DB::table('order_items')
+            ->where('order_items.order_id', $order_id)
+            ->get();
+        $admin=User::select('email')->where('type','admin')->get();
+        $emails=[];
+        foreach ($admin as $item) {
+            $emails[]=$item->email;
+        }
+        $client=User::find($data['order']->user_id);
+        $emails[]=$client->email;
+        $pathToFile='';
+//        dd($emails);
+
+//        dd($data);
+        Mail::send('emails.order_details', $data, function($message) use ($emails,$pathToFile)
+        {
+            $message->subject('Order details from Exploor');
+            $message->from('devdhaka404@gmail.com', 'Expoor');
+
+            $message->to($emails);
+
+            $message->attach($pathToFile);
+        });
+        dd($emails);
+    }
 
 }

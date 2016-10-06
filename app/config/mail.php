@@ -28,7 +28,8 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mandrillapp.com',
+//	'host' => 'smtp.mandrillapp.com',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +81,8 @@ return array(
 	|
 	*/
 
-	'username' => 'info@waynaperu.com',
+//	'username' => 'info@waynaperu.com',
+	'username' => 'devdhaka404@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +95,8 @@ return array(
 	|
 	*/
 
-	'password' => 'weEQOMKPBCBaq4CPot0TTw',
+//	'password' => 'weEQOMKPBCBaq4CPot0TTw',
+	'password' => 'etsb1234',
 
 	/*
 	|--------------------------------------------------------------------------
