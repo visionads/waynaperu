@@ -84,7 +84,7 @@
             </li>
             <li>
                 <a href="{{ URL::to('/') }}/admin/slider" >
-                    <div class="gui-icon"><i class="fa fa-sliders"></i></div>
+                    <div class="gui-icon"><i class="fa fa-laptop"></i></div>
                     <span class="title">Slider</span>
                 </a>
             </li>
