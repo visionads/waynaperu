@@ -239,4 +239,7 @@ return array(
     "order_number" => 'Número de Confirmación',
     "confirm" => 'Confirmar',
     "confirm_payment" => 'Confirma tu compra',
+    'dashboard' => 'Tablero',
+    'orders' => 'Pedidos',
+    'order_details' => 'Ordenes detalles',
 );

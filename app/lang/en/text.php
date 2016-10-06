@@ -240,4 +240,8 @@ return array(
     "order_number" => 'Confirmation Number',
     "confirm" => 'Confirm',
     "confirm_payment" => 'Confirm your purchase',
+    "dashboard" => 'Dashboard',
+    "orders" => 'Orders',
+    "orders" => 'Orders',
+    "order_details" => 'Order Details',
 );
