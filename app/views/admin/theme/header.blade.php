@@ -16,6 +16,7 @@
     <link href="{{ asset('assets/admin/css/theme-default/material-design-iconic-font.min.css?1421434286') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/theme-default/libs/rickshaw/rickshaw.css?1422792967') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/theme-default/libs/morris/morris.core.css?1420463396') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/custom_styles.css') }}" rel="stylesheet">
     {{--<link type="text/css" rel="stylesheet" href="../../assets/css/theme-default/bootstrap.css?1422792965" />--}}
     {{--<link type="text/css" rel="stylesheet" href="../../assets/css/theme-default/materialadmin.css?1425466319" />--}}
     {{--<link type="text/css" rel="stylesheet" href="../../assets/css/theme-default/font-awesome.min.css?1422529194" />--}}
