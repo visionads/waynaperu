@@ -44,7 +44,8 @@
                     c_password: {
                         equalTo: "#password"
                     }
-                }
+                },
+                messages:{ c_password:'<div style="margin-top: 20px; color:red;">Password not matched. Type again</div>'}
             });
         </script>
 

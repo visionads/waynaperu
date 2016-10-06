@@ -1,6 +1,6 @@
 
 <!-- BEGIN JAVASCRIPT -->
-<script src="{{ asset('assets/admin/js/libs/jquery/jquery-1.11.2.min.js') }}"></script>
+
 <script src="{{ asset('assets/admin/js/libs/jquery/jquery-migrate-1.2.1.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/libs/bootstrap/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/libs/spin.js/spin.min.js') }}"></script>
