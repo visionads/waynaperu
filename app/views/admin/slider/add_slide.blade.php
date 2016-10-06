@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('content')
-{{--<div class="row">--}}
+
     <div class="col-md-6 col-lg-8 col-sm-6">
         <div class="card">
             <div class="card-body">
@@ -59,5 +59,5 @@
             </div>
         </div>
     </div>
-{{--</div>--}}
+
 @stop
