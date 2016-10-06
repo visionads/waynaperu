@@ -80,7 +80,7 @@ class OrdersController extends BaseController {
                 ->orderBy('category_content.id', 'asc')
                 ->get();
             $data['districts'] = District::all();
-            CartController::sentOrderConfirmMail($order_id);
+            //CartController::sentOrderConfirmMail($order_id);
             $data['order'] = Order::find($order_id);
             $data['order_items'] = DB::table('order_items')
                 ->where('order_items.order_id', $order_id)

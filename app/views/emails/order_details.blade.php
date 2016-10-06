@@ -11,13 +11,12 @@
         fieldset { margin: 0 !important; padding: 2%;}
         fieldset legend { border: 1px solid #909090 !important; padding:5px 8px;}
     </style>
-    <div style="width: 90%; margin: 0 auto !important;">
-        <p style="background: #e0e0e0; padding: 5px;">
+    <div style="width: 90%; margin: 0 auto !important; background: #f0f0f0; padding: 2%;">
+        <p style="background: #e0e0e0; padding: 10px;">
             Dear Sir / Dear Madam,<br><br>
             Your Product details is given bellow :
         </p>
         <h4 style="color: #0a6ebd; font-size: 20px;">{{ trans('text.order_details') }}</h4>
-
         <fieldset style="border: 1px solid #909090; float: left; width: 45%; height: 170px;">
             <legend style="text-align:center; font-size:16px; font-weight:bold;">Order</legend><br><br>
             <table border="0">

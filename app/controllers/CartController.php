@@ -439,6 +439,7 @@ class CartController extends BaseController {
 					$city = Session::get('guest.city')[0];
 					$phone = Session::get('guest.phone')[0];
 				}
+				CartController::sentOrderConfirmMail($order_id);
 				require public_path().'/culqi.php';
 				Culqi::$codigoComercio = "9preKzsz6VbY";
 				Culqi::$llaveSecreta = "QJg/85cKQI/EXDSBlr+2j/l/TSlstk59GFUZwdIBciA=";
@@ -772,11 +773,12 @@ class CartController extends BaseController {
 
 
         $pe= DB::table('order_items');
-        $pe= $pe->select('users.email','products.*');
+        $pe= $pe->select('users.email','products.*','locations.price1 as price');
         $pe= $pe->join('products','products.id','=','order_items.product_id','left');
-        $pe= $pe->join('users','users.id','=','products.user_id','left');
-        $pe= $pe->where('order_items.order_id',49);
-        $pe= $pe->get();
+		$pe= $pe->join('locations','locations.product_id','=','products.id','left');
+		$pe= $pe->join('users','users.id','=','products.user_id','left');
+		$pe= $pe->where('order_items.order_id',$order_id);
+		$pe= $pe->get();
         foreach ($pe as $item) {
             $item= (array) $item;
              Mail::send('emails.property_details', $item, function($message) use ($item)
