@@ -6,7 +6,7 @@
 
 
 
-                <div class="row">
+                {{--<div class="row">--}}
 
                     <!-- BEGIN ALERT - REVENUE -->
                     <div class="col-md-3 col-sm-6">
@@ -75,8 +75,8 @@
                     </div><!--end .col -->
                     <!-- END ALERT - TIME ON SITE -->
 
-                </div><!--end .row -->
-                <div class="row">
+                {{--</div><!--end .row -->--}}
+                {{--<div class="row">--}}
 
                     <!-- BEGIN SITE ACTIVITY -->
                     <div class="col-md-9">
@@ -152,8 +152,8 @@
                     </div><!--end .col -->
                     <!-- END SERVER STATUS -->
 
-                </div><!--end .row -->
-                <div class="row">
+                {{--</div><!--end .row -->--}}
+                {{--<div class="row">--}}
 
                     <!-- BEGIN TODOS -->
                     <div class="col-md-3">
@@ -369,7 +369,7 @@
                     </div><!--end .col -->
                     <!-- END NEW REGISTRATIONS -->
 
-                </div><!--end .row -->
+                {{--</div><!--end .row -->--}}
 
 
 
