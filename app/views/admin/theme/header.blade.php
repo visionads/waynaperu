@@ -31,6 +31,44 @@
     <script type="text/javascript" src="{{ asset('assets/admin/js/libs/utils/respond.min.js?1403934956') }}"></script>
     <![endif]-->
 
-    <script src="{{ asset('assets/admin/js/libs/jquery/jquery-1.11.2.min.js') }}"></script>
+    {{--<script src="{{ asset('assets/admin/js/libs/jquery/jquery-1.11.2.min.js') }}"></script>--}}
+    <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+
+    {{-- Script and CSS for Datatables --}}
+    <link rel="stylesheet" href="css/buttons.dataTables.min.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css">
+
+    {{--<script src="https://code.jquery.com/jquery-1.12.3.js"></script>--}}
+   {{-- <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dtable').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            } );
+        } );
+    </script>--}}
+    {{--<script>
+        $(document).ready(function() {
+            $('#dTable').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ]
+            } );
+        } );
+    </script>--}}

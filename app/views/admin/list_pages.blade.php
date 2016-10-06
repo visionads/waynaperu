@@ -6,7 +6,8 @@
 	<div><a class="link btn btn-primary" href="{{ URL::to('/') }}/admin/page/add">Add New Content</a></div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped table-hover" id="sample-table-2">
+            {{--<table class="table table-striped table-hover" id="sample-table-2 example">--}}
+            <table class="table table-striped table-hover" id="dtable">
                 <thead>
                 <tr>
                     <th class="center">

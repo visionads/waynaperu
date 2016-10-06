@@ -1,174 +1,152 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Order Details</title>
+    <title>Order Details Email</title>
 </head>
+
 <body>
-Dear Sir,<br>
-Here attached your order Details form exploor.
-<br>
-<br>
+    <style>
+        table {}
+        table td, table th { padding: 3px; text-align: left; font-size: 14px;}
+        fieldset { margin: 0 !important; padding: 15px;}
+        fieldset legend { border: 1px solid #909090; padding:5px 8px;}
+    </style>
+    <div style="width: 90%; margin: 0 auto !important;">
+        <h4 style="color: #0a6ebd; font-size: 20px;">{{ trans('text.order_details') }}</h4>
 
-<div id="home" class="tab-pane fade in active">
+        <fieldset style="border: 1px solid #909090; float: left; width: 47%; height: 170px;">
+            <legend style="text-align:center; font-size:16px; font-weight:bold;">Order</legend>
+            <table border="0">
+                <tr>
+                    <td>Order Number</td>
+                    <td>:</td>
+                    <th>{{ $order->order_number }}</th>
+                </tr>
+                <tr>
+                    <td>Order Status</td>
+                    <td>:</td>
+                    <th align="left">{{ $order->status }}</th>
+                </tr>
+                <tr>
+                    <td>Total Qty</td>
+                    <td>:</td>
+                    <th align="left">{{ $order->qty }}</th>
+                </tr>
+                <tr>
+                    <td>Total Price</td>
+                    <td>:</td>
+                    <th align="left">s./ <?php echo sprintf('%.2f', $order->price / 100); ?></th>
+                </tr>
+            </table>
+        </fieldset>
 
-    <!-- tab content -->
-    <div class="row">
-        <div class="col-md-6 col-lg-6 col-sm-12">
-            <fieldset class="scheduler-border">
-                <legend class="scheduler-border">Order</legend>
-                <div class="form-group">
-                    <label  class="col-sm-12 col-md-4 control-label">Order Number:</label>
-                    <div class="col-sm-12 col-md-8">
-                        <strong style="line-height:42px;">{{ $order->order_number }}</strong>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="status" class="col-sm-12 col-md-4 control-label">Order Status:</label>
-                    <div class="col-sm-12 col-md-8">
-
-                        <strong style="line-height:42px;">{{ $order->status }}</strong>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label  class="col-sm-12 col-md-4 control-label">Total Qty:</label>
-                    <div class="col-sm-12 col-md-8">
-                        <strong style="line-height:42px;">{{ $order->qty }}</strong>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label  class="col-sm-12 col-md-4 control-label">Total Price:</label>
-                    <div class="col-sm-12 col-md-8">
-                        <strong style="line-height:42px;">s./ <?php echo sprintf('%.2f', $order->price / 100); ?></strong>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div class="col-md-6 col-lg-6 col-sm-12">
-            <fieldset class="scheduler-border">
-                <legend class="scheduler-border">User</legend>
-                @if($order->user_id == NULL)
-                    <p>This Order is by guest user and You can get his details on "Order Items" section.</p>
-                @else
-                    <?php $user = getUserInfo($order->user_id);?>
-                    <div class="form-group">
-                        <label  class="col-sm-12 col-md-4 control-label">Name:</label>
-                        <div class="col-sm-12 col-md-8">
+        <fieldset style="border: 1px solid #909090; float: right; width: 47%; height: 170px;">
+            <legend style="text-align:center; font-size:16px; font-weight:bold;">User</legend>
+            @if($order->user_id == NULL)
+                <p>This Order is by guest user and You can get his details on "Order Items" section.</p>
+            @else
+                <?php $user = getUserInfo($order->user_id);?>
+                <table border="0">
+                    <tr>
+                        <td>Name</td>
+                        <td>:</td>
+                        <th>
                             @if($user->first_name != '' || $user->last_name != '' )
                                 <strong style="line-height:42px;">{{ $user->first_name }} {{ $user->last_name }}</strong>
                             @else
                                 <strong style="line-height:42px;">User didn't add his Name</strong>
                             @endif
-                        </div>
-                    </div>
-                    <div style="clear:both"></div>
-                    <div class="form-group">
-                        <label  class="col-sm-12 col-md-4 control-label">Email:</label>
-                        <div class="col-sm-12 col-md-8">
-                            <strong style="line-height:42px;">{{ $user->email }} </strong>
-                        </div>
-                    </div>
-                    <div style="clear:both"></div>
-                    <div class="form-group">
-                        <label  class="col-sm-12 col-md-4 control-label">Address:</label>
-                        <div class="col-sm-12 col-md-8">
+                        </th>
+                    </tr>
+                    <tr><td>Email</td><td>:</td><th align="left">{{ $user->email }}</th></tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <th align="left">
                             @if($user->direction != '')
                                 <strong >#{{ $user->flat }}, {{ $user->direction }}<br/> {{ $user->city }}, {{ $user->district }}<br/>{{ $user->province }} </strong>
                             @else
                                 <strong style="line-height:42px;">User Didn't add his address. </strong>
                             @endif
-                        </div>
-                    </div>
-                @endif
-            </fieldset>
-        </div>
-        <div class="col-md-12 col-lg-12 col-sm-12">
-            <fieldset class="scheduler-border">
-                <legend class="scheduler-border">Order Items</legend>
-                @foreach($order_items as $item)
-                    <div class="col-md-12 col-lg-12 col-sm-12">
-                        <fieldset class="scheduler-border">
-                            <legend class="scheduler-border">{{ getExpName($item->product_id) }} -<small>{{ getLocName($item->loc_id) }}</small></legend>
-                            <div style="clear:both"></div>
-                            <div class="col-md-6 col-lg-6 col-sm-12">
-                                <strong>PDF Qty:</strong> {{ $item->pdf_qty }}
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-sm-12">
-                                <strong>PDF Price:</strong> s./ {{ $item->pdf_price }}
-                            </div>
-                            <div style="clear:both"></div>
-                            <div class="col-md-6 col-lg-6 col-sm-12">
-                                <strong>Mail Qty:</strong> {{ $item->mail_qty }}
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-sm-12">
-                                <strong>Mail Price:</strong> s./ {{ $item->mail_price }}
-                            </div>
-                            <div style="clear:both"></div>
-                            <div class="col-md-6 col-lg-6 col-sm-12">
-                                <strong>Gift Qty:</strong> {{ $item->gift_qty }}
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-sm-12">
-                                <strong>Gift Price:</strong> s./ {{ $item->gift_price }}
-                            </div>
-                            <div class="col-md-12 col-lg-12 col-sm-12">
-                                <?php $details = json_decode($item->details);
-                                //  echo "<pre>";print_r($details);die;
+                        </th>
+                    </tr>
+                    <tr><td>Total Price</td><td>:</td><th align="left">s./ <?php echo sprintf('%.2f', $order->price / 100); ?></th></tr>
+                </table>
+            @endif
+        </fieldset>
 
-                                ?>
-                                @if(count($details)>0)
-                                    @foreach($details as $key => $detail)
-                                        <?php  //echo "<pre>";print_r($detail);die; ?>
-                                        @if($key == 'pdf')
-                                        <h6>PDF:</h6>
-                                        @endif
-                                        @if($key == 'mail')
-                                        <h6>MAIL:</h6>
-                                        @endif
-                                        @if($key == 'gift')
-                                        <h6>GIFT:</h6>
-                                        @endif
-                                        @foreach($detail as $k => $v)
-                                        @if($key == 'pdf')
+        <div style="clear: both !important;">&nbsp;</div>
+
+        <fieldset style="border: 1px solid #909090; width: 98%">
+            <legend style="text-align:center; font-size:16px; font-weight:bold;">Order Items</legend>
+            @foreach($order_items as $item)
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <fieldset style="border:0; border-top: 1px solid #909090; width:auto;">
+                        <legend style="border: 0px solid #909090; padding:5px;">{{ getExpName($item->product_id) }} -<small>{{ getLocName($item->loc_id) }}</small></legend>
+
+                        <table border="0">
+                            <tr><td>PDF Qty</td><td>:</td><th>{{ $item->pdf_qty }}</th></tr>
+                            <tr><td>PDF Price</td><td>:</td><th align="left">s./ {{ $item->pdf_price }}</th></tr>
+                            <tr><td>Mail Qty</td><td>:</td><th align="left">{{ $item->mail_qty }}</th></tr>
+                            <tr><td>Mail Price</td><td>:</td><th align="left"> s./ {{ $item->mail_price }}</th></tr>
+                            <tr><td>Gift Qty</td><td>:</td><th align="left">{{ $item->gift_qty }}</th></tr>
+                            <tr><td>Gift Price</td><td>:</td><th align="left"> s./ {{ $item->gift_price }}</th></tr>
+                        </table>
+
+                        <div>
+                            <?php $details = json_decode($item->details);
+                                //  echo "<pre>";print_r($details);die;
+                            ?>
+                            @if(count($details)>0)
+                                @foreach($details as $key => $detail)
+                                    <?php  //echo "<pre>";print_r($detail);die; ?>
+                                    @if($key == 'pdf')
+                                    <h6>PDF:</h6>
+                                    @endif
+                                    @if($key == 'mail')
+                                    <h6>MAIL:</h6>
+                                    @endif
+                                    @if($key == 'gift')
+                                    <h6>GIFT:</h6>
+                                    @endif
+                                    @foreach($detail as $k => $v)
+                                    @if($key == 'pdf')
+                                    <?php $count = 1; ?>
+                                    @foreach($v as $i => $j)
+                                        <p>{{ $count }}. <strong>{{ $k }}:</strong> {{ $j }}</p>
+                                        <?php $count++; ?>
+                                    @endforeach
+                                    <hr>
+                                    @endif
+                                    @if($key == 'mail')
                                         <?php $count = 1; ?>
                                         @foreach($v as $i => $j)
                                             <p>{{ $count }}. <strong>{{ $k }}:</strong> {{ $j }}</p>
                                             <?php $count++; ?>
                                         @endforeach
                                         <hr>
-                                        @endif
-                                        @if($key == 'mail')
-                                            <?php $count = 1; ?>
-                                            @foreach($v as $i => $j)
-                                                <p>{{ $count }}. <strong>{{ $k }}:</strong> {{ $j }}</p>
-                                                <?php $count++; ?>
-                                            @endforeach
-                                            <hr>
-                                        @endif
-                                        @if($key == 'gift')
-                                            <?php $count = 1; ?>
-                                            @foreach($v as $i => $j)
-                                                <p>{{ $count }}. <strong>{{ $k }}:</strong> {{ $j }}</p>
-                                                <?php $count++; ?>
-                                            @endforeach
-                                            <hr>
-                                        @endif
-                                    @endforeach
-                                    @endforeach
-                                @endif
-                            </div>
+                                    @endif
+                                    @if($key == 'gift')
+                                        <?php $count = 1; ?>
+                                        @foreach($v as $i => $j)
+                                            <p>{{ $count }}. <strong>{{ $k }}:</strong> {{ $j }}</p>
+                                            <?php $count++; ?>
+                                        @endforeach
+                                        <hr>
+                                    @endif
+                                @endforeach
+                                @endforeach
+                            @endif
+                        </div>
 
-                        </fieldset>
-                    </div>
-                @endforeach
-            </fieldset>
-        </div>
+                    </fieldset>
+                </div>
+            @endforeach
+        </fieldset>
     </div>
-
-</div>
-
 
 </body>
 </html>
+        <!-- Page Content -->
+
+

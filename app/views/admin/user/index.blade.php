@@ -5,7 +5,8 @@
         <div><a class="link btn btn-primary" href="{{ URL::route('add-user') }}">Add New User</a></div>
         <div class="card">
             <div class="card-body">
-                <table class="table table-striped table-hover" id="sample-table-2">
+                {{--<table class="table table-striped table-hover" id="sample-table-2">--}}
+                <table class="table table-striped table-hover" id="dTable">
                     <thead>
                     <tr>
                         <th class="center">
