@@ -164,7 +164,7 @@ class UsersController extends UserController {
 		return Redirect::route('home');
 	}
 	public function getAccount(){
-		if(Auth::check()){
+		if(Auth::check() && Auth::user()->type=='client'){
 			$categories = DB::table('category_content')
 		            ->join('categories', 'category_content.cat_id', '=', 'categories.id')
 		            ->select('category_content.id','category_content.cat_id', 'categories.state', 'categories.image','categories.icon', 'category_content.title', 'category_content.description')
