@@ -104,7 +104,8 @@
                     </a>
                     <ul class="dropdown-menu animation-dock">
                         <li class="dropdown-header">Config</li>
-                        <li><a href="../../html/pages/profile.html">My profile</a></li>
+                        {{--<li><a href="{{ URL::to('profile/'.Auth::user()->id) }}">My profile</a></li>--}}
+                        <li><a href="{{ URL::to('profile')}}">My profile</a></li>
                         <li><a href="../../html/pages/blog/post.html">My blog <span class="badge style-danger pull-right">16</span></a></li>
                         <li><a href="../../html/pages/calendar.html">My appointments</a></li>
                         <li class="divider"></li>

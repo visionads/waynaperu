@@ -5,14 +5,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="box-login">
-                        {{ Form::model($user,array('url' => 'user/update/'.$user->id,'class' => 'form-horizontal','files' =>true)) }}
+                        {{ Form::model($user,array('url' => 'user/update/'.$user->id,'class' => 'form-horizontal','files' =>true, 'id'=>'chkpass')) }}
                         @if(Session::has('message'))
                             <div class="alert alert-info">
                                 {{ Session::get('message') }}
                             </div>
                         @endif
-
-
                             <div class="col-md-8 col-lg-8 col-sm-12">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">Edit User</div>
@@ -27,12 +25,27 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         {{ Form::close() }}
                     </div>
                 </div>
             </div>
         </div>
+
+        <body>
+
+        <script>
+            jQuery.validator.setDefaults({
+                debug: true,
+                success: "valid"
+            });
+            $( "#chkpass" ).validate({
+                rules: {
+                    password: "required",
+                    c_password: {
+                        equalTo: "#password"
+                    }
+                }
+            });
+        </script>
 
 @stop

@@ -11,8 +11,7 @@
 */
 use \AdamWathan\EloquentOAuth\Exceptions\ApplicationRejectedException;
 use \AdamWathan\EloquentOAuth\Exceptions\InvalidAuthorizationCodeException;
-// root route of this site
-Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showWelcome'));
+
 // admin login route
 Route::get('admin_login', array('as' => 'admin-login', 'uses' => 'UsersController@admin_login'));
 Route::post('admin_login', array('as' => 'admin-login', 'uses' => 'UsersController@admin_login_check'));
@@ -33,6 +32,9 @@ Route::group(array('before' => 'adminFilter'), function () {
     Route::get('user/edit/{user_id}',['as'=>'edit-user','uses'=>'UserController@edit']);
     Route::post('user/update/{user_id}',['as'=>'update-user','uses'=>'UserController@update']);
     Route::get('user/delete/{user_id}',['as'=>'delete-user','uses'=>'UserController@destroy']);
+
+	Route::get('profile',['as'=>'delete-user','uses'=>'UserController@profile']);
+
 
 
     Route::controller('filemanager', 'FilemanagerLaravelController');
@@ -129,6 +131,8 @@ Route::group(array('before' => 'adminFilter'), function () {
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter'], function()
 {
 
+	// root route of this site
+	Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showWelcome'));
 
     Route::post('newsletter', array('as' => 'newsletter', 'uses' => 'CampaignController@newsletter'));
 	// admin login route here

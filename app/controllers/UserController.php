@@ -66,6 +66,14 @@ class UserController extends BaseController
         Session::flash('message','User updated successfully.');
         return Redirect::to('users');
     }
+
+    public function profile()
+    {
+        $user_id = Auth::user()->id;
+        $data['user']= User::find($user_id)->first();
+        //print_r($data['user']);exit();
+        return View::make('admin.profile',$data);
+    }
     public function destroy($user_id)
     {
         User::find($user_id)->delete();

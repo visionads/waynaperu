@@ -25,13 +25,13 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="password">Password</label>
-            {{ Form::password('password',['class'=>'form-control']) }}
+            {{ Form::password('password',['class'=>'form-control','id'=>'password']) }}
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label for="c_password">Confirm Password</label>
-            {{ Form::password('c_password',['class'=>'form-control']) }}
+            {{ Form::password('c_password',['class'=>'form-control','id'=>'c_password']) }}
         </div>
     </div>
     <div class="col-md-12">

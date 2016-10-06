@@ -41,8 +41,8 @@
                     <br/>
                     <span class="text-lg text-bold text-primary">Waynaperu</span>
                     <br/><br/>
-                    {{--<div class="card">
-                        <div class="card-body">--}}
+                    <div class="card">
+                        <div class="card-body">
                             <form class="form floating-label" action="{{ url('admin_login') }}" accept-charset="utf-8" method="post">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="{{ trans('usermanager::all.email') }}" name="email" id="email">
@@ -71,8 +71,8 @@
                                     </div><!--end .col -->
                                 </div><!--end .row -->
                             </form>
-                       {{-- </div>
-                    </div>--}}
+                        </div>
+                    </div>
                 </div><!--end .col -->
                 <div class="col-sm-5 col-sm-offset-1 text-center">
                     <br><br>
