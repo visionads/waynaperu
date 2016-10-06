@@ -757,21 +757,35 @@ class CartController extends BaseController {
             $emails[]=$item->email;
         }
         $client=User::find($data['order']->user_id);
-        $emails[]=$client->email;
-        $pathToFile='';
-//        dd($emails);
+        $email_client=$client->email;
+        $pathToFile=public_path('images/ticket.jpg');
 
-//        dd($data);
-        Mail::send('emails.order_details', $data, function($message) use ($emails,$pathToFile)
+        Mail::send('emails.order_details', $data, function($message) use ($emails,$email_client,$pathToFile,$data)
         {
-            $message->subject('Order details from Exploor');
-            $message->from('devdhaka404@gmail.com', 'Expoor');
+            $message->subject('Order details for '.$data["order"]->order_number.' no of order from Exploor');
+            $message->from('devdhaka404@gmail.com', 'Exploor');
 
-            $message->to($emails);
+            $message->to($email_client)->bcc($emails);
 
             $message->attach($pathToFile);
         });
-        dd($emails);
+
+
+        $pe= DB::table('order_items');
+        $pe= $pe->select('users.email','products.*');
+        $pe= $pe->join('products','products.id','=','order_items.product_id','left');
+        $pe= $pe->join('users','users.id','=','products.user_id','left');
+        $pe= $pe->where('order_items.order_id',49);
+        $pe= $pe->get();
+        foreach ($pe as $item) {
+            $item= (array) $item;
+             Mail::send('emails.property_details', $item, function($message) use ($item)
+            {
+                $message->subject('New product sold');
+                $message->from('devdhaka404@gmail.com', 'Exploor');
+                $message->to($item['email']);
+            });
+        }
     }
 
 }
