@@ -43,10 +43,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'passport',
         'direction',
         'flat',
-        'dep',
+        'department',
         'district',
         'city',
         'province',
+        'address',
         'remember_token'
     ];
 

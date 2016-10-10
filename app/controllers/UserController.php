@@ -39,6 +39,17 @@ class UserController extends BaseController
             $user->type = $input['type'];
             $user->password = Hash::make($input['password']);
             $user->save();
+            if($user->type=='provider')
+            {
+                $provider= new Provider();
+                $provider->user_id=$user->id;
+                $provider->save();
+            }elseif($user->type=='client')
+            {
+                $client= new Client();
+                $client->user_id=$user->id;
+                $client->save();
+            }
             Session::flash('message','User added successfully.');
             return Redirect::to('users');
         }
@@ -66,7 +77,6 @@ class UserController extends BaseController
         Session::flash('message','User updated successfully.');
         return Redirect::to('users');
     }
-
     public function profile()
     {
         $user_id = Auth::user()->id;
@@ -74,6 +84,103 @@ class UserController extends BaseController
         //print_r($data['user']);exit();
         return View::make('admin.profile',$data);
     }
+    public function update_profile($user_id)
+    {
+        $input=Input::all();
+
+        $user = User::find($user_id);
+        $user->first_name = $input['first_name'];
+        $user->last_name = $input['last_name'];
+        $user->dob = $input['dob'];
+        $user->passport = $input['passport'];
+        $user->direction = $input['direction'];
+        $user->flat = $input['flat'];
+        $user->department = $input['department'];
+        $user->district = $input['district'];
+        $user->city = $input['city'];
+        $user->province = $input['province'];
+        $user->address = $input['address'];
+        $user->save();
+        Session::flash('message','User updated successfully.');
+        return Redirect::to('users');
+    }
+
+    public function edit_profile($user_id)
+    {
+        $data['user']= User::find($user_id);
+        return View::make('admin.user.edit_profile',$data);
+    }
+    public function add_phone($user_id)
+    {
+        $data['user']= User::find($user_id);
+        return View::make('admin.user.add_phone',$data);
+    }
+    public function store_phone_number($user_id)
+    {
+        $input=Input::all();
+
+        $phone= new PhoneNumber();
+        $phone->user_id = $user_id;
+        $phone->number = $input['number'];
+        $phone->save();
+        Session::flash('message','Phone number stored successfully.');
+        return Redirect::to('users');
+    }
+    public function add_bank($user_id)
+    {
+        $data['user']= User::find($user_id);
+        return View::make('admin.user.add_bank',$data);
+    }
+    public function store_bank($user_id)
+    {
+        $input=Input::all();
+
+        $bank= new BankAccount();
+        $bank->user_id = $user_id;
+        $bank->name = $input['name'];
+        $bank->account_number = $input['account_number'];
+        $bank->account_type = $input['account_type'];
+        $bank->save();
+        Session::flash('message','Bank information stored successfully.');
+        return Redirect::to('users');
+    }
+    public function add_additional_info($user_id)
+    {
+        $data['user']= User::find($user_id);
+        if($data['user']->type=='client')
+        {
+            $data['client_info']=Client::where('user_id',$user_id)->first();
+            return View::make('admin.user.add_client_info',$data);
+        }else{
+            $data['provider_info']=Provider::where('user_id',$user_id)->first();
+            return View::make('admin.user.add_provider_info',$data);
+        }
+    }
+    public function update_provider_info($user_id)
+    {
+        $input=Input::all();
+        $provider= Provider::where('user_id',$user_id)->first();
+        $provider->vat_number=$input['vat_number'];
+        $provider->incharge=$input['incharge'];
+        $provider->contact_expire_date=$input['contact_expire_date'];
+        $provider->contact_valid_until=$input['contact_valid_until'];
+        $provider->save();
+        Session::flash('message','Provider information update successfully.');
+        return Redirect::to('users');
+    }
+    public function update_client_info($user_id)
+    {
+        $input=Input::all();
+        $client= Client::where('user_id',$user_id)->first();
+        $client->date_of_inscription=$input['date_of_inscription'];
+        $client->blog_comments=$input['blog_comments'];
+        $client->experience_review=$input['experience_review'];
+        $client->amount_of_purchase=$input['amount_of_purchase'];
+        $client->save();
+        Session::flash('message','Client information update successfully.');
+        return Redirect::to('users');
+    }
+
     public function destroy($user_id)
     {
         User::find($user_id)->delete();

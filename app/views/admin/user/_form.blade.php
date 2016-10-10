@@ -1,5 +1,8 @@
 <div class="row">
-    <?php isset($user)?$k= 'readonly':$k='' ?>
+    <?php
+    isset($user)?$readonly= 'readonly':$readonly='';
+    isset($user)?$required= 'required':$required='';
+    ?>
     <div class="col-md-6">
         <div class="form-group">
             <label for="first_name">First name</label>
