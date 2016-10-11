@@ -37,9 +37,15 @@ Route::group(array('before' => 'adminFilter'), function () {
     // phone routes
     Route::get('user/add_phone/{user_id}',['as'=>'add-phone','uses'=>'UserController@add_phone']);
     Route::post('user/store_phone_number/{user_id}',['as'=>'store-phone-number','uses'=>'UserController@store_phone_number']);
+    Route::get('user/edit_phone/{id}',['as'=>'edit-phone','uses'=>'UserController@edit_phone']);
+    Route::post('user/update_phone_number/{user_id}',['as'=>'update-phone-number','uses'=>'UserController@update_phone_number']);
+    Route::get('user/delete_phone/{id}',['as'=>'delete-phone','uses'=>'UserController@delete_phone']);
     // Bank routes
     Route::get('user/add_bank/{user_id}',['as'=>'add-bank','uses'=>'UserController@add_bank']);
     Route::post('user/store_bank/{user_id}',['as'=>'store-bank','uses'=>'UserController@store_bank']);
+    Route::get('user/edit_bank/{id}',['as'=>'edit-bank','uses'=>'UserController@edit_bank']);
+    Route::post('user/update_bank/{id}',['as'=>'update-bank','uses'=>'UserController@update_bank']);
+    Route::get('user/delete_bank/{id}',['as'=>'delete-bank','uses'=>'UserController@delete_bank']);
     // Bank routes
     Route::get('user/add_additional_info/{user_id}',['as'=>'add-additional-info','uses'=>'UserController@add_additional_info']);
 
@@ -47,7 +53,7 @@ Route::group(array('before' => 'adminFilter'), function () {
     Route::post('user/update_client_info/{user_id}',['as'=>'update_client_info','uses'=>'UserController@update_client_info']);
 
 
-    Route::get('profile',['as'=>'delete-user','uses'=>'UserController@profile']);
+    Route::get('profile/{user_id?}',['as'=>'user-profile','uses'=>'UserController@profile']);
 
 
 

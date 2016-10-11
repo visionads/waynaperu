@@ -16,4 +16,8 @@ class Client extends Eloquent
         'amount_of_purchase',
         'blog_comments',
     ];
+    public function relUser()
+    {
+        return $this->belongsTo('User','user_id','id');
+    }
 }

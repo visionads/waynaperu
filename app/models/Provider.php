@@ -16,4 +16,7 @@ class Provider extends Eloquent
         'contact_expire_date',
         'contact_valid_until',
     ];
+    public function relUser(){
+        return $this->belongsTo('User','user_id','id');
+    }
 }

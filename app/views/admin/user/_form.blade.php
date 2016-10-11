@@ -18,11 +18,11 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="username">User Name</label>
-            {{ Form::text('username',null,['class'=>'form-control','required',$k]) }}
+            {{ Form::text('username',null,['class'=>'form-control',$required,$readonly]) }}
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            {{ Form::email('email',null,['class'=>'form-control','required',$k]) }}
+            {{ Form::email('email',null,['class'=>'form-control',$required,$readonly]) }}
         </div>
     </div>
     <div class="col-md-6">

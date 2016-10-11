@@ -51,4 +51,23 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'remember_token'
     ];
 
+    public function relClient()
+    {
+        return $this->hasOne('Client', 'user_id','id');
+    }
+
+    public function relProvider()
+    {
+        return $this->hasOne('Provider', 'user_id','id');
+    }
+
+    public function relPhoneNumber()
+    {
+        return $this->hasMany('PhoneNumber', 'user_id','id');
+    }
+    public function relBankAccount()
+    {
+        return $this->hasMany('BankAccount', 'user_id','id');
+    }
+
 }

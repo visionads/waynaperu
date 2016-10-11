@@ -111,7 +111,7 @@ Route::filter('basicAuth', function () {
         return Redirect::route('getLogin');
     }
 
-    View::share('currentUser', Sentry::getUser());
+//    View::share('currentUser', Sentry::getUser());
 });
 
 Route::filter('notAuth', function () {

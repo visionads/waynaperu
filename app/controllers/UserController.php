@@ -77,11 +77,14 @@ class UserController extends BaseController
         Session::flash('message','User updated successfully.');
         return Redirect::to('users');
     }
-    public function profile()
+    public function profile($user_id=false)
     {
-        $user_id = Auth::user()->id;
-        $data['user']= User::find($user_id)->first();
-        //print_r($data['user']);exit();
+        if(empty($user_id))
+        {
+            $user_id = Auth::user()->id;
+        }
+        $data['user']= User::with('relClient','relProvider','relPhoneNumber','relBankAccount')->where('id',$user_id)->first();
+//        dd($data);
         return View::make('admin.profile',$data);
     }
     public function update_profile($user_id)
@@ -124,7 +127,30 @@ class UserController extends BaseController
         $phone->number = $input['number'];
         $phone->save();
         Session::flash('message','Phone number stored successfully.');
-        return Redirect::to('users');
+        return Redirect::to('profile/'.$user_id);
+    }
+    public function edit_phone($id)
+    {
+        $data['phone']=PhoneNumber::find($id);
+        $data['user']= User::find($data['phone']->user_id);
+        return View::make('admin.user.edit_phone',$data);
+    }
+    public function update_phone_number($id)
+    {
+        $input=Input::all();
+
+        $phone= PhoneNumber::find($id);
+        $phone->number = $input['number'];
+        $phone->save();
+        Session::flash('message','Phone number updated successfully.');
+        return Redirect::to('profile/'.$phone->user_id);
+    }
+    public function delete_phone($id)
+    {
+        $phone= PhoneNumber::find($id);
+        $phone->delete();
+        Session::flash('message','Phone number deleted successfully.');
+        return Redirect::to('profile/'.$phone->user_id);
     }
     public function add_bank($user_id)
     {
@@ -142,7 +168,32 @@ class UserController extends BaseController
         $bank->account_type = $input['account_type'];
         $bank->save();
         Session::flash('message','Bank information stored successfully.');
-        return Redirect::to('users');
+        return Redirect::to('profile/'.$user_id);
+    }
+    public function edit_bank($id)
+    {
+        $data['bank']=BankAccount::find($id);
+        $data['user']= User::find($data['bank']->user_id);
+        return View::make('admin.user.edit_bank',$data);
+    }
+    public function update_bank($id)
+    {
+        $input=Input::all();
+
+        $bank= BankAccount::find($id);
+        $bank->name = $input['name'];
+        $bank->account_number = $input['account_number'];
+        $bank->account_type = $input['account_type'];
+        $bank->save();
+        Session::flash('message','Bank information updated successfully.');
+        return Redirect::to('profile/'.$bank->user_id);
+    }
+    public function delete_bank($id)
+    {
+        $bank= BankAccount::find($id);
+        $bank->delete();
+        Session::flash('message','Bank information deleted successfully.');
+        return Redirect::to('profile/'.$bank->user_id);
     }
     public function add_additional_info($user_id)
     {
@@ -166,7 +217,7 @@ class UserController extends BaseController
         $provider->contact_valid_until=$input['contact_valid_until'];
         $provider->save();
         Session::flash('message','Provider information update successfully.');
-        return Redirect::to('users');
+        return Redirect::to('profile/'.$user_id);
     }
     public function update_client_info($user_id)
     {
@@ -178,7 +229,7 @@ class UserController extends BaseController
         $client->amount_of_purchase=$input['amount_of_purchase'];
         $client->save();
         Session::flash('message','Client information update successfully.');
-        return Redirect::to('users');
+        return Redirect::to('profile/'.$user_id);
     }
 
     public function destroy($user_id)
