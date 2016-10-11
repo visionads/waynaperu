@@ -238,4 +238,13 @@ class UserController extends BaseController
         Session::flash('message','User has been successfully deleted.');
         return Redirect::back();
     }
+    public function activity($user_id)
+    {
+        $per_page=20;
+        $data['serial']=getSerialNum($per_page);
+        $data['activities']= UserActivity::where('user_id',$user_id)->orderBy('id','desc')->paginate($per_page);
+        $data['user']= User::find($user_id);
+        return View::make('admin.user.activity',$data);
+
+    }
 }

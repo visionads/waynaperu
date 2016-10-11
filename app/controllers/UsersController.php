@@ -33,7 +33,7 @@ class UsersController extends UserController {
             Auth::logout();
             return Redirect::back();
         }
-
+        UsersController::newUserActivity('admin-login','admin_login','login','users');
         return Redirect::route('admin');
     }
     public function client_login_check()
@@ -55,6 +55,7 @@ class UsersController extends UserController {
             Auth::logout();
             return Redirect::back();
         }
+        UsersController::newUserActivity('client-login','client_login','login','users');
 
         return Redirect::route('account');
     }
@@ -75,8 +76,22 @@ class UsersController extends UserController {
             Auth::logout();
             return Redirect::route('login_checkout');
         }
+        UsersController::newUserActivity('client-login','client_login','login','users');
 
         return Redirect::route('checkout');
+    }
+    public static function newUserActivity($action_name,$action_url,$action_details,$action_table)
+    {
+        $user_act_model = new UserActivity();
+        $user_activity = [
+            'action_name' => $action_name,
+            'action_url' => $action_url,
+            'action_details' => Auth::user()->username.' '. $action_details,
+            'action_table' => $action_table,
+            'date' => date('Y-m-d h:i:s', time()),
+            'user_id' => Auth::user()->id,
+        ];
+        $user_act_model->create($user_activity);
     }
 
     private static function authCheck()
@@ -160,8 +175,9 @@ class UsersController extends UserController {
 	}
 
 	public function logout(){
+        UsersController::newUserActivity('logout','logout','logout','users');
 		Auth::logout();
-		return Redirect::route('home');
+        return Redirect::route('home');
 	}
 	public function getAccount(){
 		if(Auth::check() && Auth::user()->type=='client'){
