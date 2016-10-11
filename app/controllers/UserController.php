@@ -238,13 +238,19 @@ class UserController extends BaseController
         Session::flash('message','User has been successfully deleted.');
         return Redirect::back();
     }
-    public function activity($user_id)
+    public function activity($user_id=false)
     {
         $per_page=20;
         $data['serial']=getSerialNum($per_page);
-        $data['activities']= UserActivity::where('user_id',$user_id)->orderBy('id','desc')->paginate($per_page);
-        $data['user']= User::find($user_id);
-        return View::make('admin.user.activity',$data);
+        if(isset($user_id) && !empty($user_id))
+        {
+            $data['activities']= UserActivity::where('user_id',$user_id)->orderBy('id','desc')->paginate($per_page);
+            $data['user']= User::find($user_id);
+            return View::make('admin.user.activity',$data);
+        }else{
+            $data['activities']= UserActivity::with('relUser')->orderBy('id','desc')->paginate($per_page);
+            return View::make('admin.user.activity_all',$data);
+        }
 
     }
 }

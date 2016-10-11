@@ -34,7 +34,7 @@ Route::group(array('before' => 'adminFilter'), function () {
     Route::get('user/delete/{user_id}',['as'=>'delete-user','uses'=>'UserController@destroy']);
     Route::get('user/edit_profile/{user_id}',['as'=>'edit-profile','uses'=>'UserController@edit_profile']);
     Route::post('user/update_profile/{user_id}',['as'=>'update-profile','uses'=>'UserController@update_profile']);
-    Route::get('user/activity/{user_id}',['as'=>'user-activity','uses'=>'UserController@activity']);
+    Route::get('user/activity/{user_id?}',['as'=>'user-activity','uses'=>'UserController@activity']);
     // phone routes
     Route::get('user/add_phone/{user_id}',['as'=>'add-phone','uses'=>'UserController@add_phone']);
     Route::post('user/store_phone_number/{user_id}',['as'=>'store-phone-number','uses'=>'UserController@store_phone_number']);

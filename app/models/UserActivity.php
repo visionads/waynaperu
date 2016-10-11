@@ -15,7 +15,7 @@ class UserActivity extends Eloquent
     ];
 
     public function relUser(){
-        return $this->belongsTo('App\User', 'user_id', 'id');
+        return $this->belongsTo('User', 'user_id', 'id');
     }
 
 

@@ -97,6 +97,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ URL::to('user/activity') }}" >
+                    <div class="gui-icon"><i class="fa fa-circle"></i></div>
+                    <span class="title">User Activity</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ URL::to('logout') }}" >
                     <div class="gui-icon"><i class="fa fa-sign-out"></i></div>
                     <span class="title">Logout</span>

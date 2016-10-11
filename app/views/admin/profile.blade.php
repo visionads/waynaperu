@@ -8,10 +8,10 @@
 
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div>
-                {{--<a href="{{ URL::route('edit-profile',$user->id) }}" class="btn btn-info btn-blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-user"></i> Edit Profile</a>--}}
+                    <a class="link btn btn-warning" href="{{ URL::to('users/'.$user->type) }}"><i class="fa fa-arrow-left"></i> Back</a>
+                <a href="{{ URL::route('edit-profile',$user->id) }}" class="btn btn-info btn-blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-user"></i> Edit Profile</a>
                 <!-- <a href="{{ URL::to('/') }}/admin/page/delete/{{ $user->page_id }}" class="btn btn-xs btn-red tooltips" data-placement="top" data-original-title="Remove" ><i class="fa fa-times fa fa-white"></i></a> -->
 
-                    <a class="link btn btn-warning" href="{{ URL::to('users/'.$user->type) }}"><i class="fa fa-arrow-left"></i> Back</a>
                     <a class="link btn btn-info" href="{{ URL::to('user/edit/'.Auth::user()->id) }}"><i class="fa fa-pencil">&nbsp;</i>Edit</a>
                     <a class="link btn btn-primary" href="{{ URL::route('user-activity',$user->id) }}">User Activity</a>
                     {{--<a href="{{ URL::route('delete-user',$user->id) }}" class="btn btn-info btn-red tooltips" data-placement="top" data-original-title="Remove" onclick="return confirm('Are you confirm to delete this user ?')"><i class="fa fa-times fa fa-white"></i> Delete</a>--}}
