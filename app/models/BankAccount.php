@@ -8,7 +8,7 @@
  */
 class BankAccount extends Eloquent
 {
-    protected $table='bank_accounts';
+    protected $table='user_bank_accounts';
     protected $fillable=[
         'user_id',
         'account_number',

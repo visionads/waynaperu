@@ -8,11 +8,11 @@
  */
 class UserController extends BaseController
 {
-    public function index()
+    public function index($type)
     {
         $per_page=20;
         $data['serial']=getSerialNum($per_page);
-        $data['users']= User::paginate($per_page);
+        $data['users']= User::where('type',$type)->paginate($per_page);
         return View::make('admin.user.index',$data);
     }
     public function create()
@@ -51,7 +51,7 @@ class UserController extends BaseController
                 $client->save();
             }
             Session::flash('message','User added successfully.');
-            return Redirect::to('users');
+            return Redirect::to('users/'.$user->type);
         }
     }
     public function edit($user_id)
@@ -75,7 +75,7 @@ class UserController extends BaseController
         }
         $user->save();
         Session::flash('message','User updated successfully.');
-        return Redirect::to('users');
+        return Redirect::to('users/'.$user->type);
     }
     public function profile($user_id=false)
     {
@@ -105,7 +105,7 @@ class UserController extends BaseController
         $user->address = $input['address'];
         $user->save();
         Session::flash('message','User updated successfully.');
-        return Redirect::to('users');
+        return Redirect::to('users/'.$user->type);
     }
 
     public function edit_profile($user_id)

@@ -8,7 +8,7 @@
  */
 class PhoneNumber extends Eloquent
 {
-    protected $table='phone_numbers';
+    protected $table='user_phone_numbers';
     protected $fillable=[
         'user_id',
         'number'

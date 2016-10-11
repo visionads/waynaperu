@@ -26,7 +26,7 @@ Route::group(array('before' => 'adminFilter'), function () {
 
     Route::get('admin',['as'=>'admin','uses'=>'DashboardController@index']);
 
-    Route::get('users',['as'=>'users','uses'=>'UserController@index']);
+    Route::get('users/{type}',['as'=>'users','uses'=>'UserController@index']);
     Route::get('user/add',['as'=>'add-user','uses'=>'UserController@create']);
     Route::post('user/store',['as'=>'store-user','uses'=>'UserController@store']);
     Route::get('user/edit/{user_id}',['as'=>'edit-user','uses'=>'UserController@edit']);

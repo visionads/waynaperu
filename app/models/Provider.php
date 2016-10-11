@@ -8,7 +8,7 @@
  */
 class Provider extends Eloquent
 {
-    protected $table='provider_info';
+    protected $table='user_provider_info';
     protected $fillable=[
         'user_id',
         'vat_number',

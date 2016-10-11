@@ -49,7 +49,9 @@
                 </a>
                 <!--start submenu -->
                 <ul>
-                    <li><a href="{{ URL::to('/') }}/users"><span class="title"> List </span></a></li>
+                    <li><a href="{{ URL::to('users/admin') }}"><span class="title"> Admin </span></a></li>
+                    <li><a href="{{ URL::to('users/provider') }}"><span class="title"> Provider </span></a></li>
+                    <li><a href="{{ URL::to('users/client') }}"><span class="title"> Client </span></a></li>
                 </ul>
             </li>
             <li>

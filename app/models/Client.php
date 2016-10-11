@@ -8,7 +8,7 @@
  */
 class Client extends Eloquent
 {
-    protected $table='client_info';
+    protected $table='user_client_info';
     protected $fillable=[
         'user_id',
         'date_of_inscription',
