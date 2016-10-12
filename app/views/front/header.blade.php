@@ -270,7 +270,7 @@
                             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                 <li>
                                     <a class="landuage-text" rel="alternate" data-locale="{{$localeCode}}" hreflang="{{$localeCode}}" href="{{LaravelLocalization::getLocalizedURL($localeCode) }}">
-                                        {{{ $localeCode }}}
+                                        {{ $localeCode }}
                                     </a>
                                 </li>
                             @endforeach

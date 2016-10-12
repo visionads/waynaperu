@@ -29,6 +29,22 @@
                         <button type="submit" class="btn btn-icon-toggle ink-reaction"><i class="fa fa-search"></i></button>
                     </form>
                 </li>
+                <li>
+                    <div class="btn-group en">
+                        <button class="btn btn-default darkgray landuage-text" data-toggle="dropdown" type="button">{{ LaravelLocalization::getCurrentLocale() }}</button>
+                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                <li>
+                                    <a class="landuage-text" rel="alternate" data-locale="{{$localeCode}}" hreflang="{{$localeCode}}" href="{{LaravelLocalization::getLocalizedURL($localeCode) }}">
+                                        {{ $localeCode }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
                 {{--<li class="dropdown hidden-xs">--}}
                     {{--<a href="javascript:void(0);" class="btn btn-icon-toggle btn-default" data-toggle="dropdown">--}}
                         {{--<i class="fa fa-bell"></i><sup class="badge style-danger">4</sup>--}}

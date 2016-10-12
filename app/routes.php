@@ -12,6 +12,8 @@
 use \AdamWathan\EloquentOAuth\Exceptions\ApplicationRejectedException;
 use \AdamWathan\EloquentOAuth\Exceptions\InvalidAuthorizationCodeException;
 
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter'], function()
+{
 // admin login route
 Route::get('admin_login', array('as' => 'admin-login', 'uses' => 'UsersController@admin_login'));
 Route::post('admin_login', array('as' => 'admin-login', 'uses' => 'UsersController@admin_login_check'));
@@ -148,9 +150,9 @@ Route::group(array('before' => 'adminFilter'), function () {
     Route::get('admin/slider/delete/{id}',['as'=>'delete_slide','uses'=>'SliderController@destroy']);
 
 });
-
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter'], function()
-{
+//
+//Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter'], function()
+//{
 	// root route of this site
 	Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showWelcome'));
     // clients orders
