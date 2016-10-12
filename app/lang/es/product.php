@@ -31,4 +31,7 @@ return [
     'commission_previous'=>'Comisión Anterior',
     'final_commission_of_25'=>'Comisión final con 25%',
     'provider_price'=>'Proveedor Precio',
+    'category'=>'Categoría',
+    'enter_tags_for_experience'=>'Introducir etiquetas para la Experiencia',
+    'payment_type'=>'Tipo de pago',
 ];

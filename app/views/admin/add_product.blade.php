@@ -190,7 +190,7 @@
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-group">
                                 <label for="category" class="col-md-12">
-                                    Category
+                                    {{ trans('product.category') }}
                                 </label>
                                 <div class="controls">
                                     <select name="category" id="category" class=" form-control" required>
@@ -203,7 +203,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="first_loc_id" class="col-md-12">
-                                    Enter Tags for Experience
+                                    {{ trans('product.enter_tags_for_experience') }}
                                 </label>
                                 <div class="controls">
                                     <input type="text" name="tags" class="form-control" value="" data-role="tagsinput" />
@@ -211,7 +211,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="category" class="col-md-12">
-                                    Payment Type
+                                    {{ trans('product.payment_type') }}
                                 </label>
                                 <div class="controls">
                                     <select name="type_of_payment" id="type_of_payment" class=" form-control" required>

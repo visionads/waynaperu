@@ -229,11 +229,13 @@ class ProductController extends BaseController {
 
 		$product_content = DB::table('product_content')
 
-		            ->join('products', 'product_content.product_id', '=', 'products.id')
+		            ->join('products', 'product_content.product_id', '=', 'products.id','left')
 
+                    ->join('product_info', 'product_info.product_id', '=', 'product_content.product_id','left')
 		            ->join('languages', 'product_content.lang_id', '=', 'languages.id')
 
-		            ->select('product_content.id', 'product_content.product_id', 'product_content.title', 'product_content.mini_description','product_content.description','languages.name', 'languages.code')
+
+                    ->select('product_content.id', 'product_content.product_id', 'product_content.title', 'product_content.mini_description','product_content.description','product_info.*','languages.name', 'languages.code')
 
 		            ->where('product_content.product_id', $id)
 
@@ -241,6 +243,7 @@ class ProductController extends BaseController {
 
 		            ->get();
 
+//        dd($product_content);
 		$product_images = DB::table('product_images')
 
                     
@@ -267,6 +270,7 @@ class ProductController extends BaseController {
 
         //return $product_content;
 
+//        dd($product_content);
 		return View::make('admin.edit_product', array('form_url' => $form_url,'p' => $p,'locations' => $locations, 'languages' => $languages, 'category' => $category, 'products' => $product_content, 'product_images' => $product_images));
 
 	}
@@ -290,6 +294,7 @@ class ProductController extends BaseController {
 
         $product = Product::find($id);
 
+        $product->type_of_payment = Input::get('type_of_payment');
         $product->cat_id = $cat_id;
         $product->state = Input::get('state');
 
@@ -306,21 +311,21 @@ class ProductController extends BaseController {
 			$special = implode(",",$special);
         	$product->special = $special;
     	}
-    	if(Input::has('is_lead')){
-          $product->is_lead = Input::get('is_lead');
-        }
-        if(Input::has('lead_email')){
-        	$product->lead_email = Input::get('lead_email');
-        }
-        if(Input::has('lead_name')){
-        	$product->lead_name = Input::get('lead_name');
-        }
-        if(Input::has('lead_phone')){
-        	$product->lead_phone = Input::get('lead_phone');
-        }
-        if(Input::has('lead_address')){
-        	$product->lead_address = Input::get('lead_address');
-        }
+//    	if(Input::has('is_lead')){
+//          $product->is_lead = Input::get('is_lead');
+//        }
+//        if(Input::has('lead_email')){
+//        	$product->lead_email = Input::get('lead_email');
+//        }
+//        if(Input::has('lead_name')){
+//        	$product->lead_name = Input::get('lead_name');
+//        }
+//        if(Input::has('lead_phone')){
+//        	$product->lead_phone = Input::get('lead_phone');
+//        }
+//        if(Input::has('lead_address')){
+//        	$product->lead_address = Input::get('lead_address');
+//        }
         if ($product->save()) {
 
         	# code...
@@ -346,6 +351,29 @@ class ProductController extends BaseController {
 	                $product_content->description = Input::get('description')[$p->id];
 
 	                $product_content->save();
+
+
+//                    $product_info= ProductInfo::Find($p->id);
+//                    $product_info->includes= Input::get('includes')[$p->id];
+//                    $product_info->schedule_short= Input::get('schedule_short')[$p->id];
+//                    $product_info->duration= Input::get('duration')[$p->id];
+//                    $product_info->required= Input::get('required')[$p->id];
+//                    $product_info->terms_of_reservation= Input::get('terms_of_reservation')[$p->id];
+//                    $product_info->terms_of_cancellation= Input::get('terms_of_cancellation')[$p->id];
+//                    $product_info->restriction= Input::get('restriction')[$p->id];
+//                    $product_info->recommendation= Input::get('recommendation')[$p->id];
+//                    $product_info->not_include= Input::get('not_include')[$p->id];
+//                    $product_info->other_information= Input::get('other_information')[$p->id];
+//                    $product_info->validity= Input::get('validity')[$p->id];
+//                    $product_info->itinerary= Input::get('itinerary')[$p->id];
+//                    $product_info->department= Input::get('department')[$p->id];
+//                    $product_info->city= Input::get('city')[$p->id];
+//                    $product_info->district= Input::get('district')[$p->id];
+//                    $product_info->price_with_tax= Input::get('price_with_tax')[$p->id];
+//                    $product_info->commission_previous= Input::get('commission_previous')[$p->id];
+//                    $product_info->final_commission_of_25= Input::get('final_commission_of_25')[$p->id];
+//                    $product_info->provider_price= Input::get('provider_price')[$p->id];
+//                    $product_info->save();
 
 	            }
 
