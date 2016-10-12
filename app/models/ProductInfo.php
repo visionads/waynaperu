@@ -1,0 +1,1 @@
+<?phpclass ProductInfo extends Eloquent  {    protected $table = 'product_info';    public $timestamps = true;    public $primaryKey = 'id';}

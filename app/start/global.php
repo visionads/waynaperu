@@ -96,6 +96,10 @@ function getSerialNum($per_page){
     }
     return $serial;
 }
+function langId(){
+    $lang_code = LaravelLocalization::getCurrentLocale();
+    return getLangId($lang_code);
+}
 
 //function getLocPrice($product_id,$column){
 //    $price =  DB::table('locations')->where('product_id','=', $product_id)->pluck($column);

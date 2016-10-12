@@ -7,15 +7,14 @@ class ProductController extends BaseController {
 
 
 	public function index()
-
 	{
-
 		$products = DB::table('product_content')
 
 		            ->join('products', 'product_content.product_id', '=', 'products.id')
 
 		            ->select('product_content.product_id', 'product_content.title','product_content.mini_description' )
 		            ->where('products.state' , '!=', '-1')
+		            ->where('product_content.lang_id' , '=', langId())
 		            ->orderBy('product_content.product_id', 'asc')
 
 		            ->groupBy('product_content.product_id')
@@ -59,14 +58,15 @@ class ProductController extends BaseController {
 
 
 		$languages 	= Language::all();
-		$to_whom = Input::get('to_whom');
-		$to_whom = implode(",",$to_whom);
+//		$to_whom = Input::get('to_whom');
+//		$to_whom = implode(",",$to_whom);
 
         $cat_id  = Input::get('category');
 
         $product = new Product;
 
         $product->cat_id = $cat_id;
+        $product->type_of_payment = Input::get('type_of_payment');
 
         $product->tags = Input::get('tags');
         if(Input::has('is_lead')){
@@ -84,7 +84,7 @@ class ProductController extends BaseController {
         if(Input::has('lead_address')){
         	$product->lead_address = Input::get('lead_address');
         }
-        $product->to_whom = $to_whom;
+//        $product->to_whom = $to_whom;
 
         if ($product->save()) {
 
@@ -108,6 +108,29 @@ class ProductController extends BaseController {
 
 	                $product_content->save();
 
+                    $product_info= new ProductInfo();
+                    $product_info->product_id= $p_id;
+                    $product_info->language_id= $language->id;
+                    $product_info->includes= Input::get('includes')[$language->code];
+                    $product_info->schedule_short= Input::get('schedule_short')[$language->code];
+                    $product_info->duration= Input::get('duration')[$language->code];
+                    $product_info->required= Input::get('required')[$language->code];
+                    $product_info->terms_of_reservation= Input::get('terms_of_reservation')[$language->code];
+                    $product_info->terms_of_cancellation= Input::get('terms_of_cancellation')[$language->code];
+                    $product_info->restriction= Input::get('restriction')[$language->code];
+                    $product_info->recommendation= Input::get('recommendation')[$language->code];
+                    $product_info->not_include= Input::get('not_include')[$language->code];
+                    $product_info->other_information= Input::get('other_information')[$language->code];
+                    $product_info->validity= Input::get('validity')[$language->code];
+                    $product_info->itinerary= Input::get('itinerary')[$language->code];
+                    $product_info->department= Input::get('department')[$language->code];
+                    $product_info->city= Input::get('city')[$language->code];
+                    $product_info->district= Input::get('district')[$language->code];
+                    $product_info->price_with_tax= Input::get('price_with_tax')[$language->code];
+                    $product_info->commission_previous= Input::get('commission_previous')[$language->code];
+                    $product_info->final_commission_of_25= Input::get('final_commission_of_25')[$language->code];
+                    $product_info->provider_price= Input::get('provider_price')[$language->code];
+                    $product_info->save();
 	            }
 
 
