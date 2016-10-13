@@ -14,7 +14,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="account_type">Account Type</label>
-            {{ Form::text('account_type',null,['class'=>'form-control']) }}
+            {{ Form::select('account_type',['external'=>'External/ Cuenta bancaria','internal'=>'Internal/ cuenta interbancaria'],null,['class'=>'form-control']) }}
         </div>
     </div>
 </div>
