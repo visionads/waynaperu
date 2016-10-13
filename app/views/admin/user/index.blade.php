@@ -13,14 +13,17 @@
                     <tr>
                         <th class="center">
                             <div class="checkbox-table">
-                                <label>
-                                    Page ID
-                                </label>
-                            </div></th>
+                                <label>Page ID</label>
+                            </div>
+                        </th>
 
                         <th class="hidden-xs">Name</th>
                         <th class="hidden-xs">Email</th>
+                        <th class="hidden-xs">Username</th>
                         <th class="hidden-xs">Phone</th>
+                        <th class="hidden-xs">Activated at</th>
+                        <th class="hidden-xs">Last login</th>
+                        <th class="hidden-xs">Status</th>
                         <th class="hidden-xs">Type</th>
                         <th>Action</th>
                     </tr>
@@ -39,11 +42,13 @@
                             <td>
                                 {{ $user->email }}
                             </td>
-
+                            <td>{{ $user->username }}</td>
                             <td class="hidden-xs">
                                 {{ $user->phone }}
                             </td>
-
+                            <td>{{ $user->activated_at }}</td>
+                            <td>{{ $user->last_login }}</td>
+                            <td>@if($user->activated=='1') <span style="color:green">&check;</span> Active @else <span style="color: red">&cross;</span> Inactive @endif</td>
                             <td>
                                 {{ $user->type }}
                             </td>
