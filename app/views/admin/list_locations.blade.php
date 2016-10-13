@@ -95,6 +95,7 @@
                                                         {{ Form::label('name', 'Name', array('class' => 'col-sm-3 control-label')) }}
                                                         <div class="col-sm-9">
                                                             <input type="text" name="name[{{ $language->code }}]" placeholder="Name" class="form-control">
+
                                                             {{ $errors->first('name['. $language->code .']') }}
                                                         </div>
                                                     </div>
@@ -263,116 +264,72 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-
             var next = 1;
-
             $(".add-more").on("click", function(e){
-
                 e.preventDefault();
-
                 var code = $(this).data('code');
-
                 next = parseInt($(".details_"+code+" #count").val(), 10);
-
                 console.log(code);
-
                 var addto = ".details_"+code+" #details_val" + next;
-
                 next = next + 1;
-
                 var newIn = '<br /><br /><input autocomplete="off" class="form-control col-md-3" id="details_cat'+next+'" name="details_cat['+code+'][]" type="text" placeholder="Details Category"> <input autocomplete="off" class="form-control  col-md-3" id="details_val'+next+'" name="details_val['+code+'][]" type="text" placeholder="Details Value">';
 
                 var newInput = $(newIn);
-
                 $(addto).after(newInput);
-
                 // $("#details_val" + next).attr('data-source',$(addto).attr('data-source'));
-
                 $(".details_"+code+" #count").val(next);
 
             });
 
             $(document).on("click", ".add-moree", function(e){
-
                 e.preventDefault();
-
                 var code = $(this).data('codee');
-
                 next = parseInt($(".details_"+code+" #countt").val(), 10);
-
                 console.log(next);
-
                 var addto = ".details_"+code+" #details_val" + next;
-
                 next = next + 1;
 
                 var newIn = '<br /><br /><input autocomplete="off" class="form-control col-md-3" id="details_cat'+next+'" name="details_cat['+code+'][]" type="text" placeholder="Details Category"> <input autocomplete="off" class="form-control  col-md-3" id="details_val'+next+'" name="details_val['+code+'][]" type="text" placeholder="Details Value">';
 
                 var newInput = $(newIn);
-
                 $(addto).after(newInput);
-
                 // $("#details_val" + next).attr('data-source',$(addto).attr('data-source'));
-
                 $(".details_"+code+" #countt").val(next);
 
             });
 
             $("#saveLocation").on("click",function(){
 
-
-
                 var data = $('form#add_location').serialize();
-
                 var URL = '{{ route("save_location") }}';
-
                 $.post(URL,data,function(response){
-
                     // console.log(response)
-
                 },"json")
 
             });
 
             $("#updateLocation").on("click",function(){
-
-
-
                 var data = $('form#edit_location').serialize();
-
                 var URL = '{{ route("update_location") }}';
-
                 $.post(URL,data,function(response){
-
                     //console.log(response)
-
                 },"json")
 
             });
 
             $('#addLocationModal, #editLocationModal').on('hidden.bs.modal', function () {
-
                 setTimeout(function(){ location.reload(); }, 2000);
-
             })
 
 
             $('a.editloc').on('click', function() {
-
                 $('#editLocationModal').modal('show');
-
                 var location_id = $(this).data('locid');
-
                 var product_id  = {{ $product_id }};
-
                 var URL = '{{ URL::to('/') }}/admin/location/'+product_id+'/edit/'+location_id;
 
-
-
                 $.get(URL, function(response){
-
                     // console.log(response);
-
                     $('#editLocationModal .modal-body').html(response);
 
                 });

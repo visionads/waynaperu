@@ -33,53 +33,35 @@
                                 @foreach($locations as $index => $location)
 
                                     <div class="tab-pane @if($index == 0)active @endif" id="edit_{{ $location->lang_name }}">
-
                                         <div class="form-group">
-
                                             {{ Form::label('name', 'Name', array('class' => 'col-sm-3 control-label')) }}
 
-
-
                                             <div class="col-sm-9">
-
                                                 <input value="{{ $location->name }}" type="text" name="name[{{ $location->id }}]" placeholder="Name" class="form-control"/>
-
                                                 {{ $errors->first('name['. $location->id .']') }}
-
                                             </div>
 
                                         </div>
 
                                         <div class="form-group">
-
                                             <div class="details_{{ $location->id }}">
-
                                                 <?php
-
                                                 $details = json_decode($location->details);
-
                                                 //echo "<pre>";print_r($details);die;
-
                                                 ?>
-
                                                 <?php $count = 0 ?>
-
                                                 @foreach($details as $val)
-
                                                     <?php $count++ ?>
-
                                                 @endforeach
-
                                                 <input type="hidden" name="count" id="countt" value="{{ $count }}" />
 
                                                 <div class="control-group" id="fields">
-
                                                     <label class="control-label" for="details_cat1">Details</label>
 
+
+
                                                     <div class="controls" id="profs">
-
                                                         <div class="input-append">
-
                                                             <?php $i = 1; ?>
 
                                                             @foreach($details as $key => $val)
