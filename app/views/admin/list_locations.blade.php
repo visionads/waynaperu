@@ -90,7 +90,7 @@
                                         <div class="tab-content">
                                             @if(count($languages)>0)
                                             @foreach($languages as $index => $language)
-                                                <div class="tab-pane @if($index == 0)active @endif" id="{{ $language->name }}">
+                                                <div class="tab-pane @if($index == 0)active @endif" id="{{ isset($language->name)?$language->name:null }}">
                                                     <div class="form-group">
                                                         {{ Form::label('name', 'Name', array('class' => 'col-sm-3 control-label')) }}
                                                         <div class="col-sm-9">
@@ -208,9 +208,11 @@
                                     <div class="controls">
                                         <select name="district_id" id="district_id" class=" form-control" required>
                                             <option value="">-Select A District-</option>
+                                            @if(count($districts)>0)
                                             @foreach($districts as $index => $district)
                                                 <option value="{{ $district->id }}">{{ $district->name }}</option>
                                             @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
