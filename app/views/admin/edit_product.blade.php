@@ -150,7 +150,7 @@
                                                 <div class="form-group">
                                                     {{ Form::label('street', trans('product.street'), array('class' => 'col-sm-3 control-label')) }}
                                                     <div class="col-sm-9">
-                                                        <input value="{{ $product->street }}" name="street[{{ $product->id }}]" class="editor form-control" placeholder="{{ trans('product.street') }}" >
+                                                        <input value="{{ isset($product->street)?$product->street:null }}" name="street[{{ $product->id }}]" class="editor form-control" placeholder="{{ trans('product.street') }}" >
                                                         {{ $errors->first('street['. $product->id .']') }}
                                                     </div>
                                                 </div>
