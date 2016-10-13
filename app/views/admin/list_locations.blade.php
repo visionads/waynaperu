@@ -219,6 +219,7 @@
                                 <h6>Assign Experience Image</h6>
 
                                 <div class="row">
+                                    @if(count($product_images)>0)
                                     @foreach($product_images as $product_image)
                                         <div class="col-xs-4">
                                             {{-- <a class="thumbnail fancybox" rel="ligthbox" href="{{  asset('uploads/products/'.$product_image->image) }}"> --}}
@@ -231,6 +232,7 @@
                                             <input type="radio" name="product_image_id" value="{{ $product_image->id }}"  class="hidden">
                                         </div>
                                     @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </fieldset>
