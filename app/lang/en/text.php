@@ -173,6 +173,7 @@ return array(
 
     // Email Templates
 
+
     "good_choice" => "Good Choice!",
     "thanks" => "Thank you",
     "buying" => "Buying",
@@ -244,4 +245,14 @@ return array(
     "orders" => 'Orders',
     "orders" => 'Orders',
     "order_details" => 'Order Details',
+    "include"=>"Include",
+    "schedule"=>"Schedule",
+    "duration"=>"Duration",
+    "requisites"=>"Requisites",
+    "restrictions"=>"Restrictions",
+    "recommendations"=>"Recommendations",
+    "terms_of_reservation"=>"Terms Of Reservation",
+    "terms_of_cancelation"=>"Terms of Cancelation",
+    "not_include"=>"Not include",
+    "info"=>"Info",
 );
