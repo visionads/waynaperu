@@ -240,7 +240,7 @@ class ProductController extends BaseController {
 		            ->where('product_content.product_id', $id)
 
 		            ->orderBy('product_content.product_id', 'asc')
-
+                    ->groupBy('product_content.id')
 		            ->get();
 
 //        dd($product_content);
@@ -279,6 +279,7 @@ class ProductController extends BaseController {
 
 	{
 
+	    echo '<pre>';print_r(Input::all());exit;
 		// return Input::all();
 
 		//$tags  = explode(",", Input::get('tags'));
