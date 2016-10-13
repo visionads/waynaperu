@@ -136,39 +136,6 @@
                                                                     <input type="text" value="@if($language->code=='en') Info @elseif($language->code=='es') Info @endif" name="info[{{ $language->code }}]" placeholder="{{ trans('text.info') }}" class="form-control">
                                                                     <input type="text" name="info_value[{{ $language->code }}]" placeholder="value" class="form-control">
                                                                 </div>
-                                                                {{--<div class="form-group">
-                                                                    <input type="text" value="{{ trans('text.include') }}" name="include[{{ $language->code }}]" placeholder="{{ trans('text.include') }}" class="form-control">
-                                                                    <input type="text" name="include_value[{{ $language->code }}]" placeholder="value" class="form-control">
-
-                                                                    <input type="text" value="{{ trans('text.schedule') }}" name="schedule[{{ $language->code }}]" placeholder="{{ trans('text.schedule') }}" class="form-control">
-                                                                    <input type="text" name="schedule_value[{{ $language->code }}]" placeholder="value" class="form-control">
-
-                                                                    <input type="text" value="{{ trans('text.duration') }}" name="duration[{{ $language->code }}]" placeholder="{{ trans('text.duration') }}" class="form-control">
-                                                                    <input type="text" name="duration_value[{{ $language->code }}]" placeholder="value" class="form-control">
-
-                                                                    <input type="text" value="{{ trans('text.requisites') }}" name="requisites[{{ $language->code }}]" placeholder="{{ trans('text.requisites') }}" class="form-control">
-                                                                    <input type="text" name="requisites_value[{{ $language->code }}]" placeholder="value" class="form-control">
-
-                                                                    <input type="text" value="{{ trans('text.restrictions') }}" name="restrictions[{{ $language->code }}]" placeholder="{{ trans('text.restrictions') }}" class="form-control">
-                                                                    <input type="text" name="restrictions_value[{{ $language->code }}]" placeholder="value" class="form-control">
-
-                                                                    <input type="text" value="{{ trans('text.recommendations') }}" name="recommendations[{{ $language->code }}]" placeholder="{{ trans('text.recommendations') }}" class="form-control">
-                                                                    <input type="text" name="recommendations_value[{{ $language->code }}]" placeholder="value" class="form-control">
-
-                                                                    <input type="text" value="{{ trans('text.terms_of_reservation') }}" name="terms_of_reservation[{{ $language->code }}]" placeholder="{{ trans('text.terms_of_reservation') }}" class="form-control">
-                                                                    <input type="text" name="terms_of_reservation_value[{{ $language->code }}]" placeholder="value" class="form-control">
-
-                                                                    <input type="text" value="{{ trans('text.terms_of_cancelation') }}" name="terms_of_cancelation[{{ $language->code }}]" placeholder="{{ trans('text.terms_of_cancelation') }}" class="form-control">
-                                                                    <input type="text" name="terms_of_cancelation_value[{{ $language->code }}]" placeholder="value" class="form-control">
-
-                                                                    <input type="text" value="{{ trans('text.not_include') }}" name="not_include[{{ $language->code }}]" placeholder="{{ trans('text.not_include') }}" class="form-control">
-                                                                    <input type="text" name="not_include_value[{{ $language->code }}]" placeholder="value" class="form-control">
-
-                                                                    <input type="text" value="{{ trans('text.info') }}" name="info[{{ $language->code }}]" placeholder="{{ trans('text.info') }}" class="form-control">
-                                                                    <input type="text" name="info_value[{{ $language->code }}]" placeholder="value" class="form-control">
-                                                                </div>--}}
-
-                                                                {{--==*****==--}}
 
 
                                                                 <div class="controls" id="profs">
