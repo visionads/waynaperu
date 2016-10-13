@@ -8,19 +8,36 @@ class ProductController extends BaseController {
 
 	public function index()
 	{
-		$products = DB::table('product_content')
+	    if(Auth::user()->type=='admin')
+        {
+            $products = DB::table('product_content')
 
-		            ->join('products', 'product_content.product_id', '=', 'products.id')
+                ->join('products', 'product_content.product_id', '=', 'products.id')
 
-		            ->select('product_content.product_id', 'product_content.title','product_content.mini_description' )
-		            ->where('products.state' , '!=', '-1')
-		            ->where('product_content.lang_id' , '=', langId())
-		            ->orderBy('product_content.product_id', 'asc')
+                ->select('product_content.product_id', 'product_content.title','product_content.mini_description' )
+                ->where('products.state' , '!=', '-1')
+                ->where('product_content.lang_id' , '=', langId())
+                ->orderBy('product_content.product_id', 'asc')
 
-		            ->groupBy('product_content.product_id')
+                ->groupBy('product_content.product_id')
 
-		            ->get();
+                ->get();
+        }elseif(Auth::user()->type=='provider')
+        {
+            $products = DB::table('product_content')
 
+                ->join('products', 'product_content.product_id', '=', 'products.id')
+
+                ->select('product_content.product_id', 'product_content.title','product_content.mini_description' )
+                ->where('products.state' , '!=', '-1')
+                ->where('product_content.lang_id' , '=', langId())
+                ->where('products.user_id' , '=', Auth::user()->id)
+                ->orderBy('product_content.product_id', 'asc')
+
+                ->groupBy('product_content.product_id')
+
+                ->get();
+        }
 		return View::make('admin.list_products', array('products' => $products));
 
 	}
