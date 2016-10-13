@@ -25,7 +25,22 @@ Route::get('facebook', array('as' => 'facebook', 'uses' => 'SocialMediaControlle
 
 // Admin Routes
 Route::group(array('before' => 'adminFilter'), function () {
-
+    Route::get('create_child',function (){
+        $products=Product::select('id')->get();
+//        dd($products);
+        foreach ($products as $product)
+        {
+//            dd($product->id);
+            for($i=1;$i<=2;$i++) {
+                $product_info = new ProductInfo();
+                $product_info->language_id = $i;
+                $product_info->product_id = $product->id;
+                $product_info->save();
+            }
+            echo $product->id.' Done <br>';
+        }
+        exit('Success');
+    });
     Route::get('admin',['as'=>'admin','uses'=>'DashboardController@index']);
 
     Route::get('users/{type}',['as'=>'users','uses'=>'UserController@index']);

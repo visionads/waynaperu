@@ -51,15 +51,10 @@ class ProductController extends BaseController {
 		$languages = Language::all();
 
 		$category = DB::table('category_content')
-
 		            ->join('categories', 'category_content.cat_id', '=', 'categories.id')
-
 		            ->select('category_content.cat_id', 'category_content.title')
-
 		            ->orderBy('category_content.cat_id', 'asc')
-
 		            ->groupBy('category_content.cat_id')
-
 		            ->get();
         $providers= User::select('id','username','first_name','last_name')->where('type','provider')->get();
 
@@ -234,26 +229,18 @@ class ProductController extends BaseController {
 		$languages = Language::all();
 
 		$category = DB::table('category_content')
-
 		            ->join('categories', 'category_content.cat_id', '=', 'categories.id')
-
 		            ->select('category_content.cat_id', 'category_content.title')
-
 		            ->orderBy('category_content.cat_id', 'asc')
-
 		            ->groupBy('category_content.cat_id')
-
 		            ->get();
 
 		$p = Product::find($id);
 
 		$product_content = DB::table('product_content')
-
 		            ->join('products', 'product_content.product_id', '=', 'products.id')
-
 //                    ->join('product_info', 'product_info.product_id', '=', 'products.id')
 		            ->join('languages', 'product_content.lang_id', '=', 'languages.id')
-
 
                     ->select('product_content.id as content_id',
                         'product_content.product_id',
