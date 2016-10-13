@@ -68,6 +68,7 @@ class ProductController extends BaseController {
 
         $product->cat_id = $cat_id;
         $product->type_of_payment = Input::get('type_of_payment');
+        $product->user_id = Input::get('user_id');
 
         $product->tags = Input::get('tags');
         if(Input::has('is_lead')){
@@ -126,6 +127,7 @@ class ProductController extends BaseController {
                     $product_info->itinerary= Input::get('itinerary')[$language->code];
                     $product_info->department= Input::get('department')[$language->code];
                     $product_info->city= Input::get('city')[$language->code];
+                    $product_info->street= Input::get('street')[$language->code];
                     $product_info->district= Input::get('district')[$language->code];
                     $product_info->price_with_tax= Input::get('price_with_tax')[$language->code];
                     $product_info->commission_previous= Input::get('commission_previous')[$language->code];
@@ -307,7 +309,8 @@ class ProductController extends BaseController {
 //        $product= (object) $product;
 //        echo '<pre>';print_r($product[0]->id);exit;
 //        dd($product_content);
-		return View::make('admin.edit_product', array('form_url' => $form_url,'p' => $p,'locations' => $locations, 'languages' => $languages, 'category' => $category, 'products' => $product, 'product_images' => $product_images));
+        $providers= User::select('id','username','first_name','last_name')->where('type','provider')->get();
+        return View::make('admin.edit_product', array('form_url' => $form_url,'p' => $p,'locations' => $locations, 'languages' => $languages, 'category' => $category, 'products' => $product, 'product_images' => $product_images,'providers'=>$providers));
 
 	}
 
@@ -333,6 +336,7 @@ class ProductController extends BaseController {
 
         $product->type_of_payment = Input::get('type_of_payment');
         $product->cat_id = $cat_id;
+        $product->user_id = Input::get('user_id');
         $product->state = Input::get('state');
 
         $product->first_loc_id = Input::get('first_loc_id');
@@ -410,6 +414,7 @@ class ProductController extends BaseController {
                     $product_info->itinerary= Input::get('itinerary')[$p->id];
                     $product_info->department= Input::get('department')[$p->id];
                     $product_info->city= Input::get('city')[$p->id];
+                    $product_info->street= Input::get('street')[$p->id];
                     $product_info->district= Input::get('district')[$p->id];
                     $product_info->price_with_tax= Input::get('price_with_tax')[$p->id];
                     $product_info->commission_previous= Input::get('commission_previous')[$p->id];

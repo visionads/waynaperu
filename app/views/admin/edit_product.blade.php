@@ -148,6 +148,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    {{ Form::label('street', trans('product.street'), array('class' => 'col-sm-3 control-label')) }}
+                                                    <div class="col-sm-9">
+                                                        <input value="{{ $product->street }}" name="street[{{ $product->id }}]" class="editor form-control" placeholder="{{ trans('product.street') }}" >
+                                                        {{ $errors->first('street['. $product->id .']') }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     {{ Form::label('district', trans('product.district'), array('class' => 'col-sm-3 control-label')) }}
                                                     <div class="col-sm-9">
                                                         <input value="{{ $product->district }}" name="district[{{ $product->id }}]" class="editor form-control" placeholder="{{ trans('product.district') }}" >
@@ -219,6 +226,19 @@
                         </div>
 
                         <div class="col-md-4 col-lg-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="provider" class="col-md-12">
+                                    {{ trans('product.provider_name') }}
+                                </label>
+                                <div class="controls">
+                                    <select name="user_id" id="provider" class=" form-control" required>
+                                        <option value="">-Select A Provider-</option>
+                                        @foreach($providers as $index => $provider)
+                                            <option @if($p->user_id==$provider->id) selected @endif value="{{ $provider->id }}">{{ $provider->username.' ('.$provider->first_name.' '.$provider->last_name.')' }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="category" class="col-md-12">
                                     Category

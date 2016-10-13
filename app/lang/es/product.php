@@ -27,6 +27,7 @@ return [
     'validity'=>'Validez',
     'itinerary'=>'Itinerario',
     'city'=>'Ciudad',
+    'street'=>'Calle',
     'price_with_tax'=>'Precio con tasas',
     'commission_previous'=>'Comisión Anterior',
     'final_commission_of_25'=>'Comisión final con 25%',
