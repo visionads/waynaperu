@@ -38,12 +38,53 @@ class LocationController extends BaseController {
         	
 	        foreach ($languages as  $language) {
 	        	$name = Input::get('name')[$language->code];
-	        	$details = array();
+	        	/*==*/
+				$details = array(
+					Input::get('include')[$language->code]=>Input::get('include_value')[$language->code],
+					Input::get('schedule')[$language->code]=>Input::get('schedule_value')[$language->code],
+					Input::get('duration')[$language->code]=>Input::get('duration_value')[$language->code],
+					Input::get('requisites')[$language->code]=>Input::get('requisites_value')[$language->code],
+					Input::get('restrictions')[$language->code]=>Input::get('restrictions_value')[$language->code],
+					Input::get('recommendations')[$language->code]=>Input::get('recommendations_value')[$language->code],
+					Input::get('terms_of_reservation')[$language->code]=>Input::get('terms_of_reservation_value')[$language->code],
+					Input::get('terms_of_cancelation')[$language->code]=>Input::get('terms_of_cancelation_value')[$language->code],
+					Input::get('not_include')[$language->code]=>Input::get('not_include_value')[$language->code],
+					Input::get('info')[$language->code]=>Input::get('info_value')[$language->code],
+
+					/*'include'=>Input::get('include')[$language->code],
+					'include_value'=>Input::get('include_value')[$language->code],
+					'schedule'=>Input::get('schedule')[$language->code],
+					'schedule_value'=>Input::get('schedule_value')[$language->code],
+					'duration'=>Input::get('duration')[$language->code],
+					'duration_value'=>Input::get('duration_value')[$language->code],
+					'requisites'=>Input::get('requisites')[$language->code],
+					'requisites_value'=>Input::get('requisites_value')[$language->code],
+					'restrictions'=>Input::get('restrictions')[$language->code],
+					'restrictions_value'=>Input::get('restrictions_value')[$language->code],
+					'recommendations'=>Input::get('recommendations')[$language->code],
+					'recommendations_value'=>Input::get('recommendations_value')[$language->code],
+					'terms_of_reservation'=>Input::get('terms_of_reservation')[$language->code],
+					'terms_of_reservation_value'=>Input::get('terms_of_reservation_value')[$language->code],
+					'terms_of_cancelation'=>Input::get('terms_of_cancelation')[$language->code],
+					'terms_of_cancelation_value'=>Input::get('terms_of_cancelation_value')[$language->code],
+					'not_include'=>Input::get('not_include')[$language->code],
+					'not_include_value'=>Input::get('not_include_value')[$language->code],
+					'info'=>Input::get('info')[$language->code],
+					'info_value'=>Input::get('info_value')[$language->code],*/
+				);
+				/*==*/
+	        	//$details = array();
 	        	$details_cat = Input::get('details_cat')[$language->code];
 	        	$details_val = Input::get('details_val')[$language->code];
 	        	for ($i=0; $i < count($details_cat); $i++) { 
 	        		$details = array_add($details, $details_cat[$i], $details_val[$i]);
 	        	}
+
+				/*==*/
+				/*$include = Input::get('include')[$language->code];
+				$details = array_add($details,$include);*/
+				/*==*/
+
 	        	$details = json_encode($details);
 	        	$location_content = new LocationContent;
 	        	$location_content->loc_id = $location->id;
