@@ -3,7 +3,7 @@
 @section('content')
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    {{--<div class="panel-body">
+    <div class="panel-body">
         <div class=""><button data-toggle="modal" data-target="#addLocationModal" class="btn btn-primary center-block">Add New Location</button></div>
         @if(count($locations) > 0)
             <div class="card">
@@ -48,7 +48,7 @@
         @else
             <p> No Location Found. </p>
         @endif
-    </div>--}}
+    </div>
 
 
 
@@ -60,7 +60,7 @@
 
             <!-- line modal -->
 
-    <div class="modal fade" id="addLocationModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    {{--<div class="modal fade" id="addLocationModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 
         <div class="modal-dialog">
             <div class="modal-content">
@@ -99,7 +99,7 @@
                                                             <div class="control-group" id="fields">
                                                                 <label class="control-label" for="details_cat1">Details</label>
 
-                                                                {{--==*****==--}}
+                                                                --}}{{--==*****==--}}{{--
                                                                 <div class="form-group">
                                                                     <input type="text" value="@if($language->code=='en') Include @elseif($language->code=='es') Incluido @endif" name="include[{{ $language->code }}]" placeholder="{{ trans('text.include') }}" class="form-control">
                                                                     <input type="text" name="include_value[{{ $language->code }}]" placeholder="value" class="form-control">
@@ -131,7 +131,7 @@
                                                                     <input type="text" value="@if($language->code=='en') Info @elseif($language->code=='es') Info @endif" name="info[{{ $language->code }}]" placeholder="{{ trans('text.info') }}" class="form-control">
                                                                     <input type="text" name="info_value[{{ $language->code }}]" placeholder="value" class="form-control">
                                                                 </div>
-                                                                {{--<div class="form-group">
+                                                                --}}{{--<div class="form-group">
                                                                     <input type="text" value="{{ trans('text.include') }}" name="include[{{ $language->code }}]" placeholder="{{ trans('text.include') }}" class="form-control">
                                                                     <input type="text" name="include_value[{{ $language->code }}]" placeholder="value" class="form-control">
 
@@ -161,9 +161,9 @@
 
                                                                     <input type="text" value="{{ trans('text.info') }}" name="info[{{ $language->code }}]" placeholder="{{ trans('text.info') }}" class="form-control">
                                                                     <input type="text" name="info_value[{{ $language->code }}]" placeholder="value" class="form-control">
-                                                                </div>--}}
+                                                                </div>--}}{{--
 
-                                                                {{--==*****==--}}
+                                                                --}}{{--==*****==--}}{{--
 
 
                                                                 <div class="controls" id="profs">
@@ -215,11 +215,11 @@
                                 <div class="row">
                                     @foreach($product_images as $product_image)
                                         <div class="col-xs-4">
-                                            {{-- <a class="thumbnail fancybox" rel="ligthbox" href="{{  asset('uploads/products/'.$product_image->image) }}"> --}}
+                                            --}}{{-- <a class="thumbnail fancybox" rel="ligthbox" href="{{  asset('uploads/products/'.$product_image->image) }}"> --}}{{--
 
-                                            {{--  </a> --}}
+                                            --}}{{--  </a> --}}{{--
 
-                                            {{-- <button type="button" class="btn btn-primary btn-radio">Select Image</button> --}}
+                                            --}}{{-- <button type="button" class="btn btn-primary btn-radio">Select Image</button> --}}{{--
 
                                             <img src="{{  asset('uploads/products/thumbs/thumb_'.$product_image->image) }}" class="img-responsive img-radio">
                                             <input type="radio" name="product_image_id" value="{{ $product_image->id }}"  class="hidden">
@@ -237,11 +237,11 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
                         </div>
 
-                        {{-- <div class="btn-group btn-delete hidden" role="group">
+                        --}}{{-- <div class="btn-group btn-delete hidden" role="group">
 
                             <button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
 
-                        </div> --}}
+                        </div> --}}{{--
 
                         <div class="btn-group" role="group">
                             <button type="button" data-dismiss="modal" id="saveLocation" class="btn btn-default btn-hover-green" data-action="save" role="button">Save</button>
@@ -250,7 +250,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 
 
 
@@ -258,7 +258,7 @@
 
             <!-- line modal -->
 
-    <div class="modal fade" id="editLocationModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    {{--<div class="modal fade" id="editLocationModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -281,7 +281,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 
 
     <script type="text/javascript">
