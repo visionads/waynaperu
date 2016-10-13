@@ -34,4 +34,5 @@ return [
     'category'=>'Categoría',
     'enter_tags_for_experience'=>'Introducir etiquetas para la Experiencia',
     'payment_type'=>'Tipo de pago',
+    'provider_name'=>'Nombre del proveedor',
 ];

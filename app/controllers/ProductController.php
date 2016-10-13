@@ -44,8 +44,9 @@ class ProductController extends BaseController {
 		            ->groupBy('category_content.cat_id')
 
 		            ->get();
+        $providers= User::select('id','username','first_name','last_name')->where('type','provider')->get();
 
-		return View::make('admin.add_product', array('form_url' => $form_url, 'languages' => $languages, 'category' => $category));
+		return View::make('admin.add_product', array('form_url' => $form_url, 'languages' => $languages, 'category' => $category,'providers'=>$providers));
 
 	}
 
@@ -229,18 +230,39 @@ class ProductController extends BaseController {
 
 		$product_content = DB::table('product_content')
 
-		            ->join('products', 'product_content.product_id', '=', 'products.id','left')
+		            ->join('products', 'product_content.product_id', '=', 'products.id')
 
-                    ->join('product_info', 'product_info.product_id', '=', 'product_content.product_id','left')
+//                    ->join('product_info', 'product_info.product_id', '=', 'products.id')
 		            ->join('languages', 'product_content.lang_id', '=', 'languages.id')
 
 
-                    ->select('product_content.id', 'product_content.product_id', 'product_content.title', 'product_content.mini_description','product_content.description','product_info.*','languages.name', 'languages.code')
+                    ->select('product_content.id as content_id',
+                        'product_content.product_id',
+                        'product_content.title',
+                        'product_content.mini_description',
+                        'product_content.description',
+                        'languages.name',
+                        'languages.code')
 
 		            ->where('product_content.product_id', $id)
 
 		            ->orderBy('product_content.product_id', 'asc')
-                    ->groupBy('product_content.id')
+		            ->get();
+		$product_info = DB::table('product_info')
+
+		            ->join('products', 'product_info.product_id', '=', 'products.id')
+
+//                    ->join('product_info', 'product_info.product_id', '=', 'products.id')
+		            ->join('languages', 'product_info.language_id', '=', 'languages.id')
+
+
+                    ->select('product_info.*',
+                        'languages.name',
+                        'languages.code')
+
+		            ->where('product_info.product_id', $id)
+
+		            ->orderBy('product_info.product_id', 'asc')
 		            ->get();
 
 //        dd($product_content);
@@ -269,9 +291,23 @@ class ProductController extends BaseController {
 		            ->get();
 
         //return $product_content;
-
+        $product_content[0]=(array) $product_content[0];
+        $product_content[1]=(array) $product_content[1];
+        $product_info[0]=(array) $product_info[0];
+        $product_info[1]=(array) $product_info[1];
+//        echo '<pre>';print_r($product_content[0]);exit;
+        $product[0]=array_merge($product_content[0],$product_info[0]);
+        $product[1]=array_merge($product_content[1],$product_info[1]);
+        $i=0;
+        foreach ($product as $pp)
+        {
+            $product[$i]= (object) $product[$i];
+            $i++;
+        }
+//        $product= (object) $product;
+//        echo '<pre>';print_r($product[0]->id);exit;
 //        dd($product_content);
-		return View::make('admin.edit_product', array('form_url' => $form_url,'p' => $p,'locations' => $locations, 'languages' => $languages, 'category' => $category, 'products' => $product_content, 'product_images' => $product_images));
+		return View::make('admin.edit_product', array('form_url' => $form_url,'p' => $p,'locations' => $locations, 'languages' => $languages, 'category' => $category, 'products' => $product, 'product_images' => $product_images));
 
 	}
 
@@ -279,7 +315,7 @@ class ProductController extends BaseController {
 
 	{
 
-	    echo '<pre>';print_r(Input::all());exit;
+//	    echo '<pre>';print_r(Input::all());exit;
 		// return Input::all();
 
 		//$tags  = explode(",", Input::get('tags'));
@@ -354,33 +390,33 @@ class ProductController extends BaseController {
 	                $product_content->save();
 
 
-//                    $product_info= ProductInfo::Find($p->id);
-//                    $product_info->includes= Input::get('includes')[$p->id];
-//                    $product_info->schedule_short= Input::get('schedule_short')[$p->id];
-//                    $product_info->duration= Input::get('duration')[$p->id];
-//                    $product_info->required= Input::get('required')[$p->id];
-//                    $product_info->terms_of_reservation= Input::get('terms_of_reservation')[$p->id];
-//                    $product_info->terms_of_cancellation= Input::get('terms_of_cancellation')[$p->id];
-//                    $product_info->restriction= Input::get('restriction')[$p->id];
-//                    $product_info->recommendation= Input::get('recommendation')[$p->id];
-//                    $product_info->not_include= Input::get('not_include')[$p->id];
-//                    $product_info->other_information= Input::get('other_information')[$p->id];
-//                    $product_info->validity= Input::get('validity')[$p->id];
-//                    $product_info->itinerary= Input::get('itinerary')[$p->id];
-//                    $product_info->department= Input::get('department')[$p->id];
-//                    $product_info->city= Input::get('city')[$p->id];
-//                    $product_info->district= Input::get('district')[$p->id];
-//                    $product_info->price_with_tax= Input::get('price_with_tax')[$p->id];
-//                    $product_info->commission_previous= Input::get('commission_previous')[$p->id];
-//                    $product_info->final_commission_of_25= Input::get('final_commission_of_25')[$p->id];
-//                    $product_info->provider_price= Input::get('provider_price')[$p->id];
-//                    $product_info->save();
 
 	            }
+            $product_info= ProductInfo::where('product_id',$product->id)->get();
+            foreach ($product_info as $p) {
 
-
-
-
+                    $product_info= ProductInfo::Find($p->id);
+                    $product_info->includes= Input::get('includes')[$p->id];
+                    $product_info->schedule_short= Input::get('schedule_short')[$p->id];
+                    $product_info->duration= Input::get('duration')[$p->id];
+                    $product_info->required= Input::get('required')[$p->id];
+                    $product_info->terms_of_reservation= Input::get('terms_of_reservation')[$p->id];
+                    $product_info->terms_of_cancellation= Input::get('terms_of_cancellation')[$p->id];
+                    $product_info->restriction= Input::get('restriction')[$p->id];
+                    $product_info->recommendation= Input::get('recommendation')[$p->id];
+                    $product_info->not_include= Input::get('not_include')[$p->id];
+                    $product_info->other_information= Input::get('other_information')[$p->id];
+                    $product_info->validity= Input::get('validity')[$p->id];
+                    $product_info->itinerary= Input::get('itinerary')[$p->id];
+                    $product_info->department= Input::get('department')[$p->id];
+                    $product_info->city= Input::get('city')[$p->id];
+                    $product_info->district= Input::get('district')[$p->id];
+                    $product_info->price_with_tax= Input::get('price_with_tax')[$p->id];
+                    $product_info->commission_previous= Input::get('commission_previous')[$p->id];
+                    $product_info->final_commission_of_25= Input::get('final_commission_of_25')[$p->id];
+                    $product_info->provider_price= Input::get('provider_price')[$p->id];
+                    $product_info->save();
+            }
 
 
 

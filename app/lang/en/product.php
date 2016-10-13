@@ -14,6 +14,7 @@ return [
     'action'=>'Action',
     'english'=>'English',
     'spanish'=>'Spanish',
+    'includes'=>'Include',
     'schedule_short'=>'Schedule Short',
     'duration'=>'Duration',
     'required'=>'Required',
@@ -35,4 +36,5 @@ return [
     'category'=>'Category',
     'enter_tags_for_experience'=>'Enter Tags for Experience',
     'payment_type'=>'Payment Type',
+    'provider_name'=>'Provider Name',
 ];

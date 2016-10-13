@@ -29,23 +29,23 @@
                                                 <div class="form-group">
                                                     {{ Form::label('title', trans('product.title'), array('class' => 'col-sm-3 control-label')) }}
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="title[{{ $product->id }}]" placeholder="{{ trans('product.title') }}" class="form-control" value="{{ $product->title }}" required/>
-                                                        {{ $errors->first('title['. $product->id .']') }}
+                                                        <input type="text" name="title[{{ $product->content_id }}]" placeholder="{{ trans('product.title') }}" class="form-control" value="{{ $product->title }}" required/>
+                                                        {{ $errors->first('title['. $product->content_id .']') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     {{ Form::label('mini_description', trans('product.mini_description'), array('class' => 'col-sm-3 control-label')) }}
                                                     <div class="col-sm-9">
-                                                        <textarea name="mini_description[{{ $product->id }}]" class="form-control" placeholder="{{ trans('product.mini_description') }}" >{{ $product->mini_description }}</textarea>
-                                                        {{ $errors->first('mini_description['. $product->id .']') }}
+                                                        <textarea name="mini_description[{{ $product->content_id }}]" class="form-control" placeholder="{{ trans('product.mini_description') }}" >{{ $product->mini_description }}</textarea>
+                                                        {{ $errors->first('mini_description['. $product->content_id .']') }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     {{ Form::label('description', trans('product.description'), array('class' => 'col-sm-3 control-label')) }}
                                                     <div class="col-sm-9">
-                                                        <textarea name="description[{{ $product->id }}]" class="editor form-control" placeholder="{{ trans('product.description') }}" >{{ $product->description }}</textarea>
-                                                        {{ $errors->first('description['. $product->id .']') }}
+                                                        <textarea name="description[{{ $product->content_id }}]" class="editor form-control" placeholder="{{ trans('product.description') }}" >{{ $product->description }}</textarea>
+                                                        {{ $errors->first('description['. $product->content_id .']') }}
                                                     </div>
                                                 </div>
 
