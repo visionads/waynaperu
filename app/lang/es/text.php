@@ -252,4 +252,7 @@ return array(
     "terms_of_cancelation"=>"Terminos de Cancelacion",
     "not_include"=>"No incluido",
     "info"=>"Info",
+    "price_adult"=>"Precio Adultos",
+    "price_kid"=>"Precio Niños",
+    "price_discount"=>"Descuento %",
 );

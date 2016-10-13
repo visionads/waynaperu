@@ -255,4 +255,7 @@ return array(
     "terms_of_cancelation"=>"Terms of Cancelation",
     "not_include"=>"Not include",
     "info"=>"Info",
+    "price_adult"=>"Price Adults",
+    "price_kid"=>"Price Kids",
+    "price_discount"=>"Discount %",
 );

@@ -86,6 +86,7 @@ class LocationController extends BaseController {
 				/*==*/
 
 	        	$details = json_encode($details);
+				//print_r($details);exit();
 	        	$location_content = new LocationContent;
 	        	$location_content->loc_id = $location->id;
 	        	$location_content->lang_id = $language->id;

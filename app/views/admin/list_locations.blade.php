@@ -103,6 +103,37 @@
 
                                         {{--==*****==--}}
                                         <div class="form-group">
+                                            <input type="text" value="@if($language->code=='en') Include @elseif($language->code=='es') Incluido @endif" name="include[{{ $language->code }}]" placeholder="{{ trans('text.include') }}" class="form-control">
+                                            <input type="text" name="include_value[{{ $language->code }}]" placeholder="value" class="form-control">
+
+                                            <input type="text" value="@if($language->code=='en') Schedule @elseif($language->code=='es') Horario @endif" name="schedule[{{ $language->code }}]" placeholder="{{ trans('text.schedule') }}" class="form-control">
+                                            <input type="text" name="schedule_value[{{ $language->code }}]" placeholder="value" class="form-control">
+
+                                            <input type="text" value="@if($language->code=='en') Duration @elseif($language->code=='es') Duración @endif" name="duration[{{ $language->code }}]" placeholder="{{ trans('text.duration') }}" class="form-control">
+                                            <input type="text" name="duration_value[{{ $language->code }}]" placeholder="value" class="form-control">
+
+                                            <input type="text" value="@if($language->code=='en') Requisites @elseif($language->code=='es') Requisitos @endif" name="requisites[{{ $language->code }}]" placeholder="{{ trans('text.requisites') }}" class="form-control">
+                                            <input type="text" name="requisites_value[{{ $language->code }}]" placeholder="value" class="form-control">
+
+                                            <input type="text" value="@if($language->code=='en') Restrictions @elseif($language->code=='es') Restricciones @endif" name="restrictions[{{ $language->code }}]" placeholder="{{ trans('text.restrictions') }}" class="form-control">
+                                            <input type="text" name="restrictions_value[{{ $language->code }}]" placeholder="value" class="form-control">
+
+                                            <input type="text" value="@if($language->code=='en') Recommendations @elseif($language->code=='es') Recomendaciones @endif" name="recommendations[{{ $language->code }}]" placeholder="{{ trans('text.recommendations') }}" class="form-control">
+                                            <input type="text" name="recommendations_value[{{ $language->code }}]" placeholder="value" class="form-control">
+
+                                            <input type="text" value="@if($language->code=='en') Terms of Reservation @elseif($language->code=='es') Terminos de Reservacion @endif" name="terms_of_reservation[{{ $language->code }}]" placeholder="{{ trans('text.terms_of_reservation') }}" class="form-control">
+                                            <input type="text" name="terms_of_reservation_value[{{ $language->code }}]" placeholder="value" class="form-control">
+
+                                            <input type="text" value="@if($language->code=='en') Terms of Cancelation @elseif($language->code=='es') Terminos de Cancelacion @endif" name="terms_of_cancelation[{{ $language->code }}]" placeholder="{{ trans('text.terms_of_cancelation') }}" class="form-control">
+                                            <input type="text" name="terms_of_cancelation_value[{{ $language->code }}]" placeholder="value" class="form-control">
+
+                                            <input type="text" value="@if($language->code=='en') Not Include @elseif($language->code=='es') No incluido @endif" name="not_include[{{ $language->code }}]" placeholder="{{ trans('text.not_include') }}" class="form-control">
+                                            <input type="text" name="not_include_value[{{ $language->code }}]" placeholder="value" class="form-control">
+
+                                            <input type="text" value="@if($language->code=='en') Info @elseif($language->code=='es') Info @endif" name="info[{{ $language->code }}]" placeholder="{{ trans('text.info') }}" class="form-control">
+                                            <input type="text" name="info_value[{{ $language->code }}]" placeholder="value" class="form-control">
+                                        </div>
+                                        {{--<div class="form-group">
                                             <input type="text" value="{{ trans('text.include') }}" name="include[{{ $language->code }}]" placeholder="{{ trans('text.include') }}" class="form-control">
                                             <input type="text" name="include_value[{{ $language->code }}]" placeholder="value" class="form-control">
 
@@ -132,8 +163,8 @@
 
                                             <input type="text" value="{{ trans('text.info') }}" name="info[{{ $language->code }}]" placeholder="{{ trans('text.info') }}" class="form-control">
                                             <input type="text" name="info_value[{{ $language->code }}]" placeholder="value" class="form-control">
+                                        </div>--}}
 
-                                        </div>
                                         {{--==*****==--}}
 
 
@@ -157,15 +188,15 @@
 
             <h6>Price</h6>
             <div class="form-group">
-                <label for="pdf">Price Adults</label>
+                <label for="pdf">{{ trans('text.price_adult') }}</label>
                 <input type="text" class="form-control" id="pdf" name="pdf" placeholder="Value">
             </div>
             <div class="form-group">
-                <label for="mail">Price Kids</label>
+                <label for="mail">{{ trans('text.price_kid') }}</label>
                 <input type="text" class="form-control" id="mail" name="mail" placeholder="Value">
             </div>
             <div class="form-group">
-                <label for="gift">Discount % </label>
+                <label for="gift">{{ trans('text.price_discount') }}</label>
                 <input type="text" class="form-control" id="gift" name="gift" placeholder="Value">
             </div>
             <div class="form-group">

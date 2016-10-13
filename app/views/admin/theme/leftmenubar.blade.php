@@ -52,6 +52,7 @@
                     <li><a href="{{ URL::to('users/admin') }}"><span class="title"> Admin </span></a></li>
                     <li><a href="{{ URL::to('users/provider') }}"><span class="title"> Provider </span></a></li>
                     <li><a href="{{ URL::to('users/client') }}"><span class="title"> Client </span></a></li>
+                    <li><a href="{{ URL::to('user/activity') }}" ><span class="title">User Activity</span></a></li>
                 </ul>
             </li>
             <li>
@@ -96,12 +97,12 @@
                     <span class="title">Media Manager</span>
                 </a>
             </li>
-            <li>
+            {{--<li>
                 <a href="{{ URL::to('user/activity') }}" >
                     <div class="gui-icon"><i class="fa fa-circle"></i></div>
                     <span class="title">User Activity</span>
                 </a>
-            </li>
+            </li>--}}
             <li>
                 <a href="{{ URL::to('logout') }}" >
                     <div class="gui-icon"><i class="fa fa-sign-out"></i></div>
