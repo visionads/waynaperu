@@ -5,7 +5,6 @@ class UsersController extends UserController {
 	private  $url_language_id;
     public function __construct()
     {
-
             $lang_code = LaravelLocalization::getCurrentLocale();
             $this->url_language_id    = getLangId($lang_code);
        
@@ -26,6 +25,9 @@ class UsersController extends UserController {
             if($auth==false)
             {
                 return Redirect::route('admin-login');
+            }else{
+                UsersController::newUserActivity('admin-login','admin_login','login','users');
+                return Redirect::route('admin');
             }
         }
         if(Session::get('type')!='admin')
@@ -33,8 +35,8 @@ class UsersController extends UserController {
             Auth::logout();
             return Redirect::back();
         }
-        UsersController::newUserActivity('admin-login','admin_login','login','users');
-        return Redirect::route('admin');
+        #UsersController::newUserActivity('admin-login','admin_login','login','users');
+        #return Redirect::route('admin');
     }
     public function client_login_check()
     {
@@ -99,18 +101,18 @@ class UsersController extends UserController {
         $data = Input::all();
         if(isset($data['email']) && isset($data['password']))
         {
-            date_default_timezone_set("Asia/Dacca");
+            //date_default_timezone_set("Asia/Dacca");
             $field = filter_var($data['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
             $user_data = User::where($field, $data['email'])->first();
 
-
-            if(count($user_data) ==1){
+            if(count($user_data) ==1)
+            {
                 $attempt = Auth::attempt([
                     $field => $data['email'],
                     'password' => $data['password'],
                 ]);
-                if($attempt){
+                if($attempt)
+                {
                     Session::put('email', $user_data->email);
                     Session::put('user_id', $user_data->id);
                     Session::put('type', $user_data->type);
@@ -122,6 +124,7 @@ class UsersController extends UserController {
             }else{
                 Session::flash('danger', "Invalid Email/Username.Please Try Again");
             }
+
         }
         return false;
     }

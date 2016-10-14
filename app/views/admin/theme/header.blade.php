@@ -17,12 +17,7 @@
     <link href="{{ asset('assets/admin/css/theme-default/libs/rickshaw/rickshaw.css?1422792967') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/theme-default/libs/morris/morris.core.css?1420463396') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/custom_styles.css') }}" rel="stylesheet">
-    {{--<link type="text/css" rel="stylesheet" href="../../assets/css/theme-default/bootstrap.css?1422792965" />--}}
-    {{--<link type="text/css" rel="stylesheet" href="../../assets/css/theme-default/materialadmin.css?1425466319" />--}}
-    {{--<link type="text/css" rel="stylesheet" href="../../assets/css/theme-default/font-awesome.min.css?1422529194" />--}}
-    {{--<link type="text/css" rel="stylesheet" href="../../assets/css/theme-default/material-design-iconic-font.min.css?1421434286" />--}}
-    {{--<link type="text/css" rel="stylesheet" href="../../assets/css/theme-default/libs/rickshaw/rickshaw.css?1422792967" />--}}
-    {{--<link type="text/css" rel="stylesheet" href="../../assets/css/theme-default/libs/morris/morris.core.css?1420463396" />--}}
+
             <!-- END STYLESHEETS -->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,14 +36,7 @@
     <link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css">
 
     {{--<script src="https://code.jquery.com/jquery-1.12.3.js"></script>--}}
-   {{-- <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+   {{-- 
     <script>
         $(document).ready(function() {
             $('#dtable').DataTable( {
