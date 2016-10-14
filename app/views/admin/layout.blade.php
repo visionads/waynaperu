@@ -9,6 +9,9 @@
     {{--Base Start--}}
     <div id="base">
         <div class="offcanvas"></div>
+
+
+
         <div id="content">
             <section>
                 <div class="section-body">
