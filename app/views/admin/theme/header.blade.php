@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css">
 
     {{--<script src="https://code.jquery.com/jquery-1.12.3.js"></script>--}}
-   {{-- 
+   {{--
     <script>
         $(document).ready(function() {
             $('#dtable').DataTable( {

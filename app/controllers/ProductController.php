@@ -13,8 +13,15 @@ class ProductController extends BaseController {
             $products = DB::table('product_content')
 
                 ->join('products', 'product_content.product_id', '=', 'products.id')
+                ->join('categories', 'products.cat_id', '=', 'categories.id')
+                ->join('category_content', 'category_content.cat_id', '=', 'categories.id')
+                ->leftJoin('users', function($join)
+                {
+                    $join->on('products.user_id', '=', 'users.id')
+                        ->where('users.type' , '=', 'provider');
+                })
 
-                ->select('product_content.product_id', 'product_content.title','product_content.mini_description' )
+                ->select('product_content.product_id', 'product_content.title','product_content.mini_description', 'category_content.title as cat_title', 'users.username as provider' )
                 ->where('products.state' , '!=', '-1')
                 ->where('product_content.lang_id' , '=', langId())
                 ->orderBy('product_content.product_id', 'asc')
@@ -27,8 +34,15 @@ class ProductController extends BaseController {
             $products = DB::table('product_content')
 
                 ->join('products', 'product_content.product_id', '=', 'products.id')
+                ->join('categories', 'products.cat_id', '=', 'categories.id')
+                ->join('category_content', 'category_content.cat_id', '=', 'categories.id')
+                ->leftJoin('users', function($join)
+                {
+                    $join->on('products.user_id', '=', 'users.id')
+                        ->where('users.type' , '=', 'provider');
+                })
 
-                ->select('product_content.product_id', 'product_content.title','product_content.mini_description' )
+                ->select('product_content.product_id', 'product_content.title','product_content.mini_description', 'category_content.title as cat_title', 'users.username as provider' )
                 ->where('products.state' , '!=', '-1')
                 ->where('product_content.lang_id' , '=', langId())
                 ->where('products.user_id' , '=', Auth::user()->id)
