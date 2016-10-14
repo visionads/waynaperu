@@ -238,6 +238,15 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <p style="padding: 10px; background: #efefef;">
+                                    @if(count($user_provider)>0)
+                                        Provider Name : {{isset($user_provider->first_name)?$user_provider->first_name:null}} {{isset($user_provider->last_name)?$user_provider->last_name:'N/A'}}
+                                        <br>
+                                        Provider Email : {{isset($user_provider->email)?$user_provider->email:'N/A'}}
+                                        <br>
+                                        Provider Phone : {{isset($user_provider->phone)?$user_provider->phone:'N/A'}}
+                                    @endif
+                                </p>
                             </div>
                             <div class="form-group">
                                 <label for="category" class="col-md-12">
@@ -256,6 +265,8 @@
                                         @endforeach
                                     </select>
                                 </div>
+
+
                             </div>
                             <div class="form-group">
                                 <label for="state" class="col-md-12">

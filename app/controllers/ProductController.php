@@ -119,21 +119,13 @@ class ProductController extends BaseController {
         	# code...
 
                 $p_id = $product->id;
-
                 foreach ($languages as  $language) {
-
 	                $product_content = new ProductContent;
-
 	                $product_content->product_id = $p_id;
-
 	                $product_content->lang_id = $language->id;
-
 	                $product_content->title = Input::get('title')[$language->code];
-
 	                $product_content->mini_description = Input::get('mini_description')[$language->code];
-
 	                $product_content->description = Input::get('description')[$language->code];
-
 	                $product_content->save();
 
                     $product_info= new ProductInfo();
@@ -162,100 +154,51 @@ class ProductController extends BaseController {
                     $product_info->save();
 	            }
 
-
-
-
-
-
-
-
-
-				// BO File Upload Code	
-
-		    	$tableName 	= 'product_images';	
-
+				// BO File Upload Code
+		    	$tableName 	= 'product_images';
 		    	$fieldName 	= 'image';
 
-
-
 		    	if(Input::hasFile('pimages')){
-
 		    	   $files = Input::file('pimages');
-
 		           foreach ($files as $index => $file) {
-
 				        $extension = $file->getClientOriginalExtension(); // getting image extension
-
 				        $catFileName	= $this->generateRandomStringForImage($tableName,$fieldName);
-
 				        $catFileName	= $catFileName.'.'.$extension;
-
 				        $thumbName = 'thumb_'.$catFileName;
-
 					 	// resizing an uploaded file
-
 				        $destinationPath 	= 'uploads/products';
-
 				        $destinationThumbPath 	= 'uploads/products/thumbs';
-
 						Image::make($file)->resize(520, 350)->save($destinationThumbPath.'/'.$thumbName, 100);
-
 						Image::make($file)->resize(900, 500)->save($destinationPath.'/'.$catFileName, 100);
-
 				       // $file->move($destinationPath, $catFileName);
-
 					$product_image = new ProductImages;
-
 	                $product_image->product_id = $p_id;
-
 	                $product_image->image = $catFileName;
-
 	                $product_image->order = $index ;
-
-	                
-
 	                $product_image->save();
-
 				    }
-
-
-
 		        }
-
 		        // EO File Upload Code
-
 		        return Redirect::route('edit_product', array($p_id));
-
          }
-
          return Redirect::back()->withInput();
-
-
-
 	}
 
 	public function edit($id)
-
 	{
-
 		$form_url   = 'admin/product/update/'.$id;
-
 		$languages = Language::all();
-
 		$category = DB::table('category_content')
 		            ->join('categories', 'category_content.cat_id', '=', 'categories.id')
 		            ->select('category_content.cat_id', 'category_content.title')
 		            ->orderBy('category_content.cat_id', 'asc')
 		            ->groupBy('category_content.cat_id')
 		            ->get();
-
 		$p = Product::find($id);
-
 		$product_content = DB::table('product_content')
 		            ->join('products', 'product_content.product_id', '=', 'products.id')
 //                    ->join('product_info', 'product_info.product_id', '=', 'products.id')
 		            ->join('languages', 'product_content.lang_id', '=', 'languages.id')
-
                     ->select('product_content.id as content_id',
                         'product_content.product_id',
                         'product_content.title',
@@ -263,51 +206,32 @@ class ProductController extends BaseController {
                         'product_content.description',
                         'languages.name',
                         'languages.code')
-
 		            ->where('product_content.product_id', $id)
-
 		            ->orderBy('product_content.product_id', 'asc')
 		            ->get();
 		$product_info = DB::table('product_info')
-
 		            ->join('products', 'product_info.product_id', '=', 'products.id')
-
 //                    ->join('product_info', 'product_info.product_id', '=', 'products.id')
 		            ->join('languages', 'product_info.language_id', '=', 'languages.id')
-
-
                     ->select('product_info.*',
                         'languages.name',
                         'languages.code')
-
 		            ->where('product_info.product_id', $id)
-
 		            ->orderBy('product_info.product_id', 'asc')
 		            ->get();
 
 //        dd($product_content);
 		$product_images = DB::table('product_images')
-
-                    
-
                     ->where('product_images.product_id', $id)
-
                     ->orderBy('product_images.order', 'asc')
-
                     ->get();
 
         $locations  = DB::table('location_content')
-
 		            ->join('locations', 'location_content.loc_id', '=', 'locations.id')
-
 		            ->select('location_content.loc_id','location_content.name')
-
 		            ->where('locations.product_id', $id)
-
 		            ->orderBy('location_content.loc_id', 'asc')
-
 		            ->groupBy('location_content.loc_id')
-
 		            ->get();
 
         //return $product_content;
@@ -315,7 +239,6 @@ class ProductController extends BaseController {
         $product_content[1]=(array) $product_content[1];
         $product_info[0]=(array) $product_info[0];
         $product_info[1]=(array) $product_info[1];
-//        echo '<pre>';print_r($product_content[0]);exit;
         $product[0]=array_merge($product_content[0],$product_info[0]);
         $product[1]=array_merge($product_content[1],$product_info[1]);
         $i=0;
@@ -324,41 +247,30 @@ class ProductController extends BaseController {
             $product[$i]= (object) $product[$i];
             $i++;
         }
-//        $product= (object) $product;
-//        echo '<pre>';print_r($product[0]->id);exit;
-//        dd($product_content);
+
         $providers= User::select('id','username','first_name','last_name')->where('type','provider')->get();
-        return View::make('admin.edit_product', array('form_url' => $form_url,'p' => $p,'locations' => $locations, 'languages' => $languages, 'category' => $category, 'products' => $product, 'product_images' => $product_images,'providers'=>$providers));
+        $user_provider = User::where('id', $p->user_id)->first();
+
+        return View::make('admin.edit_product', array(
+            'form_url' => $form_url,
+            'p' => $p,'locations' => $locations,
+            'languages' => $languages, 'category' => $category,
+            'products' => $product, 'product_images' => $product_images,
+            'providers'=>$providers, 'user_provider'=>$user_provider
+        ));
 
 	}
 
 	public function update($id)
-
 	{
-
-//	    echo '<pre>';print_r(Input::all());exit;
-		// return Input::all();
-
-		//$tags  = explode(",", Input::get('tags'));
-
-		//$tags = json_encode($tags);
-
-
-
 		$languages 	= Language::all();
-
         $cat_id  = Input::get('category');
-        
-
         $product = Product::find($id);
-
         $product->type_of_payment = Input::get('type_of_payment');
         $product->cat_id = $cat_id;
         $product->user_id = Input::get('user_id');
         $product->state = Input::get('state');
-
         $product->first_loc_id = Input::get('first_loc_id');
-
         $product->tags = Input::get('tags');
         if(Input::has('to_whom')){
     	    $to_whom = Input::get('to_whom');
@@ -370,53 +282,23 @@ class ProductController extends BaseController {
 			$special = implode(",",$special);
         	$product->special = $special;
     	}
-//    	if(Input::has('is_lead')){
-//          $product->is_lead = Input::get('is_lead');
-//        }
-//        if(Input::has('lead_email')){
-//        	$product->lead_email = Input::get('lead_email');
-//        }
-//        if(Input::has('lead_name')){
-//        	$product->lead_name = Input::get('lead_name');
-//        }
-//        if(Input::has('lead_phone')){
-//        	$product->lead_phone = Input::get('lead_phone');
-//        }
-//        if(Input::has('lead_address')){
-//        	$product->lead_address = Input::get('lead_address');
-//        }
+
         if ($product->save()) {
-
         	# code...
-
                 $p_id = $product->id;
-
                 $ps    =  DB::table('product_content')
-
                     ->where('product_content.product_id', $id)
-
                     ->orderBy('product_content.id', 'asc')
-
                     ->get();
-
                 foreach ($ps as  $p) {
-
 	                $product_content = ProductContent::find($p->id);
-
 	                $product_content->title = Input::get('title')[$p->id];
-
 	                $product_content->mini_description = Input::get('mini_description')[$p->id];
-
 	                $product_content->description = Input::get('description')[$p->id];
-
 	                $product_content->save();
-
-
-
 	            }
             $product_info= ProductInfo::where('product_id',$product->id)->get();
             foreach ($product_info as $p) {
-
                     $product_info= ProductInfo::Find($p->id);
                     $product_info->includes= Input::get('includes')[$p->id];
                     $product_info->schedule_short= Input::get('schedule_short')[$p->id];
@@ -440,117 +322,48 @@ class ProductController extends BaseController {
                     $product_info->provider_price= Input::get('provider_price')[$p->id];
                     $product_info->save();
             }
-
-
-
-
-
-				// BO File Upload Code	
-
-		    	$tableName 	= 'product_images';	
-
+				// BO File Upload Code
+		    	$tableName 	= 'product_images';
 		    	$fieldName 	= 'image';
-
-
-
 		    	if(Input::hasFile('pimages')){
-
 		    	   $files = Input::file('pimages');
-
 		           foreach ($files as $index => $file) {
-
 				        $extension = $file->getClientOriginalExtension(); // getting image extension
-
 				        $catFileName	= $this->generateRandomStringForImage($tableName,$fieldName);
-
 				        $catFileName	= $catFileName.'.'.$extension;
-
 				        $thumbName = 'thumb_'.$catFileName;
-
 					 	// resizing an uploaded file
-
 				        $destinationPath 	= 'uploads/products';
-
 				        $destinationThumbPath 	= 'uploads/products/thumbs';
-
 						Image::make($file)->resize(520, 350)->save($destinationThumbPath.'/'.$thumbName, 100);
-
 						Image::make($file)->resize(900, 500)->save($destinationPath.'/'.$catFileName, 100);
-
 				       // $file->move($destinationPath, $catFileName);
-
-					$product_image = new ProductImages;
-
-	                $product_image->product_id = $p_id;
-
-	                $product_image->image = $catFileName;
-
-	                $product_image->order = $index ;
-
-	                
-
-	                $product_image->save();
-
+                        $product_image = new ProductImages;
+                        $product_image->product_id = $p_id;
+                        $product_image->image = $catFileName;
+                        $product_image->order = $index ;
+                        $product_image->save();
 				    }
-
-
-
 		        }
-
 		        // EO File Upload Code
-
 		        return Redirect::route('list_products');
-
          }
-
          return Redirect::back()->withInput();
-
 	}
 
 	public function delete()
-
 	{
-
-
-
 		$product_id   	= Input::get('primery_id');
-
         $product 	   	= Product::find($product_id);
-
-        
-
         if($product){
-
         	$product->state = '-1';
         	$product->save();
-
-        	/* $ids = DB::table('locations')->where('product_id', $product_id)->get();
-
-	        
-        	if(!empty($ids)){
-		        foreach ($ids as $key => $value) {
-
-		         LocationContent::where('loc_id', '=', $value->id)->delete();
-
-		        }
-
-		       
-
-		        Location::where('product_id', '=', $product_id)->delete();
-	   		}	
-            $product->delete();*/
-
-
-
             return Redirect::to('admin/products')->with('msg','Product removed successfully');
-
         }
-
 	}
 
 	public function delete_image($id){
 		$img =  DB::table('product_images')->where('id','=', $id)->pluck('image');
-		
 		$thumbName = 'thumb_'.$img;
         $destinationPath 	= 'uploads/products';
         $destinationThumbPath 	= 'uploads/products/thumbs';
@@ -562,15 +375,11 @@ class ProductController extends BaseController {
             \File::delete($destinationPath.'/'.$thumbName);
         }
         $image = ProductImages::find($id);
-
 		$image->delete();
-
 		return Redirect::back();
-
 	}
 
 
-	
 
 }
 
