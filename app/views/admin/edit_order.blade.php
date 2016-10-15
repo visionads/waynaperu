@@ -1,6 +1,13 @@
 @extends('admin.layout')
 @section('content')
-<div class="row">
+
+
+    <p>
+        <a class="link btn btn-warning" href="{{ URL::to('admin/orders') }}"><i class="fa fa-arrow-left"></i> Back to Order List</a>
+    </p>
+
+
+    <div class="row">
     <div class="card">
         <div class="card-body">
             <div class="col-md-6 col-lg-6 col-sm-12">
@@ -30,11 +37,11 @@
                     <div class="form-group">
                         <label  class="col-sm-12 col-md-4 control-label">Total Price:</label>
                         <div class="col-sm-12 col-md-8">
-                            <strong style="line-height:42px;">s./ <?php echo sprintf('%.2f', $order->price / 100); ?></strong>
+                            <strong style="line-height:42px;">s./ {{number_format($order->price,2)}}</strong>
                         </div>
                     </div>
                     <div class="form-actions">
-                        {{ Form::submit('Update Order', $attributes = ['class' => 'btn btn-green pull-right']) }}
+                        {{ Form::submit('Update Order', $attributes = ['class' => 'btn btn-success pull-right']) }}
                     </div>
                     <input type="hidden" name="order_id" value="{{ $order->id }}">
                     {{ Form::close() }}

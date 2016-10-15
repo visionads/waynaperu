@@ -45,32 +45,32 @@
             <li class="gui-folder">
                 <a>
                     <div class="gui-icon"><i class="fa fa-user"></i></div>
-                    <span class="title">Users</span>
+                    <span class="title">User Management</span>
                 </a>
                 <!--start submenu -->
                 <ul>
-                    <li><a href="{{ URL::to('users/admin') }}"><span class="title"> Admin </span></a></li>
-                    <li><a href="{{ URL::to('users/provider') }}"><span class="title"> Provider </span></a></li>
-                    <li><a href="{{ URL::to('users/client') }}"><span class="title"> Client </span></a></li>
+                    <li><a href="{{ URL::to('users/admin') }}"><span class="title"> Admin Manager</span></a></li>
+                    <li><a href="{{ URL::to('users/provider') }}"><span class="title"> Provider Manager</span></a></li>
+                    <li><a href="{{ URL::to('users/client') }}"><span class="title"> Client Manager</span></a></li>
                     <li><a href="{{ URL::to('user/activity') }}" ><span class="title">User Activity</span></a></li>
                 </ul>
             </li>
             <li>
                 <a href="{{ URL::to('/') }}/admin/categories" >
                     <div class="gui-icon"><i class="fa fa-table"></i></div>
-                    <span class="title">Categories</span>
+                    <span class="title">Category (Product) </span>
                 </a>
             </li>
             <li>
                 <a href="{{ URL::to('/') }}/admin/products" >
                     <div class="gui-icon"><i class="fa fa-apple"></i></div>
-                    <span class="title">Products</span>
+                    <span class="title">Product Master</span>
                 </a>
             </li>
             <li>
                 <a href="{{ URL::to('/') }}/admin/orders" >
                     <div class="gui-icon"><i class="fa fa-check-square"></i></div>
-                    <span class="title">Orders</span>
+                    <span class="title">Order Management</span>
                 </a>
             </li>
             <li>

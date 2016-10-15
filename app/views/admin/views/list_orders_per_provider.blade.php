@@ -20,6 +20,7 @@
                     <th class="hidden-xs">Order Status</th>
                     <th class="hidden-xs">Order Price</th>
                     <th class="hidden-xs">Order Qty</th>
+                    <th> Action </th>
 
                 </tr>
                 </thead>
@@ -43,6 +44,11 @@
                             <td>{{ isset($order->status)?$order->status:null }}</td>
                             <td>s./ <?php echo sprintf('%.2f', isset($order->price)?$order->price:100 / 100); ?></td>
                             <td>{{ isset($order->qty)?$order->qty:null }}</td>
+                            <td>
+                                <a class="btn btn-info" href="{{ URL::to('/') }}/admin/order/<?php echo $order->id; ?>">
+                                    <b>Details </b>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 @else
