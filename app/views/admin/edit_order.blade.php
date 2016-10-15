@@ -10,7 +10,9 @@
                     <div class="form-group">
                         <label  class="col-sm-12 col-md-4 control-label">Order Number:</label>
                         <div class="col-sm-12 col-md-8">
-                            <strong style="line-height:42px;">{{ $order->order_number }}</strong>
+                            <strong style="line-height:42px;">
+                                {{ $order->order_number }}
+                            </strong>
                         </div>
                     </div>
                     <div class="form-group">
@@ -22,7 +24,7 @@
                     <div class="form-group">
                         <label  class="col-sm-12 col-md-4 control-label">Total Qty:</label>
                         <div class="col-sm-12 col-md-8">
-                            <strong style="line-height:42px;">{{ $order->qty }}</strong>
+                            <strong style="line-height:42px;">{{ isset($order->qty)?$order->qty:null }}</strong>
                         </div>
                     </div>
                     <div class="form-group">
@@ -40,26 +42,36 @@
             </div>
             <div class="col-md-6 col-lg-6 col-sm-12">
                 <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">User</legend>
+                    <legend class="scheduler-border">Clients Info</legend>
                     @if($order->user_id == NULL)
                         <p>This Order is by guest user and You can get his details on "Order Items" section.</p>
                     @else
-                        <?php $user = getUserInfo($order->user_id);?>
+                        <?php
+                            $user = getUserInfo($order->user_id);
+                        ?>
                         <div class="form-group">
                             <label  class="col-sm-12 col-md-4 control-label">Name:</label>
                             <div class="col-sm-12 col-md-8">
                                 @if($user->first_name != '' || $user->last_name != '' )
-                                    <strong style="line-height:42px;">{{ $user->first_name }} {{ $user->last_name }}</strong>
+                                    <strong style="line-height:42px;">
+                                        {{ $user->first_name }} {{ $user->last_name }}
+                                    </strong>
                                 @else
-                                    <strong style="line-height:42px;">User didn't add his Name</strong>
+                                    <strong style="line-height:42px;">
+                                        User didn't add his Name
+                                    </strong>
                                 @endif
                             </div>
                         </div>
                         <div style="clear:both"></div>
                         <div class="form-group">
-                            <label  class="col-sm-12 col-md-4 control-label">Email:</label>
+                            <label  class="col-sm-12 col-md-4 control-label">
+                                Email:
+                            </label>
                             <div class="col-sm-12 col-md-8">
-                                <strong style="line-height:42px;">{{ $user->email }} </strong>
+                                <strong style="line-height:42px;">
+                                    {{ $user->email }}
+                                </strong>
                             </div>
                         </div>
                         <div style="clear:both"></div>
@@ -79,81 +91,74 @@
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">Order Items</legend>
-                    @foreach($order_items as $item)
-                        <div class="col-md-12 col-lg-12 col-sm-12">
-                            <fieldset class="scheduler-border">
-                                <legend class="scheduler-border">{{ getExpName($item->product_id) }} -<small>{{ getLocName($item->loc_id) }}</small></legend>
-                                <div style="clear:both"></div>
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <strong>PDF Qty:</strong> {{ $item->pdf_qty }}
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <strong>PDF Price:</strong> s./ {{ $item->pdf_price }}
-                                </div>
-                                <div style="clear:both"></div>
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <strong>Mail Qty:</strong> {{ $item->mail_qty }}
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <strong>Mail Price:</strong> s./ {{ $item->mail_price }}
-                                </div>
-                                <div style="clear:both"></div>
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <strong>Gift Qty:</strong> {{ $item->gift_qty }}
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <strong>Gift Price:</strong> s./ {{ $item->gift_price }}
-                                </div>
-                                <div class="col-md-12 col-lg-12 col-sm-12">
-                                    <?php $details = json_decode($item->details);
-                                    //  echo "<pre>";print_r($details);die;
 
+                    <table  class="table table-striped table-hover" id="sample-table-2">
+                        <thead>
+                            <tr>
+                                <th> Product Name </th>
+                                <th> Location </th>
+                                <th> Adult Qty </th>
+                                <th> Adult Price </th>
+                                <th> Child Qty </th>
+                                <th> Child Price </th>
+                                <th> Gift Qty </th>
+                                <th> Gift Price </th>
+                                <th> Created At </th>
+                                <th> Provider's INFO </th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach($order_items as $item)
+                            <tr>
+                                <td>
+                                    <?php
+                                    $product_content = getProductContentPerProductId($item->product_id);
                                     ?>
-                                    @if(count($details)>0)
-                                        @foreach($details as $key => $detail)
-                                            <?php  //echo "<pre>";print_r($detail);die; ?>
-                                            @if($key == 'pdf')
-                                            <h6>PDF:</h6>
-                                            @endif
-                                            @if($key == 'mail')
-                                            <h6>MAIL:</h6>
-                                            @endif
-                                            @if($key == 'gift')
-                                            <h6>GIFT:</h6>
-                                            @endif
-                                            @foreach($detail as $k => $v)
-                                            @if($key == 'pdf')
-                                            <?php $count = 1; ?>
-                                            @foreach($v as $i => $j)
-                                                <p>{{ $count }}. <strong>{{ $k }}:</strong> {{ $j }}</p>
-                                                <?php $count++; ?>
-                                            @endforeach
-                                            <hr>
-                                            @endif
-                                            @if($key == 'mail')
-                                                <?php $count = 1; ?>
-                                                @foreach($v as $i => $j)
-                                                    <p>{{ $count }}. <strong>{{ $k }}:</strong> {{ $j }}</p>
-                                                    <?php $count++; ?>
-                                                @endforeach
-                                                <hr>
-                                            @endif
-                                            @if($key == 'gift')
-                                                <?php $count = 1; ?>
-                                                @foreach($v as $i => $j)
-                                                    <p>{{ $count }}. <strong>{{ $k }}:</strong> {{ $j }}</p>
-                                                    <?php $count++; ?>
-                                                @endforeach
-                                                <hr>
-                                            @endif
-                                        @endforeach
-                                        @endforeach
-                                    @endif
-                                </div>
+                                    {{ isset($product_content->title)?$product_content->title: null }}
+                                </td>
+                                <td>
+                                    <?php $loc_name = getLocName($item->loc_id); ?>
+                                    {{ isset($loc_name)?$loc_name: null }}
+                                </td>
+                                <td> {{ isset($item->pdf_qty)?$item->pdf_qty: null }} </td>
+                                <td>  s./ {{ isset($item->pdf_price)?$item->pdf_price: null }} </td>
+                                <td> {{ isset($item->mail_qty)?$item->mail_qty: null }} </td>
+                                <td>  s./ {{ isset($item->mail_price)?$item->mail_price  : null }} </td>
+                                <td> {{ isset($item->gift_qty)?$item->gift_qty: null }} </td>
+                                <td>  s./ {{ isset($item->gift_price)?$item->gift_price: null }} </td>
+                                <td> {{ isset($item->created_at)?$item->created_at: null }} </td>
+                                <td>
+                                    <?php
+                                    $product = getProductInfoByProductId($item->product_id);
+                                    if(count($product)>0)
+                                    {
+                                        $user_id = $product->user_id;
+                                        $provider = getUserInfo($user_id);
+                                        if(count($provider)>0)
+                                        {
+                                            $provider = $provider;
+                                        }else{
+                                            $provider = null;
+                                        }
+                                    }
+                                    ?>
+                                    {{ isset($provider->first_name)? $provider->first_name : null }}
+                                    {{ isset($provider->last_name)? $provider->last_name : null }}
+                                        ({{ isset($provider->phone)? $provider->phone : "no phone" }})
+                                        <br>
+                                    {{ isset($provider->email)? $provider->email : null }}<br>
+                                    {{ isset($provider->direction)? $provider->direction : null }}<br>
+                                    {{ isset($provider->district)? $provider->district : null }}
+                                    {{ isset($provider->city)? $provider->city : null }}
+                                    {{ isset($provider->street)? $provider->street : null }}<br>
+                                    {{ isset($provider->address)? $provider->address : null }}
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-                            </fieldset>
-                        </div>
-                    @endforeach
                 </fieldset>
             </div>
         </div>

@@ -310,6 +310,10 @@ function getCatName($cat_id){
     return $title;
 }
 
+/**
+ * @param $user_id
+ * @return mixed
+ */
 function getUserInfo($user_id){
     return  DB::table('users')->where('id','=', $user_id)->first();
 
@@ -362,4 +366,21 @@ function getFaqAns($id){
         ->where('faqcontents.lang_id','=', $language_id)
         ->pluck('ans');
 
+}
+
+
+/**
+ * @param $product_id
+ * @return mixed
+ */
+function getProductContentPerProductId($product_id){
+    return  DB::table('product_content')->where('id','=', $product_id)->first();
+}
+
+/**
+ * @param $product_id
+ * @return mixed
+ */
+function getProductInfoByProductId($product_id){
+    return  DB::table('products')->where('id','=', $product_id)->first();
 }
