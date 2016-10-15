@@ -92,4 +92,29 @@ class OrdersController extends BaseController {
         }
     }
 
+
+    /**
+     * @param $provider_id
+     */
+    public function orders_per_provider($provider_id)
+    {
+
+        /*$orders = Order::orderBy('id', 'DESC' )->paginate(10);
+        return View::make('admin.list_orders')
+            ->with('orders', $orders);*/
+
+        $orders = DB::table('orders')
+            ->join('order_items', 'order_items.order_id', '=', 'orders.id')
+            ->join('products', 'order_items.product_id', '=', 'products.id')
+            ->join('product_content', 'product_content.product_id', '=', 'products.id')
+            ->select('orders.id', 'orders.order_number','orders.status', 'orders.price', 'orders.qty' )
+            ->where('product_content.lang_id' , '=', langId())
+            ->where('products.user_id' , '=', $provider_id)
+            ->get();
+
+        return View::make('admin.views.list_orders_per_provider')
+            ->with('orders', $orders);
+
+    }
+
 }

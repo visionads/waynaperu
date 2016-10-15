@@ -379,7 +379,45 @@ class ProductController extends BaseController {
 		return Redirect::back();
 	}
 
+    /**
+     * @param $provider_id
+     */
+	public function product_per_provider($provider_id)
+    {
+        if(Auth::user()->type=='admin')
+        {
+            $products = DB::table('product_content')
 
+                ->join('products', 'product_content.product_id', '=', 'products.id')
+                ->join('categories', 'products.cat_id', '=', 'categories.id')
+                ->join('category_content', 'category_content.cat_id', '=', 'categories.id')
+                ->select('product_content.product_id', 'product_content.title','product_content.mini_description', 'category_content.title as cat_title' )
+                ->where('products.state' , '!=', '-1')
+                ->where('product_content.lang_id' , '=', langId())
+                ->where('products.user_id' , '=', $provider_id)
+                ->orderBy('product_content.product_id', 'asc')
+                ->groupBy('product_content.product_id')
+                ->get();
+        }elseif(Auth::user()->type=='provider')
+        {
+            $products = DB::table('product_content')
+
+                ->join('products', 'product_content.product_id', '=', 'products.id')
+                ->join('categories', 'products.cat_id', '=', 'categories.id')
+                ->join('category_content', 'category_content.cat_id', '=', 'categories.id')
+
+                ->select('product_content.product_id', 'product_content.title','product_content.mini_description', 'category_content.title as cat_title' )
+                ->where('products.state' , '!=', '-1')
+                ->where('product_content.lang_id' , '=', langId())
+                ->where('products.user_id' , '=', $provider_id)
+                ->orderBy('product_content.product_id', 'asc')
+                ->groupBy('product_content.product_id')
+                ->get();
+        }
+        return View::make('admin.views.list_products_per_provider', array(
+            'products' => $products
+        ));
+    }
 
 }
 

@@ -71,7 +71,10 @@ Route::group(array('before' => 'adminFilter'), function () {
     Route::post('user/update_client_info/{user_id}',['as'=>'update_client_info','uses'=>'UserController@update_client_info']);
 
 
+    /* == User/provider Information ==  */
     Route::get('profile/{user_id?}',['as'=>'user-profile','uses'=>'UserController@profile']);
+    Route::get('products/provider/{user_id?}',['as'=>'products-provider','uses'=>'ProductController@product_per_provider']);
+    Route::get('orders/provider/{user_id?}',['as'=>'orders-provider','uses'=>'OrdersController@orders_per_provider']);
 
 
 
