@@ -24,7 +24,9 @@
         </div>
     </div>
     {{--Base End--}}
-    @include('admin.theme.leftmenubar')
+    @if(Session::get('type')=='admin')
+        @include('admin.theme.leftmenubar')
+    @endif
     @include('admin.theme.rightcanvas')
     @include('admin.theme.footer')
 </body>

@@ -26,8 +26,15 @@ class UsersController extends UserController {
             {
                 return Redirect::route('admin-login');
             }else{
-                UsersController::newUserActivity('admin-login','admin_login','login','users');
-                return Redirect::route('admin');
+                if($auth->type=='admin')
+                {
+                    UsersController::newUserActivity('admin-login','admin_login','login','users');
+                    return Redirect::route('admin');
+                }else{
+                    UsersController::newUserActivity('provider-login','admin_login','login','users');
+                    return Redirect::route('user-profile');
+
+                }
             }
         }
         if(Session::get('type')!='admin')
@@ -117,7 +124,7 @@ class UsersController extends UserController {
                     Session::put('user_id', $user_data->id);
                     Session::put('type', $user_data->type);
                     Session::flash('message', "Successfully  Logged In.");
-                    return true;
+                    return $user_data;
                 }else{
                     Session::flash('danger', "Password Incorrect.Please Try Again");
                 }
@@ -176,7 +183,6 @@ class UsersController extends UserController {
 		}
 		
 	}
-
 	public function logout(){
         UsersController::newUserActivity('logout','logout','logout','users');
 		Auth::logout();

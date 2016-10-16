@@ -8,7 +8,9 @@
 
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div>
-                    <a class="link btn btn-warning" href="{{ URL::to('users/'.$user->type) }}"><i class="fa fa-arrow-left"></i> Back</a>
+                    @if(Session::get('type')=='admin')
+                        <a class="link btn btn-warning" href="{{ URL::to('users/'.$user->type) }}"><i class="fa fa-arrow-left"></i> Back</a>
+                    @endif
                 <a href="{{ URL::route('edit-profile',$user->id) }}" class="btn btn-info btn-blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-user"></i> Edit Profile</a>
                 <!-- <a href="{{ URL::to('/') }}/admin/page/delete/{{ $user->page_id }}" class="btn btn-xs btn-red tooltips" data-placement="top" data-original-title="Remove" ><i class="fa fa-times fa fa-white"></i></a> -->
 

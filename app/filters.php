@@ -95,7 +95,7 @@ Route::filter('csrf', function()
  * */
 
 Route::filter('adminFilter', function () {
-        if(Auth::user()->type != 'admin')
+        if(Auth::user()->type != 'admin' && Auth::user()->type != 'provider')
         {
             return Redirect::guest('/');
         }
