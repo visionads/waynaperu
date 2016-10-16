@@ -36,8 +36,12 @@
 
 	p._createDataTable1 = function() {
 		$('#datatable1').DataTable({
-			"dom": 'lCfrtip',
+			//"dom": 'lCfrtip',
 			"order": [],
+			//"bLengthChange": false,
+			"dom": 'ftipr',
+			"bPaginate": false,
+			"bInfo": false,
 			"colVis": {
 				"buttonText": "Columns",
 				"overlayFade": 0,
@@ -46,10 +50,10 @@
 			"language": {
 				"lengthMenu": '_MENU_ entries per page',
 				"search": '<i class="fa fa-search"></i>',
-				"paginate": {
-					"previous": '<i class="fa fa-angle-left"></i>',
-					"next": '<i class="fa fa-angle-right"></i>'
-				}
+				//"paginate": {
+				//	"previous": '<i class="fa fa-angle-left"></i>',
+				//	"next": '<i class="fa fa-angle-right"></i>'
+				//}
 			}
 		});
 

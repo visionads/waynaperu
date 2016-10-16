@@ -15,6 +15,9 @@
     <link href="{{ asset('assets/admin/css/theme-default/font-awesome.min.css?1422529194') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/theme-default/material-design-iconic-font.min.css?1421434286') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/theme-default/libs/summernote/summernote.css?1425218701')}}" rel="stylesheet"  />
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/admin/css/theme-default/libs/DataTables/jquery.dataTables.css?1423553989')}}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/admin/css/theme-default/libs/DataTables/extensions/dataTables.colVis.css?1423553990')}}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/admin/css/theme-default/libs/DataTables/extensions/dataTables.tableTools.css?1423553990')}}" />
     {{--<link href="{{ asset('assets/admin/css/theme-default/libs/rickshaw/rickshaw.css?1422792967') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/theme-default/libs/morris/morris.core.css?1420463396') }}" rel="stylesheet">--}}
     <link href="{{ asset('assets/admin/css/custom_styles.css') }}" rel="stylesheet">
@@ -39,37 +42,3 @@
     <script type="text/javascript" src="{{ asset('assets/admin/js/libs/utils/respond.min.js?1403934956') }}"></script>
     <![endif]-->
 
-    <script src="{{ asset('assets/admin/js/libs/jquery/jquery-1.11.2.min.js') }}"></script>
-
-    {{--    <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>    --}}
-    {{-- Script and CSS for Datatables --}}
-    <link rel="stylesheet" href="{{asset('css/buttons.dataTables.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}" type="text/css">
-
-    {{--<script src="https://code.jquery.com/jquery-1.12.3.js"></script>--}}
-   {{--
-    <script>
-        $(document).ready(function() {
-            $('#dtable').DataTable( {
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            } );
-        } );
-    </script>--}}
-    {{--<script>
-        $(document).ready(function() {
-            $('#dTable').DataTable( {
-                dom: 'Bfrtip',
-                buttons: [
-                    'copyHtml5',
-                    'excelHtml5',
-                    'csvHtml5',
-                    'pdfHtml5'
-                ]
-            } );
-        } );
-    </script>--}}

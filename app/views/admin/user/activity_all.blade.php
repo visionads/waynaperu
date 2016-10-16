@@ -10,7 +10,7 @@
 
                     {{-------------- Filter :Ends -------------------------------------------}}
                     <div class="table-primary">
-                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable1">
                             <thead>
                             <tr>
                                 <th> ID </th>
