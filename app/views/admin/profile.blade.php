@@ -72,7 +72,7 @@
                                         <?php } ?>
                                     </table>
 
-                                    @if($user->type != 'admin')
+                                    {{--@if($user->type != 'admin')--}}
                                         <a href="{{ URL::route('add-bank',$user->id) }}" class="btn btn-info btn-blue btn-xs tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-institution"></i> Add Bank</a>
                                         <table class="table bg-warning">
                                             <tr>
@@ -142,7 +142,7 @@
                                                 </table>
                                             @endif
                                         @endif
-                                    @endif
+                                    {{--@endif--}}
                                     <table class="table bg-danger">
                                         <tr><th width="20%">Registration</th><td width="1%">:</td><td width="79%">{{ $user->created_at }}</td></tr>
                                         <tr><th>Last Update</th><td>:</td><td>{{ $user->updated_at }}</td></tr>

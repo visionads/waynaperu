@@ -258,4 +258,6 @@ return array(
     "price_adult"=>"Price Adults",
     "price_kid"=>"Price Kids",
     "price_discount"=>"Discount %",
+    "external_bank" => "External / Bank account",
+    "internal_bank" => "Internal / Interbank account",
 );
