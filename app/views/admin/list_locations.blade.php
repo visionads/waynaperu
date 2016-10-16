@@ -8,7 +8,7 @@
         @if(count($locations) > 0)
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped table-hover" id="sample-table-2">
+                    <table class="table table-striped table-hover" id="datatable1">
                         <thead>
                         <tr>
                             <th class="center">

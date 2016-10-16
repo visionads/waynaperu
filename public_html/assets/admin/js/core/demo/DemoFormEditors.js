@@ -34,7 +34,28 @@
 		$('#summernote').summernote();
 		
 		// Simple toolbar
-		$('#simple-summernote').summernote({
+		$('.simple-summernote').summernote({
+			height: $('#simple-summernote').height(),
+			toolbar: [
+				['style', ['bold', 'italic', 'underline', 'clear']],
+				['fontsize', ['fontsize']],
+				['color', ['color']],
+				['para', ['ul', 'ol', 'paragraph']],
+				['height', ['height']]
+			]
+		});
+	};
+
+	p._initSummernote = function () {
+		if (!$.isFunction($.fn.summernote)) {
+			return;
+		}
+
+		// Full toolbar
+		$('.summernote').summernote();
+
+		// Simple toolbar
+		$('.simple-summernote').summernote({
 			height: $('#simple-summernote').height(),
 			toolbar: [
 				['style', ['bold', 'italic', 'underline', 'clear']],

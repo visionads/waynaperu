@@ -185,6 +185,26 @@
 		});
 	};
 
+	p._initSummernote = function() {
+		if (!$.isFunction($.fn.summernote)) {
+			return;
+		}
+		if ($('.summernote').length === 0) {
+			return;
+		}
+
+		$('.summernote').summernote({
+			height: $('.summernote').height(),
+			toolbar: [
+				['style', ['bold', 'italic', 'underline', 'clear']],
+				['fontsize', ['fontsize']],
+				['color', ['color']],
+				['para', ['ul', 'ol', 'paragraph']],
+				['height', ['height']]
+			]
+		});
+	};
+
 	// =========================================================================
 	// MULTISELECT
 	// =========================================================================
