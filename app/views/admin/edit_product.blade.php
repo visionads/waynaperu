@@ -44,7 +44,7 @@
                                                 <div class="form-group">
                                                     {{ Form::label('description', trans('product.description'), array('class' => 'col-sm-3 control-label')) }}
                                                     <div class="col-sm-9">
-                                                        <textarea name="description[{{ $product->content_id }}]" class="editor form-control" placeholder="{{ trans('product.description') }}" >{{ $product->description }}</textarea>
+                                                        <textarea name="description[{{ $product->content_id }}]" id="summernote" class="editor form-control" placeholder="{{ trans('product.description') }}" >{{ $product->description }}</textarea>
                                                         {{ $errors->first('description['. $product->content_id .']') }}
                                                     </div>
                                                 </div>
