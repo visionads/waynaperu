@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <div class="panel-body">
     <p>
-        <a class="link btn btn-warning" href="{{ URL::to('users/provider') }}"><i class="fa fa-arrow-left"></i> Back</a>
+        <a class="link btn btn-warning" href="{{ URL::to('profile') }}"><i class="fa fa-arrow-left"></i> Back</a>
 
         <b> Providers Order List</b>
     </p>
