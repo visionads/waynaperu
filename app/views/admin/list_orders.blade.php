@@ -56,9 +56,8 @@
                             <td>{{ $order->qty }}</td>
                             <td>{{ $order->created_at }}</td>
                             <td>
-                                <a class="btn btn-info" href="{{ URL::to('/') }}/admin/order/<?php echo $order->id; ?>">
-                                    <b>Details</b>
-                                </a>
+                                <a class="btn btn-info" href="{{ route('ticket',$order->id) }}"><b>Ticket</b></a>
+                                <a class="btn btn-info" href="{{ URL::to('/') }}/admin/order/<?php echo $order->id; ?>"><b>Details</b></a>
                             </td>
                         </tr>
                     @endforeach
