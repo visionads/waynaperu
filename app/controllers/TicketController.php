@@ -8,21 +8,63 @@
  */
 class TicketController extends Controller
 {
-    public function create($order_id)
+    public static function create($order_id)
     {
         $ticket=Input::get('ticket');
+        $ticket2=Input::get('ticket2');
+        $ticketNumber=Input::get('ticketNumber');
+        $order=Order::find($order_id);
+        if(empty($ticketNumber)){
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < 8; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            $ticketNumber=$randomString;
+
+        }
         if(empty($ticket))
         {
-            $url=route('ticket',$order_id);
-            return View::make('admin/ticket/index',['url'=>$url]);
+            $order_items= OrderItems::where('order_id',$order_id)->first();
+            $data['order']= $order;
+            $product_info= ProductInfo::select('validity')->where('product_id',$order_items->product_id)->where('language_id',1)->first();
+            $m= (int) $product_info->validity;
+            $data['validity']=date('d M Y', strtotime('+'.$m.' months'));
+//            $data['product_content']= ProductContent::select('title')->where('product_id',$order_items->product_id)->where('lang_id',1)->first();
+            $data['user']=User::select('first_name','first_name')->where('id',$order->user_id)->first();
+            $data['provider']= DB::table('products')
+                ->select('users.*')
+                ->join('users','users.id','=','products.user_id','left')
+                ->where('products.id',$order_items->product_id)
+                ->first();
+            $data['ticketNumber']=$ticketNumber;
+            $data['url']=route('ticket',$order_id);
+            return View::make('admin/ticket/ticket',$data);
+        }elseif(empty($ticket2))
+        {
+            TicketController::generateImage($ticket,$order->order_number.'1');
+            $order_items= OrderItems::where('order_id',$order_id)->first();
+            $data['order']= $order;
+            $product_info= ProductInfo::select('validity')->where('product_id',$order_items->product_id)->where('language_id',1)->first();
+            $m= (int) $product_info->validity;
+            $data['validity']=date('d M Y', strtotime('+'.$m.' months'));
+//            $data['product_content']= ProductContent::select('title')->where('product_id',$order_items->product_id)->where('lang_id',1)->first();
+            $data['user']=User::select('first_name','first_name')->where('id',$order->user_id)->first();
+            $data['provider']= DB::table('products')
+                ->select('users.*')
+                ->join('users','users.id','=','products.user_id','left')
+                ->where('products.id',$order_items->product_id)
+                ->first();
+            $data['ticketNumber']=$ticketNumber;
+            $data['url']=route('ticket',$order_id);
+            return View::make('admin/ticket/ticket2',$data);
         }
-//        dd($ticket);
-        $order=Order::find($order_id);
-        if(TicketController::generateImage($ticket,$order->order_number)==true)
+        if(TicketController::generateImage($ticket2,$order->order_number.'2')==true)
         {
             $tkt=new Ticket();
             $tkt->order_id=$order->id;
-            $tkt->ticket_number='TN4535';
+            $tkt->ticket_number=$ticketNumber;
             $tkt->save();
 
             TicketController::sendEmail($order);
@@ -78,10 +120,11 @@ class TicketController extends Controller
         }
         $client=User::find($order->user_id);
         $email_client=$client->email;
-        $pathToFile=public_path('assets/tickets/'.$order->order_number.'.png');
+        $pathToFile1=public_path('assets/tickets/'.$order->order_number.'1.png');
+        $pathToFile2=public_path('assets/tickets/'.$order->order_number.'2.png');
 //        dd($email_client);
 
-        Mail::send('emails.ticket', [], function($message) use ($emails,$email_client,$pathToFile,$order)
+        Mail::send('emails.ticket', [], function($message) use ($emails,$email_client,$pathToFile1,$pathToFile2,$order)
         {
             $message->subject('Ticket for '.$order->order_number.' no of order from Exploor');
             $message->from('devdhaka404@gmail.com', 'Exploor');
@@ -89,7 +132,8 @@ class TicketController extends Controller
             $message->to($email_client)->bcc($emails);
 //            $message->to($emails);
 
-            $message->attach($pathToFile);
+            $message->attach($pathToFile1);
+            $message->attach($pathToFile2);
         });
 
 
@@ -104,11 +148,12 @@ class TicketController extends Controller
             $item= (array) $item;
 //                dd($item);
             if($item['email'] != null) {
-                Mail::send('emails.ticket', $item, function ($message) use ($item, $pathToFile, $order) {
+                Mail::send('emails.ticket', $item, function ($message) use ($item, $pathToFile1,$pathToFile2, $order) {
                     $message->subject('Ticket for ' . $order->order_number . ' no of order from Exploor');
                     $message->from('devdhaka404@gmail.com', 'Exploor');
                     $message->to($item['email']);
-                    $message->attach($pathToFile);
+                    $message->attach($pathToFile1);
+                    $message->attach($pathToFile2);
                 });
             }
         }
