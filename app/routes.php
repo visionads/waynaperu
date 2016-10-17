@@ -80,6 +80,7 @@ Route::group(array('before' => 'adminFilter'), function () {
      * Ticket generate
      * */
     Route::any('ticket/{order_id}',['as'=>'ticket','uses'=>'TicketController@create']);
+    Route::post('submit_ticket',['as'=>'submit-ticket','uses'=>'TicketController@check_ticket']);
 
 	/*
 	 * For Ticket Template

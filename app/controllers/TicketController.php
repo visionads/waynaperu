@@ -20,6 +20,11 @@ class TicketController extends Controller
         $order=Order::find($order_id);
         if(TicketController::generateImage($ticket,$order->order_number)==true)
         {
+            $tkt=new Ticket();
+            $tkt->order_id=$order->id;
+            $tkt->ticket_number='TN4535';
+            $tkt->save();
+
             TicketController::sendEmail($order);
             $order->status='SUCCESS';
             $order->save();
@@ -106,6 +111,24 @@ class TicketController extends Controller
                     $message->attach($pathToFile);
                 });
             }
+        }
+    }
+
+
+    public function check_ticket()
+    {
+        $input= Input::all();
+        $ticket=Ticket::where('order_id',$input['order_id'])->where('ticket_number',$input['ticket_number'])->first();
+        if(isset($ticket) && count($ticket)>0)
+        {
+            $order_item=OrderItems::find($input['order_item_id']);
+            $order_item->status='used';
+            $order_item->save();
+            Session::flash('message','Ticket has been activated.');
+            return Redirect::to('admin/order/'.$input['order_id']);
+        }else{
+            Session::flash('error','Invalid ticket number');
+            return Redirect::to('admin/order/'.$input['order_id']);
         }
     }
 }

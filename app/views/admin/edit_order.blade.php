@@ -165,13 +165,20 @@
                                     {{ isset($provider->address)? $provider->address : null }}
                                 </td>
                                 <td>
-                                    @if(Auth::user()->type=='admin' || ($item->status=='new' && $item->user_id==Auth::user()->id))
+                                    @if($item->status=='used')
+                                        Used
+
+                                    @elseif(Auth::user()->type=='admin' || ($item->status=='new' && $item->user_id==Auth::user()->id))
+                                        {{ Form::open(['route'=>'submit-ticket']) }}
+                                        <input name="order_item_id" type="hidden" value="{{ $item->id }}" class="form-control" placeholder="Enter Ticket Code">
+                                        <input name="order_id" type="hidden" value="{{ $order->id }}" class="form-control" placeholder="Enter Ticket Code">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Enter Ticket Code">
+                                            <input required name="ticket_number" type="text" class="form-control" placeholder="Enter Ticket Code">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button">Go!</button>
+                                                <button class="btn btn-default" type="submit">Go!</button>
                                               </span>
                                         </div><!-- /input-group -->
+                                        {{ Form::close() }}
                                     @endif
                                 </td>
                             </tr>
