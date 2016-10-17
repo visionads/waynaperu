@@ -8,7 +8,7 @@
  */
 class TicketController extends Controller
 {
-    public function create($order_id)
+    public static function create($order_id)
     {
         $ticket=Input::get('ticket');
         $ticket2=Input::get('ticket2');
