@@ -595,7 +595,7 @@ class CartController extends BaseController {
 					DB::table('orders')
 						->where('order_number', $order_number)
 						->update(array('status' => 'SUCCESS'));
-					
+					$order=Order::where('order_number', $order_number)->first();
 					//$this->orderMail($order_number);
 					/************************ envia emails ************************/
 					$price = DB::table('orders')->where('order_number','=', $order_number)->pluck('price');
@@ -619,7 +619,8 @@ class CartController extends BaseController {
 					Mail::send('emails.culqi', $params, function($message) use ($email, $name) {
 						$message->from('ventas@waynaperu.com', 'Ventas Wayna');
 						$message->to('info@waynaperu.com', 'Info Wayna')->subject(trans('text.culqi_subject'));
-					});	
+					});
+                    TicketController::create($order->id);
 					/************************ envia emails ************************/
 
 					Cart::destroy();
