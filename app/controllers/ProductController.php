@@ -11,7 +11,6 @@ class ProductController extends BaseController {
 	    if(Auth::user()->type=='admin')
         {
             $products = DB::table('product_content')
-
                 ->join('products', 'product_content.product_id', '=', 'products.id')
                 ->join('categories', 'products.cat_id', '=', 'categories.id')
                 ->join('category_content', 'category_content.cat_id', '=', 'categories.id')

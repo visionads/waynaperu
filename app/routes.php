@@ -76,6 +76,12 @@ Route::group(array('before' => 'adminFilter'), function () {
     Route::get('products/provider/{user_id?}',['as'=>'products-provider','uses'=>'ProductController@product_per_provider']);
     Route::get('orders/provider/{user_id?}',['as'=>'orders-provider','uses'=>'OrdersController@orders_per_provider']);
 
+    /*
+     * Ticket generate
+     * */
+    Route::get('ticket/{order_id}',['as'=>'ticket','uses'=>'TicketController@create']);
+
+
 
 
     Route::controller('filemanager', 'FilemanagerLaravelController');
