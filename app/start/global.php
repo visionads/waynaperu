@@ -374,7 +374,7 @@ function getFaqAns($id){
  * @return mixed
  */
 function getProductContentPerProductId($product_id){
-    return  DB::table('product_content')->where('id','=', $product_id)->first();
+    return  DB::table('product_content')->where('product_id','=', $product_id)->first();
 }
 
 /**

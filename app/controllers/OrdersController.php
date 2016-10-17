@@ -116,7 +116,7 @@ class OrdersController extends BaseController {
             ->where('products.user_id' , '=', $provider_id)
             ->get();
 
-        return View::make('admin.views.list_orders_per_provider')
+        return View::make('admin.views.list_orders_per_provider',array('provider_id'=>$provider_id))
             ->with('orders', $orders);
 
     }

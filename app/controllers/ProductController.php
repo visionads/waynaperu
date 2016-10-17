@@ -414,7 +414,7 @@ class ProductController extends BaseController {
                 ->get();
         }
         return View::make('admin.views.list_products_per_provider', array(
-            'products' => $products
+            'products' => $products, 'provider_id'=>$provider_id
         ));
     }
 
