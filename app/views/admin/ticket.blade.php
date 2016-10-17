@@ -97,8 +97,9 @@
 
                     </div>
                 </div>
-                <div class="ticket_right">
+                <div class="ticket_right relative">
                     <img src="{{ asset('assets/images/ticket-box-2.png') }}" width="99%;" class="round-1">
+                    <div style="width: 50px; height: 96%; border: 1px solid #ff2233; position: absolute; top: 4px; left: 30px;"></div>
                 </div>
             </div>
         </div>
