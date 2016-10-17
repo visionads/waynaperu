@@ -56,8 +56,8 @@
                             <td>{{ $order->qty }}</td>
                             <td>{{ $order->created_at }}</td>
                             <td>
-                                @if($order->status == 'PENDING')
-                                    <a class="btn btn-info" href="{{ route('ticket',$order->id) }}"><b>Ticket</b></a>
+                                @if(Auth::user()->type=='admin' && $order->status == 'PENDING')
+                                    <a class="btn btn-info" href="{{ route('ticket',$order->id) }}"><b>Send Ticket</b></a>
                                 @endif
                                 <a class="btn btn-info" href="{{ URL::to('/') }}/admin/order/<?php echo $order->id; ?>"><b>Details</b></a>
                             </td>

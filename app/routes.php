@@ -79,7 +79,7 @@ Route::group(array('before' => 'adminFilter'), function () {
     /*
      * Ticket generate
      * */
-    Route::get('ticket/{order_id}',['as'=>'ticket','uses'=>'TicketController@create']);
+    Route::any('ticket/{order_id}',['as'=>'ticket','uses'=>'TicketController@create']);
 
 	/*
 	 * For Ticket Template

@@ -29,8 +29,12 @@ class OrdersController extends BaseController {
     {
     	$order = Order::find($id);
     	$order_items = DB::table('order_items')
-		            ->where('order_items.order_id', $id)
-		            ->get();
+            ->select('order_items.*','users.id as user_id')
+            ->join('products','products.id','=','order_items.product_id','left')
+            ->join('users','users.id','=','products.user_id','left')
+            ->where('order_items.order_id', $id)
+            ->get();
+//        dd($order_items);
     	return View::make('admin.edit_order')
 				->with('order', $order)
 				->with('order_items', $order_items);
