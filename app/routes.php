@@ -84,7 +84,7 @@ Route::group(array('before' => 'adminFilter'), function () {
 	/*
 	 * For Ticket Template
 	 * */
-	Route::get('ticket',function(){
+	Route::get('ticket_template',function(){
 		return View::make('admin.ticket');
 	});
 
