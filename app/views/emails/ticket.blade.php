@@ -5,7 +5,9 @@
 </head>
 
 <body>
-df
+Dear Sir / Dear Madam,
+<br>
+Your Ticket has been attached with this email. please be careful about this ticket.
 
 </body>
 </html>
