@@ -41,7 +41,9 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        {{ Form::submit('Update Order', $attributes = ['class' => 'btn btn-success pull-right']) }}
+                        @if(Auth::user()->type=='admin')
+                            {{ Form::submit('Update Order', $attributes = ['class' => 'btn btn-success pull-right']) }}
+                        @endif
                     </div>
                     <input type="hidden" name="order_id" value="{{ $order->id }}">
                     {{ Form::close() }}
@@ -103,7 +105,6 @@
                         <thead>
                             <tr>
                                 <th> Product Name </th>
-                                <th> Location </th>
                                 <th> Adult Qty </th>
                                 <th> Adult Price </th>
                                 <th> Child Qty </th>
@@ -112,6 +113,7 @@
                                 <th> Gift Price </th>
                                 <th> Created At </th>
                                 <th> Provider's INFO </th>
+                                <th> Use Product</th>
                             </tr>
 
                         </thead>
@@ -123,10 +125,11 @@
                                     $product_content = getProductContentPerProductId($item->product_id);
                                     ?>
                                     {{ isset($product_content->title)?$product_content->title: null }}
-                                </td>
-                                <td>
-                                    <?php $loc_name = getLocName($item->loc_id); ?>
-                                    {{ isset($loc_name)?$loc_name: null }}
+                                    <br>
+                                    Location -
+
+                                        <?php $loc_name = getLocName($item->loc_id); ?>
+                                        {{ isset($loc_name)?$loc_name: null }}
                                 </td>
                                 <td> {{ isset($item->pdf_qty)?$item->pdf_qty: null }} </td>
                                 <td>  s./ {{ isset($item->pdf_price)?$item->pdf_price: null }} </td>
@@ -160,6 +163,16 @@
                                     {{ isset($provider->city)? $provider->city : null }}
                                     {{ isset($provider->street)? $provider->street : null }}<br>
                                     {{ isset($provider->address)? $provider->address : null }}
+                                </td>
+                                <td>
+                                    @if(Auth::user()->type=='admin' || ($item->status=='new' && $item->user_id==Auth::user()->id))
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Enter Ticket Code">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button">Go!</button>
+                                              </span>
+                                        </div><!-- /input-group -->
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

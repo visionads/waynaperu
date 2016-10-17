@@ -16,6 +16,7 @@ class TicketController extends Controller
             $url=route('ticket',$order_id);
             return View::make('admin/ticket/index',['url'=>$url]);
         }
+//        dd($ticket);
         $order=Order::find($order_id);
         if(TicketController::generateImage($ticket,$order->order_number)==true)
         {
