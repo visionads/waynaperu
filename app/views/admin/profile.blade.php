@@ -45,9 +45,9 @@
                                         <tr><th>Phone</th><td>:</td><td>{{ $user->phone }}</td></tr>
                                         <tr><th>Passport</th><td>:</td><td>{{ $user->passport }}</td></tr>
                                         <tr><th>Department</th><td>:</td><td>{{ $user->department }}</td></tr>
-                                        <tr><th>Flat</th><td>:</td><td>{{ $user->flat }}</td></tr>
+                                        {{--<tr><th>Flat</th><td>:</td><td>{{ $user->flat }}</td></tr>--}}
                                         <tr><th>Direction</th><td>:</td><td>{{ $user->direction }}</td></tr>
-                                        <tr><th>Address</th><td>:</td><td>{{ $user->address }}</td></tr>
+                                        {{--<tr><th>Address</th><td>:</td><td>{{ $user->address }}</td></tr>--}}
                                         <tr><th>District</th><td>:</td><td>{{ $user->district }}</td></tr>
                                         <tr><th>City</th><td>:</td><td>{{ $user->city }}</td></tr>
                                         <tr><th>Province</th><td>:</td><td>{{ $user->province }}</td></tr>
