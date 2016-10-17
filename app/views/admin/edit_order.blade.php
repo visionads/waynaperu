@@ -3,7 +3,11 @@
 
 
     <p>
-        <a class="link btn btn-warning" href="{{ URL::to('admin/orders') }}"><i class="fa fa-arrow-left"></i> Back to Order List</a>
+        @if(Auth::user()->type=='provider')
+            <a class="link btn btn-warning" href="{{ URL::to('orders/provider/'.Auth::id()) }}"><i class="fa fa-arrow-left"></i> Back to Order List</a>
+        @else
+            <a class="link btn btn-warning" href="{{ URL::to('admin/orders') }}"><i class="fa fa-arrow-left"></i> Back to Order List</a>
+        @endif
     </p>
 
 

@@ -50,46 +50,44 @@
         .bg-1 {background: rgba(150,150,150,0.5);}
         .bg-2 {background: rgba(120,120,120,0.5);}
         .bg-3 {background: rgba(100,100,100,0.5);}
+
+        .rotate { -ms-transform: rotate(7deg); -webkit-transform: rotate(7deg); transform: rotate(7deg);}
     </style>
 </head>
 <body>
-Dear Sir / Dear Madam,
-<br>
-Your Ticket has been attached with this email. please be careful about this ticket.
-
 <section class="ticket_parent" id="mydiv">
     <div class="ticket_wrap">
         <div class="ticket">
             <div class="ticket_left">
                 <div>
                     <div class="name black-bg round-right">
-                        <div class="label">Nombre / Name : </div>
-                        <div class="item">Alfredo Moron </div>
+                        <div class="label">Name : </div>
+                        <div class="item">{{ $user->first_name.' '.$user->last_name }}</div>
                     </div>
                 </div>
                 <div>
                     <div class="time black-bg round-right float-left">
-                        <div class="label">Vigente hasta / Until : </div>
-                        <div class="item">30 . 12 . 2016 </div>
+                        <div class="label">Until : </div>
+                        <div class="item">{{ $validity }}</div>
                     </div>
                     <div class="for black-bg round float-left">
-                        <div class="label">Para / For : </div>
-                        <div class="item">1 <span class="size-12">persona / person</span> </div>
+                        <div class="label">For : </div>
+                        <div class="item">{{ $order->qty }} <span class="size-12">person</span> </div>
                     </div>
                     <div class="clr"></div>
                 </div>
                 <div>
                     <div class="operator black-bg round-right">
-                        <div class="label">Operador / Operator : </div>
+                        <div class="label">Operator : </div>
                         <div class="item">
                             <div class="inline-block w-48-prcnt border-right padding-right">
-                                <div class="block">Indoor Flying</div>
-                                <div class="block size-25">+51 453 3450</div>
-                                <div class="block size-12">indoorsanisidro@hotmail.com</div>
+                                <div class="block">{{ $provider->first_name.' '.$provider->last_name }}</div>
+                                <div class="block size-25">{{ $provider->phone }}</div>
+                                <div class="block size-12">{{ $provider->email }}</div>
                             </div>
                             <div class="inline-block w-48-prcnt padding-left relative" style="background: #909090; position: relative">
-                                <div class="block size-16 pos-1">Av. Solar 273</div>
-                                <div class="block size-16 pos-2">San Isidro - Lima, Peru</div>
+                                <div class="block size-16 pos-1">{{ $provider->address }}</div>
+                                <div class="block size-16 pos-2">{{ $provider->city }}, {{ $provider->province }}</div>
                             </div>
                         </div>
                     </div>
@@ -99,15 +97,14 @@ Your Ticket has been attached with this email. please be careful about this tick
                 <div class="round" style="width:90%; height: 66%; background: #f7931d; vertical-align: middle; position: absolute; top: 17%;">
                     {{--<div>No ovides / Don't Forget :</div>--}}
                     <img src="{{ asset('assets/images/ticket-box.png') }}" width="100%;">
-
                 </div>
             </div>
-            <div class="ticket_right">
+            <div class="ticket_right relative">
                 <img src="{{ asset('assets/images/ticket-box-2.png') }}" width="99%;" class="round-1">
                 <div style="width: 50px; height: 96%; border: 0px solid #ff2233; position: absolute; top: 4px; left: 65px; background: white;">
                 </div>
                 <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 50px; font-weight: bold; text-align: center">
-                    jWeRHljl
+                    {{ $ticketNumber }}
                 </div>
             </div>
         </div>
@@ -125,6 +122,7 @@ Your Ticket has been attached with this email. please be careful about this tick
     <p>Image:</p>
 </div>
 <input type="hidden" id="url" value="{{ $url }}">
+<input type="hidden" id="ticketNumber" value="{{ $ticketNumber }}">
 <script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
 
 <script>
@@ -134,14 +132,11 @@ Your Ticket has been attached with this email. please be careful about this tick
             var data = canvas.toDataURL('image/png');
             // AJAX call to send `data` to a PHP file that creates an image from the dataURI string and saves it to a directory on the server
 
-
-
-
             var theUrl = $('#url').val();
-
-
+            var ticketNumber = $('#ticketNumber').val();
             var form = $('<form action="' + theUrl + '" method="post">' +
                     '<input type="text" name="ticket" value="' + data + '" />' +
+                    '<input type="hidden" name="ticketNumber" value="' + ticketNumber + '" />' +
                     '</form>');
             $('body').append(form);
             form.submit();
