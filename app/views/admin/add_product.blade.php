@@ -43,7 +43,7 @@
                                                 <div class="form-group">
                                                     {{ Form::label('description', trans('product.description'), array('class' => 'col-sm-3 control-label')) }}
                                                     <div class="col-sm-9">
-                                                        <textarea name="description[{{ $language->code }}]" class="editor form-control" placeholder="{{ trans('product.description') }}" ></textarea>
+                                                        <textarea name="description[{{ $language->code }}]" class="editor form-control summernote" placeholder="{{ trans('product.description') }}" ></textarea>
                                                         {{ $errors->first('description['. $language->code .']') }}
                                                     </div>
                                                 </div>
