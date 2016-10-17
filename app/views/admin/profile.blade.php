@@ -16,9 +16,10 @@
 
                     <a class="link btn btn-info" href="{{ URL::to('user/edit/'.Auth::user()->id) }}"><i class="fa fa-pencil">&nbsp;</i>Edit</a>
                     <a class="link btn btn-primary" href="{{ URL::route('user-activity',$user->id) }}">User Activity</a>
-
-                    <a class="link btn btn-success" href="{{ URL::route('products-provider',$user->id) }}">Product List</a>
-                    <a class="link btn btn-success" href="{{ URL::route('orders-provider',$user->id) }}">Order List</a>
+                    @if($user['type']!=='client')
+                        <a class="link btn btn-success" href="{{ URL::route('products-provider',$user->id) }}">Product List</a>
+                        <a class="link btn btn-success" href="{{ URL::route('orders-provider',$user->id) }}">Order List</a>
+                    @endif
 
                 </div>
                 <div style="height: 15px;">&nbsp;

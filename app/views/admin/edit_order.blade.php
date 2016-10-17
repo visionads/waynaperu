@@ -77,27 +77,29 @@
                             </div>
                         </div>
                         <div style="clear:both"></div>
-                        <div class="form-group">
-                            <label  class="col-sm-12 col-md-4 control-label">
-                                Email:
-                            </label>
-                            <div class="col-sm-12 col-md-8">
-                                <strong style="line-height:42px;">
-                                    {{ $user->email }}
-                                </strong>
+                        @if(Auth::user()->type=='admin')
+                            <div class="form-group">
+                                <label  class="col-sm-12 col-md-4 control-label">
+                                    Email:
+                                </label>
+                                <div class="col-sm-12 col-md-8">
+                                    <strong style="line-height:42px;">
+                                        {{ $user->email }}
+                                    </strong>
+                                </div>
                             </div>
-                        </div>
-                        <div style="clear:both"></div>
-                        <div class="form-group">
-                            <label  class="col-sm-12 col-md-4 control-label">Address:</label>
-                            <div class="col-sm-12 col-md-8">
-                                @if($user->direction != '')
-                                    <strong >#{{ $user->flat }}, {{ $user->direction }}<br/> {{ $user->city }}, {{ $user->district }}<br/>{{ $user->province }} </strong>
-                                @else
-                                    <strong style="line-height:42px;">User Didn't add his address. </strong>
-                                @endif
+                            <div style="clear:both"></div>
+                            <div class="form-group">
+                                <label  class="col-sm-12 col-md-4 control-label">Address:</label>
+                                <div class="col-sm-12 col-md-8">
+                                    @if($user->direction != '')
+                                        <strong >#{{ $user->flat }}, {{ $user->direction }}<br/> {{ $user->city }}, {{ $user->district }}<br/>{{ $user->province }} </strong>
+                                    @else
+                                        <strong style="line-height:42px;">User Didn't add his address. </strong>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endif
                 </fieldset>
             </div>
