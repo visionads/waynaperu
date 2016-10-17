@@ -68,7 +68,7 @@ class TicketController extends Controller
             $tkt->save();
 
             TicketController::sendEmail($order);
-//            $order->status='SUCCESS';
+            $order->status='SUCCESS';
             $order->save();
             Session::flash('message','Ticket has been sent successfully.');
             return Redirect::to('admin/orders');
