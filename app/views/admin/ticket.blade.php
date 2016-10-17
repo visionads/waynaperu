@@ -49,6 +49,8 @@
         .bg-1 {background: rgba(150,150,150,0.5);}
         .bg-2 {background: rgba(120,120,120,0.5);}
         .bg-3 {background: rgba(100,100,100,0.5);}
+
+        .rotate { -ms-transform: rotate(7deg); -webkit-transform: rotate(7deg); transform: rotate(7deg);}
     </style>
 </head>
 <body>
@@ -94,12 +96,15 @@
                     <div class="round" style="width:90%; height: 66%; background: #f7931d; vertical-align: middle; position: absolute; top: 17%;">
                         {{--<div>No ovides / Don't Forget :</div>--}}
                         <img src="{{ asset('assets/images/ticket-box.png') }}" width="100%;">
-
                     </div>
                 </div>
                 <div class="ticket_right relative">
                     <img src="{{ asset('assets/images/ticket-box-2.png') }}" width="99%;" class="round-1">
-                    <div style="width: 50px; height: 96%; border: 1px solid #ff2233; position: absolute; top: 4px; left: 30px;"></div>
+                    <div style="width: 50px; height: 96%; border: 0px solid #ff2233; position: absolute; top: 4px; left: 65px; background: white;">
+                    </div>
+                    <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 50px; font-weight: bold; text-align: center">
+                        jWeRHljl
+                    </div>
                 </div>
             </div>
         </div>
