@@ -81,7 +81,12 @@ Route::group(array('before' => 'adminFilter'), function () {
      * */
     Route::get('ticket/{order_id}',['as'=>'ticket','uses'=>'TicketController@create']);
 
-
+	/*
+	 * For Ticket Template
+	 * */
+	Route::get('ticket_template',function(){
+		return View::make('admin.ticket');
+	});
 
 
     Route::controller('filemanager', 'FilemanagerLaravelController');
