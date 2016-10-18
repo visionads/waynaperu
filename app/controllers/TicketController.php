@@ -60,15 +60,16 @@ class TicketController extends Controller
             $data['url']=route('ticket',$order_id);
             return View::make('admin/ticket/ticket2',$data);
         }
-        if(TicketController::generateImage($ticket2,$order->order_number.'2')==true)
+
+        if(TicketController::generateImage($ticket2,$order->order_number.'2') == true)
         {
-            $tkt=new Ticket();
-            $tkt->order_id=$order->id;
-            $tkt->ticket_number=$ticketNumber;
+            $tkt = new Ticket();
+            $tkt->order_id = $order->id;
+            $tkt->ticket_number = $ticketNumber;
             $tkt->save();
 
             TicketController::sendEmail($order);
-            $order->status='SUCCESS';
+            $order->status = 'SUCCESS';
             $order->save();
             Session::flash('message','Ticket has been sent successfully.');
             return Redirect::to('admin/orders');
@@ -133,7 +134,7 @@ class TicketController extends Controller
 //            $message->to($emails);
 
             $message->attach($pathToFile1);
-            $message->attach($pathToFile2);
+            //$message->attach($pathToFile2);
         });
 
 

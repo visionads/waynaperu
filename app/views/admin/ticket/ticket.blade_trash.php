@@ -51,7 +51,14 @@
         .bg-2 {background: rgba(120,120,120,0.5);}
         .bg-3 {background: rgba(100,100,100,0.5);}
 
-        .rotate { -ms-transform: rotate(7deg); -webkit-transform: rotate(7deg); transform: rotate(7deg);}
+        .rotate { -ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg);}
+
+        span.title-1 {width:100%; position: absolute; top: 30px; font-size: 25px; display: block; text-align: center; background:#f7931d; padding: 5px 0; color:#fff;}
+        span.list-1 {width:74%; position: absolute; top: 70px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;}
+        span.list-2 {width:74%; position: absolute; top: 110px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;}
+        span.list-3 {width:74%; position: absolute; top: 150px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;}
+
+        div.code_label {-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 110px; left: 0px; bottom: 56px; border: 0px solid; font-size: 15px; background: #fff; font-weight: bold;}
     </style>
 </head>
 <body>
@@ -61,24 +68,24 @@
             <div class="ticket_left">
                 <div>
                     <div class="name black-bg round-right">
-                        <div class="label">Nombre / Name : </div>
+                        <div class="label">{{ trans('text.name') }} : </div>
                         <div class="item">{{ $user->first_name.' '.$user->last_name }}</div>
                     </div>
                 </div>
                 <div>
                     <div class="time black-bg round-right float-left">
-                        <div class="label">Vigente hasta / Until : </div>
+                        <div class="label">{{ trans('text.until') }} : </div>
                         <div class="item">{{ $validity }}</div>
                     </div>
                     <div class="for black-bg round float-left">
-                        <div class="label">Para / For : </div>
-                        <div class="item">{{ $order->qty }} <span class="size-12">persona / person</span> </div>
+                        <div class="label">{{ trans('text.for') }} : </div>
+                        <div class="item">{{ $order->qty }} <span class="size-12">{{ trans('text.person') }}</span> </div>
                     </div>
                     <div class="clr"></div>
                 </div>
                 <div>
                     <div class="operator black-bg round-right">
-                        <div class="label">Operador / Operator : </div>
+                        <div class="label">{{ trans('text.operator') }} : </div>
                         <div class="item">
                             <div class="inline-block w-48-prcnt border-right padding-right">
                                 <div class="block">{{ $provider->first_name.' '.$provider->last_name }}</div>
@@ -97,11 +104,17 @@
                 <div class="round" style="width:90%; height: 66%; background: #f7931d; vertical-align: middle; position: absolute; top: 17%;">
                     {{--<div>No ovides / Don't Forget :</div>--}}
                     <img src="{{ asset('assets/images/ticket-box.png') }}" width="100%;">
+                    <span class="title-1">{{ trans('text.dont_forget') }} :</span>
+                    <span class="list-1">{{ trans('text.contact_your_operator') }}</span>
+                    <span class="list-2">{{ trans('text.carry_your_ticket') }}</span>
+                    <span class="list-3">{{ trans('text.enjoy_every_moment') }}</span>
                 </div>
             </div>
             <div class="ticket_right relative">
                 <img src="{{ asset('assets/images/ticket-box-2.png') }}" width="99%;" class="round-1">
-                <div style="width: 50px; height: 96%; border: 0px solid #ff2233; position: absolute; top: 4px; left: 65px; background: white;">
+                <div style="width: 50px; height: 96%; border: 0px solid #ff2233; position: absolute; top: 4px; left: 65px; background: white;"></div>
+                <div class="code_label">
+                    {{ trans('text.code') }} :
                 </div>
                 <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 50px; font-weight: bold; text-align: center">
                     {{ $ticketNumber }}

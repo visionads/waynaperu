@@ -50,7 +50,7 @@
         .bg-2 {background: rgba(120,120,120,0.5);}
         .bg-3 {background: rgba(100,100,100,0.5);}
 
-        .rotate { -ms-transform: rotate(7deg); -webkit-transform: rotate(7deg); transform: rotate(7deg);}
+        .rotate { -ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg)}
 
         span.title-1 {width:100%; position: absolute; top: 30px; font-size: 25px; display: block; text-align: center; background:#f7931d; padding: 5px 0; color:#fff;}
         span.list-1 {width:74%; position: absolute; top: 70px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;}
