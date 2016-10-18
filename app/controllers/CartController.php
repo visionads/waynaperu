@@ -412,7 +412,7 @@ class CartController extends BaseController {
             {
                 $message->subject('A new Order has been placed');
                 $message->from('us@example.com', 'Expoor');
-                $message->to('pothiceee@gmail.com')->cc('pothiceee@gmail.com');
+                $message->to('devdhaka404@gmail.com')->cc('devdhaka404@gmail.com');
                 #$message->attach($pathToFile);
             });*/
 
@@ -448,9 +448,9 @@ class CartController extends BaseController {
 				Culqi::$llaveSecreta = "QJg/85cKQI/EXDSBlr+2j/l/TSlstk59GFUZwdIBciA=";
 				Culqi::$servidorBase = 'https://pago.culqi.com';
 
-				exit("OK");
 
 				try {
+
 					$data = Pago::crearDatospago(array(
 						//Numero de pedido de la venta
 						Pago::PARAM_NUM_PEDIDO => $order_number,
@@ -477,6 +477,8 @@ class CartController extends BaseController {
 						//Apellido del cliente
 						"apellidos" => $last_name,
 					));
+					//exit("OK");
+
 					//Respuesta de la creación de la venta. Cadena cifrada.
 					$informacionVenta = $data[Pago::PARAM_INFO_VENTA];
 					if(Auth::check() || Session::has('guest')){
@@ -492,7 +494,7 @@ class CartController extends BaseController {
 			}
 			elseif(Input::get('payment_gateway') == 'agente_bcp')
 			{
-				exit("ELSE");
+				//exit("ELSE");
 				return Response::json(array('method' => 'agente_bcp', 'state' => 'success', 'order_number' => $order_number));
 				//return Redirect::route('agente_bcp', array($order_number));
 			}
@@ -762,7 +764,6 @@ class CartController extends BaseController {
 
 	public static function sentOrderConfirmMail($order_id)
     {
-
         $data['order'] = Order::find($order_id);
         $data['order_items'] = DB::table('order_items')
             ->where('order_items.order_id', $order_id)
@@ -776,7 +777,7 @@ class CartController extends BaseController {
         $email_client=$client->email;
         $pathToFile=public_path('images/ticket.jpg');
 
-        Mail::send('emails.order_details', $data, function($message) use ($emails,$email_client,$pathToFile,$data)
+        /*Mail::send('emails.order_details', $data, function($message) use ($emails,$email_client,$pathToFile,$data)
         {
             $message->subject('Order details for '.$data["order"]->order_number.' no of order from Exploor');
             $message->from('devdhaka404@gmail.com', 'Exploor');
@@ -784,7 +785,8 @@ class CartController extends BaseController {
             $message->to($email_client)->bcc($emails);
 
             $message->attach($pathToFile);
-        });
+        });*/
+
 
 
         $pe= DB::table('order_items');
@@ -794,7 +796,9 @@ class CartController extends BaseController {
 		$pe= $pe->join('users','users.id','=','products.user_id','left');
 		$pe= $pe->where('order_items.order_id',$order_id);
 		$pe= $pe->get();
-        foreach ($pe as $item) {
+
+
+        /*foreach ($pe as $item) {
             $item= (array) $item;
              Mail::send('emails.property_details', $item, function($message) use ($item)
             {
@@ -802,7 +806,9 @@ class CartController extends BaseController {
                 $message->from('devdhaka404@gmail.com', 'Exploor');
                 $message->to($item['email']);
             });
-        }
-    }
+        }*/
+		//exit('ok');
+
+	}
 
 }
