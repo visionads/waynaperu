@@ -62,13 +62,19 @@
                 <div>
                     <div class="name black-bg round-right">
                         <div class="label">Nombre / Name : </div>
-                        <div class="item">{{ $user->first_name.' '.$user->last_name }}</div>
+                        <div class="item">{{ $client_info->first_name.' '.$client_info->last_name }}</div>
                     </div>
                 </div>
                 <div>
                     <div class="time black-bg round-right float-left">
                         <div class="label">Vigente hasta / Until : </div>
-                        <div class="item">{{ $validity }}</div>
+                        <div class="item">
+                            <?php
+                            $m = (int) $product_info->validity;
+                            $validity = date('d M Y', strtotime('+'.$m.' months'));
+                            ?>
+                            {{ isset($validity)?$validity: "validity not found" }}
+                        </div>
                     </div>
                     <div class="for black-bg round float-left">
                         <div class="label">Para / For : </div>
@@ -81,7 +87,7 @@
                         <div class="label">Operador / Operator : </div>
                         <div class="item">
                             <div class="inline-block w-48-prcnt border-right padding-right">
-                                <div class="block">{{ $provider->first_name.' '.$provider->last_name }}</div>
+                                <div class="block">{{ isset($product_info->title)?$product_info->title:"Product Name not found" }}</div>
                                 <div class="block size-25">{{ $provider->phone }}</div>
                                 <div class="block size-12">{{ $provider->email }}</div>
                             </div>
@@ -104,7 +110,7 @@
                 <div style="width: 50px; height: 96%; border: 0px solid #ff2233; position: absolute; top: 4px; left: 65px; background: white;">
                 </div>
                 <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 50px; font-weight: bold; text-align: center">
-                    {{ $ticketNumber }}
+                    {{ $ticket_number }}
                 </div>
             </div>
         </div>
@@ -122,7 +128,7 @@
     <p>Image:</p>
 </div>
 <input type="hidden" id="url" value="{{ $url }}">
-<input type="hidden" id="ticketNumber" value="{{ $ticketNumber }}">
+<input type="hidden" id="ticketNumber" value="{{ $ticket_number }}">
 <script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
 
 <script>

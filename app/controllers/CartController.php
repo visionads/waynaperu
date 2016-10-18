@@ -271,6 +271,7 @@ class CartController extends BaseController {
 
 	public function showCheckout()
 	{
+
 		if(Auth::check() || Session::has('guest')){
 			$categories = DB::table('category_content')
 				->join('categories', 'category_content.cat_id', '=', 'categories.id')
@@ -298,6 +299,7 @@ class CartController extends BaseController {
 
 	public function processCheckout()
 	{
+
 		if(Auth::check() ){
 			if( Auth::user()->first_name == '' || Auth::user()->last_name == '' || Auth::user()->direction == '' || Auth::user()->district == '' || Auth::user()->city == '' || Auth::user()->phone == ''){
 				return Redirect::route('checkout');
@@ -319,6 +321,8 @@ class CartController extends BaseController {
 		$order->status = $status;
 		$order->qty = $total_qty;
 		$order->price = $total_price;
+
+
 		if($order->save()){
 
 			foreach (Cart::content() as $cart) {
@@ -404,24 +408,22 @@ class CartController extends BaseController {
                 ->where('order_items.order_id', $order->id)
                 ->get();
 
-            Mail::send('emails.order_details', $data, function($message)
+            /*Mail::send('emails.order_details', $data, function($message)
             {
                 $message->subject('A new Order has been placed');
                 $message->from('us@example.com', 'Expoor');
+                $message->to('pothiceee@gmail.com')->cc('pothiceee@gmail.com');
+                #$message->attach($pathToFile);
+            });*/
 
-                $message->to('devdhaka404@gmail.com')->cc('devdhaka405@gmail.com');
 
-//                $message->attach($pathToFile);
-            });
 
 			/*
 			 * End Sent mail to provider,admin and client with order details
 			 * */
+			if(Input::get('payment_gateway') == 'culqi')
+			{
 
-
-
-
-			if(Input::get('payment_gateway') == 'culqi'){
 				$price = DB::table('orders')->where('order_number','=', $order_number)->pluck('price');
 				if (Auth::check())
 				{
@@ -439,11 +441,14 @@ class CartController extends BaseController {
 					$city = Session::get('guest.city')[0];
 					$phone = Session::get('guest.phone')[0];
 				}
-				CartController::sentOrderConfirmMail($order_id);
+
+				CartController::sentOrderConfirmMail($order->id);
 				require public_path().'/culqi.php';
 				Culqi::$codigoComercio = "9preKzsz6VbY";
 				Culqi::$llaveSecreta = "QJg/85cKQI/EXDSBlr+2j/l/TSlstk59GFUZwdIBciA=";
 				Culqi::$servidorBase = 'https://pago.culqi.com';
+
+				exit("OK");
 
 				try {
 					$data = Pago::crearDatospago(array(
@@ -485,7 +490,9 @@ class CartController extends BaseController {
 				}
 				//return Redirect::route('culqi', array($order_number));
 			}
-			elseif(Input::get('payment_gateway') == 'agente_bcp') {
+			elseif(Input::get('payment_gateway') == 'agente_bcp')
+			{
+				exit("ELSE");
 				return Response::json(array('method' => 'agente_bcp', 'state' => 'success', 'order_number' => $order_number));
 				//return Redirect::route('agente_bcp', array($order_number));
 			}
@@ -706,7 +713,12 @@ class CartController extends BaseController {
 
 	public function showOrderSuccess($order_number)
 	{
-		if(Auth::check() || Session::has('guest')){
+
+		// Fire email to Client
+
+
+		if(Auth::check() || Session::has('guest'))
+		{
 			$categories = DB::table('category_content')
 				->join('categories', 'category_content.cat_id', '=', 'categories.id')
 				->select('category_content.id','category_content.cat_id', 'categories.state', 'categories.image','categories.icon', 'category_content.title', 'category_content.description')
@@ -741,7 +753,9 @@ class CartController extends BaseController {
 				->with('districts', $districts)
 				->with('tags',$tags)
 				->with('order_number', $order_number);
-		}else{
+		}
+		else
+		{
 			return Redirect::route('home');
 		}
 	}

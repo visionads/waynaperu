@@ -80,6 +80,7 @@ Route::group(array('before' => 'adminFilter'), function () {
      * Ticket generate
      * */
     Route::any('ticket/{order_id}',['as'=>'ticket','uses'=>'TicketController@create']);
+    Route::any('generate-ticket/{order_id}',['as'=>'generate-ticket','uses'=>'TicketController@generate_ticket_view']);
     Route::post('submit_ticket',['as'=>'submit-ticket','uses'=>'TicketController@check_ticket']);
 
 	/*
@@ -87,6 +88,9 @@ Route::group(array('before' => 'adminFilter'), function () {
 	 * */
 	Route::get('ticket_template',function(){
 		return View::make('admin.ticket');
+	});
+	Route::get('email_template_1',function(){
+		return View::make('admin.email_template_1');
 	});
 
 
