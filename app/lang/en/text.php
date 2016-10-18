@@ -260,4 +260,15 @@ return array(
     "price_discount"=>"Discount %",
     "external_bank" => "External / Bank account",
     "internal_bank" => "Internal / Interbank account",
+
+    "name" => "Name",
+    "until" => "Until",
+    "for" => "For",
+    "operator" => "Operator",
+    "person" => "Person",
+    "dont_forget" => "Don't forget",
+    "code" => "Code",
+    "contact_your_operator" => "Contact your operator",
+    "carry_your_ticket" => "Carry your ticket",
+    "enjoy_every_moment" => "Enjoy every moment",
 );

@@ -257,4 +257,15 @@ return array(
     "price_discount"=>"Descuento %",
     "external_bank" => "Externo / Cuenta bancaria",
     "internal_bank" => "Interno / Cuenta interbancaria",
+
+    "name" => "Nombre",
+    "until" => "Vigente hasta",
+    "for" => "Para",
+    "operator" => "Operador",
+    "person" => "Persona",
+    "dont_forget" => "No olivides",
+    "code" => "Código",
+    "contact_your_operator" => "Contactar a tu operador",
+    "carry_your_ticket" => "LLever tu voucher",
+    "enjoy_every_moment" => "Disfrutar cada momento",
 );
