@@ -34,7 +34,8 @@
         "Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider",
         "Greggilbert\\Recaptcha\\RecaptchaServiceProvider",
         "AdamWathan\\EloquentOAuthL4\\EloquentOAuthServiceProvider",
-        "Zizaco\\Entrust\\EntrustServiceProvider"
+        "Zizaco\\Entrust\\EntrustServiceProvider",
+        "Barryvdh\\DomPDF\\ServiceProvider"
     ],
     "eager": [
         "Illuminate\\Cookie\\CookieServiceProvider",
@@ -126,7 +127,8 @@
         "translator": "Illuminate\\Translation\\TranslationServiceProvider",
         "translation.loader": "Illuminate\\Translation\\TranslationServiceProvider",
         "validator": "Illuminate\\Validation\\ValidationServiceProvider",
-        "validation.presence": "Illuminate\\Validation\\ValidationServiceProvider"
+        "validation.presence": "Illuminate\\Validation\\ValidationServiceProvider",
+        "dompdf": "Barryvdh\\DomPDF\\ServiceProvider"
     },
     "when": {
         "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [],
@@ -147,6 +149,7 @@
         "Illuminate\\Auth\\Reminders\\ReminderServiceProvider": [],
         "Illuminate\\Database\\SeedServiceProvider": [],
         "Illuminate\\Translation\\TranslationServiceProvider": [],
-        "Illuminate\\Validation\\ValidationServiceProvider": []
+        "Illuminate\\Validation\\ValidationServiceProvider": [],
+        "Barryvdh\\DomPDF\\ServiceProvider": []
     }
 }

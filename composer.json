@@ -18,7 +18,9 @@
 		"behance/kong": "^0.1.9",
 		"infrajs/template": "^1.1",
 		"intervention/image": "^2.3",
-		"facebook/php-sdk-v4" : "~5.0"
+		"facebook/php-sdk-v4" : "~5.0",
+		"anam/phantomjs-linux-x86-binary": "^2.1",
+		"barryvdh/laravel-dompdf": "0.4.*"
 	},
 	"autoload": {
 		"classmap": [

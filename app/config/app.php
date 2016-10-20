@@ -260,6 +260,7 @@ return array(
 
         'AdamWathan\EloquentOAuthL4\EloquentOAuthServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
+        'Barryvdh\DomPDF\ServiceProvider',
 
 	),
 
@@ -402,6 +403,7 @@ return array(
 		'Cart'            => 'Gloudemans\Shoppingcart\Facades\Cart',
 		'OAuth' => 'AdamWathan\EloquentOAuth\Facades\OAuth',
         'Entrust'    => 'Zizaco\Entrust\EntrustFacade',
+        'PDF' => 'Barryvdh\DomPDF\Facade',
 
 	),
 
