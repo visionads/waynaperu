@@ -10,6 +10,7 @@
     <meta name="description" content="Short explanation about this website">
     <!-- END META -->
     <script src="{{ asset('assets/admin/js/libs/jquery/jquery-1.11.2.min.js') }}"></script>
+    <script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
     <style>
         .ticket_parent { width: 100%; height:auto;}
         .ticket_wrap { width: 866px; height:297px; padding: 30px; margin: auto; background: #e0e0e0; border-radius: 15px;}
@@ -55,24 +56,38 @@
     </style>
 </head>
 <body>
-<section class="ticket_parent" id="mydiv">
+<script>
+    var ticketData= [];
+    var ticketNumber= [];
+</script>
+@foreach($tickets as $it=>$ticket)
+    <?php
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < 8; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    echo $randomString;
+    ?>
+<section class="ticket_parent" id="mydiv{{ $it }}">
     <div class="ticket_wrap">
         <div class="ticket">
             <div class="ticket_left">
                 <div>
                     <div class="name black-bg round-right">
                         <div class="label">Name : </div>
-                        <div class="item">{{ $user->first_name.' '.$user->last_name }}</div>
+                        <div class="item">{{ $ticket->first_name.' '.$ticket->last_name }}</div>
                     </div>
                 </div>
                 <div>
                     <div class="time black-bg round-right float-left">
                         <div class="label">Until : </div>
-                        <div class="item">{{ $validity }}</div>
+                        <div class="item">{{ $ticket->validity }}</div>
                     </div>
                     <div class="for black-bg round float-left">
                         <div class="label">For : </div>
-                        <div class="item">{{ $order->qty }} <span class="size-12">person</span> </div>
+                        <div class="item">{{ $ticket->qty }} <span class="size-12">person</span> </div>
                     </div>
                     <div class="clr"></div>
                 </div>
@@ -81,13 +96,13 @@
                         <div class="label">Operator : </div>
                         <div class="item">
                             <div class="inline-block w-48-prcnt border-right padding-right">
-                                <div class="block">{{ $provider->first_name.' '.$provider->last_name }}</div>
-                                <div class="block size-25">{{ $provider->phone }}</div>
-                                <div class="block size-12">{{ $provider->email }}</div>
+                                <div class="block">{{ $ticket->title }}</div>
+                                <div class="block size-25">?? </div>
+                                <div class="block size-12"> ?? </div>
                             </div>
                             <div class="inline-block w-48-prcnt padding-left relative" style="background: #909090; position: relative">
-                                <div class="block size-16 pos-1">{{ $provider->address }}</div>
-                                <div class="block size-16 pos-2">{{ $provider->city }}, {{ $provider->province }}</div>
+                                <div class="block size-16 pos-1">{{ $ticket->street }}</div>
+                                <div class="block size-16 pos-2">{{ $ticket->city }}, {{ $ticket->district }}</div>
                             </div>
                         </div>
                     </div>
@@ -104,7 +119,7 @@
                 <div style="width: 50px; height: 96%; border: 0px solid #ff2233; position: absolute; top: 4px; left: 65px; background: white;">
                 </div>
                 <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 50px; font-weight: bold; text-align: center">
-                    {{ $ticketNumber }}
+                    {{ $randomString }}
                 </div>
             </div>
         </div>
@@ -114,40 +129,82 @@
 <br>
 <br>
 
-<div id="canvas">
+<div id="canvas{{ $it }}">
     <p>Canvas:</p>
 </div>
 
-<div id="image">
+<div id="image{{ $it }}">
     <p>Image:</p>
 </div>
-<input type="hidden" id="url" value="{{ $url }}">
-<input type="hidden" id="ticketNumber" value="{{ $ticketNumber }}">
-<script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
+<input type="hidden" id="ticketNumber{{$it}}" value="{{ $randomString }}">
 
 <script>
-    html2canvas([document.getElementById('mydiv')], {
+    html2canvas([document.getElementById('mydiv{{ $it }}')], {
         onrendered: function (canvas) {
-            document.getElementById('canvas').appendChild(canvas);
+            document.getElementById('canvas{{ $it }}').appendChild(canvas);
             var data = canvas.toDataURL('image/png');
+            var tn = $('#ticketNumber{{$it}}').val();
             // AJAX call to send `data` to a PHP file that creates an image from the dataURI string and saves it to a directory on the server
+//            console.log(data);
+            //ticketData.push(data);
+            ticketNumber.push(tn);
 
-            var theUrl = $('#url').val();
-            var ticketNumber = $('#ticketNumber').val();
-            var form = $('<form action="' + theUrl + '" method="post">' +
-                    '<input type="text" name="ticket" value="' + data + '" />' +
-                    '<input type="hidden" name="ticketNumber" value="' + ticketNumber + '" />' +
-                    '</form>');
-            $('body').append(form);
-            form.submit();
+
+            //console.log(ticketNumber);
+            //console.log(tn);
+
+
+//            var form = $('<form action="' + theUrl + '" method="post">' +
+//                    '<input type="text" name="ticket" value="' + data + '" />' +
+//                    '<input type="hidden" name="ticketNumber" value="' + ticketNumber + '" />' +
+//                    '</form>');
+//            $('body').append(form);
+//            form.submit();
 
 
 //            window.location.href = theUrl + '?ticket='+data;
             var image = new Image();
             image.src = data;
-            document.getElementById('image').appendChild(image);
+            document.getElementById('image{{ $it }}').appendChild(image);
         }
     });
 </script>
+@endforeach
+
+<input type="hidden" id="url" value="{{ $url }}">
+
+<script>
+    var myJsonString = JSON.stringify(ticketData);
+
+    console.log(myJsonString);
+    console.log(ticketNumber);
+
+//    var theUrl = $('#url').val();
+//    var form = $('<form action="' + theUrl + '" method="post">' +
+//            '<input type="text" name="ticket" value="' + ticketData + '" />' +
+//            '<input type="hidden" name="ticketNumber" value="' + ticketNumber + '" />' +
+//            '</form>');
+//    $('body').append(form);
+//    form.submit();
+
+
+
+    //console.log(ticketNumber);
+    //console.log(ticketNumber);
+    var s=['{"Select":"11","PhotoCount":"12"}','{"Select":"21","PhotoCount":"22"}'];
+//    var td = JSON.decode(s);
+//    console.log(td);
+//    $.ajax({
+//        type: "POST",
+//        url: theUrl,
+//        data: {ticketNumber :s}
+//    }).success(function (data) {
+//        console.log(data);
+//        //window.location.href = data;
+//    }).error(function () {
+//        alert('error');
+//    });
+</script>
+
 </body>
 </html>

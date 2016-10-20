@@ -81,6 +81,7 @@ Route::group(array('before' => 'adminFilter'), function () {
      * */
     Route::any('ticket/{order_id}',['as'=>'ticket','uses'=>'TicketController@create']);
     Route::post('submit_ticket',['as'=>'submit-ticket','uses'=>'TicketController@check_ticket']);
+    Route::post('ajax/{order_id}',['as'=>'ajax','uses'=>'TicketController@ajax']);
 
 	/*
 	 * For Ticket Template

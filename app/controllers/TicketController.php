@@ -10,6 +10,43 @@ class TicketController extends Controller
 {
     public static function create($order_id)
     {
+        $x= DB::select(DB::raw("
+SELECT
+  order_items.id,
+  users.first_name,
+  users.last_name,
+  product_info.validity,
+  product_info.city,
+  product_info.street,
+  product_info.district,
+  product_content.title,
+  orders.qty
+FROM order_items
+  LEFT JOIN product_content ON product_content.product_id=order_items.product_id
+  LEFT JOIN product_info ON product_info.product_id=order_items.product_id
+  LEFT JOIN orders ON orders.id=order_items.order_id
+  LEFT JOIN products ON products.id=order_items.product_id
+  LEFT JOIN users ON users.id=products.user_id
+WHERE order_id=453
+GROUP BY order_items.id"));
+        $data['tickets']=$x;
+        $data['url']=route('ajax',$order_id);
+        return View::make('admin/ticket/ticket',$data);
+
+        exit('end');
+        dd($order_items);
+
+
+
+
+
+
+
+
+
+
+
+
         $ticket=Input::get('ticket');
         $ticket2=Input::get('ticket2');
         $ticketNumber=Input::get('ticketNumber');
@@ -69,7 +106,7 @@ class TicketController extends Controller
 
             TicketController::sendEmail($order);
             $order->status='SUCCESS';
-            $order->save();
+//            $order->save();
             Session::flash('message','Ticket has been sent successfully.');
             return Redirect::to('admin/orders');
         }else{
@@ -96,6 +133,12 @@ class TicketController extends Controller
 //        echo '<img src="'.asset('assets/tickets/'.$order->order_number.'.png').'">';
 
 
+    }
+    public function ajax($order_id)
+    {
+        $req = Input::all();
+        print_r($req);
+        echo 'ffsfsdfsdfsdes';
     }
     private static function generateImage($base64,$image_name)
     {
