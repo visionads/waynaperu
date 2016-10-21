@@ -20,7 +20,8 @@
 		"intervention/image": "^2.3",
 		"facebook/php-sdk-v4" : "~5.0",
 		"anam/phantomjs-linux-x86-binary": "^2.1",
-		"barryvdh/laravel-dompdf": "0.4.*"
+		"barryvdh/laravel-dompdf": "0.4.*",
+		"anam/phantommagick" : "1.*"
 	},
 	"autoload": {
 		"classmap": [
