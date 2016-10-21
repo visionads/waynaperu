@@ -54,25 +54,38 @@ class TicketController extends Controller
             //url for redirecting to this method again according to order id
             $data['url']= route('generate-ticket',$order_id);
 
-//            $this->generate_ticket_view($data);
+            $this->generate_ticket_view($data);
             #return View::make('admin/ticket/ticket',$data);
 
-
-
-
-
-            $html= $this->ticket_html($data);
-
-//       return PDF::loadHTML('<h1>HI</h1>')->save(public_path('assets/tickets/kk.pdf'))->stream('download.pdf');
-            return PDF::loadFile(('html.html'))->save(public_path('assets/tickets/'.$data['ticket_number'].'.pdf'))->stream('download.pdf');
-            exit();
         }
 
     }
 
+
+    public function html_to_jpg(){
+        $bg_path = public_path()."/pdf/ticket_bg.png";
+        $options = [
+            'width' => 500,
+            'height' => 300,
+            'quality' => 90
+        ];
+
+        $conv = new \Anam\PhantomMagick\Converter();
+        $conv->addPage('
+                    <html>
+                        <body style="background-image: url('.$bg_path.'); background-repeat: no-repeat;">
+                            <h1 style="color: red;">Welcome to PhantomMagick</h1>
+                        </body>
+                    </html>
+                    ')
+            ->setImageOptions($options)
+            ->toJpg()
+            ->save(public_path().'/pdf/22.jpg');
+
+        return "OK";
+    }
     public function ticket_html($data){
 
-//        dd($data);
         $html = '<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -231,75 +244,6 @@ class TicketController extends Controller
             return Redirect::to('admin/orders');
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*ini_set("memory_limit","256M");
-        $filename = public_path('assets/images/ticket.jpg');
-
-        $img = @imagecreatefromjpeg($filename);
-        $exif = exif_read_data($filename);
-        if ($img && $exif && isset($exif['Orientation']))
-        {
-            $ort = $exif['Orientation'];
-
-            if ($ort == 6 || $ort == 5)
-                $img = imagerotate($img, 270, null);
-            if ($ort == 3 || $ort == 4)
-                $img = imagerotate($img, 180, null);
-            if ($ort == 8 || $ort == 7)
-                $img = imagerotate($img, 90, null);
-
-            if ($ort == 5 || $ort == 4 || $ort == 7)
-                imageflip($img, IMG_FLIP_HORIZONTAL);
-        }
-        print_r($img);
-
-        exit();
-        $my_img = imagecreate( 200, 80 );
-        $background = imagecolorallocate( $my_img, 0, 0, 255 );
-        $text_colour = imagecolorallocate( $my_img, 255, 255, 0 );
-        $line_colour = imagecolorallocate( $my_img, 128, 255, 0 );
-        imagestring( $my_img, 4, 30, 25, "Ram Vai", $text_colour );
-        imagesetthickness ( $my_img, 5 );
-        imageline( $my_img, 30, 45, 165, 45, $line_colour );
-
-        header( "Content-type: image/png" );
-        imagepng( $my_img );
-        imagecolordeallocate( $line_colour );
-        imagecolordeallocate( $text_colour );
-        imagecolordeallocate( $background );
-        imagedestroy( $my_img );
-
-        echo "0000";
-        exit();
-        $ticket = Input::get('ticket');
-        if(empty($ticket))
-        {
-            echo "empty";
-            return "554545454545454542";
-        }
-        else
-        {
-            $order_number = $data['order']->order_number;
-            $provider_id = $data['provider']->id;
-            $order_id = $data['order']->id;
-            TicketController::generateImage($ticket, $order_number.'-'.$provider_id, $order_id);
-        }
-        exit("qwq");
-        return true;*/
     }
 
     /**  Make image and store into a directory
@@ -340,7 +284,6 @@ class TicketController extends Controller
         $client=User::find($order->user_id);
         $email_client=$client->email;
         $pathToFile=public_path('assets/tickets/'.$order->order_number.'.png');
-//        dd($email_client);
 
         Mail::send('emails.ticket', [], function($message) use ($emails,$email_client,$pathToFile,$order)
         {
@@ -348,7 +291,7 @@ class TicketController extends Controller
             $message->from('devdhaka404@gmail.com', 'Exploor');
 
             $message->to($email_client)->bcc($emails);
-//            $message->to($emails);
+            $message->to($emails);
 
             $message->attach($pathToFile);
         });
@@ -363,7 +306,6 @@ class TicketController extends Controller
         $pe= $pe->get();
         foreach ($pe as $item) {
             $item= (array) $item;
-//                dd($item);
             if($item['email'] != null) {
                 Mail::send('emails.ticket', $item, function ($message) use ($item, $pathToFile, $order) {
                     $message->subject('Ticket for ' . $order->order_number . ' no of order from Exploor');
@@ -373,6 +315,10 @@ class TicketController extends Controller
                 });
             }
         }
+
+
+
+
     }
 
 

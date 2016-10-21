@@ -261,6 +261,7 @@ return array(
         'AdamWathan\EloquentOAuthL4\EloquentOAuthServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
         'Barryvdh\DomPDF\ServiceProvider',
+        'Anam\PhantomMagick\ConverterServiceProvider',
 
 	),
 
@@ -404,6 +405,7 @@ return array(
 		'OAuth' => 'AdamWathan\EloquentOAuth\Facades\OAuth',
         'Entrust'    => 'Zizaco\Entrust\EntrustFacade',
         'PDF' => 'Barryvdh\DomPDF\Facade',
+        'Converter' => 'Anam\PhantomMagick\Facades\Converter',
 
 	),
 
