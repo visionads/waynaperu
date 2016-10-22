@@ -260,7 +260,7 @@ return array(
 
         'AdamWathan\EloquentOAuthL4\EloquentOAuthServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
-        'Barryvdh\DomPDF\ServiceProvider',
+        #'Barryvdh\DomPDF\ServiceProvider',
         'Anam\PhantomMagick\ConverterServiceProvider',
 
 	),

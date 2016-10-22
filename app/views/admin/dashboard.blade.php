@@ -7,7 +7,7 @@
             <div class="card-head">
                 <header><i class="fa fa-dashboard">&nbsp;</i> Dashboard</header>
                 <div class="tools">
-                    {{--<a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>--}}
+
                     <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
                     <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
                 </div>
@@ -20,9 +20,7 @@
                         </div>
                     </div><!--end .col -->
                 </div><!--end .row -->
-                {{--<div class="stick-bottom-left-right force-padding">
-                    <div id="flot-registrations" class="flot height-5" data-title="Registration history" data-color="#0aa89e"></div>
-                </div>--}}
+
             </div>
         </div>
     </div>

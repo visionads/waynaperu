@@ -19,13 +19,10 @@ class TicketController extends Controller
     public function create($order_id)
     {
 
-//        return $pdf->download('invoice.pdf');
         $ticket=Input::get('ticket');
         #$ticketNumber=Input::get('ticketNumber');
 
         $order_items= OrderItems::where('order_id',$order_id)->get();
-
-        //
 
         foreach($order_items as $items)
         {
