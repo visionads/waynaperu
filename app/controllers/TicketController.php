@@ -19,6 +19,7 @@ class TicketController extends Controller
     public function create($order_id)
     {
 
+
         $ticket=Input::get('ticket');
         #$ticketNumber=Input::get('ticketNumber');
 
@@ -51,16 +52,20 @@ class TicketController extends Controller
             //url for redirecting to this method again according to order id
             $data['url']= route('generate-ticket',$order_id);
 
-            $this->generate_ticket_view($data);
+
+
+            $this->html_to_jpg($data);
             #return View::make('admin/ticket/ticket',$data);
 
+            exit("OK");
         }
 
     }
 
 
-    public function html_to_jpg(){
-        $bg_path = public_path()."/pdf/ticket_bg.png";
+    public function html_to_jpg($data)
+    {
+        $bg_path = public_path()."/tickets/ticket_bg.jpg";
         $options = [
             'width' => 500,
             'height' => 300,
@@ -68,16 +73,19 @@ class TicketController extends Controller
         ];
 
         $conv = new \Anam\PhantomMagick\Converter();
+
+
         $conv->addPage('
                     <html>
                         <body style="background-image: url('.$bg_path.'); background-repeat: no-repeat;">
-                            <h1 style="color: red;">Welcome to PhantomMagick</h1>
+                            <h1 style="color: red;">Welcome to Ticketing </h1>
                         </body>
                     </html>
                     ')
             ->setImageOptions($options)
             ->toJpg()
-            ->save(public_path().'/pdf/22.jpg');
+            ->save(public_path().'/tickets/'.$data['ticket_number']);
+        exit("OK");
 
         return "OK";
     }
@@ -273,12 +281,12 @@ class TicketController extends Controller
         $data['order_items'] = DB::table('order_items')
             ->where('order_items.order_id', $order->id)
             ->get();
-        $admin=User::select('email')->where('type','admin')->get();
-        $emails=[];
+        $admin = User::select('email')->where('type','admin')->get();
+        $emails = [];
         foreach ($admin as $item) {
             $emails[]=$item->email;
         }
-        $client=User::find($order->user_id);
+        $client = User::find($order->user_id);
         $email_client=$client->email;
         $pathToFile=public_path('assets/tickets/'.$order->order_number.'.png');
 
