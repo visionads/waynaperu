@@ -84,7 +84,7 @@ class TicketController extends Controller
                     ')
             ->setImageOptions($options)
             ->toJpg()
-            ->save(public_path().'/tickets/'.$data['ticket_number']);
+            ->save(public_path().'/tickets/12.jpg');
         exit("OK");
 
         return "OK";
