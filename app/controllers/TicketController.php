@@ -74,14 +74,7 @@ class TicketController extends Controller
 
         $conv = new \Anam\PhantomMagick\Converter();
 
-
-        $conv->addPage('
-                    <html>
-                        <body style="background-image: url('.$bg_path.'); background-repeat: no-repeat;">
-                            <h1 style="color: red;">Welcome to Ticketing </h1>
-                        </body>
-                    </html>
-                    ')
+        $conv->addPage($this->ticket_html())
             ->setImageOptions($options)
             ->toJpg()
             ->save(public_path().'/tickets/12.jpg');
@@ -89,88 +82,90 @@ class TicketController extends Controller
 
         return "OK";
     }
-    public function ticket_html($data){
+    public function ticket_html()
+    {
 
         $html = '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Waynaperu Ticket</title>
-
-    <!-- BEGIN META -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="your,keywords">
-    <meta name="description" content="Short explanation about this website">
-    <!-- END META -->
-</head>
-<body>
-    <section style="width: 100%; height:auto;">
-        <div style="width: 866px; height:297px; padding: 30px; margin: auto; background: #e0e0e0; border-radius: 15px;">
-            <div style="width: 866px; height: 297px; background: url("'. asset('assets/images/ticket3.3.png') .'") no-repeat left top; margin: auto;">
-                <div style="float: left; width: 420px; height: 100%; border-radius: 15px !important;">
-                    <div>
-                        <div style="width:250px; max-width: 300px; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
-                            <div style="display: block; font-size: 12px;">'. trans("text.name") .' : </div>
-                            <div style="display: block; font-size: 20px;">Alfredo Moron </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;float: left !important;">
-                            <div style="display: block; font-size: 12px;">'. trans("text.until") .' : </div>
-                            <div style="display: block; font-size: 20px;">30 . 12 . 2016 </div>
-                        </div>
-                        <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px; margin-left: 10px;background: black !important;border-radius: 8px !important;float: left !important;">
-                            <div style="display: block; font-size: 12px;">'. trans('text.for') .' : </div>
-                            <div style="display: block; font-size: 20px;">1 <span class="size-12">'. trans('text.person') .'</span> </div>
-                        </div>
-                        <div style="clear: both;"></div>
-                    </div>
-                    <div>
-                        <div style="width:350px; max-width: 400px; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
-                            <div style="display: block; font-size: 12px;">'. trans('text.operator') .' : </div>
-                            <div style="display: block; font-size: 20px;">
-                                <div style="display: inline-block !important;width: 48% !important;border-right: 1px solid #909090;padding-right:1% !important;">
-                                    <div style="display: block !important;">Indoor Flying</div>
-                                    <div style="display: block !important;font-size: 25px !important;">+51 453 3450</div>
-                                    <div style="display: block !important;font-size: 12px !important;">indoorsanisidro@hotmail.com</div>
+            <html lang="en">
+            <head>
+            <title>Waynaperu Ticket</title>
+            
+            <!-- BEGIN META -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="keywords" content="your,keywords">
+            <meta name="description" content="Short explanation about this website">
+            <!-- END META -->
+            </head>
+            <body>
+            <section style="width: 100%; height:auto;">
+                <div style="width: 866px; height:297px; padding: 30px; margin: auto; background: #e0e0e0; border-radius: 15px;">
+                    <div style="width: 866px; height: 297px; background: url("'. asset('assets/images/ticket3.3.png') .'") no-repeat left top; margin: auto;">
+                        <div style="float: left; width: 420px; height: 100%; border-radius: 15px !important;">
+                            <div>
+                                <div style="width:250px; max-width: 300px; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
+                                    <div style="display: block; font-size: 12px;">'. trans("text.name") .' : </div>
+                                    <div style="display: block; font-size: 20px;">Alfredo Moron </div>
                                 </div>
-                                <div style="background: #909090; position: relative;display: inline-block !important;width: 48% !important;padding-left:1% !important;position: relative !important;">
-                                    <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -50px;">Av. Solar 273</div>
-                                    <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">San Isidro - Lima, Peru</div>
+                            </div>
+                            <div>
+                                <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;float: left !important;">
+                                    <div style="display: block; font-size: 12px;">'. trans("text.until") .' : </div>
+                                    <div style="display: block; font-size: 20px;">30 . 12 . 2016 </div>
                                 </div>
+                                <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px; margin-left: 10px;background: black !important;border-radius: 8px !important;float: left !important;">
+                                    <div style="display: block; font-size: 12px;">'. trans('text.for') .' : </div>
+                                    <div style="display: block; font-size: 20px;">1 <span class="size-12">'. trans('text.person') .'</span> </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div>
+                                <div style="width:350px; max-width: 400px; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
+                                    <div style="display: block; font-size: 12px;">'. trans('text.operator') .' : </div>
+                                    <div style="display: block; font-size: 20px;">
+                                        <div style="display: inline-block !important;width: 48% !important;border-right: 1px solid #909090;padding-right:1% !important;">
+                                            <div style="display: block !important;">Indoor Flying</div>
+                                            <div style="display: block !important;font-size: 25px !important;">+51 453 3450</div>
+                                            <div style="display: block !important;font-size: 12px !important;">indoorsanisidro@hotmail.com</div>
+                                        </div>
+                                        <div style="background: #909090; position: relative;display: inline-block !important;width: 48% !important;padding-left:1% !important;position: relative !important;">
+                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -50px;">Av. Solar 273</div>
+                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">San Isidro - Lima, Peru</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="float: left; width: 257px; height: 100%; border-radius: 15px !important;position: relative !important;">
+                            <div style="border-radius: 8px !important;" style="width:90%; height:66%; background:#f7931d; vertical-align:middle; position:absolute; top:17%;">
+                                <img src="'. asset('assets/images/ticket-box.png') .'" width="100%;">
+                                <span style="width:74%; position: absolute; top: 70px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.dont_forget') .' :</span>
+                                <span style="width:74%; position: absolute; top: 70px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.contact_your_operator') .'</span>
+                                <span style="width:74%; position: absolute; top: 110px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.carry_your_ticket') .'</span>
+                                <span style="width:74%; position: absolute; top: 150px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.enjoy_every_moment') .'</span>
+                            </div>
+            
+                        </div>
+                        <div style="float: left; width: 187px; height: 100%; background:none; border-radius: 15px !important;position: relative !important;">
+                            <img src="'. asset('assets/images/ticket-box-2.png') .'" width="99%;" class="round-1">
+                            <div style="width: 50px; height: 96%; border: 0px solid #ff2233; position: absolute; top: 4px; left: 65px; background: white;"></div>
+                            <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 110px; left: 0px; bottom: 56px; border: 0px solid; font-size: 15px; background: #fff; font-weight: bold;">
+                                '. trans('text.code') .' :
+                            </div>
+                            <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 50px; font-weight: bold; text-align: center">
+                                jWeRHljl
                             </div>
                         </div>
                     </div>
                 </div>
-                <div style="float: left; width: 257px; height: 100%; border-radius: 15px !important;position: relative !important;">
-                    <div style="border-radius: 8px !important;" style="width:90%; height:66%; background:#f7931d; vertical-align:middle; position:absolute; top:17%;">
-                        <img src="'. asset('assets/images/ticket-box.png') .'" width="100%;">
-                        <span style="width:74%; position: absolute; top: 70px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.dont_forget') .' :</span>
-                        <span style="width:74%; position: absolute; top: 70px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.contact_your_operator') .'</span>
-                        <span style="width:74%; position: absolute; top: 110px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.carry_your_ticket') .'</span>
-                        <span style="width:74%; position: absolute; top: 150px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.enjoy_every_moment') .'</span>
-                    </div>
-
-                </div>
-                <div style="float: left; width: 187px; height: 100%; background:none; border-radius: 15px !important;position: relative !important;">
-                    <img src="'. asset('assets/images/ticket-box-2.png') .'" width="99%;" class="round-1">
-                    <div style="width: 50px; height: 96%; border: 0px solid #ff2233; position: absolute; top: 4px; left: 65px; background: white;"></div>
-                    <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 110px; left: 0px; bottom: 56px; border: 0px solid; font-size: 15px; background: #fff; font-weight: bold;">
-                        '. trans('text.code') .' :
-                    </div>
-                    <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 50px; font-weight: bold; text-align: center">
-                        jWeRHljl
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-</body>
-</html>
-
+            
+            </section>
+            </body>
+            </html>
         ';
-        file_put_contents(public_path('html.html'), $html);
+
+
+        return $html;
 
     }
 
