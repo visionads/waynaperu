@@ -136,7 +136,7 @@ class TicketController extends Controller
             <!-- END META -->
             </head>
             <body>
-            <section style="width: 100%; height:auto;">
+            <section style="width: 100%; height:auto; background-color: white">
                 <div style="width: 866px; height:297px; padding: 30px; margin: auto; background: #e0e0e0; border-radius: 15px;">
                     <div style="width: 866px; height: 297px; background: url("'. asset('assets/images/ticket3.3.png') .'") no-repeat left top; margin: auto;">
                         <div style="float: left; width: 420px; height: 100%; border-radius: 15px !important;">
