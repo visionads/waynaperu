@@ -35,8 +35,10 @@ class OrdersController extends BaseController {
             ->where('order_items.order_id', $id)
             ->get();
 //        dd($order_items);
+        $tickets=Ticket::where('order_id',$id)->get();
     	return View::make('admin.edit_order')
 				->with('order', $order)
+				->with('tickets', $tickets)
 				->with('order_items', $order_items);
     }
 

@@ -191,7 +191,15 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                    @if(count($tickets)>1)
+                        <div class="row">
+                        @foreach($tickets as $ticket)
+                            <div class="col-md-6">
+                                <img src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.png') }}" alt="">
+                            </div>
+                        @endforeach
+                        </div>
+                    @endif
                 </fieldset>
             </div>
         </div>
