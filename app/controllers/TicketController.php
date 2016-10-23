@@ -88,7 +88,7 @@ class TicketController extends Controller
                 $t->order_item_id= $ticket->order_item_id;
                 $t->order_id= $ticket->order_id;
                 $t->save();
-//                $this->emailProvider($ticket->order_item_id);
+                $this->emailProvider($ticket->order_item_id);
             }
             $this->sendEmail($order_id);
             $o=Order::find($order_id);
