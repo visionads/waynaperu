@@ -494,6 +494,40 @@ class CartController extends BaseController {
 			}
 			elseif(Input::get('payment_gateway') == 'agente_bcp')
 			{
+                $data['order_items'] = DB::table('order_items')
+                    ->select('order_items.*','product_content.title','product_info.city','product_info.district')
+                    ->join('product_content','product_content.product_id','=','order_items.product_id','left')
+                    ->join('product_info','product_info.product_id','=','order_items.product_id','left')
+                    ->where('product_content.lang_id',1)
+                    ->where('product_info.language_id',1)
+                    ->where('order_items.order_id', $order->id)
+                    ->get();
+                $user=User::find($order->user_id);
+                $data['user_name']=$user->first_name.' '.$user->last_name;
+                $admin=User::select('email')->where('type','admin')->get();
+                $emails=[];
+                foreach ($admin as $item) {
+                    $emails[]=$item->email;
+                }
+                $client=User::find($data['order']->user_id);
+                $email_client=$client->email;
+
+//                Mail::send('emails.order_details', $data, function($message) use ($emails,$email_client,$pathToFile,$data)
+//                {
+//                    $message->subject('Order details for '.$data["order"]->order_number.' no of order from Exploor');
+//                    $message->from('devdhaka404@gmail.com', 'Exploor');
+//
+//                    $message->to($email_client)->bcc($emails);
+//
+//                    $message->attach($pathToFile);
+//                });
+                Mail::send('emails.payment_instruction', $data, function($message) use($emails,$email_client)
+                {
+                    $message->subject('Your Order has been placed');
+                    $message->from('us@example.com', 'Expoor');
+                    $message->to($email_client)->cc($emails);
+                    #$message->attach($pathToFile);
+                });
 				//exit("ELSE");
 				return Response::json(array('method' => 'agente_bcp', 'state' => 'success', 'order_number' => $order_number));
 				//return Redirect::route('agente_bcp', array($order_number));
