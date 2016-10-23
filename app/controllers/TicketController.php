@@ -74,9 +74,6 @@ class TicketController extends Controller
 
         $conv = new \Anam\PhantomMagick\Converter();
 
-        print_r($conv);
-        exit();
-
         $conv->addPage($this->ticket_html())
             ->setImageOptions($options)
             ->toJpg()
