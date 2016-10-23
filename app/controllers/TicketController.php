@@ -52,18 +52,57 @@ class TicketController extends Controller
             //url for redirecting to this method again according to order id
             $data['url']= route('generate-ticket',$order_id);
 
+            $x= DB::select(DB::raw("
+                    SELECT
+                      order_items.id as order_item_id,
+                      order_items.order_id,
+                      users.first_name,
+                      users.last_name,
+                      product_info.validity,
+                      product_info.city,
+                      product_info.street,
+                      product_info.district,
+                      product_content.title,
+                      orders.qty
+                    FROM order_items
+                      LEFT JOIN product_content ON product_content.product_id=order_items.product_id
+                      LEFT JOIN product_info ON product_info.product_id=order_items.product_id
+                      LEFT JOIN orders ON orders.id=order_items.order_id
+                      LEFT JOIN products ON products.id=order_items.product_id
+                      LEFT JOIN users ON users.id=products.user_id
+                    WHERE order_id=453
+                    GROUP BY order_items.id"));
+            $data['tickets']=$x;
 
-
-            $this->html_to_jpg($data);
-            #return View::make('admin/ticket/ticket',$data);
-
-            exit("OK");
+            foreach ($data['tickets'] as $ticket) {
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $charactersLength = strlen($characters);
+                $randomString = '';
+                for ($i = 0; $i < 8; $i++) {
+                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                }
+                $ticket->ticket_number=$randomString;
+                $this->html_to_jpg($ticket);
+                $t= new Ticket();
+                $t->ticket_number= $ticket->ticket_number;
+                $t->order_item_id= $ticket->order_item_id;
+                $t->order_id= $ticket->order_id;
+                $t->save();
+//                $this->emailProvider($ticket->order_item_id);
+            }
+            $this->sendEmail($order_id);
+            $o=Order::find($order_id);
+            $o->status='SUCCESS';
+            $o->save();
+//            dd($order);
+            Session::flash('message','Ticket has been sent successfully.');
+            return Redirect::to('admin/orders');
         }
 
     }
 
 
-    public function html_to_jpg($data)
+    public function html_to_jpg($ticket)
     {
         $bg_path = public_path()."/tickets/ticket_bg.jpg";
         $options = [
@@ -74,17 +113,13 @@ class TicketController extends Controller
 
         $conv = new \Anam\PhantomMagick\Converter();
 
-        $conv->addPage($this->ticket_html())
+        $conv->addPage($this->ticket_html($ticket))
             ->setImageOptions($options)
             ->toJpg()
-            ->save(public_path().'/tickets/12.jpg');
-        exit("OK");
-
-        return "OK";
+            ->save(public_path().'/assets/tickets/'.$ticket->ticket_number.'.jpg');
     }
-    public function ticket_html()
+    public function ticket_html($ticket)
     {
-
         $html = '<!DOCTYPE html>
             <html lang="en">
             <head>
@@ -105,17 +140,17 @@ class TicketController extends Controller
                             <div>
                                 <div style="width:250px; max-width: 300px; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
                                     <div style="display: block; font-size: 12px;">'. trans("text.name") .' : </div>
-                                    <div style="display: block; font-size: 20px;">Alfredo Moron </div>
+                                    <div style="display: block; font-size: 20px;">'.$ticket->first_name.' '.$ticket->last_name.'</div>
                                 </div>
                             </div>
                             <div>
                                 <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;float: left !important;">
                                     <div style="display: block; font-size: 12px;">'. trans("text.until") .' : </div>
-                                    <div style="display: block; font-size: 20px;">30 . 12 . 2016 </div>
+                                    <div style="display: block; font-size: 20px;">'.$ticket->validity.'</div>
                                 </div>
                                 <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px; margin-left: 10px;background: black !important;border-radius: 8px !important;float: left !important;">
                                     <div style="display: block; font-size: 12px;">'. trans('text.for') .' : </div>
-                                    <div style="display: block; font-size: 20px;">1 <span class="size-12">'. trans('text.person') .'</span> </div>
+                                    <div style="display: block; font-size: 20px;">'.$ticket->qty.' <span class="size-12">'. trans('text.person') .'</span> </div>
                                 </div>
                                 <div style="clear: both;"></div>
                             </div>
@@ -124,13 +159,13 @@ class TicketController extends Controller
                                     <div style="display: block; font-size: 12px;">'. trans('text.operator') .' : </div>
                                     <div style="display: block; font-size: 20px;">
                                         <div style="display: inline-block !important;width: 48% !important;border-right: 1px solid #909090;padding-right:1% !important;">
-                                            <div style="display: block !important;">Indoor Flying</div>
+                                            <div style="display: block !important;">'.$ticket->title.'</div>
                                             <div style="display: block !important;font-size: 25px !important;">+51 453 3450</div>
                                             <div style="display: block !important;font-size: 12px !important;">indoorsanisidro@hotmail.com</div>
                                         </div>
                                         <div style="background: #909090; position: relative;display: inline-block !important;width: 48% !important;padding-left:1% !important;position: relative !important;">
-                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -50px;">Av. Solar 273</div>
-                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">San Isidro - Lima, Peru</div>
+                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -50px;">'.$ticket->street.'</div>
+                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">'.$ticket->city.' '.$ticket->district.'</div>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +188,7 @@ class TicketController extends Controller
                                 '. trans('text.code') .' :
                             </div>
                             <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 50px; font-weight: bold; text-align: center">
-                                jWeRHljl
+                                '.$ticket->ticket_number.'
                             </div>
                         </div>
                     </div>
@@ -163,7 +198,6 @@ class TicketController extends Controller
             </body>
             </html>
         ';
-
 
         return $html;
 
@@ -271,54 +305,58 @@ class TicketController extends Controller
     /**
      * @param $order
      */
-    private static function sendEmail($order)
+    private function sendEmail($order_id)
     {
-        $data['order_items'] = DB::table('order_items')
-            ->where('order_items.order_id', $order->id)
-            ->get();
+        $tickets= Ticket::where('order_id',$order_id)->get();
+//        dd($tickets);
         $admin = User::select('email')->where('type','admin')->get();
         $emails = [];
         foreach ($admin as $item) {
             $emails[]=$item->email;
         }
-        $client = User::find($order->user_id);
+        $client = DB::table('orders')
+            ->select('users.email')
+            ->join('users','users.id','=','orders.user_id','left')
+            ->where('orders.id','=',$order_id)
+            ->first();
         $email_client=$client->email;
-        $pathToFile=public_path('assets/tickets/'.$order->order_number.'.png');
-
-        Mail::send('emails.ticket', [], function($message) use ($emails,$email_client,$pathToFile,$order)
+        $pathToFile=[];
+        foreach ($tickets as $ticket) {
+            $pathToFile[]=public_path('assets/tickets/'.$ticket->ticket_number.'.jpg');
+        }
+        Mail::send('emails.ticket', [], function($message) use ($emails,$email_client,$pathToFile)
         {
-            $message->subject('Ticket for '.$order->order_number.' no of order from Exploor');
+            $message->subject('Ticket for  no of order from Exploor');
             $message->from('devdhaka404@gmail.com', 'Exploor');
 
             $message->to($email_client)->bcc($emails);
             $message->to($emails);
-
-            $message->attach($pathToFile);
+            foreach ($pathToFile as $item) {
+                $message->attach($item);
+            }
         });
 
-
+    }
+    public function emailProvider($order_item_id)
+    {
         $pe= DB::table('order_items');
-        $pe= $pe->select('order_items.ticket_number','users.email','products.*','locations.price1 as price');
+        $pe= $pe->select('ticket.ticket_number','users.email');
         $pe= $pe->join('products','products.id','=','order_items.product_id','left');
-        $pe= $pe->join('locations','locations.product_id','=','products.id','left');
         $pe= $pe->join('users','users.id','=','products.user_id','left');
-        $pe= $pe->where('order_items.order_id',$order->id);
-        $pe= $pe->get();
-        foreach ($pe as $item) {
-            $item= (array) $item;
-            if($item['email'] != null) {
-                Mail::send('emails.ticket', $item, function ($message) use ($item, $pathToFile, $order) {
-                    $message->subject('Ticket for ' . $order->order_number . ' no of order from Exploor');
-                    $message->from('devdhaka404@gmail.com', 'Exploor');
-                    $message->to($item['email']);
-                    $message->attach($pathToFile);
-                });
-            }
+        $pe= $pe->join('ticket','ticket.order_item_id','=','order_items.id','left');
+        $pe= $pe->where('order_items.id',$order_item_id);
+        $pe= $pe->first();
+
+        $item= (array) $pe;
+        if($item['email'] != null) {
+            $pathToFile=public_path('assets/tickets/'.$item["ticket_number"].'.jpg');
+            Mail::send('emails.ticket', $item, function ($message) use ($item, $pathToFile) {
+                $message->subject('Ticket for new sale.');
+                $message->from('devdhaka404@gmail.com', 'Exploor');
+                $message->to($item['email']);
+                $message->attach($pathToFile);
+            });
         }
-
-
-
-
     }
 
 

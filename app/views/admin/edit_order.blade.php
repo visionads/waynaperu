@@ -195,7 +195,7 @@
                         <div class="row">
                         @foreach($tickets as $ticket)
                             <div class="col-md-6">
-                                <img src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.png') }}" alt="">
+                                <img width="80%" src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.jpg') }}" alt="">
                             </div>
                         @endforeach
                         </div>
