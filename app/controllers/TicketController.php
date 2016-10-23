@@ -87,10 +87,9 @@ class TicketController extends Controller
                 $t->order_item_id= $ticket->order_item_id;
                 $t->order_id= $ticket->order_id;
                 $t->save();
+                
 
-
-
-                #TicketController::emailProvider($ticket->order_item_id);
+                TicketController::emailProvider($ticket->order_item_id);
 
             }
 
@@ -102,18 +101,17 @@ class TicketController extends Controller
             $o->save();
 
 
-            /*if(isset($ipn))
+            if(isset($ipn))
             {
                 return true;
             }else{
                 Session::flash('message','Ticket has been sent successfully.');
                 return Redirect::to('admin/orders');
-            }*/
+            }
 
 
         }
-        Session::flash('message','Ticket has been sent successfully.');
-        return Redirect::to('admin/orders');
+
 
     }
 
