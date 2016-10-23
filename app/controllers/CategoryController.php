@@ -8,7 +8,7 @@ class CategoryController extends BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{	
+	{
         $categories = DB::table('category_content')
 		            ->join('categories', 'category_content.cat_id', '=', 'categories.id')
 		            ->select('category_content.id','category_content.cat_id', 'categories.state', 'categories.orders', 'category_content.title', 'category_content.description')

@@ -663,7 +663,8 @@ class CartController extends BaseController {
 						$message->from('ventas@waynaperu.com', 'Ventas Wayna');
 						$message->to('info@waynaperu.com', 'Info Wayna')->subject(trans('text.culqi_subject'));
 					});
-                    TicketController::create($order->id);
+
+                    TicketController::create($order->id, 'ipn');
 					/************************ envia emails ************************/
 
 					Cart::destroy();

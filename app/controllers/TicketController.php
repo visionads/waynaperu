@@ -11,12 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
-
     /**
      * @param $order_id
      * @return mixed
      */
-    public function create($order_id)
+    public static function create($order_id,$ipn=false)
     {
 
 
@@ -82,27 +81,31 @@ class TicketController extends Controller
                     $randomString .= $characters[rand(0, $charactersLength - 1)];
                 }
                 $ticket->ticket_number=$randomString;
-                $this->html_to_jpg($ticket);
+                TicketController::html_to_jpg($ticket);
                 $t= new Ticket();
                 $t->ticket_number= $ticket->ticket_number;
                 $t->order_item_id= $ticket->order_item_id;
                 $t->order_id= $ticket->order_id;
                 $t->save();
-                $this->emailProvider($ticket->order_item_id);
+                TicketController::emailProvider($ticket->order_item_id);
             }
-            $this->sendEmail($order_id);
+            TicketController::sendEmail($order_id);
             $o=Order::find($order_id);
             $o->status='SUCCESS';
             $o->save();
 //            dd($order);
-            Session::flash('message','Ticket has been sent successfully.');
-            return Redirect::to('admin/orders');
+            if(isset($ipn))
+            {
+                return true;
+            }else{
+                Session::flash('message','Ticket has been sent successfully.');
+                return Redirect::to('admin/orders');
+            }
         }
 
     }
 
-
-    public function html_to_jpg($ticket)
+    public static function html_to_jpg($ticket)
     {
         $bg_path = public_path()."/tickets/ticket_bg.jpg";
         $options = [
@@ -113,12 +116,12 @@ class TicketController extends Controller
 
         $conv = new \Anam\PhantomMagick\Converter();
 
-        $conv->addPage($this->ticket_html($ticket))
+        $conv->addPage(TicketController::ticket_html($ticket))
             ->setImageOptions($options)
             ->toJpg()
             ->save(public_path().'/assets/tickets/'.$ticket->ticket_number.'.jpg');
     }
-    public function ticket_html($ticket)
+    public static function ticket_html($ticket)
     {
         $html = '<!DOCTYPE html>
             <html lang="en">
@@ -305,7 +308,7 @@ class TicketController extends Controller
     /**
      * @param $order
      */
-    private function sendEmail($order_id)
+    private static function sendEmail($order_id)
     {
         $tickets= Ticket::where('order_id',$order_id)->get();
 //        dd($tickets);
@@ -337,7 +340,7 @@ class TicketController extends Controller
         });
 
     }
-    public function emailProvider($order_item_id)
+    public static function emailProvider($order_item_id)
     {
         $pe= DB::table('order_items');
         $pe= $pe->select('ticket.ticket_number','users.email');
