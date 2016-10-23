@@ -15,9 +15,8 @@ class TicketController extends Controller
      * @param $order_id
      * @return mixed
      */
-    public static function create($order_id,$ipn=false)
+    public static function create($order_id, $ipn=false)
     {
-
 
         $ticket=Input::get('ticket');
         #$ticketNumber=Input::get('ticketNumber');
@@ -82,26 +81,39 @@ class TicketController extends Controller
                 }
                 $ticket->ticket_number=$randomString;
                 TicketController::html_to_jpg($ticket);
+
                 $t= new Ticket();
                 $t->ticket_number= $ticket->ticket_number;
                 $t->order_item_id= $ticket->order_item_id;
                 $t->order_id= $ticket->order_id;
                 $t->save();
-                TicketController::emailProvider($ticket->order_item_id);
+
+
+
+                #TicketController::emailProvider($ticket->order_item_id);
+
             }
+
+
+
             TicketController::sendEmail($order_id);
             $o=Order::find($order_id);
             $o->status='SUCCESS';
             $o->save();
-//            dd($order);
-            if(isset($ipn))
+
+
+            /*if(isset($ipn))
             {
                 return true;
             }else{
                 Session::flash('message','Ticket has been sent successfully.');
                 return Redirect::to('admin/orders');
-            }
+            }*/
+
+
         }
+        Session::flash('message','Ticket has been sent successfully.');
+        return Redirect::to('admin/orders');
 
     }
 
@@ -116,10 +128,17 @@ class TicketController extends Controller
 
         $conv = new \Anam\PhantomMagick\Converter();
 
-        $conv->addPage(TicketController::ticket_html($ticket))
-            ->setImageOptions($options)
-            ->toJpg()
-            ->save(public_path().'/assets/tickets/'.$ticket->ticket_number.'.jpg');
+        try{
+            $conv->addPage(TicketController::ticket_html($ticket))
+                ->setImageOptions($options)
+                ->toJpg()
+                ->save(public_path().'/assets/tickets/'.$ticket->ticket_number.'.jpg');
+
+        }catch (Exception $e){
+            print_r($e->getMessage());
+        }
+
+
     }
     public static function ticket_html($ticket)
     {
@@ -324,9 +343,11 @@ class TicketController extends Controller
             ->first();
         $email_client=$client->email;
         $pathToFile=[];
+
         foreach ($tickets as $ticket) {
             $pathToFile[]=public_path('assets/tickets/'.$ticket->ticket_number.'.jpg');
         }
+
         Mail::send('emails.ticket', [], function($message) use ($emails,$email_client,$pathToFile)
         {
             $message->subject('Ticket for  no of order from Exploor');
@@ -334,9 +355,12 @@ class TicketController extends Controller
 
             $message->to($email_client)->bcc($emails);
             $message->to($emails);
-            foreach ($pathToFile as $item) {
-                $message->attach($item);
+            if(count($pathToFile)>0){
+                foreach ($pathToFile as $item) {
+                    $message->attach($item);
+                }
             }
+
         });
 
     }
@@ -357,7 +381,7 @@ class TicketController extends Controller
                 $message->subject('Ticket for new sale.');
                 $message->from('devdhaka404@gmail.com', 'Exploor');
                 $message->to($item['email']);
-                $message->attach($pathToFile);
+                $message->attach($pathToFile or null);
             });
         }
     }
