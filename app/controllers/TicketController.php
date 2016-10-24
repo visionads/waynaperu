@@ -168,11 +168,11 @@ class TicketController extends Controller
                                     <div style="display: block; font-size: 12px;">Operador/ Operator : </div>
                                     <div style="display: block; font-size: 20px;">
                                         <div style="display: inline-block !important;width: 48% !important;border-right: 1px solid #909090;padding-right:1% !important;">
-                                            <div style="display: block !important;font-size: ">'.$ticket->provider_first_name.' '.$ticket->provider_last_name.'</div>
-                                            <div style="display: block !important;font-size: 25px !important;">'.$ticket->provider_phone.'</div>
+                                            <div style="display: block !important;font-size: 15px">'.$ticket->provider_first_name.' '.$ticket->provider_last_name.'</div>
+                                            <div style="display: block !important;font-size: 20px !important;">'.$ticket->provider_phone.'</div>
                                             <div style="display: block !important;font-size: 12px !important;">'.$ticket->provider_email.'</div>
                                         </div>
-                                        <div style="background: #909090; position: relative;display: inline-block !important;width: 48% !important;padding-left:1% !important;position: relative !important;">
+                                        <div style="background: #909090 !important; display: inline-block !important;width: 48% !important;padding-left:1% !important;position: relative !important;">
                                             <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -50px;">'.$ticket->street.'</div>
                                             <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">'.$ticket->city.'</div>
                                             <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">'.$ticket->district.'</div>
@@ -189,6 +189,7 @@ class TicketController extends Controller
                                 <span style="width:74%; position: absolute; top: 110px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.carry_your_ticket') .'</span>
                                 <span style="width:74%; position: absolute; top: 150px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.enjoy_every_moment') .'</span>
                             </div>
+                            <span>'.$ticket->title.'</span>
             
                         </div>
                         <div style="float: left; width: 187px; height: 100%; background:none; border-radius: 15px !important;position: relative !important;">
