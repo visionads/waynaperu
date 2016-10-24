@@ -57,6 +57,10 @@ class TicketController extends Controller
                       order_items.order_id,
                       users.first_name,
                       users.last_name,
+                      users1.first_name as provider_first_name,
+                      users1.last_name as provider_last_name,
+                      users1.email as provider_email,
+                      users1.phone as provider_phone,
                       product_info.validity,
                       product_info.city,
                       product_info.street,
@@ -68,12 +72,14 @@ class TicketController extends Controller
                       LEFT JOIN product_info ON product_info.product_id=order_items.product_id
                       LEFT JOIN orders ON orders.id=order_items.order_id
                       LEFT JOIN products ON products.id=order_items.product_id
-                      LEFT JOIN users ON users.id=products.user_id
+                      LEFT JOIN users ON users.id=orders.user_id
+                      LEFT JOIN users as users1 ON users1.id=products.user_id
                     WHERE order_id=453
                     GROUP BY order_items.id"));
             $data['tickets']=$x;
 
             foreach ($data['tickets'] as $ticket) {
+//                dd($ticket);
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 $charactersLength = strlen($characters);
                 $randomString = '';
@@ -92,9 +98,9 @@ class TicketController extends Controller
             TicketController::sendEmail($order_id);
             $o=Order::find($order_id);
             $o->status='SUCCESS';
-            $o->save();
+//            $o->save();
 //            dd($order);
-            if(isset($ipn))
+            if(isset($ipn) && !empty($ipn))
             {
                 return true;
             }else{
@@ -142,33 +148,34 @@ class TicketController extends Controller
                         <div style="float: left; width: 420px; height: 100%; border-radius: 15px !important;">
                             <div>
                                 <div style="width:250px; max-width: 300px; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
-                                    <div style="display: block; font-size: 12px;">'. trans("text.name") .' : </div>
+                                    <div style="display: block; font-size: 12px;">Nombre / Name : </div>
                                     <div style="display: block; font-size: 20px;">'.$ticket->first_name.' '.$ticket->last_name.'</div>
                                 </div>
                             </div>
                             <div>
                                 <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;float: left !important;">
-                                    <div style="display: block; font-size: 12px;">'. trans("text.until") .' : </div>
-                                    <div style="display: block; font-size: 20px;">'.$ticket->validity.'</div>
+                                    <div style="display: block; font-size: 12px;">Vigente hasta/ Valid Until : </div>
+                                    <div style="display: block; font-size: 20px;">'. date("d.m.Y",strtotime("+".$ticket->validity." months")) .'</div>
                                 </div>
                                 <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px; margin-left: 10px;background: black !important;border-radius: 8px !important;float: left !important;">
-                                    <div style="display: block; font-size: 12px;">'. trans('text.for') .' : </div>
+                                    <div style="display: block; font-size: 12px;">Para/ For : </div>
                                     <div style="display: block; font-size: 20px;">'.$ticket->qty.' <span class="size-12">'. trans('text.person') .'</span> </div>
                                 </div>
                                 <div style="clear: both;"></div>
                             </div>
                             <div>
                                 <div style="width:350px; max-width: 400px; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
-                                    <div style="display: block; font-size: 12px;">'. trans('text.operator') .' : </div>
+                                    <div style="display: block; font-size: 12px;">Operador/ Operator : </div>
                                     <div style="display: block; font-size: 20px;">
                                         <div style="display: inline-block !important;width: 48% !important;border-right: 1px solid #909090;padding-right:1% !important;">
-                                            <div style="display: block !important;">'.$ticket->title.'</div>
-                                            <div style="display: block !important;font-size: 25px !important;">+51 453 3450</div>
-                                            <div style="display: block !important;font-size: 12px !important;">indoorsanisidro@hotmail.com</div>
+                                            <div style="display: block !important;font-size: ">'.$ticket->provider_first_name.' '.$ticket->provider_last_name.'</div>
+                                            <div style="display: block !important;font-size: 25px !important;">'.$ticket->provider_phone.'</div>
+                                            <div style="display: block !important;font-size: 12px !important;">'.$ticket->provider_email.'</div>
                                         </div>
                                         <div style="background: #909090; position: relative;display: inline-block !important;width: 48% !important;padding-left:1% !important;position: relative !important;">
                                             <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -50px;">'.$ticket->street.'</div>
-                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">'.$ticket->city.' '.$ticket->district.'</div>
+                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">'.$ticket->city.'</div>
+                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">'.$ticket->district.'</div>
                                         </div>
                                     </div>
                                 </div>

@@ -67,7 +67,7 @@
         <div style="width: 100%; height: 20px; background: orange;">&nbsp;</div>
         <div style="width: 100%; height: 20px;">&nbsp;</div>
         <div style="font-size: 25px; text-align: center;">Questions ?</div>
-        <div style="text-align: text-align: center;;"><img src="{{ $message->embed('assets/images/email-temp-06.png') }}" height="100"></div>
+        <div style="text-align: center;"><img src="{{ $message->embed('assets/images/email-temp-06.png') }}" height="100"></div>
         <div style="font-size: 20px !important; text-align: center;">
             If you have any questions shoot us a mail to <span style="color: #0f71ba;">info@exploor.pe</span> and<br> we will get in touch with you as soon as possible.
         </div>
