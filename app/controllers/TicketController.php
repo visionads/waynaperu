@@ -86,6 +86,11 @@ class TicketController extends Controller
                 for ($i = 0; $i < 8; $i++) {
                     $randomString .= $characters[rand(0, $charactersLength - 1)];
                 }
+                $ticket->type='provider';
+                $ticket->ticket_number=$randomString;
+                TicketController::html_to_jpg($ticket);
+
+                $ticket->type='client';
                 $ticket->ticket_number=$randomString;
                 TicketController::html_to_jpg($ticket);
                 $t= new Ticket();
@@ -121,11 +126,21 @@ class TicketController extends Controller
         ];
 
         $conv = new \Anam\PhantomMagick\Converter();
-
+        if($ticket->type=='provider')
+        {
+            $tnm=$ticket->ticket_number;
+            $ticket->ticket_number= substr($ticket->ticket_number,0,-4).'****';
         $conv->addPage(TicketController::ticket_html($ticket))
             ->setImageOptions($options)
             ->toJpg()
-            ->save(public_path().'/assets/tickets/'.$ticket->ticket_number.'.jpg');
+            ->save(public_path().'/assets/tickets/P-'.$tnm.'.jpg');
+        }else{
+            $conv->addPage(TicketController::ticket_html($ticket))
+                ->setImageOptions($options)
+                ->toJpg()
+                ->save(public_path().'/assets/tickets/'.$ticket->ticket_number.'.jpg');
+
+        }
     }
     public static function ticket_html($ticket)
     {
@@ -360,7 +375,7 @@ class TicketController extends Controller
 
         $item= (array) $pe;
         if($item['email'] != null) {
-            $pathToFile=public_path('assets/tickets/'.$item["ticket_number"].'.jpg');
+            $pathToFile=public_path('assets/tickets/P-'.$item["ticket_number"].'.jpg');
             Mail::send('emails.ticket', $item, function ($message) use ($item, $pathToFile) {
                 $message->subject('Ticket for new sale.');
                 $message->from('devdhaka404@gmail.com', 'Exploor');

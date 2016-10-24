@@ -194,11 +194,19 @@
                     @if(count($tickets)>1)
                         <div class="row">
                         @foreach($tickets as $ticket)
-                            <div class="col-md-6">
-                                <img width="80%" src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.jpg') }}" alt="">
-                                <br>
-                                <b>Ticket Number - </b>{{ $ticket->ticket_number }}
-                            </div>
+                            @if(Auth::user()->type=='admin')
+                                <div class="col-md-6">
+                                    <img width="80%" src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.jpg') }}" alt="">
+                                    <br>
+                                    <b>Ticket Number - </b>{{ $ticket->ticket_number }}
+                                </div>
+                            @else
+                                <div class="col-md-6">
+                                    <img width="80%" src="{{ asset('assets/tickets/P-'.$ticket->ticket_number.'.jpg') }}" alt="">
+                                    <br>
+                                    <b>Ticket Number - </b>{{ substr($ticket->ticket_number,0,-4).'****' }}
+                                </div>
+                            @endif
                         @endforeach
                         </div>
                     @endif
