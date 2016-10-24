@@ -159,7 +159,7 @@ class TicketController extends Controller
                                 </div>
                                 <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px; margin-left: 10px;background: black !important;border-radius: 8px !important;float: left !important;">
                                     <div style="display: block; font-size: 12px;">Para/ For : </div>
-                                    <div style="display: block; font-size: 20px;">'.$ticket->qty.' <span class="size-12">'. trans('text.person') .'</span> </div>
+                                    <div style="display: block; font-size: 20px;">'.$ticket->qty.' <span class="size-12">Persona/Person</span> </div>
                                 </div>
                                 <div style="clear: both;"></div>
                             </div>

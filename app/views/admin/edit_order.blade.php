@@ -196,6 +196,8 @@
                         @foreach($tickets as $ticket)
                             <div class="col-md-6">
                                 <img width="80%" src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.jpg') }}" alt="">
+                                <br>
+                                <b>Ticket Number - </b>{{ $ticket->ticket_number }}
                             </div>
                         @endforeach
                         </div>
