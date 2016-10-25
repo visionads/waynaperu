@@ -143,8 +143,6 @@ class TicketController extends Controller
                 ->toJpg()
                 ->save(public_path().'/assets/tickets/P-'.$tnm.'.jpg');
 
-            print_r($conv);
-            exit();
         }else{
             $conv->addPage(TicketController::ticket_html($ticket))
                 ->setImageOptions($options)
