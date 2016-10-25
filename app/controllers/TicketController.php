@@ -7,6 +7,7 @@
  * Time: 2:08 PM
  */
 use Illuminate\Support\Facades\DB;
+use Anam\PhantomMagick\Converter;
 
 
 class TicketController extends Controller
@@ -17,7 +18,6 @@ class TicketController extends Controller
      */
     public static function create($order_id,$ipn=false)
     {
-
 
         $ticket=Input::get('ticket');
         #$ticketNumber=Input::get('ticketNumber');
@@ -124,6 +124,7 @@ class TicketController extends Controller
 
     public static function html_to_jpg($ticket)
     {
+
         $bg_path = public_path()."/tickets/ticket_bg.jpg";
         $options = [
             'width' => 500,
@@ -131,7 +132,7 @@ class TicketController extends Controller
             'quality' => 90
         ];
 
-        $conv = new \Anam\PhantomMagick\Converter();
+        $conv = new  \Anam\PhantomMagick\Converter();
 
         if($ticket->type=='provider')
         {
@@ -141,6 +142,9 @@ class TicketController extends Controller
                 ->setImageOptions($options)
                 ->toJpg()
                 ->save(public_path().'/assets/tickets/P-'.$tnm.'.jpg');
+
+            print_r($conv);
+            exit();
         }else{
             $conv->addPage(TicketController::ticket_html($ticket))
                 ->setImageOptions($options)
@@ -165,6 +169,7 @@ class TicketController extends Controller
         $ticket_number = $ticket->ticket_number ? $ticket->ticket_number:'';
 
         $urll = asset("assets/images/ticket3.3.png");
+
         //print_r($urll);exit();
         $html = '<!DOCTYPE html>
             <html lang="en">
@@ -247,8 +252,7 @@ class TicketController extends Controller
             </body>
             </html>
         ';
-        //echo($html);
-//exit;
+
         return $html;
 
     }

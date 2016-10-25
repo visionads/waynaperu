@@ -404,7 +404,7 @@ return array(
         'Entrust'    => 'Zizaco\Entrust\EntrustFacade',
         'PDF' => 'Barryvdh\DomPDF\Facade',
         'Converter' => 'Anam\PhantomMagick\Facades\Converter',
-        'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+        'Recaptcha' => 'Greggilbert\Recaptcha\Facades\Recaptcha',
 	),
 
 
