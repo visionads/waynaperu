@@ -150,6 +150,20 @@ class TicketController extends Controller
     }
     public static function ticket_html($ticket)
     {
+        $first_name = $ticket->first_name ? $ticket->first_name:null;
+        $last_name = $ticket->last_name ? $ticket->last_name:'';
+        $validity = $ticket->validity ? $ticket->validity:'';
+        $qty = $ticket->qty ? $ticket->qty:'';
+        $provider_first_name = $ticket->provider_first_name ? $ticket->provider_first_name:'';
+        $provider_last_name = $ticket->provider_last_name ? $ticket->provider_last_name:'';
+        $provider_phone = $ticket->provider_phone ? $ticket->provider_phone:'';
+        $provider_email = $ticket->provider_email ? $ticket->provider_email:'';
+        $street = $ticket->street ? $ticket->street:'';
+        $city = $ticket->city ? $ticket->city:'';
+        $district = $ticket->district ? $ticket->district:'';
+        $ticket_title = $ticket->title ? $ticket->title:'';
+        $ticket_number = $ticket->ticket_number ? $ticket->ticket_number:'';
+
         $urll = asset("assets/images/ticket3.3.png");
         //print_r($urll);exit();
         $html = '<!DOCTYPE html>
@@ -172,17 +186,17 @@ class TicketController extends Controller
                             <div>
                                 <div style="width:250px; max-width: 300px; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
                                     <div style="display: block; font-size: 12px;">Nombre / Name : </div>
-                                    <div style="display: block; font-size: 20px;">'.$ticket->first_name.' '.$ticket->last_name.'</div>
+                                    <div style="display: block; font-size: 20px;">'.$first_name.' '.$last_name.'</div>
                                 </div>
                             </div>
                             <div>
                                 <div style="width:auto; height: auto; margin-top: 15px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;float: left !important;">
                                     <div style="display: block; font-size: 12px;">Vigente hasta/ Valid Until : </div>
-                                    <div style="display: block; font-size: 20px;">'. date("d.m.Y",strtotime("+".$ticket->validity." months")) .'</div>
+                                    <div style="display: block; font-size: 20px;">'. date("d.m.Y",strtotime("+".$validity." months")) .'</div>
                                 </div>
                                 <div style="width:auto; height: auto; margin-top: 15px; color: #fff; padding: 10px 20px; margin-left: 10px;background: black !important;border-radius: 8px !important;float: left !important;">
                                     <div style="display: block; font-size: 12px;">Para/ For : </div>
-                                    <div style="display: block; font-size: 20px;">'.$ticket->qty.' <span class="size-12">Persona/Person</span> </div>
+                                    <div style="display: block; font-size: 20px;">'.$qty.' <span style="font-size:12px;">Persona/Person</span> </div>
                                 </div>
                                 <div style="clear: both;"></div>
                             </div>
@@ -193,14 +207,14 @@ class TicketController extends Controller
                                         <tr><td style="font-size:12px;">Operador/ Operator :</td></tr>
                                         <tr>
                                             <td style=" padding-right:10px;">
-                                                <span style="font-size: 15px">'.$ticket->provider_first_name.' '.$ticket->provider_last_name.'</span><br>
-                                                <span style="font-size:20px;">'.$ticket->provider_phone.'</span><br>
-                                                <span style="font-size:12px;">'.$ticket->provider_email.'</span><br>
+                                                <span style="font-size: 15px">'.$provider_first_name.' '.$provider_last_name.'</span><br>
+                                                <span style="font-size:20px;">'.$provider_phone.'</span><br>
+                                                <span style="font-size:12px;">'.$provider_email.'</span><br>
                                             </td>
                                             <td style="border-left:1px solid #fff; padding-left:10px;">
-                                                <span style="font-size:16px;">'.$ticket->street.'</span><br>
-                                                <span style="font-size:16px;">'.$ticket->city.'</span><br>
-                                                <span style="font-size:16px;">'.$ticket->district.'</span>
+                                                <span style="font-size:16px;">'.$street.'</span><br>
+                                                <span style="font-size:16px;">'.$city.'</span><br>
+                                                <span style="font-size:16px;">'.$district.'</span>
                                             </td>
                                         </tr>
                                     </table>
@@ -214,7 +228,7 @@ class TicketController extends Controller
                                 <span style="width:74%; position: absolute; top: 92px; right:-10px; font-size: 15px; display: block; text-align: left; background:none; padding: 8px  0;  color:#fff;">'. trans('text.carry_your_ticket') .'</span>
                                 <span style="width:74%; position: absolute; top: 130px; right: -10px; font-size: 15px; display: block; text-align: left; background:none; padding: 8px  0; color:#fff;">'. trans('text.enjoy_every_moment') .'</span>
                             </div>
-                            <div style="border-radius: 8px !important; width:80%; height:10%; vertical-align:middle; position:absolute; top:80%; text-align:center; padding-left: 20px;border: 0px solid;">'.$ticket->title.'</div>
+                            <div style="border-radius: 8px !important; width:80%; height:10%; vertical-align:middle; position:absolute; top:80%; text-align:center; padding-left: 20px;border: 0px solid;">'.$ticket_title.'</div>
                         </div>
                         <div style="float: left; width: 187px; height: 100%; background:none; border-radius: 15px !important;position: relative !important;">
                             <img src="'. asset('assets/images/ticket-box-2.png') .'" width="99%;" style="padding-left:2px; border-radius:15px;">
@@ -223,7 +237,7 @@ class TicketController extends Controller
                                 '. trans('text.code') .' :
                             </div>
                             <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 35px; font-weight: bold; text-align: center">
-                                '.$ticket->ticket_number.'
+                                '.$ticket_number.'
                             </div>
                         </div>
                     </div>
