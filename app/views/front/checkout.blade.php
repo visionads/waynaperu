@@ -367,8 +367,8 @@
                                      console.log(success_url);
                                      location.href=success_url;*/
                                     var home_url = '{{ route("home") }}';
-                                    var success_url = home_url+'/agente-bcp/'+data.order_number;
-                                    console.log(success_url);
+                                    var success_url = home_url+'/order/success/'+data.order_number;
+//                                    console.log(success_url);
                                     location.href=success_url;
                                 }
                             },
