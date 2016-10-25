@@ -24,16 +24,16 @@
                 <img src="{{ asset('assets/images/email-temp-08.png') }}" style="height: 100%">
             </header>
             <section>
-                <div class="title-1 center padding-10-0">Thank you <span class="orange">Alberto Rojas !</span></div>
-                <div class=" padding-10-0">Confirmation number : <span class="orange">xhsdlkfjjfy08</span></div>
+                <div class="title-1 center padding-10-0">{{ trans('provider.thank_you') }} <span class="orange">Alberto Rojas !</span></div>
+                <div class=" padding-10-0">{{ trans('provider.confirmation_number') }} : <span class="orange">xhsdlkfjjfy08</span></div>
                 <div>
                     <table class="tbl-1" cellpadding="0" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Activity</th>
-                                <th>Location</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
+                                <th>{{ trans('provider.activity') }}</th>
+                                <th>{{ trans('provider.location') }}</th>
+                                <th>{{ trans('provider.quantity') }}</th>
+                                <th>{{ trans('provider.price') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,13 +92,13 @@
                 </div>
                 <div class="orange-bar">&nbsp;</div>
                 <div class="h-space">&nbsp;</div>
-                <div class="title-2 center">Questions ?</div>
+                <div class="title-2 center">{{ trans('provider.Questions') }} ?</div>
                 <div class="center"><img src="{{ asset('assets/images/email-temp-06.png') }}" height="100"></div>
                 <div class="size-20 center">
-                    If you have any questions shoot us a mail to <span class="blue">info@exploor.pe</span> and<br> we will get in touch with you as soon as possible.
+                    {{ trans('provider.If_have_q') }} <span class="blue">info@exploor.pe</span> and<br> {{ trans('provider.we_will_get') }}.
                 </div>
                 <div class="h-space">&nbsp;</div>
-                <div class="center size-20">You can also contact us 24/7 f/explore</div>
+                <div class="center size-20">{{ trans('provider.you_can_also') }} 24/7 f/explore</div>
                 <div class="center">
                     <table width="100%">
                         <tr>
@@ -112,6 +112,6 @@
                 </div>
             </section>
             <footer class="center">
-                <div>If you have not made this transaction please contact us under <span class="blue">info@exploor.pe</span><br>You received this mail from exploor (Waynaperu S.A.C) because you registered on <br> <span class="blue">www.exploor.pe</span> with this email address.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.</div>
+                <div>{{ trans('provider.if_you_have_not') }} <span class="blue">info@exploor.pe</span><br>{{ trans('provider.you_received') }} <br> <span class="blue">www.exploor.pe</span> {{ trans('provider.with_this') }}.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.</div>
             </footer>
         </div>

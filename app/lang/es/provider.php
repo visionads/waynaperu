@@ -119,4 +119,20 @@ return array(
     "go" => "Ir",
     "used" => "Usado",
     "ticket_number" => "Numero de ticket",
+
+    // For Email template_1
+    "thank_you" => "Gracias",
+    "confirmation_number" => "Número de confirmación",
+    "activity" => "Actividad",
+    "location" => "Ubicación",
+    "quantity" => "Cantidad",
+    "price" => "Precio",
+    "Questions" => "preguntas",
+    "if_have_q" => "nosotros si tiene alguna pregunta disparar un correo a",
+    "we_will_get" => "nos pondremos en contacto con usted tan pronto como sea posible",
+    "you_can_also" => "También puede ponerse en contacto con nosotros",
+    "if_you_have_not" => "Si usted no ha hecho esta transacción por favor póngase en contacto con nosotros bajo",
+    "you_received" => "Ha recibido este correo de explorar (Wayna Perú S.A.C) porque se ha inscrito en el",
+    "with_this" => "con esta dirección de correo electrónico",
+
 );

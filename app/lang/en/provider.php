@@ -119,9 +119,22 @@ return array(
     "go" => "Go",
     "used" => "Used",
     "ticket_number" => "Ticket Number",
-    "" => "",
-    "" => "",
-    "" => "",
-    "" => "",
+
+
+
+    // For Email template_1
+    "thank_you" => "Thank You",
+    "confirmation_number" => "Confirmation number",
+    "activity" => "Activity",
+    "location" => "Location",
+    "quantity" => "Quantity",
+    "price" => "Price",
+    "Questions" => "Questions",
+    "if_have_q" => "If you have any questions shoot us a mail to",
+    "we_will_get" => "we will get in touch with you as soon as possible",
+    "you_can_also" => "You can also contact us",
+    "if_you_have_not" => "If you have not made this transaction please contact us under",
+    "you_received" => "You received this mail from exploor (Waynaperu S.A.C) because you registered on",
+    "with_this" => "with this email address",
 
 );
