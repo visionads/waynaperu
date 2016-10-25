@@ -82,7 +82,7 @@ class TicketController extends Controller
             foreach ($data['tickets'] as $ticket)
             {
 
-                TicketController::html_to_jpg($ticket);
+//                TicketController::html_to_jpg($ticket);
                 
                 #dd($ticket);
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -93,6 +93,7 @@ class TicketController extends Controller
                 }
                 $ticket->type='provider';
                 $ticket->ticket_number=$randomString;
+
                 TicketController::html_to_jpg($ticket);
 
                 $ticket->type='client';
