@@ -146,22 +146,22 @@ Route::filter('hasPermissions', function ($route, $request, $userPermission = nu
     }
 });
 
-App::error(function (Exception $exception, $code) {
-    View::share('currentUser', Sentry::getUser());
-
-    $exceptionMessage = $exception->getMessage();
-    $message = !empty($exceptionMessage) ? $exceptionMessage : Lang::trans('usermanager::all.messages.error.403');
-
-    if(403 === $code) {
-        return Response::view(
-            Config::get('usermanager::views.error'),
-            array(
-                'message' => $message,
-                'code'=>$code,
-                'title'=>Lang::trans('usermanager::all.messages.error.403-title')
-            )
-        );
-    }
+//App::error(function (Exception $exception, $code) {
+//    View::share('currentUser', Sentry::getUser());
+//
+//    $exceptionMessage = $exception->getMessage();
+//    $message = !empty($exceptionMessage) ? $exceptionMessage : Lang::trans('usermanager::all.messages.error.403');
+//
+//    if(403 === $code) {
+//        return Response::view(
+//            Config::get('usermanager::views.error'),
+//            array(
+//                'message' => $message,
+//                'code'=>$code,
+//                'title'=>Lang::trans('usermanager::all.messages.error.403-title')
+//            )
+//        );
+//    }
 
 //    if(App::environment('production') || !Config::get('app.debug')) {
 //        switch ($code) {
@@ -196,4 +196,4 @@ App::error(function (Exception $exception, $code) {
 //                );
 //        }
 //    }
-});
+//});

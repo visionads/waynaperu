@@ -14,7 +14,7 @@ return [
     'action'=>'Action',
     'english'=>'English',
     'spanish'=>'Spanish',
-    'includes'=>'Include',
+    'includes'=>'Includes',
     'schedule_short'=>'Schedule Short',
     'duration'=>'Duration',
     'required'=>'Required',

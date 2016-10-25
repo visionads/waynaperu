@@ -57,6 +57,7 @@ class TicketController extends Controller
                       order_items.order_id,
                       users.first_name,
                       users.last_name,
+                      users.type,
                       users1.first_name as provider_first_name,
                       users1.last_name as provider_last_name,
                       users1.email as provider_email,
@@ -78,8 +79,12 @@ class TicketController extends Controller
                     GROUP BY order_items.id"));
             $data['tickets']=$x;
 
-            foreach ($data['tickets'] as $ticket) {
-//                dd($ticket);
+            foreach ($data['tickets'] as $ticket)
+            {
+
+//                TicketController::html_to_jpg($ticket);
+                
+                #dd($ticket);
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 $charactersLength = strlen($characters);
                 $randomString = '';
@@ -88,6 +93,7 @@ class TicketController extends Controller
                 }
                 $ticket->type='provider';
                 $ticket->ticket_number=$randomString;
+
                 TicketController::html_to_jpg($ticket);
 
                 $ticket->type='client';
@@ -103,8 +109,8 @@ class TicketController extends Controller
             TicketController::sendEmail($order_id);
             $o=Order::find($order_id);
             $o->status='SUCCESS';
-//            $o->save();
-//            dd($order);
+            #$o->save();
+            #dd($order);
             if(isset($ipn) && !empty($ipn))
             {
                 return true;
@@ -126,20 +132,20 @@ class TicketController extends Controller
         ];
 
         $conv = new \Anam\PhantomMagick\Converter();
+
         if($ticket->type=='provider')
         {
-            $tnm=$ticket->ticket_number;
+            $tnm= $ticket->ticket_number;
             $ticket->ticket_number= substr($ticket->ticket_number,0,-4).'****';
-        $conv->addPage(TicketController::ticket_html($ticket))
-            ->setImageOptions($options)
-            ->toJpg()
-            ->save(public_path().'/assets/tickets/P-'.$tnm.'.jpg');
+            $conv->addPage(TicketController::ticket_html($ticket))
+                ->setImageOptions($options)
+                ->toJpg()
+                ->save(public_path().'/assets/tickets/P-'.$tnm.'.jpg');
         }else{
             $conv->addPage(TicketController::ticket_html($ticket))
                 ->setImageOptions($options)
                 ->toJpg()
                 ->save(public_path().'/assets/tickets/'.$ticket->ticket_number.'.jpg');
-
         }
     }
     public static function ticket_html($ticket)
@@ -158,7 +164,7 @@ class TicketController extends Controller
             <meta name="description" content="Short explanation about this website">
             <!-- END META -->
             </head>
-            <body>
+            <body style="background-color: white;">
             <section style="width: 100%; height:auto;">
                 <div style="width: 866px; height:297px; padding: 30px; margin: auto; background: #e0e0e0; border-radius: 15px;">
                     <div style="width: 866px; height: 297px; background: url('.$urll.') no-repeat left top; margin: auto;">

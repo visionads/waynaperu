@@ -22,7 +22,7 @@ class LocationController extends BaseController {
 	}
 
 	public function save(){
-
+	    dd(Input::all());
 		//$price = array('pdf' => Input::get('pdf'), 'mail' => Input::get('mail'), 'gift' => Input::get('gift') );
 		//$price = json_encode($price);
 		$languages = Language::all();

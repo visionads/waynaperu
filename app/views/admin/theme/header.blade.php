@@ -22,6 +22,9 @@
 
     <!-- END STYLESHEETS -->
 
+    <script src="{{ asset('assets/admin/js/libs/jquery/jquery-1.11.2.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/libs/jquery/jquery-migrate-1.2.1.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/libs/bootstrap/bootstrap.min.js') }}"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script type="text/javascript" src="{{ asset('assets/admin/js/libs/utils/html5shiv.js?1403934957') }}"></script>

@@ -79,7 +79,8 @@ class ProductController extends BaseController {
 
 	{
 
-		// return Input::all();
+//	    echo '<pre>';print_r(Input::all());exit;
+//		 return Input::all();
 
 
 
