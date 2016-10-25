@@ -108,9 +108,9 @@
 
                             <input type="hidden" name="last_name" style="display:none;" >
                             <input type="hidden" name="first_name" style="display:none;" >
-                            <div class="form-group">
+                            {{--<div class="form-group">
                                 {{ Form::captcha(array('lang' => LaravelLocalization::getCurrentLocale())) }}
-                            </div>
+                            </div>--}}
                             <div class="text-center"><button type="submit" class="btn btn-success">{{ trans('text.register') }}</button></div>
                             <p>{{ trans('text.confirm_text') }}</p>
                             {{ Form::close() }}

@@ -65,7 +65,7 @@
         });
     </script>
     {{-- Slider End--}}
-    <title>Wayna - New experiences for you!</title>
+    <title>exploor.pe</title>
 </head>
 <body>
 <!-- Google Tag Manager -->

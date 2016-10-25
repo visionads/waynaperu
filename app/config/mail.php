@@ -55,7 +55,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'info@waynaperu.com', 'name' => 'Wayna'),
+	'from' => array('address' => 'info@exploor.pe', 'name' => 'exploor.pe'),
 
 	/*
 	|--------------------------------------------------------------------------

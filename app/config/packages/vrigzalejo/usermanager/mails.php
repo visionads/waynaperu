@@ -5,13 +5,13 @@ return array(
     /**
      * contact name
      */
-    'contact' => 'Wayna',
+    'contact' => 'Exploor',
 
     /**
      * Admin mail
      * use for mails
      */
-    'email' => 'info@wayna.com.pe',
+    'email' => 'info@exploor.pe',
 
     /**
      * View for user activation email
