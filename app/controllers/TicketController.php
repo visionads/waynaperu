@@ -224,9 +224,9 @@ class TicketController extends Controller
                         <div style="float: left; width: 257px; height: 100%; position: relative !important;">
                             <div style="height:66%; background:none; vertical-align:middle; position:absolute; top:12%; border:0px solid;">
                                 <img src="'. asset('assets/images/ticket-box.png') .'" width="80%;" style="padding-left: 20px;">
-                                <span style="width:74%; position: absolute; top: 55px; right: -10px; font-size: 15px; display: block; text-align: left; background:none; padding: 8px 0; color:#fff;">'. trans('text.contact_your_operator') .'</span>
-                                <span style="width:74%; position: absolute; top: 92px; right:-10px; font-size: 15px; display: block; text-align: left; background:none; padding: 8px  0;  color:#fff;">'. trans('text.carry_your_ticket') .'</span>
-                                <span style="width:74%; position: absolute; top: 130px; right: -10px; font-size: 15px; display: block; text-align: left; background:none; padding: 8px  0; color:#fff;">'. trans('text.enjoy_every_moment') .'</span>
+                                <span style="width:74%; position: absolute; top: 55px; right: -10px; font-size: 12px; display: block; text-align: left; background:none; padding: 8px 0; color:#fff;">'. trans('text.contact_your_operator') .'</span>
+                                <span style="width:74%; position: absolute; top: 92px; right:-10px; font-size: 12px; display: block; text-align: left; background:none; padding: 8px  0;  color:#fff;">'. trans('text.carry_your_ticket') .'</span>
+                                <span style="width:74%; position: absolute; top: 130px; right: -10px; font-size: 12px; display: block; text-align: left; background:none; padding: 8px  0; color:#fff;">'. trans('text.enjoy_every_moment') .'</span>
                             </div>
                             <div style="border-radius: 8px !important; width:80%; height:10%; vertical-align:middle; position:absolute; top:80%; text-align:center; padding-left: 20px;border: 0px solid;">'.$ticket_title.'</div>
                         </div>
