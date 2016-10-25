@@ -60,11 +60,35 @@
                 </div>
                 <div class="orange-bar">&nbsp;</div>
                 <div class="center">
-                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-01.png') }}" width="100%"></div>
+                    {{--<div class="box-1"><img src="{{ asset('assets/images/email-temp-01.png') }}" width="100%"></div>
                     <div class="box-1"><img src="{{ asset('assets/images/email-temp-02.png') }}" width="100%"></div>
                     <div class="box-1"><img src="{{ asset('assets/images/email-temp-03.png') }}" width="100%"></div>
                     <div class="box-1"><img src="{{ asset('assets/images/email-temp-04.png') }}" width="100%"></div>
-                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-05.png') }}" width="100%"></div>
+                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-05.png') }}" width="100%"></div>--}}
+                    <table width="100%" style="font-family: Arial; margin-bottom: 20px;">
+                        <tr style="text-align: center">
+                            <td width="20%">
+                                <img src="{{ asset('assets/images/email-temp-01.1.png') }}" width="100%">
+                                <p style="font-size: 14px;">Please visit an agency<br> or actual BPC bank<br> counter</p>
+                            </td>
+                            <td width="20%">
+                                <img src="{{ asset('assets/images/email-temp-02.1.png') }}" width="100%">
+                                <p style="font-size: 14px;">Transfer the <br> Amount of S/.<span style="color:deeppink">XX.XX</span><br>to : <strong>193-2298769-0-86</strong> </p>
+                            </td>
+                            <td width="20%">
+                                <img src="{{ asset('assets/images/email-temp-03.1.png') }}" width="100%">
+                                <p style="font-size: 14px;">Send a photo<br>of the voucher to<br><span style="color:dodgerblue;">pago@exploor.pe</span> </p>
+                            </td>
+                            <td width="20%">
+                                <img src="{{ asset('assets/images/email-temp-04.1.png') }}" width="100%">
+                                <p style="font-size: 14px;">Receive your<br>Ticket </p>
+                            </td>
+                            <td width="20%">
+                                <img src="{{ asset('assets/images/email-temp-05.1.png') }}" width="100%">
+                                <p style="font-size: 14px;">Enjoy the moment or give an unforgettable gift to someone else</p>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="orange-bar">&nbsp;</div>
                 <div class="h-space">&nbsp;</div>
@@ -75,7 +99,17 @@
                 </div>
                 <div class="h-space">&nbsp;</div>
                 <div class="center size-20">You can also contact us 24/7 f/explore</div>
-                <div class="center"><img src="{{ asset('assets/images/email-temp-07.png') }}" height="90"></div>
+                <div class="center">
+                    <table width="100%">
+                        <tr>
+                            <td style="text-align: center;">
+                                <a href="#"><img src="{{ asset('assets/images/social-1.png') }}" style="height: 4vw"></a>
+                                <a href="#"><img src="{{ asset('assets/images/social-2.png') }}" style="height: 4vw"></a>
+                                <a href="#"><img src="{{ asset('assets/images/social-3.png') }}" style="height: 4vw"></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </section>
             <footer class="center">
                 <div>If you have not made this transaction please contact us under <span class="blue">info@exploor.pe</span><br>You received this mail from exploor (Waynaperu S.A.C) because you registered on <br> <span class="blue">www.exploor.pe</span> with this email address.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.</div>
