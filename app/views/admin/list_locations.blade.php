@@ -108,7 +108,7 @@
                                                                 {{--==*****==--}}
                                                                 <div class="form-group">
                                                                     <input type="text" value="@if($language->code=='en') Includes @elseif($language->code=='es') Incluido @endif" name="include[{{ $language->code }}]" placeholder="{{ trans('text.include') }}" class="form-control">
-                                                                    <input type="text" name="includes_value[{{ $language->code }}]" placeholder="value" class="form-control">
+                                                                    <input type="text" name="include_value[{{ $language->code }}]" placeholder="value" class="form-control">
 
                                                                     <input type="text" value="@if($language->code=='en') Schedule @elseif($language->code=='es') Horario @endif" name="schedule[{{ $language->code }}]" placeholder="{{ trans('text.schedule') }}" class="form-control">
                                                                     <input type="text" name="schedule_value[{{ $language->code }}]" placeholder="value" class="form-control">

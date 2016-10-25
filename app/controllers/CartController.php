@@ -411,8 +411,8 @@ class CartController extends BaseController {
             /*Mail::send('emails.order_details', $data, function($message)
             {
                 $message->subject('A new Order has been placed');
-                $message->from('us@example.com', 'Expoor');
-                $message->to('devdhaka404@gmail.com')->cc('devdhaka404@gmail.com');
+                $message->from('us@example.com', 'expoor.pe');
+                $message->to('info@exploor.pe')->cc('info@exploor.pe');
                 #$message->attach($pathToFile);
             });*/
 
@@ -442,7 +442,7 @@ class CartController extends BaseController {
 					$phone = Session::get('guest.phone')[0];
 				}
 
-				CartController::sentOrderConfirmMail($order->id);
+				//CartController::sentOrderConfirmMail($order->id);
 				require public_path().'/culqi.php';
 				Culqi::$codigoComercio = "9preKzsz6VbY";
 				Culqi::$llaveSecreta = "QJg/85cKQI/EXDSBlr+2j/l/TSlstk59GFUZwdIBciA=";
@@ -515,7 +515,7 @@ class CartController extends BaseController {
 //                Mail::send('emails.order_details', $data, function($message) use ($emails,$email_client,$pathToFile,$data)
 //                {
 //                    $message->subject('Order details for '.$data["order"]->order_number.' no of order from Exploor');
-//                    $message->from('devdhaka404@gmail.com', 'Exploor');
+//                    $message->from('info@exploor.pe', 'exploor.pe');
 //
 //                    $message->to($email_client)->bcc($emails);
 //
@@ -524,7 +524,7 @@ class CartController extends BaseController {
                 Mail::send('emails.payment_instruction', $data, function($message) use($emails,$email_client)
                 {
                     $message->subject('Your Order has been placed');
-                    $message->from('us@example.com', 'Expoor');
+                    $message->from('us@example.com', 'expoor.pe');
                     $message->to($email_client)->cc($emails);
                     #$message->attach($pathToFile);
                 });
@@ -655,12 +655,12 @@ class CartController extends BaseController {
 					$params = array('order_number'=>$order_number,'email'=>$email, 'name'=>$name,'price'=>$price, 'orders' => $orders);
 
 					Mail::send('emails.agentebcp', $params, function($message) use ($email, $name) {
-						$message->from('ventas@waynaperu.com', 'Ventas Wayna');
+						$message->from('info@exploor.pe', 'exploor.pe');
 						$message->to($email, $name)->subject(trans('text.culqi_subject'));
 					});
 
 					Mail::send('emails.culqi', $params, function($message) use ($email, $name) {
-						$message->from('ventas@waynaperu.com', 'Ventas Wayna');
+						$message->from('info@exploor.pe', 'exploor.pe');
 						$message->to('info@waynaperu.com', 'Info Wayna')->subject(trans('text.culqi_subject'));
 					});
 
@@ -702,17 +702,17 @@ class CartController extends BaseController {
 		$name = $first_name.' '.$last_name;
 		$params = array('order_number'=>$order_number,'email'=>$email, 'name'=>$name,'price'=>$price, 'orders' => $orders);
 		Mail::send('emails.agentebcp', $params, function($message) use ($email, $name) {
-			$message->from('ventas@waynaperu.com', 'Ventas Wayna');
+			$message->from('info@exploor.pe', 'exploor.pe');
 			$message->to($email, $name)->subject(trans('text.bcp_subject'));
 		});
 
 		Mail::send('emails.culqi', $params, function($message) use ($email, $name) {
-			$message->from('ventas@waynaperu.com', 'Ventas Wayna');
+			$message->from('info@exploor.pe', 'exploor.pe');
 			$message->to('info@waynaperu.com', 'Info Wayna')->subject(trans('text.bcp_subject'));
-		});		
+		});
 
 		Cart::destroy();
-		
+
 		return Redirect::route('order_success', array($order_number));
 	}
 
@@ -771,7 +771,7 @@ class CartController extends BaseController {
 			    ->select('*', 'product_content.title as product_title', 'category_content.title as category_name')
 				->join('products', 'product_content.product_id', '=', 'products.id')
 	            ->join('categories', 'products.cat_id', '=', 'categories.id')
-	            ->join('category_content', 'categories.id', '=', 'category_content.cat_id')				
+	            ->join('category_content', 'categories.id', '=', 'category_content.cat_id')
 				->join('product_images', 'product_images.product_id', '=', 'products.id')
 				->where('category_content.lang_id', $this->url_language_id)
 				->where('product_content.lang_id', $this->url_language_id)
@@ -815,7 +815,7 @@ class CartController extends BaseController {
         /*Mail::send('emails.order_details', $data, function($message) use ($emails,$email_client,$pathToFile,$data)
         {
             $message->subject('Order details for '.$data["order"]->order_number.' no of order from Exploor');
-            $message->from('devdhaka404@gmail.com', 'Exploor');
+            $message->from('info@exploor.pe', 'exploor.pe');
 
             $message->to($email_client)->bcc($emails);
 
@@ -838,7 +838,7 @@ class CartController extends BaseController {
              Mail::send('emails.property_details', $item, function($message) use ($item)
             {
                 $message->subject('New product sold');
-                $message->from('devdhaka404@gmail.com', 'Exploor');
+                $message->from('info@exploor.pe', 'exploor.pe');
                 $message->to($item['email']);
             });
         }*/

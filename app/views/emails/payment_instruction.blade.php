@@ -44,7 +44,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php $x=1; ?>
+                <?php $x=1;
+                $total=0;
+                ?>
                 @foreach($order_items as $order_item)
                 <tr>
                     <td style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">{{ $order_item->title }}</td>
@@ -53,16 +55,41 @@
                     <td style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">S/.{{ $order_item->mail_price+$order_item->pdf_price }}</td>
                 </tr>
                 </tbody>
+                <?php $total+= $order_item->mail_price+$order_item->pdf_price; ?>
                 @endforeach
             </table>
         </div>
         <div style="width: 100%; height: 20px; background: orange;">&nbsp;</div>
         <div style="text-align: center;">
-            <div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-01.png') }}" width="100%"></div>
-            <div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-02.png') }}" width="100%"></div>
-            <div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-03.png') }}" width="100%"></div>
-            <div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-04.png') }}" width="100%"></div>
-            <div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-05.png') }}" width="100%"></div>
+            {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-01.png') }}" width="100%"></div>--}}
+            {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-02.png') }}" width="100%"></div>--}}
+            {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-03.png') }}" width="100%"></div>--}}
+            {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-04.png') }}" width="100%"></div>--}}
+            {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-05.png') }}" width="100%"></div>--}}
+            <table width="100%" style="font-family: Arial; margin-bottom: 20px;">
+                <tr style="text-align: center">
+                    <td width="20%">
+                        <img src="{{ $message->embed('assets/images/email-temp-01.1.png') }}" width="100%">
+                        <p style="font-size: 14px;">Please visit an agency<br> or actual BPC bank<br> counter</p>
+                    </td>
+                    <td width="20%">
+                        <img src="{{ $message->embed('assets/images/email-temp-02.1.png') }}" width="100%">
+                        <p style="font-size: 14px;">Transfer the <br> Amount of S/.<span style="color:deeppink">{{ $total }}</span><br>to : <strong>193-2298769-0-86</strong> </p>
+                    </td>
+                    <td width="20%">
+                        <img src="{{ $message->embed('assets/images/email-temp-03.1.png') }}" width="100%">
+                        <p style="font-size: 14px;">Send a photo<br>of the voucher to<br><span style="color:dodgerblue;">pago@exploor.pe</span> </p>
+                    </td>
+                    <td width="20%">
+                        <img src="{{ $message->embed('assets/images/email-temp-04.1.png') }}" width="100%">
+                        <p style="font-size: 14px;">Receive your<br>Ticket </p>
+                    </td>
+                    <td width="20%">
+                        <img src="{{ $message->embed('assets/images/email-temp-05.1.png') }}" width="100%">
+                        <p style="font-size: 14px;">Enjoy the moment or give an unforgettable gift to someone else</p>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div style="width: 100%; height: 20px; background: orange;">&nbsp;</div>
         <div style="width: 100%; height: 20px;">&nbsp;</div>
@@ -73,7 +100,17 @@
         </div>
         <div style="width: 100%; height: 20px;">&nbsp;</div>
         <div style="text-align: center; font-size: 20px !important;">You can also contact us 24/7 f/explore</div>
-        <div style="text-align: center;"><img src="{{ $message->embed('assets/images/email-temp-07.png') }}" height="90"></div>
+        <div style="text-align: center;">
+            <table width="100%">
+            <tr>
+                <td style="text-align: center;">
+                    <a href="#"><img src="{{ $message->embed('assets/images/social-1.png') }}" style="height: 4vw"></a>
+                    <a href="#"><img src="{{ $message->embed('assets/images/social-2.png') }}" style="height: 4vw"></a>
+                    <a href="#"><img src="{{ $message->embed('assets/images/social-3.png') }}" style="height: 4vw"></a>
+                </td>
+            </tr>
+            </table>
+        </div>
     </section>
     <footer style="text-align: center;width: 100%; height: auto; background: orange; padding: 10px 0;">
         <div>If you have not made this transaction please contact us under <span style="color: #0f71ba;">info@exploor.pe</span><br>You received this mail from exploor (Waynaperu S.A.C) because you registered on <br> <span style="color: #0f71ba;">www.exploor.pe</span> with this email address.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.</div>

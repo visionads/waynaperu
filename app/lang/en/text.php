@@ -245,7 +245,7 @@ return array(
     "orders" => 'Orders',
     "orders" => 'Orders',
     "order_details" => 'Order Details',
-    "include"=>"Include",
+    "include"=>"Includes",
     "schedule"=>"Schedule",
     "duration"=>"Duration",
     "requisites"=>"Requisites",
