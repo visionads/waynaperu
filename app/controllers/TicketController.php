@@ -144,6 +144,8 @@ class TicketController extends Controller
     }
     public static function ticket_html($ticket)
     {
+        $urll = asset("assets/images/ticket3.3.png");
+        //print_r($urll);exit();
         $html = '<!DOCTYPE html>
             <html lang="en">
             <head>
@@ -159,7 +161,7 @@ class TicketController extends Controller
             <body>
             <section style="width: 100%; height:auto;">
                 <div style="width: 866px; height:297px; padding: 30px; margin: auto; background: #e0e0e0; border-radius: 15px;">
-                    <div style="width: 866px; height: 297px; background: url("'. asset('assets/images/ticket3.3.png') .'") no-repeat left top; margin: auto;">
+                    <div style="width: 866px; height: 297px; background: url('.$urll.') no-repeat left top; margin: auto;">
                         <div style="float: left; width: 420px; height: 100%; border-radius: 15px !important;">
                             <div>
                                 <div style="width:250px; max-width: 300px; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
@@ -168,52 +170,53 @@ class TicketController extends Controller
                                 </div>
                             </div>
                             <div>
-                                <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;float: left !important;">
+                                <div style="width:auto; height: auto; margin-top: 15px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;float: left !important;">
                                     <div style="display: block; font-size: 12px;">Vigente hasta/ Valid Until : </div>
                                     <div style="display: block; font-size: 20px;">'. date("d.m.Y",strtotime("+".$ticket->validity." months")) .'</div>
                                 </div>
-                                <div style="width:auto; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px; margin-left: 10px;background: black !important;border-radius: 8px !important;float: left !important;">
+                                <div style="width:auto; height: auto; margin-top: 15px; color: #fff; padding: 10px 20px; margin-left: 10px;background: black !important;border-radius: 8px !important;float: left !important;">
                                     <div style="display: block; font-size: 12px;">Para/ For : </div>
                                     <div style="display: block; font-size: 20px;">'.$ticket->qty.' <span class="size-12">Persona/Person</span> </div>
                                 </div>
                                 <div style="clear: both;"></div>
                             </div>
                             <div>
-                                <div style="width:350px; max-width: 400px; height: auto; margin-top: 20px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
-                                    <div style="display: block; font-size: 12px;">Operador/ Operator : </div>
-                                    <div style="display: block; font-size: 20px;">
-                                        <div style="display: inline-block !important;width: 48% !important;border-right: 1px solid #909090;padding-right:1% !important;">
-                                            <div style="display: block !important;font-size: 15px">'.$ticket->provider_first_name.' '.$ticket->provider_last_name.'</div>
-                                            <div style="display: block !important;font-size: 20px !important;">'.$ticket->provider_phone.'</div>
-                                            <div style="display: block !important;font-size: 12px !important;">'.$ticket->provider_email.'</div>
-                                        </div>
-                                        <div style="background: #909090 !important; display: inline-block !important;width: 48% !important;padding-left:1% !important;position: relative !important;">
-                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -50px;">'.$ticket->street.'</div>
-                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">'.$ticket->city.'</div>
-                                            <div style="display: block !important;font-size: 16px !important;position:absolute; margin-top: -30px;">'.$ticket->district.'</div>
-                                        </div>
-                                    </div>
+                                <div style="width:350px; max-width: 400px; height: auto; margin-top: 15px; color: #fff; padding: 10px 20px;background: black !important;border-radius: 0 8px 8px 0 !important;">
+
+                                    <table>
+                                        <tr><td style="font-size:12px;">Operador/ Operator :</td></tr>
+                                        <tr>
+                                            <td style=" padding-right:10px;">
+                                                <span style="font-size: 15px">'.$ticket->provider_first_name.' '.$ticket->provider_last_name.'</span><br>
+                                                <span style="font-size:20px;">'.$ticket->provider_phone.'</span><br>
+                                                <span style="font-size:12px;">'.$ticket->provider_email.'</span><br>
+                                            </td>
+                                            <td style="border-left:1px solid #fff; padding-left:10px;">
+                                                <span style="font-size:16px;">'.$ticket->street.'</span><br>
+                                                <span style="font-size:16px;">'.$ticket->city.'</span><br>
+                                                <span style="font-size:16px;">'.$ticket->district.'</span>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                        <div style="float: left; width: 257px; height: 100%; border-radius: 15px !important;position: relative !important;">
-                            <div style="border-radius: 8px !important;" style="width:90%; height:66%; background:#f7931d; vertical-align:middle; position:absolute; top:17%;">
-                                <img src="'. asset('assets/images/ticket-box.png') .'" width="100%;">
-                                <span style="width:74%; position: absolute; top: 70px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.dont_forget') .' :</span>
-                                <span style="width:74%; position: absolute; top: 70px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.contact_your_operator') .'</span>
-                                <span style="width:74%; position: absolute; top: 110px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.carry_your_ticket') .'</span>
-                                <span style="width:74%; position: absolute; top: 150px; right: 0; font-size: 15px; display: block; text-align: left; background:#f7931d; padding: 8px 0; color:#fff;">'. trans('text.enjoy_every_moment') .'</span>
+                        <div style="float: left; width: 257px; height: 100%; position: relative !important;">
+                            <div style="height:66%; background:none; vertical-align:middle; position:absolute; top:12%; border:0px solid;">
+                                <img src="'. asset('assets/images/ticket-box.png') .'" width="80%;" style="padding-left: 20px;">
+                                <span style="width:74%; position: absolute; top: 55px; right: -10px; font-size: 15px; display: block; text-align: left; background:none; padding: 8px 0; color:#fff;">'. trans('text.contact_your_operator') .'</span>
+                                <span style="width:74%; position: absolute; top: 92px; right:-10px; font-size: 15px; display: block; text-align: left; background:none; padding: 8px  0;  color:#fff;">'. trans('text.carry_your_ticket') .'</span>
+                                <span style="width:74%; position: absolute; top: 130px; right: -10px; font-size: 15px; display: block; text-align: left; background:none; padding: 8px  0; color:#fff;">'. trans('text.enjoy_every_moment') .'</span>
                             </div>
-                            <span>'.$ticket->title.'</span>
-            
+                            <div style="border-radius: 8px !important; width:80%; height:10%; vertical-align:middle; position:absolute; top:80%; text-align:center; padding-left: 20px;border: 0px solid;">'.$ticket->title.'</div>
                         </div>
                         <div style="float: left; width: 187px; height: 100%; background:none; border-radius: 15px !important;position: relative !important;">
-                            <img src="'. asset('assets/images/ticket-box-2.png') .'" width="99%;" class="round-1">
+                            <img src="'. asset('assets/images/ticket-box-2.png') .'" width="99%;" style="padding-left:2px; border-radius:15px;">
                             <div style="width: 50px; height: 96%; border: 0px solid #ff2233; position: absolute; top: 4px; left: 65px; background: white;"></div>
                             <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 110px; left: 0px; bottom: 56px; border: 0px solid; font-size: 15px; background: #fff; font-weight: bold;">
                                 '. trans('text.code') .' :
                             </div>
-                            <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 50px; font-weight: bold; text-align: center">
+                            <div style="-ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform: rotate(-90deg); position: absolute; width: 280px; left: -50px; top: 125px; border: 0px solid; font-size: 35px; font-weight: bold; text-align: center">
                                 '.$ticket->ticket_number.'
                             </div>
                         </div>
@@ -224,7 +227,8 @@ class TicketController extends Controller
             </body>
             </html>
         ';
-
+        //echo($html);
+//exit;
         return $html;
 
     }

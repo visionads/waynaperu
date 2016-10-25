@@ -92,6 +92,9 @@ Route::group(array('before' => 'adminFilter'), function () {
 	Route::get('email_template_1',function(){
 		return View::make('admin.email_template_1');
 	});
+	Route::get('email_template_sign',function(){
+		return View::make('admin.email_template_sign');
+	});
 
 
     Route::controller('filemanager', 'FilemanagerLaravelController');
