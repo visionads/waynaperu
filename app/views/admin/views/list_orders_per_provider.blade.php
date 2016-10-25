@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <div class="panel-body">
     <p>
-        <a class="link btn btn-warning" href="{{ URL::to('profile/'.$provider_id) }}"><i class="fa fa-arrow-left"></i> Back</a>
+        <a class="link btn btn-warning" href="{{ URL::to('profile/'.$provider_id) }}"><i class="fa fa-arrow-left"></i> {{ trans('provider.back') }}</a>
 
-        <b> Providers Order List</b>
+        <b> {{ trans('provider.providers_order_list') }}</b>
     </p>
 
     <div class="card">
@@ -15,12 +15,12 @@
                 <thead>
                 <tr>
 
-                    <th class="hidden-xs">Order ID</th>
-                    <th class="hidden-xs">Order Number</th>
-                    <th class="hidden-xs">Order Status</th>
-                    <th class="hidden-xs">Order Price</th>
-                    <th class="hidden-xs">Order Qty</th>
-                    <th> Action </th>
+                    <th class="hidden-xs">{{ trans('provider.order_ID') }}</th>
+                    <th class="hidden-xs">{{ trans('provider.order_number') }}</th>
+                    <th class="hidden-xs">{{ trans('provider.order_status') }}</th>
+                    <th class="hidden-xs">{{ trans('provider.order_price') }}</th>
+                    <th class="hidden-xs">{{ trans('provider.order_qty') }}</th>
+                    <th> {{ trans('provider.action') }} </th>
 
                 </tr>
                 </thead>
@@ -46,7 +46,7 @@
                             <td>{{ isset($order->qty)?$order->qty:null }}</td>
                             <td>
                                 <a class="btn btn-info" href="{{ URL::to('/') }}/admin/order/<?php echo $order->id; ?>">
-                                    <b>Details </b>
+                                    <b>{{ trans('provider.details') }} </b>
                                 </a>
                             </td>
                         </tr>
@@ -56,7 +56,7 @@
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>
-                            <div>No Order found</div>
+                            <div>{{ trans('provider.no_order_found') }}</div>
                         </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>

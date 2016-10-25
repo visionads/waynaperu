@@ -5,7 +5,7 @@
             <div class="card-body">
     <!-- page start-->
                 <h3>
-                    Activities of {{ $user->first_name.' '.$user->last_name }}
+                    {{ trans('provider.activities_of') }} {{ $user->first_name.' '.$user->last_name }}
                 </h3>
 
                     {{-------------- Filter :Ends -------------------------------------------}}
@@ -13,13 +13,13 @@
                         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                             <thead>
                             <tr>
-                                <th> ID </th>
-                                <th> Action Name </th>
-                                <th> Action URL </th>
-                                <th> Action Details </th>
-                                <th> Action Table</th>
-                                <th> Date </th>
-                                <th> Modified BY </th>
+                                <th> {{ trans('provider.id') }} </th>
+                                <th> {{ trans('provider.action_name') }} </th>
+                                <th> {{ trans('provider.action_URL') }} </th>
+                                <th> {{ trans('provider.action_details') }} </th>
+                                <th> {{ trans('provider.action_table') }}</th>
+                                <th> {{ trans('provider.date') }} </th>
+                                <th> {{ trans('provider.modified_by') }} </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -41,7 +41,7 @@
                         </table>
                     </div>
                     <span class="pull-right">{{ $activities->links() }}</span>
-                <a href="{{ url('profile/'.$user->id) }}" class="btn btn-warning">Back</a>
+                <a href="{{ url('profile/'.$user->id) }}" class="btn btn-warning">{{ trans('provider.back') }}</a>
             </div>
         </div>
     </div>

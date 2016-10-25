@@ -4,9 +4,9 @@
 
     <p>
         @if(Auth::user()->type=='provider')
-            <a class="link btn btn-warning" href="{{ URL::to('orders/provider/'.Auth::id()) }}"><i class="fa fa-arrow-left"></i> Back to Order List</a>
+            <a class="link btn btn-warning" href="{{ URL::to('orders/provider/'.Auth::id()) }}"><i class="fa fa-arrow-left"></i> {{ trans('provider.back_to_order_list') }}</a>
         @else
-            <a class="link btn btn-warning" href="{{ URL::to('admin/orders') }}"><i class="fa fa-arrow-left"></i> Back to Order List</a>
+            <a class="link btn btn-warning" href="{{ URL::to('admin/orders') }}"><i class="fa fa-arrow-left"></i> {{ trans('provider.back_to_order_list') }}</a>
         @endif
     </p>
 
@@ -16,10 +16,10 @@
         <div class="card-body">
             <div class="col-md-6 col-lg-6 col-sm-12">
                 <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">Order</legend>
+                    <legend class="scheduler-border">{{ trans('provider.order') }}</legend>
                     {{ Form::open(array('route' => 'update_order','class' => 'form-horizontal')) }}
                     <div class="form-group">
-                        <label  class="col-sm-12 col-md-4 control-label">Order Number:</label>
+                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.order_number') }}:</label>
                         <div class="col-sm-12 col-md-8">
                             <strong style="line-height:42px;">
                                 {{ $order->order_number }}
@@ -27,19 +27,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="status" class="col-sm-12 col-md-4 control-label">Order Status:</label>
+                        <label for="status" class="col-sm-12 col-md-4 control-label">{{ trans('provider.order_status') }}:</label>
                         <div class="col-sm-12 col-md-8">
                             {{Form::select('status', array('PENDING' => 'Pending', 'SUCCESS' => 'Success', 'SHIPPED' => 'Shipped'), $order->status, ['class' => 'form-control'])}}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label  class="col-sm-12 col-md-4 control-label">Total Qty:</label>
+                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.total_qty') }}:</label>
                         <div class="col-sm-12 col-md-8">
                             <strong style="line-height:42px;">{{ isset($order->qty)?$order->qty:null }}</strong>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label  class="col-sm-12 col-md-4 control-label">Total Price:</label>
+                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.total_price') }}:</label>
                         <div class="col-sm-12 col-md-8">
                             <strong style="line-height:42px;">s./ {{number_format($order->price,2)}}</strong>
                         </div>
@@ -55,15 +55,15 @@
             </div>
             <div class="col-md-6 col-lg-6 col-sm-12">
                 <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">Clients Info</legend>
+                    <legend class="scheduler-border">{{ trans('provider.clients_info') }}</legend>
                     @if($order->user_id == NULL)
-                        <p>This Order is by guest user and You can get his details on "Order Items" section.</p>
+                        <p>{{ trans('provider.this_order_is_by_guest') }}</p>
                     @else
                         <?php
                             $user = getUserInfo($order->user_id);
                         ?>
                         <div class="form-group">
-                            <label  class="col-sm-12 col-md-4 control-label">Name:</label>
+                            <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.name') }}:</label>
                             <div class="col-sm-12 col-md-8">
                                 @if($user->first_name != '' || $user->last_name != '' )
                                     <strong style="line-height:42px;">
@@ -71,7 +71,7 @@
                                     </strong>
                                 @else
                                     <strong style="line-height:42px;">
-                                        User didn't add his Name
+                                        {{ trans('provider.user_has_no_name') }}
                                     </strong>
                                 @endif
                             </div>
@@ -80,7 +80,7 @@
                         @if(Auth::user()->type=='admin')
                             <div class="form-group">
                                 <label  class="col-sm-12 col-md-4 control-label">
-                                    Email:
+                                    {{ trans('provider.email') }}:
                                 </label>
                                 <div class="col-sm-12 col-md-8">
                                     <strong style="line-height:42px;">
@@ -90,12 +90,12 @@
                             </div>
                             <div style="clear:both"></div>
                             <div class="form-group">
-                                <label  class="col-sm-12 col-md-4 control-label">Address:</label>
+                                <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.address') }}:</label>
                                 <div class="col-sm-12 col-md-8">
                                     @if($user->direction != '')
                                         <strong >#{{ $user->flat }}, {{ $user->direction }}<br/> {{ $user->city }}, {{ $user->district }}<br/>{{ $user->province }} </strong>
                                     @else
-                                        <strong style="line-height:42px;">User Didn't add his address. </strong>
+                                        <strong style="line-height:42px;">{{ trans('provider.user_has_no_address') }} </strong>
                                     @endif
                                 </div>
                             </div>
@@ -105,21 +105,21 @@
             </div>
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">Order Items</legend>
+                    <legend class="scheduler-border">{{ trans('provider.order_items') }}</legend>
 
                     <table  class="table table-striped table-hover" id="sample-table-2">
                         <thead>
                             <tr>
-                                <th> Product Name </th>
-                                <th> Adult Qty </th>
-                                <th> Adult Price </th>
-                                <th> Child Qty </th>
-                                <th> Child Price </th>
-                                <th> Gift Qty </th>
-                                <th> Gift Price </th>
-                                <th> Created At </th>
-                                <th> Provider's INFO </th>
-                                <th> Use Product</th>
+                                <th> {{ trans('provider.product_name') }} </th>
+                                <th> {{ trans('provider.adult_qty') }} </th>
+                                <th> {{ trans('provider.adult_price') }} </th>
+                                <th> {{ trans('provider.child_qty') }} </th>
+                                <th> {{ trans('provider.child_price') }} </th>
+                                <th> {{ trans('provider.gift_qty') }} </th>
+                                <th> {{ trans('provider.gift_price') }} </th>
+                                <th> {{ trans('provider.created_at') }} </th>
+                                <th> {{ trans('provider.provider_info') }} </th>
+                                <th> {{ trans('provider.use_product') }}</th>
                             </tr>
 
                         </thead>
@@ -172,16 +172,16 @@
                                 </td>
                                 <td>
                                     @if($item->status=='used')
-                                        Used
+                                        {{ trans('provider.used') }}
 
                                     @elseif(Auth::user()->type=='admin' || ($item->status=='new' && $item->user_id==Auth::user()->id))
                                         {{ Form::open(['route'=>'submit-ticket']) }}
-                                        <input name="order_item_id" type="hidden" value="{{ $item->id }}" class="form-control" placeholder="Enter Ticket Code">
-                                        <input name="order_id" type="hidden" value="{{ $order->id }}" class="form-control" placeholder="Enter Ticket Code">
+                                        <input name="order_item_id" type="hidden" value="{{ $item->id }}" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">
+                                        <input name="order_id" type="hidden" value="{{ $order->id }}" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">
                                         <div class="input-group">
-                                            <input required name="ticket_number" type="text" class="form-control" placeholder="Enter Ticket Code">
+                                            <input required name="ticket_number" type="text" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="submit">Go!</button>
+                                                <button class="btn btn-default" type="submit">{{ trans('provider.go') }}!</button>
                                               </span>
                                         </div><!-- /input-group -->
                                         {{ Form::close() }}
@@ -198,13 +198,13 @@
                                 <div class="col-md-6">
                                     <img width="80%" src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.jpg') }}" alt="">
                                     <br>
-                                    <b>Ticket Number - </b>{{ $ticket->ticket_number }}
+                                    <b>{{ trans('provider.ticket_number') }} - </b>{{ $ticket->ticket_number }}
                                 </div>
                             @else
                                 <div class="col-md-6">
                                     <img width="80%" src="{{ asset('assets/tickets/P-'.$ticket->ticket_number.'.jpg') }}" alt="">
                                     <br>
-                                    <b>Ticket Number - </b>{{ substr($ticket->ticket_number,0,-4).'****' }}
+                                    <b>{{ trans('provider.ticket_number') }} - </b>{{ substr($ticket->ticket_number,0,-4).'****' }}
                                 </div>
                             @endif
                         @endforeach
