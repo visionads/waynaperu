@@ -72,8 +72,7 @@
                 </div>
 
                 <div class="modal-body">
-                    {{--<form id="add_location">--}}
-                    <form action="{{ route('save_location') }}">
+                    <form id="add_location">
                         <input type="hidden" name="product_id" value="{{ isset($product_id)?$product_id:null }}">
                         <fieldset>
                             <div class="col-md-8 col-lg-8 col-sm-12">
@@ -108,8 +107,8 @@
 
                                                                 {{--==*****==--}}
                                                                 <div class="form-group">
-                                                                    <input type="text" value="@if($language->code=='en') Include @elseif($language->code=='es') Incluido @endif" name="include[{{ $language->code }}]" placeholder="{{ trans('text.include') }}" class="form-control">
-                                                                    <input type="text" name="include_value[{{ $language->code }}]" placeholder="value" class="form-control">
+                                                                    <input type="text" value="@if($language->code=='en') Includes @elseif($language->code=='es') Incluido @endif" name="include[{{ $language->code }}]" placeholder="{{ trans('text.include') }}" class="form-control">
+                                                                    <input type="text" name="includes_value[{{ $language->code }}]" placeholder="value" class="form-control">
 
                                                                     <input type="text" value="@if($language->code=='en') Schedule @elseif($language->code=='es') Horario @endif" name="schedule[{{ $language->code }}]" placeholder="{{ trans('text.schedule') }}" class="form-control">
                                                                     <input type="text" name="schedule_value[{{ $language->code }}]" placeholder="value" class="form-control">
@@ -223,7 +222,7 @@
                         </div> --}}
 
                         <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-default btn-hover-green">Save</button>
+                            <button type="button" data-dismiss="modal" id="saveLocation" class="btn btn-default btn-hover-green" data-action="save" role="button">Save</button>
                         </div>
                     </div>
                 </div>
