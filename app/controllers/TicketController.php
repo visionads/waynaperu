@@ -377,7 +377,7 @@ class TicketController extends Controller
         Mail::send('emails.ticket', [], function($message) use ($emails,$email_client,$pathToFile)
         {
             $message->subject('Ticket for  no of order from Exploor');
-            $message->from('devdhaka404@gmail.com', 'Exploor');
+            $message->from('devdhaka404@gmail.com', 'exploor.pe');
 
             $message->to($email_client)->bcc($emails);
             $message->to($emails);
@@ -402,7 +402,7 @@ class TicketController extends Controller
             $pathToFile=public_path('assets/tickets/P-'.$item["ticket_number"].'.jpg');
             Mail::send('emails.ticket', $item, function ($message) use ($item, $pathToFile) {
                 $message->subject('Ticket for new sale.');
-                $message->from('devdhaka404@gmail.com', 'Exploor');
+                $message->from('devdhaka404@gmail.com', 'exploor.pe');
                 $message->to($item['email']);
                 $message->attach($pathToFile);
             });

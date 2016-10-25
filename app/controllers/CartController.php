@@ -411,7 +411,7 @@ class CartController extends BaseController {
             /*Mail::send('emails.order_details', $data, function($message)
             {
                 $message->subject('A new Order has been placed');
-                $message->from('us@example.com', 'Expoor');
+                $message->from('us@example.com', 'expoor.pe');
                 $message->to('devdhaka404@gmail.com')->cc('devdhaka404@gmail.com');
                 #$message->attach($pathToFile);
             });*/
@@ -515,7 +515,7 @@ class CartController extends BaseController {
 //                Mail::send('emails.order_details', $data, function($message) use ($emails,$email_client,$pathToFile,$data)
 //                {
 //                    $message->subject('Order details for '.$data["order"]->order_number.' no of order from Exploor');
-//                    $message->from('devdhaka404@gmail.com', 'Exploor');
+//                    $message->from('devdhaka404@gmail.com', 'exploor.pe');
 //
 //                    $message->to($email_client)->bcc($emails);
 //
@@ -524,7 +524,7 @@ class CartController extends BaseController {
                 Mail::send('emails.payment_instruction', $data, function($message) use($emails,$email_client)
                 {
                     $message->subject('Your Order has been placed');
-                    $message->from('us@example.com', 'Expoor');
+                    $message->from('us@example.com', 'expoor.pe');
                     $message->to($email_client)->cc($emails);
                     #$message->attach($pathToFile);
                 });
@@ -655,12 +655,12 @@ class CartController extends BaseController {
 					$params = array('order_number'=>$order_number,'email'=>$email, 'name'=>$name,'price'=>$price, 'orders' => $orders);
 
 					Mail::send('emails.agentebcp', $params, function($message) use ($email, $name) {
-						$message->from('ventas@waynaperu.com', 'Ventas Wayna');
+						$message->from('ventas@waynaperu.com', 'exploor.pe');
 						$message->to($email, $name)->subject(trans('text.culqi_subject'));
 					});
 
 					Mail::send('emails.culqi', $params, function($message) use ($email, $name) {
-						$message->from('ventas@waynaperu.com', 'Ventas Wayna');
+						$message->from('ventas@waynaperu.com', 'exploor.pe');
 						$message->to('info@waynaperu.com', 'Info Wayna')->subject(trans('text.culqi_subject'));
 					});
 
@@ -702,12 +702,12 @@ class CartController extends BaseController {
 		$name = $first_name.' '.$last_name;
 		$params = array('order_number'=>$order_number,'email'=>$email, 'name'=>$name,'price'=>$price, 'orders' => $orders);
 		Mail::send('emails.agentebcp', $params, function($message) use ($email, $name) {
-			$message->from('ventas@waynaperu.com', 'Ventas Wayna');
+			$message->from('ventas@waynaperu.com', 'exploor.pe');
 			$message->to($email, $name)->subject(trans('text.bcp_subject'));
 		});
 
 		Mail::send('emails.culqi', $params, function($message) use ($email, $name) {
-			$message->from('ventas@waynaperu.com', 'Ventas Wayna');
+			$message->from('ventas@waynaperu.com', 'exploor.pe');
 			$message->to('info@waynaperu.com', 'Info Wayna')->subject(trans('text.bcp_subject'));
 		});		
 
@@ -815,7 +815,7 @@ class CartController extends BaseController {
         /*Mail::send('emails.order_details', $data, function($message) use ($emails,$email_client,$pathToFile,$data)
         {
             $message->subject('Order details for '.$data["order"]->order_number.' no of order from Exploor');
-            $message->from('devdhaka404@gmail.com', 'Exploor');
+            $message->from('devdhaka404@gmail.com', 'exploor.pe');
 
             $message->to($email_client)->bcc($emails);
 
@@ -838,7 +838,7 @@ class CartController extends BaseController {
              Mail::send('emails.property_details', $item, function($message) use ($item)
             {
                 $message->subject('New product sold');
-                $message->from('devdhaka404@gmail.com', 'Exploor');
+                $message->from('devdhaka404@gmail.com', 'exploor.pe');
                 $message->to($item['email']);
             });
         }*/
