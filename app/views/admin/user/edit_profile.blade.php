@@ -16,7 +16,7 @@
                             <div class="tabbable-line">
                                 <ul class="nav nav-tabs ">
                                     <li class="active">
-                                        <a href="#" data-toggle="tab"> Edit Profile of <b> {{ $user->first_name.' '.$user->last_name }}</b></a>
+                                        <a href="#" data-toggle="tab"> {{ trans('provider.edit_profile_of') }} <b> {{ $user->first_name.' '.$user->last_name }}</b></a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
@@ -27,9 +27,9 @@
                             </div>
                         </div>
 
-                            &nbsp;&nbsp;<a href="{{ URL::previous() }}" class="btn btn-info pull-left">Back</a>
+                            &nbsp;&nbsp;<a href="{{ URL::previous() }}" class="btn btn-info pull-left">{{ trans('provider.back') }}</a>
                         <div class="form-actions pull-right">
-                            {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
+                            {{ Form::submit(trans('provider.update'), ['class' => 'btn btn-primary']) }}
                         </div>
 
                         {{ Form::close() }}

@@ -49,7 +49,7 @@
                             <div class="tabbable-line">
                                 <ul class="nav nav-tabs ">
                                     <li class="active">
-                                        <a href="#" data-toggle="tab"> Edit User </a>
+                                        <a href="#" data-toggle="tab"> {{ trans('provider.edit_user') }} </a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
@@ -61,8 +61,8 @@
                         </div>
 
                         <div class="form-actions pull-right">
-                            &nbsp;&nbsp;<a href="{{ URL::previous() }}" class="btn btn-info">Back</a>
-                            {{ Form::submit('Save', $attributes = ['class' => 'btn btn-green']) }}
+                            &nbsp;&nbsp;<a href="{{ URL::previous() }}" class="btn btn-info">{{ trans('provider.back') }}</a>
+                            {{ Form::submit(trans('provider.save'), $attributes = ['class' => 'btn btn-green']) }}
                         </div>
 
                         {{ Form::close() }}
@@ -86,8 +86,8 @@
                 },
                 messages:
                 {
-                    password:'<div style="margin-top: 20px; color:red;">Password Required</div>',
-                    c_password:'<div style="margin-top: 20px; color:red;">Password not matched. Type again</div>'
+                    password:'<div style="margin-top: 20px; color:red;">{{ trans('provider.password_required') }}}</div>',
+                    c_password:'<div style="margin-top: 20px; color:red;">{{ trans('provider.password_not_matched_type_again') }}}</div>'
                 }
             });
         </script>
