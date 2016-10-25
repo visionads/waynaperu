@@ -31,16 +31,16 @@
         <img src="{{ $message->embed('assets/images/email-temp-08.png') }}" style="height: 100%">
     </header>
     <section>
-        <div style="font-size: 30px; text-align: center; padding: 10px 0;">Thank you <span style="color: orange;">{{ $user_name }} !</span></div>
-        <div style="padding: 10px 0;">Confirmation number : <span style="color: orange;">{{ $order->order_number }}</span></div>
+        <div style="font-size: 30px; text-align: center; padding: 10px 0;">{{ trans('pi.thank_you') }} <span style="color: orange;">{{ $user_name }} !</span></div>
+        <div style="padding: 10px 0;">{{ trans('pi.confirmation_number') }} : <span style="color: orange;">{{ $order->order_number }}</span></div>
         <div>
             <table style="width: 100%; border-bottom: 1px solid orange; border-left: 1px solid orange; margin-bottom: 15px;" cellpadding="0" cellspacing="0">
                 <thead>
                 <tr>
-                    <th style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">Activity</th>
-                    <th style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">Location</th>
-                    <th style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">Quantity</th>
-                    <th style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">Price</th>
+                    <th style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">{{ trans('pi.activity') }}</th>
+                    <th style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">{{ trans('pi.location') }}</th>
+                    <th style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">{{ trans('pi.quantity') }}</th>
+                    <th style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">{{ trans('pi.price') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -70,36 +70,36 @@
                 <tr style="text-align: center">
                     <td width="20%">
                         <img src="{{ $message->embed('assets/images/email-temp-01.1.png') }}" width="100%">
-                        <p style="font-size: 14px;">Please visit an agency<br> or actual BPC bank<br> counter</p>
+                        <p style="font-size: 14px;">{{ trans('pi.bcp') }}</p>
                     </td>
                     <td width="20%">
                         <img src="{{ $message->embed('assets/images/email-temp-02.1.png') }}" width="100%">
-                        <p style="font-size: 14px;">Transfer the <br> Amount of S/.<span style="color:deeppink">{{ $total }}</span><br>to : <strong>193-2298769-0-86</strong> </p>
+                        <p style="font-size: 14px;">{{ trans('pi.transfer') }}<span style="color:deeppink">{{ $total }}</span><br>{{ trans('pi.to') }} : <strong>193-2298769-0-86</strong> </p>
                     </td>
                     <td width="20%">
                         <img src="{{ $message->embed('assets/images/email-temp-03.1.png') }}" width="100%">
-                        <p style="font-size: 14px;">Send a photo<br>of the voucher to<br><span style="color:dodgerblue;">pago@exploor.pe</span> </p>
+                        <p style="font-size: 14px;">{{ trans('pi.email') }}<br><span style="color:dodgerblue;">pago@exploor.pe</span> </p>
                     </td>
                     <td width="20%">
                         <img src="{{ $message->embed('assets/images/email-temp-04.1.png') }}" width="100%">
-                        <p style="font-size: 14px;">Receive your<br>Ticket </p>
+                        <p style="font-size: 14px;">{{ trans('pi.receive') }} </p>
                     </td>
                     <td width="20%">
                         <img src="{{ $message->embed('assets/images/email-temp-05.1.png') }}" width="100%">
-                        <p style="font-size: 14px;">Enjoy the moment or give an unforgettable gift to someone else</p>
+                        <p style="font-size: 14px;">{{ trans('pi.gift') }}</p>
                     </td>
                 </tr>
             </table>
         </div>
         <div style="width: 100%; height: 20px; background: orange;">&nbsp;</div>
         <div style="width: 100%; height: 20px;">&nbsp;</div>
-        <div style="font-size: 25px; text-align: center;">Questions ?</div>
+        <div style="font-size: 25px; text-align: center;">{{ trans('pi.question') }} ?</div>
         <div style="text-align: center;"><img src="{{ $message->embed('assets/images/email-temp-06.png') }}" height="100"></div>
         <div style="font-size: 20px !important; text-align: center;">
-            If you have any questions shoot us a mail to <span style="color: #0f71ba;">info@exploor.pe</span> and<br> we will get in touch with you as soon as possible.
+            {{ trans('pi.mail_to') }} <span style="color: #0f71ba;">info@exploor.pe</span> {{ trans('pi.as_possible') }}
         </div>
         <div style="width: 100%; height: 20px;">&nbsp;</div>
-        <div style="text-align: center; font-size: 20px !important;">You can also contact us 24/7 f/explore</div>
+        <div style="text-align: center; font-size: 20px !important;">{{ trans('pi.contact_us') }} <img src="{{ $message->embed('assets/images/social-2.png') }}" alt="" height="20px" width="20px">/explore</div>
         <div style="text-align: center;">
             <table width="100%">
             <tr>
@@ -113,7 +113,7 @@
         </div>
     </section>
     <footer style="text-align: center;width: 100%; height: auto; background: orange; padding: 10px 0;">
-        <div>If you have not made this transaction please contact us under <span style="color: #0f71ba;">info@exploor.pe</span><br>You received this mail from exploor (Waynaperu S.A.C) because you registered on <br> <span style="color: #0f71ba;">www.exploor.pe</span> with this email address.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.</div>
+        <div>{{ trans('pi.translation') }} <span style="color: #0f71ba;">info@exploor.pe</span><br>{{ trans('pi.registered_on') }} <br> <span style="color: #0f71ba;">www.exploor.pe</span> {{ trans('pi.address') }}</div>
     </footer>
 </div>
 
