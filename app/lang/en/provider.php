@@ -134,7 +134,7 @@ return array(
     "we_will_get" => "we will get in touch with you as soon as possible",
     "you_can_also" => "You can also contact us",
     "if_you_have_not" => "If you have not made this transaction please contact us under",
-    "you_received" => "You received this mail from exploor (Waynaperu S.A.C) because you registered on",
+    "you_received" => "You received this mail from exploor (Exploor S.A.C) because you registered on",
     "with_this" => "with this email address",
 
 );

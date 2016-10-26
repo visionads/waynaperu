@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Waynaperu Ticket</title>
+    <title>Exploor.pe Ticket</title>
 
     <!-- BEGIN META -->
     <meta charset="utf-8">
@@ -57,7 +57,7 @@
         <tfoot style="width: 100%; height: auto; background: orange; text-align: center; font-family: Arial;">
             <tr>
                 <td style="padding: 3% 0 !important; font-size: 1vw;">
-                    If you have not made this transaction please contact us under <span style="color: #1e70b7; text-decoration: none;">info@exploor.pe</span><br>You received this mail from exploor (Waynaperu S.A.C) because you registered on <br> <a href="http://www.exploor.pe" style="color: #1e70b7; text-decoration: none;">www.exploor.pe</a> with this email address.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.
+                    If you have not made this transaction please contact us under <span style="color: #1e70b7; text-decoration: none;">info@exploor.pe</span><br>You received this mail from exploor (Exploor.pe S.A.C) because you registered on <br> <a href="http://www.exploor.pe" style="color: #1e70b7; text-decoration: none;">www.exploor.pe</a> with this email address.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.
                 </td>
             </tr>
         </tfoot>

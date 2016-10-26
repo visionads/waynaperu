@@ -77,7 +77,7 @@
 					    				<p style="padding: 5px 10px;">Transfiere el monto indicado al número de cuenta</p>
 					    			</li><li style="display:inline-block;width:20%;vertical-align:top;">
 					    				<img src="https://wayna.com.pe/images/comprobante128.png" alt="payment" width="96" border="0">
-					    				<p style="padding: 5px 10px;">Envía una foto del comprobante a<br><a href="mailto:finanzas@waynaperu.com" style="color:#d39010;font-size:12px;">finanzas@waynaperu.com</a></p>
+					    				<p style="padding: 5px 10px;">Envía una foto del comprobante a<br><a href="mailto:finanzas@exploor.pe" style="color:#d39010;font-size:12px;">finanzas@exploor.pe</a></p>
 					    			</li><li style="display:inline-block;width:20%;vertical-align:top;">
 					    				<img src="https://wayna.com.pe/images/ticket128.png" alt="payment" width="96" border="0">
 					    				<p style="padding: 5px 10px;">Recibir el ticket</p>
@@ -101,7 +101,7 @@
 					    <tr>
 					    	<td align="center" style="font-size:13px;">
 					    		<p>
-					    			En caso tengas alguna pregunta, envienos un correo a: <a href="mailto:info@waynaperu.com" style="color:#d39010">info@waynaperu.com</a> y<br>
+					    			En caso tengas alguna pregunta, envienos un correo a: <a href="mailto:info@exploor.pe" style="color:#d39010">info@exploor.pe</a> y<br>
 									nosotros lo contactaremos tan pronto sea posible
 					    		</p>
 					    		<p style="line-height:40px;">
@@ -128,9 +128,9 @@
 					    <tr>
 					    	<td align="center" style="font-size:13px;">
 					    		<p style="margin-bottom:20px;">
-					    			Si usted no realizo esta transacción, por favor contáctenos por <a href="mailto:info@waynaperu.com" style="color:#d39010;">info@waynaperu.com</a><br>
-					    			Usted ha recibido este correo de Wayna Perú S.A.C., porque se ha registrado en <br>
-					    			<a href="www.wayna.com.pe" target="_blank" style="color:#d39010;">www.wayna.com.pe</a> con esta dirección de correo.
+					    			Si usted no realizo esta transacción, por favor contáctenos por <a href="mailto:info@exploor.pe" style="color:#d39010;">info@exploor.pe</a><br>
+					    			Usted ha recibido este correo de Exploor Perú S.A.C., porque se ha registrado en <br>
+					    			<a href="www.exploor.pe" target="_blank" style="color:#d39010;">www.exploor.pe</a> con esta dirección de correo.
 					    		</p>
 					    	</td>
 					    </tr>

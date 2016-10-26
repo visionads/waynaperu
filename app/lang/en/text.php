@@ -169,7 +169,7 @@ return array(
     "see_more" => "See More",
     "available_soon" => "Available Soon",
     "order_success" => "Order Sucessful.",
-    "order_confirmation_msg" => 'An order confirmation with further information has been sent to the indicated email(s). If you cannot find the email in your Inbox, please make sure to check whether it slipped in the "Junk Mail" folder.<br/><br/>If you have any comments or questions about your order feel free to send us an email to info@waynaperu.com and we will gladly help you.',
+    "order_confirmation_msg" => 'An order confirmation with further information has been sent to the indicated email(s). If you cannot find the email in your Inbox, please make sure to check whether it slipped in the "Junk Mail" folder.<br/><br/>If you have any comments or questions about your order feel free to send us an email to info@exploor.pe and we will gladly help you.',
 
     // Email Templates
 

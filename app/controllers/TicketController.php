@@ -172,7 +172,7 @@ class TicketController extends Controller
         $html = '<!DOCTYPE html>
             <html lang="en">
             <head>
-            <title>Waynaperu Ticket</title>
+            <title>Exploor.pe Ticket</title>
             
             <!-- BEGIN META -->
             <meta charset="utf-8">

@@ -168,7 +168,7 @@ return array(
     "see_more" => "ver más",
     "available_soon" => "Disponible pronto",
     "order_success" => "Pedido exitoso",
-    "order_confirmation_msg" => 'Hemos mandado una confirmación al correo que has brindado. Si no puedes encontrar el correo en tu bandeja de entrada, por favor revisa si está en correos no deseados o en spam.<br/><br/>Si tienes algún comentario o preguntas sobre tu orden puedes escribirnos a info@waynaperu.com',
+    "order_confirmation_msg" => 'Hemos mandado una confirmación al correo que has brindado. Si no puedes encontrar el correo en tu bandeja de entrada, por favor revisa si está en correos no deseados o en spam.<br/><br/>Si tienes algún comentario o preguntas sobre tu orden puedes escribirnos a info@exploor.pe',
 
     // Email Templates
 

@@ -661,7 +661,7 @@ class CartController extends BaseController {
 
 					Mail::send('emails.culqi', $params, function($message) use ($email, $name) {
 						$message->from('info@exploor.pe', 'exploor.pe');
-						$message->to('info@waynaperu.com', 'Info Wayna')->subject(trans('text.culqi_subject'));
+						$message->to('info@exploor.pe', 'Info Exploor')->subject(trans('text.culqi_subject'));
 					});
 
                     TicketController::create($order->id, 'ipn');
@@ -708,7 +708,7 @@ class CartController extends BaseController {
 
 		Mail::send('emails.culqi', $params, function($message) use ($email, $name) {
 			$message->from('info@exploor.pe', 'exploor.pe');
-			$message->to('info@waynaperu.com', 'Info Wayna')->subject(trans('text.bcp_subject'));
+			$message->to('info@exploor.pe', 'Info Exploor')->subject(trans('text.bcp_subject'));
 		});
 
 		Cart::destroy();

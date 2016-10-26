@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="force-padding pull-right text-default-light">
-                            <div class="no-margin text-primary-dark text-center">Waynaperu Dashboard</div>
+                            <div class="no-margin text-primary-dark text-center">Exploor.pe Dashboard</div>
                         </div>
                     </div><!--end .col -->
                 </div><!--end .row -->

@@ -8,7 +8,7 @@
                         <div class="footre_contact_add">
                             <h3><span>{{ trans('text.contact') }}</span></h3>
                             <h6>{{ trans('text.phone_number') }}</h6>
-                            <p>{{ trans('text.timing') }} <br /> info@waynaperu.com</p>
+                            <p>{{ trans('text.timing') }} <br /> info@exploor.pe</p>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12">
@@ -36,7 +36,7 @@
                                         <a href="http://www.up.edu.pe/aplicaciones/boletines/EmprendeUP/ver_articulo.aspx?idsec=630&idnum=42&utm_source=Icommarketing&utm_medium=Email&utm_content=Boletin%20t2%20120416%20fin&utm_campaign=Icommarketing%20-%20Emprende%20UP%20-%20Boletin%20t2%20120416">
                                             <img src="{{ url('images/logo_emprende_up.png') }}">
                                         </a>
-                                        <div class="cpyrgt">@2016 Wayna</div>
+                                        <div class="cpyrgt">@2016 Exploor.pe</div>
                                         <br>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
             </div>
             <div class="col-md-2 col-sm-4 footer-right">
                 <ul>
-                    <li class="contact"><a class="tooltip-text" href="#" data-toggle="tooltip" data-html="true" data-placement="top" title="<div class='contact-popup'><h3>{{ trans('text.contact') }}</h3><p>{{ trans('text.phone_number') }}<br/>{{ trans('text.timing') }}<br/>info@waynaperu.com</p></div>">{{ trans('text.contact') }}</a></li>
+                    <li class="contact"><a class="tooltip-text" href="#" data-toggle="tooltip" data-html="true" data-placement="top" title="<div class='contact-popup'><h3>{{ trans('text.contact') }}</h3><p>{{ trans('text.phone_number') }}<br/>{{ trans('text.timing') }}<br/>info@exploor.pe</p></div>">{{ trans('text.contact') }}</a></li>
                     <li><a href="https://www.facebook.com/waynaexp/info/?tab=page_info" target="_blank"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="https://twitter.com/waynaexp " target="_blank"><i class="fa fa-twitter"></i></a></li>
                     {{-- <li><a href=""><i class="fa fa-pinterest"></i></a></li> --}}

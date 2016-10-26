@@ -196,7 +196,7 @@
                     <address>
                         <em>{{ trans('text.phone_number') }}</em>
                         <span>{{ trans('text.timing') }}</span>
-                        <a href="mailto:info@waynaperu.com">info@waynaperu.com</a>
+                        <a href="mailto:info@exploor.pe">info@exploor.pe</a>
                     </address>
 
                 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Waynaperu - Login</title>
+    <title>Exploor.pe - Login</title>
 
     <!-- BEGIN META -->
     <meta charset="utf-8">
@@ -39,7 +39,7 @@
                 <div class="col-sm-6">
 
                     <br/>
-                    <span class="text-lg text-bold text-primary">Waynaperu</span>
+                    <span class="text-lg text-bold text-primary">Exploor.pe</span>
                     <br/><br/>
                     <div class="card">
                         <div class="card-body">

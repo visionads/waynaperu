@@ -6,7 +6,7 @@
                 <li class="header-nav-brand" >
                     <div class="brand-holder">
                         <a href="#">
-                            <span class="text-lg text-bold text-primary">Waynaperu</span>
+                            <span class="text-lg text-bold text-primary">Exploor.pe</span>
                         </a>
                     </div>
                 </li>

@@ -201,7 +201,7 @@ class ExperienceController extends BaseController {
 			$lead_email = $product->lead_email;
 			$lead_name = $product->lead_name;
 			Mail::send('emails.leads', array('email'=>$email, 'name'=>$name,'phone'=>$phone, 'p_id' => $p_id, 'loc_id' => $loc_id), function($message) use ($lead_email, $lead_name) {
-			    $message->to('info@waynaperu.com', 'Wayna')->to($lead_email, $lead_name)->subject('New Lead');
+			    $message->to('info@exploor.pe', 'Exploor')->to($lead_email, $lead_name)->subject('New Lead');
 			});
 			Mail::send('emails.user_leads', array('product'=>$product, 'p_id' => $p_id, 'loc_id' => $loc_id), function($message) use ($email, $name) {
 			    $message->to($email, $name)->subject('Lead Details');

@@ -4,7 +4,7 @@
     <!-- BEGIN META -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content=" waynaperu  ">
+    <meta name="keywords" content=" Exploor  ">
     <meta name="description" content="Short explanation about this website">
     <!-- END META -->
 
