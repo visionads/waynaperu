@@ -11,7 +11,7 @@ return [
     'activity' => 'Actividad',
     'location' => 'Ubicación',
     'quantity' => 'Cantidad',
-    'price' => 'Price',
+    'price' => 'Precio',
     'bcp' => 'Por favor, visite una agencia<br> o un banco real BPC<br> mostrador',
     'transfer' => 'la transferencia de la <br> Cantidad de S /.',
     'to' => 'to',
