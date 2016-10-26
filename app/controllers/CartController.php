@@ -395,7 +395,7 @@ class CartController extends BaseController {
 				$order_items->mail_qty = $cart->options['mail'];
 				$order_items->mail_price = getMailPrice($cart->options['loc_id'], $cart->options['mail']);
 				$order_items->gift_qty = $cart->options['gift'];
-				$order_items->gift_price = getGiftPrice($cart->options['loc_id'], $cart->options['gift']);
+				$order_items->gift_price = getGiftPrice($cart->options['loc_id'], 1);
 				$order_items->details = json_encode($detail);
 				$order_items->save();
 			}
@@ -521,10 +521,17 @@ class CartController extends BaseController {
 //
 //                    $message->attach($pathToFile);
 //                });
+                foreach ($data['order_items'] as $id=>$order_item) {
+                    if(isset($order_item->gift_price) && $order_item->gift_price != 0.00)
+                    {
+                        $data['order_items'][$id]->pdf_price= $order_item->pdf_price-(($order_item->pdf_price/100))*$order_item->gift_price;
+                        $data['order_items'][$id]->mail_price= $order_item->mail_price-(($order_item->mail_price/100))*$order_item->gift_price;
+                    }
+                }
                 Mail::send('emails.payment_instruction', $data, function($message) use($emails,$email_client)
                 {
                     $message->subject('Your Order has been placed');
-                    $message->from('us@example.com', 'expoor.pe');
+                    $message->from('info@exploor.pe', 'expoor.pe');
                     $message->to($email_client)->cc($emails);
                     #$message->attach($pathToFile);
                 });
