@@ -118,7 +118,7 @@
 
                     <div class="form-group">
 
-                        <label for="pdf">PDF</label>
+                        <label for="pdf">Price Adults</label>
 
                         <input value="{{ $loc->price1 }}" type="text" class="form-control" id="pdf" name="pdf" placeholder="Price">
 
@@ -126,7 +126,7 @@
 
                     <div class="form-group">
 
-                        <label for="mail">Mail</label>
+                        <label for="mail">Price Kids</label>
 
                         <input value="{{ $loc->price2 }}" type="text" class="form-control" id="mail" name="mail" placeholder="Price">
 
@@ -134,7 +134,7 @@
 
                     <div class="form-group">
 
-                        <label for="gift">Gift</label>
+                        <label for="gift">Discount %</label>
 
                         <input value="{{ $loc->price3 }}" type="text" class="form-control" id="gift" name="gift" placeholder="Price">
 

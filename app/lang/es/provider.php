@@ -9,7 +9,7 @@ return array(
     "order_list" => "Lista de orden",
 
     "username" => "Nombre de usuario",
-    "email" => "Email",
+    "email" => "cor r eo electr ónico",
     "first_name" => "Nombre de pila",
     "last_name" => "Apellido",
     "type" => "Tipo",
@@ -43,7 +43,7 @@ return array(
 
     // Route :: activity
     "activities_of" => "Actividades de",
-    "id" => "ID",
+    "id" => "Carné de identidad",
     "action_name" => "Nombre de acción",
     "action_URL" => "URL de acción",
     "action_details" => "Información de la acción",
