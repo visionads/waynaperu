@@ -30,6 +30,7 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
+
 		//$profit = (20.1*100)/100;
 		//dd($profit);
         $sliders= Slider::where('status','active')->orderBy('sequence')->get();
@@ -418,5 +419,9 @@ class HomeController extends BaseController {
         ->with('tags',$tags)
 		->with('districts',$districts);
 	}
+
+
+
+
 
 }

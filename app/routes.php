@@ -12,8 +12,16 @@
 use \AdamWathan\EloquentOAuth\Exceptions\ApplicationRejectedException;
 use \AdamWathan\EloquentOAuth\Exceptions\InvalidAuthorizationCodeException;
 
+
+
+
+
+
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter'], function()
 {
+    
+
+
 // admin login route
 Route::get('admin_login', array('as' => 'admin-login', 'uses' => 'UsersController@admin_login'));
 Route::post('admin_login', array('as' => 'admin-login', 'uses' => 'UsersController@admin_login_check'));
@@ -208,7 +216,9 @@ Route::group(array('before' => 'adminFilter'), function () {
 	Route::get('logout', array('as' => 'site_logout', 'uses' => 'UsersController@logout'));
 	Route::get('account', array('as' => 'account', 'uses' => 'UsersController@getAccount'));
 	Route::post('account', array('as' => 'save_account', 'uses' => 'UsersController@postAccount'));
-	Route::get('agente-bcp/{order}', array('as' => 'agente_bcp', 'uses' => 'CartController@agenteBCP'));
+	
+    Route::get('agente-bcp/{order}', array('as' => 'agente_bcp', 'uses' => 'CartController@agenteBCP'));
+    
 	Route::any('order/success/{order}', array('as' => 'order_success', 'uses' => 'CartController@showOrderSuccess'));
 	// Route::get('category/{id}', array('as' => 'category', 'uses' => 'HomeController@showCategory'));
 	// Route::get('experience/{id}', array('as' => 'experience', 'uses' => 'ExperienceController@showExp'));

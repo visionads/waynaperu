@@ -15,11 +15,11 @@
 					    <tr>
 					        <td align="center">
 					        	<h1 style="margin: 20px 0;">
-					        		¡{{ trans('text.thanks') }} <span style="color:#d39010">{{ $name }}</span>!
+					        		¡{{ trans('text.thanks') }} <span style="color:#d39010">{{ $name or null }}</span>!
 					        	</h1>
 					        	<p style="margin-bottom:10px;font-size:18px;">
 				        			<span>{{ trans('text.confirmation_number') }}:</span>
-				        			<strong style="color:#d39010">{{ $order_number }}</strong>
+				        			<strong style="color:#d39010">{{ $order_number or null }}</strong>
 					        	</p>
 					        </td>
 					    </tr>
@@ -39,9 +39,9 @@
 						</tr>
 						@foreach($orders as $order)
 						<tr>
-							<td style="padding: 10px">{{ getExpName($order->product_id) }}</td>
-							<td style="padding: 10px">{{ getLocationName($order->product_id) }}</td>
-							<td style="padding: 10px">{{ $order->qty }}</td>
+							<td style="padding: 10px">{{ getExpName($order->product_id) or null }}</td>
+							<td style="padding: 10px">{{ getLocationName($order->product_id) or null }}</td>
+							<td style="padding: 10px">{{ $order->qty or null }}</td>
 							<td style="padding: 10px">@if($order->pdf_qty > 0) PDF ticket @endif
 								@if($order->mail_qty > 0) MAIL ticket @endif
 								@if($order->gift_qty > 0) GIFT ticket @endif
@@ -60,7 +60,7 @@
 					    </tr>
 				    	<tr>
 				    		<td align="center">
-				    			<h3>{{ trans('text.total') }}: S/.{{ number_format($price, 2) }}</h3>
+				    			<h3>{{ trans('text.total') }}: S/.{{ isset($price)? number_format($price, 2) : null  }}</h3>
 				    			<p>
 				    				<strong>(BCP)</strong><span>193-2298769-0-86</span>
 				    			</p>

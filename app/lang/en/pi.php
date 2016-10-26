@@ -12,7 +12,7 @@ return [
     'location' => 'Location',
     'quantity' => 'Quantity',
     'price' => 'Price',
-    'bcp' => 'Please visit an agency<br> or actual BPC bank<br> counter',
+    'bcp' => 'Please visit an agency<br> or actual BCP bank<br> counter',
     'transfer' => 'Transfer the <br> Amount of S/.',
     'to' => 'to',
     'email' => 'Send a photo<br>of the voucher to',
