@@ -510,7 +510,7 @@ line-height:30px; left: 0px;}
 .footer-right ul{ float:left; margin:0px; padding:0px;}
 .footer-right ul li.contact{ font-size:10px; padding-right:20px;}
 .footer-right ul li {display: inline-block;float: left;font-weight: bold;list-style: outside none none;padding: 0 5px;}
-.footer-right li a { color:#fff; font-size:9px #fff;}
+.footer-right li a { color:#fff; font-size:9px;}
 .footer-right ul li a:hover{ color:#ea9336; text-decoration:none;}
 .mobile-menu{ display:none;}
 .navbar-default .navbar-toggle .icon-bar {background-color: #fff;height:4px;}
@@ -1177,7 +1177,7 @@ text-align: center;text-transform: uppercase;}
 .scs_othr_detail {margin-top: 25px;}
 .scs_othr_detail p {color: #6a6a6a;font-size: 16px;line-height: 23px;}
 .button_detail2 {margin-top: 25px;}
-.button_detail2 img {margin: 0 10px 0 0;0}
+.button_detail2 img {margin: 0 10px 0 0;}
 .sucess_-order_list h4 {color: #e16a1c;font-size: 18px;font-weight: bold;}
 .sucess_-order_list h6 {color: #6a6a6a;font-size: 18px;font-weight: bold;margin-top: 40px;}
 .sucess_-order_list .content-scroll {height: 320px;padding: 0; border-right:none;}
@@ -1690,7 +1690,7 @@ header .right-side {display: none;}
       padding: 0;
       float: left;
   }
-  .navbar-brand navbar-brand-centered img {
+  .navbar-brand .navbar-brand-centered img {
     width: 80%;
   }
 }
@@ -1712,7 +1712,7 @@ header .right-side {display: none;}
     width: 100%;
     text-align: center;
   }
-  .navbar-brand navbar-brand-centered img {
+  .navbar-brand .navbar-brand-centered img {
     width: 80%;
   }
 }
@@ -1728,7 +1728,7 @@ header .right-side {display: none;}
 .form-input-error input[type="password"]
 {
   color: #FF7878;
-  background: url('../../../images/error.png') 98% center no-repeat;
+  background: url('../images/error.png') 98% center no-repeat;
   border: 1px solid #FF7878;
 }
 .form-input-valid {
@@ -1857,7 +1857,7 @@ header .right-side {display: none;}
 
 }
 @media screen and (max-width:768px){
-  .navbar-brand navbar-brand-centered img {
+  .navbar-brand .navbar-brand-centered img {
     width: 80%;
   }
   #modal-newsletter ul li {
@@ -1892,7 +1892,7 @@ header .right-side {display: none;}
     width: 100%;
     text-align: left;
   }
-  .navbar-brand navbar-brand-centered img {
+  .navbar-brand .navbar-brand-centered img {
     width: 80%;
   }
 }
@@ -1901,7 +1901,7 @@ header .right-side {display: none;}
   .item-grid {
     width: 100%;
   }
-  .navbar-brand navbar-brand-centered img {
+  .navbar-brand .navbar-brand-centered img {
     width: 80%;
   }
 }
@@ -1937,7 +1937,7 @@ header .right-side {display: none;}
 	display:inline-block; 
 	/*position:absolute; 
 	left:41%; */
-	bottom:-20p; 
+	bottom:-20px;
 	background: #f5f5f4;
 	text-align: center;
 }

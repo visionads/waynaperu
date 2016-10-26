@@ -359,6 +359,7 @@ class TicketController extends Controller
      */
     private static function sendEmail($order_id)
     {
+        //exit('sdf');
         $tickets= Ticket::where('order_id',$order_id)->get();
 //        dd($tickets);
         $admin = User::select('email')->where('type','admin')->get();
@@ -374,7 +375,14 @@ class TicketController extends Controller
         $email_client=$client->email;
         $pathToFile=[];
         foreach ($tickets as $ticket) {
-            $pathToFile[]=public_path('assets/tickets/'.$ticket->ticket_number.'.jpg');
+            $file_path = public_path('assets/tickets/'.$ticket->ticket_number.'.jpg');
+            if(file_exists($file_path)){
+                $path = $file_path;
+            }else{
+                $path = public_path('assets/images/default-ticket.png');
+            }
+            $pathToFile[]=$path;
+            //$pathToFile[]=public_path('assets/tickets/'.$ticket->ticket_number.'.jpg');
         }
         Mail::send('emails.ticket', [], function($message) use ($emails,$email_client,$pathToFile)
         {
