@@ -130,7 +130,7 @@ class CartController extends BaseController {
 			$phone = Input::get('phone');
 			$rules = array( 'first_name' => 'required|Between:2,49',
 				'last_name' => 'required|Between:2,49',
-				'email' => 'required|email|Between:5,49|unique:users',
+//				'email' => 'required|email|Between:5,49|unique:users',
 				'direction' => 'required|Between:2,49',
 				'district' => 'required',
 				'city' => 'required|Between:2,29',
@@ -145,7 +145,13 @@ class CartController extends BaseController {
                 $data['type']='guest';
                 $data['username']='guest'.time();
 //                dd($data);
-                $user=User::create($data);
+                $user= User::select('id')->where('email',Input::get('email'))->where('type','guest')->first();
+                if(isset($user) && count($user)>0)
+                {
+                    $user->update($data);
+                }else{
+                    $user=User::create($data);
+                }
 //                dd($user);
 				Session::push('guest.id', $user->id);
 				Session::push('guest.f_name', $f_name);
@@ -411,7 +417,7 @@ class CartController extends BaseController {
             /*Mail::send('emails.order_details', $data, function($message)
             {
                 $message->subject('A new Order has been placed');
-                $message->from('us@example.com', 'expoor.pe');
+                $message->from('us@example.com', 'exploor.pe');
                 $message->to('info@exploor.pe')->cc('info@exploor.pe');
                 #$message->attach($pathToFile);
             });*/
@@ -531,7 +537,7 @@ class CartController extends BaseController {
                 Mail::send('emails.payment_instruction', $data, function($message) use($emails,$email_client)
                 {
                     $message->subject('Your Order has been placed');
-                    $message->from('info@exploor.pe', 'expoor.pe');
+                    $message->from('info@exploor.pe', 'exploor.pe');
                     $message->to($email_client)->cc($emails);
                     #$message->attach($pathToFile);
                 });
