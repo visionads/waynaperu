@@ -99,7 +99,6 @@
                                 @foreach(Cart::content() as $cart)
 
                                     <li>
-
                                        <span class="item">
                                        <span class="item-left">
                                        <img src="{{ asset('uploads/products/thumbs/thumb_'.getLocImage($cart->options['loc_id'])) }}" alt="" width="50px" height="50px"/>
@@ -238,7 +237,8 @@
             <ul class="nav navbar-nav ">
                 <li class="dropdown cart">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> <span class="circle">{{ Cart::count(false) }}</span></a>
+                        <span class="glyphicon glyphicon-shopping-cart"></span> <span class="circle">{{ Cart::count(false) }}</span>
+                    </a>
                     <ul class="dropdown-menu dropdown-cart" role="menu">
                         @foreach(Cart::content() as $cart)
                             <li>
@@ -260,6 +260,7 @@
                         <li><a class="text-center" href="{{ route('cart') }}">{{ trans('text.view_cart') }}</a></li>
                     </ul>
                 </li>
+                <li><a class="text-center" href="https://waynaexp.wordpress.com/" target="_blank"> &nbsp;&nbsp; Blog</a></li>
                 <li><a class="text-center" href="{{ route('faq_front') }}">{{ trans('text.faq') }}</a></li>
                 <li>
                     <div class="btn-group en">

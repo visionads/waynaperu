@@ -89,13 +89,16 @@ Route::group(array('before' => 'adminFilter'), function () {
 	Route::get('ticket_template',function(){
 		return View::make('admin.ticket');
 	});
+
+	/*
+	 * For Email Templates
+	 * */
 	Route::get('email_template_1',function(){
 		return View::make('admin.email_template_1');
 	});
 	Route::get('email_template_sign',function(){
 		return View::make('admin.email_template_sign');
 	});
-
 
     Route::controller('filemanager', 'FilemanagerLaravelController');
 	//Languages
@@ -218,6 +221,7 @@ Route::group(array('before' => 'adminFilter'), function () {
 	Route::any('filter', array('as' => 'filter', 'uses' => 'HomeController@showFilter'));
 	Route::any('autosearch', array('as' => 'autosearch', 'uses' => 'HomeController@showAutoSearch'));
 	Route::any('remove', array('as' => 'remove_row', 'uses' => 'HomeController@removeRow'));
+	Route::any('book-of-reclaims', array('as' => 'book_of_reclaims', 'uses' => 'HomeController@bookOfReclaims'));
 	Route::any('terms-n-conditions', array('as' => 'terms_n_conditions', 'uses' => 'HomeController@termsConditions'));
 	Route::any('faq', array('as' => 'faq_front', 'uses' => 'HomeController@faq'));
     Route::any('how-does-wayna-work', array('as' => 'wayna_work', 'uses' => 'HomeController@wayna_work'));

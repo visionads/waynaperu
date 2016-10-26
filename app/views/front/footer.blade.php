@@ -17,7 +17,8 @@
                             <li><a href="{{ route('terms_n_conditions') }}">{{ trans('text.terms') }}</a></li>
                             {{-- <li><a href="#">{{ trans('text.policy') }}</a></li> --}}
                             <li><a class="nl" href="#" data-toggle="modal" data-target="#modal-newsletter">{{ trans('text.newsletter') }}</a></li>
-                            <li><a href="https://waynaexp.wordpress.com/" target="_blank">Wayna Blog</a></li>
+                            {{--<li><a href="https://waynaexp.wordpress.com/" target="_blank">Wayna Blog</a></li>--}}
+                            <li><a href="{{ route('book_of_reclaims') }}">Book of reclaims</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12">

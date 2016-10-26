@@ -323,7 +323,35 @@ class HomeController extends BaseController {
         ->with('tags',$tags)
 		->with('districts',$districts);
     }
+	public function bookOfReclaims()
+	{
+		$page_id	= 4;
+		$content 	= DB::table('contents')
+			->select('contents.title', 'contents.description')
+			->where('contents.lang_id', $this->url_language_id)
+			->where('contents.page_id', $page_id)
+			->first();
 
+		$categories = DB::table('category_content')
+			->join('categories', 'category_content.cat_id', '=', 'categories.id')
+			->select('category_content.id','category_content.cat_id', 'categories.state', 'categories.image','categories.icon', 'category_content.title', 'category_content.description')
+			->where('category_content.lang_id', $this->url_language_id)
+			->orderBy('category_content.id', 'asc')
+			->get();
+
+		$districts = District::orderBy('name', 'ASC')->get();
+		$tags = DB::table('products')
+			->select(DB::raw('GROUP_CONCAT(DISTINCT tags) as  tags'))
+			->get();
+		$tags = array_unique(explode(",",$tags[0]->tags));
+
+		return View::make('front.book_of_reclaims')
+			->with('categories',$categories)
+			->with('content',$content)
+			->with('tags',$tags)
+			->with('districts',$districts);
+//		return View::make('front.bookofreclaims');
+	}
 	public function wayna_work()
     {
         $page_id	= 5;
