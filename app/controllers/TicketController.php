@@ -250,7 +250,8 @@ class TicketController extends Controller
             </body>
             </html>
         ';
-
+//echo $html;
+//exit();
         return $html;
 
     }
