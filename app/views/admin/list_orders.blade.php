@@ -19,6 +19,9 @@
                     <th class="hidden-xs">Clients Info </th>
                     <th class="hidden-xs">Order Status</th>
                     <th class="hidden-xs">Order Price</th>
+                    @if(Auth::user()->type== 'admin')
+                        <th>Tickets</th>
+                    @endif
                     <th> Qty</th>
                     <th> Created At</th>
                     <th> Actions </th>
@@ -53,6 +56,19 @@
                             </td>
                             <td>{{ $order->status }}</td>
                             <td>s./ {{number_format($order->price, 2)}}</td>
+                            @if(Auth::user()->type== 'admin')
+                                <td>
+                                        <?php
+                                    //if($order->id==550) dd($order->relTickets);
+                                    ?>
+                                    @if(isset($order->relTickets) && count($order->relTickets)>0)
+                                        <?php $x=1 ?>
+                                        @foreach($order->relTickets as $ticket)
+                                            {{ $x++.'. <b>'.$ticket->ticket_number.'</b><br>' }}
+                                        @endforeach
+                                    @endif
+                                </td>
+                            @endif
                             <td>{{ $order->qty }}</td>
                             <td>{{ $order->created_at }}</td>
                             <td>
