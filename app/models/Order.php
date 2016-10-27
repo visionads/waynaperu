@@ -35,6 +35,10 @@ class Order extends Eloquent  implements UserInterface, RemindableInterface  {
     {
         return $this->hasMany('OrderItems', 'order_id','id');
     }
+    public function relTickets()
+    {
+        return $this->hasMany('Ticket', 'order_id','id');
+    }
 
     
 
