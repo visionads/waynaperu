@@ -124,7 +124,7 @@ return array(
     "thank_you" => "Gracias",
     "confirmation_number" => "Número de confirmación",
     "activity" => "Actividad",
-    "location" => "Ubicación",
+    "location" => "Lugar",
     "quantity" => "Cantidad",
     "price" => "Precio",
     "Questions" => "preguntas",

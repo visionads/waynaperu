@@ -67,24 +67,24 @@
             {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-04.png') }}" width="100%"></div>--}}
             {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-05.png') }}" width="100%"></div>--}}
             <table width="100%" style="font-family: Arial; margin-bottom: 20px;">
-                <tr style="text-align: center">
-                    <td width="20%">
+                <tr style="text-align: center" valign="top">
+                    <td width="20%" valign="top">
                         <img src="{{ $message->embed('assets/images/email-temp-01.1.png') }}" width="100%">
                         <p style="font-size: 14px;">{{ trans('pi.bcp') }}</p>
                     </td>
-                    <td width="20%">
+                    <td width="20%" valign="top">
                         <img src="{{ $message->embed('assets/images/email-temp-02.1.png') }}" width="100%">
                         <p style="font-size: 14px;">{{ trans('pi.transfer') }}<span style="color:deeppink">{{ $total }}</span><br>{{ trans('pi.to') }} : <strong>193-2298769-0-86</strong> </p>
                     </td>
-                    <td width="20%">
+                    <td width="20%" valign="top">
                         <img src="{{ $message->embed('assets/images/email-temp-03.1.png') }}" width="100%">
                         <p style="font-size: 14px;">{{ trans('pi.email') }}<br><span style="color:dodgerblue;">pago@exploor.pe</span> </p>
                     </td>
-                    <td width="20%">
+                    <td width="20%" valign="top">
                         <img src="{{ $message->embed('assets/images/email-temp-04.1.png') }}" width="100%">
                         <p style="font-size: 14px;">{{ trans('pi.receive') }} </p>
                     </td>
-                    <td width="20%">
+                    <td width="20%" valign="top">
                         <img src="{{ $message->embed('assets/images/email-temp-05.1.png') }}" width="100%">
                         <p style="font-size: 14px;">{{ trans('pi.gift') }}</p>
                     </td>
@@ -93,7 +93,7 @@
         </div>
         <div style="width: 100%; height: 20px; background: orange;">&nbsp;</div>
         <div style="width: 100%; height: 20px;">&nbsp;</div>
-        <div style="font-size: 25px; text-align: center;">{{ trans('pi.question') }} ?</div>
+        <div style="font-size: 25px; text-align: center;">{{ trans('pi.question') }}</div>
         <div style="text-align: center;"><img src="{{ $message->embed('assets/images/email-temp-06.png') }}" height="100"></div>
         <div style="font-size: 20px !important; text-align: center;">
             {{ trans('pi.mail_to') }} <span style="color: #0f71ba;">info@exploor.pe</span> {{ trans('pi.as_possible') }}
