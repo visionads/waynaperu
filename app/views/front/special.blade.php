@@ -72,9 +72,12 @@
                         <?php if(Input::has('category')){ echo Input::get('category');}?>">
                         <span class="glyphicon glyphicon-triangle-bottom"></span>
                 </a>
-                    <ul class="dropdown-menu categoriess">                      @foreach($categories as $category)                        
-                        <li data-catid="{{ $category->cat_id }}"> {{ $category->title }}</li>                      
-                        @endforeach                  
+                    <ul class="dropdown-menu categoriess">
+                        @if(count($categories)>0)
+                            @foreach($categories as $category)
+                                <li data-catid="{{ $category->cat_id }}"> {{ $category->title }}</li>
+                            @endforeach
+                        @endif
                     </ul>
         </li>
         <li role="presentation" class="dropdown distts">
@@ -92,10 +95,12 @@
                             <?php if(Input::has('disttid')){ echo Input::get('disttid');}?>">
                             <span class="glyphicon glyphicon-triangle-bottom"></span>
                 </a>
-                        <ul class="dropdown-menu distt">                      
-                          @foreach($districts as $district)                        
-                              <li data-disttid="{{ $district->id }}"> {{ $district->name }}</li>                      
-                            @endforeach                  
+                        <ul class="dropdown-menu distt">
+                            @if(count($districts)>0)
+                                @foreach($districts as $district)
+                                  <li data-disttid="{{ $district->id }}"> {{ $district->name }}</li>
+                                @endforeach
+                            @endif
                         </ul>
         </li>
         </ul>
@@ -105,12 +110,14 @@
             
        <div class="como-toggle">               
            <ul class="categories">                     
-           <h2 class="sidebar-brand"> {{ trans('text.categories') }}</h2>                    
-            @foreach($categories as $category)		               
-               <li>		                  
-                 <span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>		                  <a href="#">{{ $category->title }}</a>		               
-               </li>		              
-            @endforeach                 
+           <h2 class="sidebar-brand"> {{ trans('text.categories') }}</h2>
+               @if(count($categories)>0)
+                    @foreach($categories as $category)
+                       <li>
+                            <span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span><a href="#">{{ $category->title }}</a>
+                       </li>
+                    @endforeach
+               @endif
             </ul>               
          </div>               
          
