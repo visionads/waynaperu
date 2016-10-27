@@ -72,9 +72,12 @@
                         <?php if(Input::has('category')){ echo Input::get('category');}?>">
                         <span class="glyphicon glyphicon-triangle-bottom"></span>
                 </a>
-                    <ul class="dropdown-menu categoriess">                      @foreach($categories as $category)
-                        <li data-catid="{{ $category->cat_id }}"> {{ $category->title }}</li>
-                        @endforeach
+                    <ul class="dropdown-menu categoriess">
+                        @if(count($categories)>0)
+                            @foreach($categories as $category)
+                                <li data-catid="{{ isset($category->cat_id) ? $category->cat_id : null }}"> {{ isset($category->title) ? $category->title : null }}</li>
+                            @endforeach
+                        @endif
                     </ul>
         </li>
         <li role="presentation" class="dropdown distts">
@@ -93,9 +96,11 @@
                             <span class="glyphicon glyphicon-triangle-bottom"></span>
                 </a>
                         <ul class="dropdown-menu distt">
-                          @foreach($districts as $district)
-                              <li data-disttid="{{ $district->id }}"> {{ $district->name }}</li>
-                            @endforeach
+                            @if(count($districts)>0)
+                                @foreach($districts as $district)
+                                  <li data-disttid="{{ $district->id }}"> {{ $district->name }}</li>
+                                @endforeach
+                            @endif
                         </ul>
         </li>
         </ul>
@@ -106,11 +111,13 @@
        <div class="como-toggle">
            <ul class="categories">
            <h2 class="sidebar-brand"> {{ trans('text.categories') }}</h2>
-            @foreach($categories as $category)
-               <li>
-                 <span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>		                  <a href="#">{{ $category->title }}</a>
-               </li>
-            @endforeach
+            @if(count($categories)>0)
+                @foreach($categories as $category)
+                   <li>
+                     <span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span><a href="#">{{ isset($category->title) ? $category->title : null }}</a>
+                   </li>
+                @endforeach
+            @endif
             </ul>
          </div>
 
@@ -161,25 +168,24 @@
                       <div class="col-lg-12 col-sm-12">
                          <hr>
                          <p>Quizás una de las experiencias más buscadas te resulte interesante:</p>
+                          @if(count($popular_products)>0)
                             @foreach($popular_products as $product)
-                         <div class="col-lg-3 col-md-3 col-sm-6 p-product">
-                            <a href="{{ route('category_experience_id', array(Str::slug($product->category_name), Str::slug($product->product_title), $product->product_id)) }}" title="{{ $product->title }}" class="orange-text">
-                              <h2>{{ $product->product_title }}</h2>
-                            </a>
-                         </div>
-                      @endforeach
+                             <div class="col-lg-3 col-md-3 col-sm-6 p-product">
+                                <a href="{{ route('category_experience_id', array(Str::slug($product->category_name), Str::slug($product->product_title), $product->product_id)) }}" title="{{ $product->title }}" class="orange-text">
+                                  <h2>{{ isset($product->product_title) ? $product->product_title : null }}</h2>
+                                </a>
+                             </div>
+                            @endforeach
+                          @endif
                      </div>
                 </div>
-
-
              </div>
           </div>
              <!--bloque end here-->
 
         </div>
-
-
   </div>
+</div>
 </div>
 
 @stop
