@@ -541,6 +541,14 @@ class CartController extends BaseController {
                     $message->to($email_client)->cc($emails);
                     #$message->attach($pathToFile);
                 });
+                Mail::send('emails.order_details_for_info', $data, function($message) use($emails,$email_client)
+                {
+                    $message->subject('New Order has been placed');
+                    $message->from('info@exploor.pe', 'exploor.pe');
+//                    $message->to('info@exploor.pe');
+                    $message->to('bd.shawon1991@gmail.com');
+                    #$message->attach($pathToFile);
+                });
 				//exit("ELSE");
 				return Response::json(array('method' => 'agente_bcp', 'state' => 'success', 'order_number' => $order_number));
 				//return Redirect::route('agente_bcp', array($order_number));

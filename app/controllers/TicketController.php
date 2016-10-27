@@ -407,13 +407,14 @@ class TicketController extends Controller
     public static function emailProvider($order_item_id)
     {
         $pe= DB::table('order_items');
-        $pe= $pe->select('ticket.ticket_number','users.email');
+        $pe= $pe->select('order_items.*','ticket.ticket_number','users.email','product_content.title');
         $pe= $pe->join('products','products.id','=','order_items.product_id','left');
+        $pe= $pe->join('product_content','product_content.product_id','=','products.id','left');
         $pe= $pe->join('users','users.id','=','products.user_id','left');
         $pe= $pe->join('ticket','ticket.order_item_id','=','order_items.id','left');
+        $pe= $pe->where('product_content.lang_id',1);
         $pe= $pe->where('order_items.id',$order_item_id);
         $pe= $pe->first();
-
         $item= (array) $pe;
         if($item['email'] != null) {
             $file_path = public_path('assets/tickets/P-'.$item["ticket_number"].'.jpg');
@@ -423,9 +424,9 @@ class TicketController extends Controller
                 $path = public_path('assets/images/default-ticket.png');
             }
             $pathToFile=$path;
-            Mail::send('emails.ticket', $item, function ($message) use ($item, $pathToFile) {
+            Mail::send('emails.sold_details_to_provider', $item, function ($message) use ($item, $pathToFile) {
                 $message->subject('Ticket for new sale.');
-                $message->from('devdhaka404@gmail.com', 'exploor.pe');
+                $message->from('info@exploor.pe', 'exploor.pe');
                 $message->to($item['email']);
                 $message->attach($pathToFile);
             });

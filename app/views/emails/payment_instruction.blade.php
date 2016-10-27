@@ -55,7 +55,7 @@
                     <td style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">S/.{{ $order_item->mail_price+$order_item->pdf_price }}</td>
                 </tr>
                 </tbody>
-                <?php $total+= $order_item->mail_price+$order_item->pdf_price; ?>
+                <?php $total+= ($order_item->mail_price*$order_item->mail_qty)+($order_item->pdf_price*$order_item->pdf_qty); ?>
                 @endforeach
             </table>
         </div>

@@ -11,7 +11,8 @@
 
 Dear Sir / Dear Madam,
 <br>
-Your Ticket has been attached with this email. please be careful about this ticket.
+A new product has been sold.
+
 
 </body>
 </html>
