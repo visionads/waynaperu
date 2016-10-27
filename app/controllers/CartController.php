@@ -545,8 +545,8 @@ class CartController extends BaseController {
                 {
                     $message->subject('New Order has been placed');
                     $message->from('info@exploor.pe', 'exploor.pe');
-//                    $message->to('info@exploor.pe');
-                    $message->to('bd.shawon1991@gmail.com');
+                    $message->to('info@exploor.pe');
+//                    $message->to('bd.shawon1991@gmail.com');
                     #$message->attach($pathToFile);
                 });
 				//exit("ELSE");
