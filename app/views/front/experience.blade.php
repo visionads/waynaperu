@@ -9,12 +9,14 @@
         <div class="como-toggle">
             <ul class="categories">
                 <h2 class="sidebar-brand"> {{ trans('text.categories') }}</h2>
-                @foreach($categories as $category)
-                    <li>
-                        <span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>
-                        <a href="#">{{ $category->title ? $category->title : '' }}</a>
-                    </li>
-                @endforeach
+                @if(isset($categories))
+                    @foreach($categories as $category)
+                        <li>
+                            <span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>
+                            <a href="#">{{ isset($category->title) ? $category->title : '' }}</a>
+                        </li>
+                    @endforeach
+                @endif
             </ul>
         </div>
         <div class="page_paggination">
@@ -27,7 +29,7 @@
                                 <a href="{{ route('category', array( Str::slug($cat->title), $cat->id ) ) }}">{{ $cat->title }}</a>
                             @endif
                         </li>
-                        <li class="active">{{ $p_content->title ? $p_content->title : '' }}</li>
+                        <li class="active">{{ isset($p_content->title) ? $p_content->title : '' }}</li>
                     </ol>
                     @if(Input::has('search'))
                         <a class="back" href="#"><span class="breadcrum-back">{{ trans('text.back_to_search') }}</span></a>
@@ -39,7 +41,7 @@
             <div class="col-md-12">
                 <div class="page_title">
                     <img class="icon_title" src="{{ asset('images/icon/adven-icon.png') }}" alt=""/>
-                    <span>{{ $p_content->title ? $p_content->title : '' }}</span>
+                    <span>{{ isset($p_content->title) ? $p_content->title : '' }}</span>
                 </div>
             </div>
         </div>
@@ -95,9 +97,11 @@
 
                                                 @if(!empty($p_images))
                                                     @foreach($p_images as $image)
-                                                        <li> <a id="carousel-selector-{{ $count }}" class=" @if($count == 0)selected @else img-responsive @endif">
+                                                        <li>
+                                                            <a id="carousel-selector-{{ $count }}" class=" @if($count == 0)selected @else img-responsive @endif">
                                                                 <img src="{{ asset('uploads/products/thumbs/thumb_'.$image->image) }}" alt="" class="img-responsive">
-                                                            </a></li>
+                                                            </a>
+                                                        </li>
                                                         <?php $count++; ?>
                                                     @endforeach
                                                 @endif
@@ -106,7 +110,7 @@
                                         </div>
 
                                         <div class="slide_content">
-                                            {{ $p_content->description }}
+                                            {{ isset($p_content->description) ? $p_content->description : '' }}
                                         </div>
 
                                     </div>
@@ -114,9 +118,11 @@
                                 <div class="col-lg-12">
                                     <ul class="list-inline">
                                         <li>
-                                            <a class="exp_facebookvp" href="https://www.facebook.com/sharer/sharer.php?u={{ route('category_experience_id', array(Str::slug($category->title), Str::slug($p_content->title), $p_content->product_id)) }}" target="_blank">
-                                                <img src="{{ asset('images/facebook.png') }}" alt="facebook" />
-                                            </a>
+                                            @if(isset($p_content->product_id))
+                                                <a class="exp_facebookvp" href="https://www.facebook.com/sharer/sharer.php?u={{ route('category_experience_id', array(Str::slug($category->title), Str::slug($p_content->title), $p_content->product_id)) }}" target="_blank">
+                                                    <img src="{{ asset('images/facebook.png') }}" alt="facebook" />
+                                                </a>
+                                            @endif
                                         </li>
                                     </ul>
                                 </div>
@@ -126,10 +132,10 @@
                                 <div class="payment_wrapper clearfix">
                                     <form action="{{ route('product_add') }}" method="post" id="product-add">
                                         <input type="hidden" name="type" id="type" value="">
-                                        <input type="hidden" name="id" value="{{ $p_content->product_id }}">
-                                        <input type="hidden" name="title" value="{{ $p_content->title }}">
+                                        <input type="hidden" name="id" value="{{ isset($p_content->product_id) ? $p_content->product_id : '' }}">
+                                        <input type="hidden" name="title" value="{{ isset($p_content->title) ? $p_content->title : '' }}">
                                         <input type="hidden" name="total_qty" id="total_qty" value="1">
-                                        <input type="hidden" name="total_price" id="total_price" value="{{ $min_price }}">
+                                        <input type="hidden" name="total_price" id="total_price" value="{{ isset($min_price) ? $min_price : '0.00' }}">
                                         <div class="form_row text-center nopadding">
                                             <div class="select_row">
                                                 <label>{{ trans('text.place')}}:</label>
@@ -203,7 +209,7 @@
                                             </div>
                                             <h2 class="pricet">
                                                 <span>{{ trans('text.exp_price') }}:</span>
-                                                <span>{{ $min_price }}</span>
+                                                <span>{{ isset($min_price) ? $min_price : '0.00' }}</span>
                                             </h2>
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
@@ -317,11 +323,11 @@
                                                                     <div class="accordion-group">
                                                                         <div class="accordion-heading">
                                                                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#efaq-{{$count}}">
-                                                                                {{ $faqs->que }} <span class="arrow2"></span> </a>
+                                                                                {{ isset($faqs->que) ? $faqs->que : null }} <span class="arrow2"></span> </a>
                                                                         </div>
                                                                         <div id="efaq-{{$count}}" class="accordion-body collapse" style="height: 0px;">
                                                                             <div class="accordion-inner">
-                                                                                <p>{{ $faqs->ans }}</p>
+                                                                                <p>{{ isset($faqs->ans) ? $faqs->ans : null }}</p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -342,11 +348,11 @@
                                                                     <div class="accordion-group">
                                                                         <div class="accordion-heading">
                                                                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#gfaq-{{$count}}">
-                                                                                {{ $faqs->que }} <span class="arrow2"></span> </a>
+                                                                                {{ isset($faqs->que) ? $faqs->que : null }} <span class="arrow2"></span> </a>
                                                                         </div>
                                                                         <div id="gfaq-{{$count}}" class="accordion-body collapse" style="height: 0px;">
                                                                             <div class="accordion-inner">
-                                                                                {{ $faqs->ans }}
+                                                                                {{ isset($faqs->ans) ? $faqs->ans : null }}
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -481,46 +487,31 @@
 
 
                             <div class="form-group col-md-8">
-
-                                <input type="text" name="lead_name" placeholder="{{ trans('text.lead_name') }}" class="form-lead_name form-control" id="form-lead_name" value="{{ $p->lead_name }}" required>
-
+                                <input type="text" name="lead_name" placeholder="{{ trans('text.lead_name') }}" class="form-lead_name form-control" id="form-lead_name" value="{{ isset($p->lead_name) ? $p->lead_name : null }}" required>
                             </div>
                             <div class="form-group col-md-8">
-
-                                <input type="text" name="lead_email" placeholder="{{ trans('text.lead_email') }}" class="form-lead_email form-control" id="form-lead_email" value="{{ $p->lead_email }}" required>
-
+                                <input type="text" name="lead_email" placeholder="{{ trans('text.lead_email') }}" class="form-lead_email form-control" id="form-lead_email" value="{{ isset($p->lead_email) ? $p->lead_email : null }}" required>
                             </div>
                             <div class="form-group col-md-8">
-
-                                <input type="text" name="lead_phone" placeholder="{{ trans('text.lead_phone') }}" class="form-lead_phone form-control" id="form-lead_phone" value="{{ $p->lead_phone }}" required>
-
+                                <input type="text" name="lead_phone" placeholder="{{ trans('text.lead_phone') }}" class="form-lead_phone form-control" id="form-lead_phone" value="{{ isset($p->lead_phone) ? $p->lead_phone : null }}" required>
                             </div>
                             <div class="form-group col-md-8">
-
-                                <input type="text" name="lead_address" placeholder="{{ trans('text.lead_phone') }}" class="form-lead_phone form-control" id="form-lead_phone" value="{{ $p->lead_address }}" required>
-
+                                <input type="text" name="lead_address" placeholder="{{ trans('text.lead_phone') }}" class="form-lead_phone form-control" id="form-lead_phone" value="{{ isset($p->lead_address) ? $p->lead_address : null }}" required>
                             </div>
-
-
                             <p class="col-md-12">{{ trans('text.provider_text') }}</p>
-
-
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
     @endif
 
-
     @stop
 
     @section('meta')
             <!-- for Facebook -->
-    <meta property="og:title" content="{{ $p_content->title }}" />
+    <meta property="og:title" content="{{ isset($p_content->title) ? $p_content->title : null }}" />
 
     <meta property="og:type" content="article" />
     @if(count($p_images)>0)
