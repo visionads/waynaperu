@@ -130,13 +130,16 @@
                             <h2>{{ trans('text.purchase_summary') }}</h2>
                             <div class="compare_wrapper">
                                 <div class="pay-product_listing custom-repares mCustomScrollbar">
-                                  <?php $total_price = 0;
-                                        $total_qty = 0;
+                                  <?php
+                                    $total_price = 0;
+                                    $total_qty = 0;
                                   ?>
-                                  @foreach($cart_con as $cart)
+                                  @if(isset($cart_con))
+                                    @foreach($cart_con as $cart)
                                     <h3>{{ $cart->name }}<br> #18739283</h3>
-                                       <?php $total_price = $total_price + $cart->price; 
-                                              $total_qty = $total_qty + $cart->qty;
+                                       <?php
+                                          $total_price = $total_price + $cart->price;
+                                          $total_qty = $total_qty + $cart->qty;
                                        ?>                                 
                                     <div class="row row_content">
                                        <div class="col-md-4 col-sm-4 col-xs-4"><img class="img-responsive" src="{{ asset('uploads/products/thumbs/thumb_'.getLocImage($cart->options['loc_id'])) }}" alt="" /></div>
@@ -194,6 +197,7 @@
                                        </div>
                                     </div>
                                     @endforeach
+                                  @endif
 
                                 </div>
                                 <div class="paytotal_price">{{ trans('text.total_price') }}: 	<span>S/. {{ $total_price }}</span></div>

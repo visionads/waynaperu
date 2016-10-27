@@ -101,92 +101,102 @@
 
                         <div class="compare_wrapper">
                             <div class="pay-product_listing custom-repares mCustomScrollbar">
-                                <?php $total_price = 0;
-                                $total_qty = 0;
+                                <?php
+                                    $total_price = 0;
+                                    $total_qty = 0;
                                 ?>
-                                @foreach($cart_con as $cart)
-                                    <h3>{{ getExpName($cart->id) }}<br> #18739283</h3>
-                                    <?php $total_price = $total_price + $cart->price;
-                                    $total_qty = $total_qty + $cart->qty;
-                                    ?>
-                                    <div class="row row_content">
-                                        <div class="col-md-4 col-sm-4 col-xs-4"><img class="img-responsive" src="{{ asset('uploads/products/thumbs/thumb_'.getLocImage($cart->options['loc_id'])) }}" alt="" /></div>
-                                        <div class="col-md-8 col-sm-8 col-xs-8">
-                                            @if($cart->options['pdf'] > 0 )
-                                                <div class="pay_pro_row row">
-                                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                                        <span style="font-size:13px" class="hidden-xs">{{ trans('text.experience_pin_adult') }}:</span>
-                                                        <span style="font-size:13px" class="hidden-lg pull-left">{{ trans('text.experience_pin_adult') }}:</span>
-                                                    </div>                                                
-                                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <div class="row">
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                <div class="row">
-                                                                    <div class="col-md-6 col-sm-6 col-xs-6"><p>{{ $cart->options['pdf'] }} x {{ getLocName($cart->options['loc_id']) }}</p></div>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. {{ getPdfPrice($cart->options['loc_id'], $cart->options['pdf']) }}</span></div>
+                                @if(count($cart_con)>0)
+                                    @foreach($cart_con as $cart)
+                                        @if(isset($cart->id))
+                                            <h3>{{ getExpName($cart->id) }}<br> #18739283</h3>
+                                        @endif
+                                        <?php
+                                            if(isset($cart->price)){
+                                                $total_price = $total_price + $cart->price;
+                                            }
+                                            if(isset($cart->qty)){
+                                                $total_qty = $total_qty + $cart->qty;
+                                            }
+                                        ?>
+                                        <div class="row row_content">
+                                            @if(isset($cart->options['loc_id']))
+                                                <div class="col-md-4 col-sm-4 col-xs-4"><img class="img-responsive" src="{{ asset('uploads/products/thumbs/thumb_'.getLocImage($cart->options['loc_id'])) }}" alt="" /></div>
+                                            @endif
+                                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                                @if($cart->options['pdf'] > 0 )
+                                                    <div class="pay_pro_row row">
+                                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                                            <span style="font-size:13px" class="hidden-xs">{{ trans('text.experience_pin_adult') }}:</span>
+                                                            <span style="font-size:13px" class="hidden-lg pull-left">{{ trans('text.experience_pin_adult') }}:</span>
+                                                        </div>
+                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                            <div class="row">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 col-sm-6 col-xs-6"><p>{{ $cart->options['pdf'] }} x {{ getLocName($cart->options['loc_id']) }}</p></div>
+                                                                        <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. {{ getPdfPrice($cart->options['loc_id'], $cart->options['pdf']) }}</span></div>
+                                                                    </div>
                                                                 </div>
+                                                                <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                   <div class="row">
+                                                                      <div class="col-md-6 col-sm-6 col-xs-6"><p>1 x 10 min extra & Video</p></div>
+                                                                      <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. 19.90</span></div>
+                                                                   </div>
+                                                                </div> -->
                                                             </div>
-                                                            <!-- <div class="col-md-12 col-sm-12 col-xs-12">
-                                                               <div class="row">
-                                                                  <div class="col-md-6 col-sm-6 col-xs-6"><p>1 x 10 min extra & Video</p></div>
-                                                                  <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. 19.90</span></div>
-                                                               </div>
-                                                            </div> -->
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endif
-                                            @if($cart->options['mail'] > 0 )
-                                                <div class="pay_pro_row row">
-                                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                                        <span style="font-size:13px" class="hidden-xs">{{ trans('text.experience_pin_boy') }}:</span>
-                                                        <span style="font-size:13px" class="hidden-lg pull-left">{{ trans('text.experience_pin_boy') }}:</span>
-                                                    </div>
-                                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <div class="row">
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                <div class="row">
-                                                                    <div class="col-md-6 col-sm-6 col-xs-6"><p>{{ $cart->options['mail'] }} x {{ getLocName($cart->options['loc_id']) }}</p></div>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. {{ getMailPrice($cart->options['loc_id'], $cart->options['mail']) }}</span></div>
+                                                @endif
+                                                @if($cart->options['mail'] > 0 )
+                                                    <div class="pay_pro_row row">
+                                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                                            <span style="font-size:13px" class="hidden-xs">{{ trans('text.experience_pin_boy') }}:</span>
+                                                            <span style="font-size:13px" class="hidden-lg pull-left">{{ trans('text.experience_pin_boy') }}:</span>
+                                                        </div>
+                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                            <div class="row">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 col-sm-6 col-xs-6"><p>{{ $cart->options['mail'] }} x {{ getLocName($cart->options['loc_id']) }}</p></div>
+                                                                        <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. {{ getMailPrice($cart->options['loc_id'], $cart->options['mail']) }}</span></div>
+                                                                    </div>
                                                                 </div>
+                                                                <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                   <div class="row">
+                                                                      <div class="col-md-6 col-sm-6 col-xs-6"><p>1 x 10 min extra & Video</p></div>
+                                                                      <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. 19.90</span></div>
+                                                                   </div>
+                                                                </div> -->
                                                             </div>
-                                                            <!-- <div class="col-md-12 col-sm-12 col-xs-12">
-                                                               <div class="row">
-                                                                  <div class="col-md-6 col-sm-6 col-xs-6"><p>1 x 10 min extra & Video</p></div>
-                                                                  <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. 19.90</span></div>
-                                                               </div>
-                                                            </div> -->
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endif
-                                            @if($cart->options['gift'] > 0 )
-                                                <div class="pay_pro_row row">
-                                                    <div class="col-md-1 col-sm-1 col-xs-1"><span class="fa fa-gift"></span></div>
-                                                    <div class="col-md-11 col-sm-11 col-xs-11">
-                                                        <div class="row">
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                <div class="row">
-                                                                    <div class="col-md-6 col-sm-6 col-xs-6"><p>{{ $cart->options['gift'] }} x {{ getLocName($cart->options['loc_id']) }}</p></div>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. {{ getGiftPrice($cart->options['loc_id'], $cart->options['gift']) }}</span></div>
+                                                @endif
+                                                @if($cart->options['gift'] > 0 )
+                                                    <div class="pay_pro_row row">
+                                                        <div class="col-md-1 col-sm-1 col-xs-1"><span class="fa fa-gift"></span></div>
+                                                        <div class="col-md-11 col-sm-11 col-xs-11">
+                                                            <div class="row">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 col-sm-6 col-xs-6"><p>{{ $cart->options['gift'] }} x {{ getLocName($cart->options['loc_id']) }}</p></div>
+                                                                        <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. {{ getGiftPrice($cart->options['loc_id'], $cart->options['gift']) }}</span></div>
+                                                                    </div>
                                                                 </div>
+                                                                <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                   <div class="row">
+                                                                      <div class="col-md-6 col-sm-6 col-xs-6"><p>1 x 10 min extra & Video</p></div>
+                                                                      <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. 19.90</span></div>
+                                                                   </div>
+                                                                </div> -->
                                                             </div>
-                                                            <!-- <div class="col-md-12 col-sm-12 col-xs-12">
-                                                               <div class="row">
-                                                                  <div class="col-md-6 col-sm-6 col-xs-6"><p>1 x 10 min extra & Video</p></div>
-                                                                  <div class="col-md-6 col-sm-6 col-xs-6"><span>+ S/. 19.90</span></div>
-                                                               </div>
-                                                            </div> -->
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endif
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
 
-                                @endforeach
-
-
+                                    @endforeach
+                                @endif
                             </div>
                             <div class="paytotal_price">{{ trans('text.total_price') }}:   <span>S/. {{ number_format($total_price, 2) }}</span></div>
                             <?php

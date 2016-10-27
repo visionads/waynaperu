@@ -10,9 +10,9 @@
         <div class="como">
             <div class="row">
                 <div class="heading col-md-12">
-                    <h2>{{ $how_wayna_work->title }}</h2>
+                    <h2>{{ isset($how_wayna_work->title) ? $how_wayna_work->title : null }}</h2>
                 </div>
-                {{ $how_wayna_work->description }}                  
+                {{ isset($how_wayna_work->description) ? $how_wayna_work->description : null }}
             </div>
         </div>        
         <div class="row">
