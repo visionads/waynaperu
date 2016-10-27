@@ -76,9 +76,11 @@
                   <span class="glyphicon glyphicon-triangle-bottom"></span>
           </a>
           <ul class="dropdown-menu categoriess">
-            @foreach($categories as $category)                        
-              <li data-catid="{{ $category->cat_id }}"> {{ $category->title }}</li>                      
-              @endforeach                  
+            @if(count($categories)>0)
+                @foreach($categories as $category)
+                  <li data-catid="{{ $category->cat_id }}"> {{ $category->title }}</li>
+                @endforeach
+            @endif
           </ul>
         </li>
         <li role="presentation" class="dropdown distts">
@@ -97,9 +99,11 @@
                         <span class="glyphicon glyphicon-triangle-bottom"></span>
             </a>
             <ul class="dropdown-menu distt">                      
-                @foreach($districts as $district)                        
-                  <li data-disttid="{{ $district->id }}"> {{ $district->name }}</li>                      
-                @endforeach                  
+                @if(count($districts)>0)
+                    @foreach($districts as $district)
+                      <li data-disttid="{{ $district->id }}"> {{ $district->name }}</li>
+                    @endforeach
+                @endif
             </ul>
         </li>
         </ul>
@@ -109,13 +113,15 @@
               
            <div class="como-toggle">               
             <ul class="categories">                     
-              <h2 class="sidebar-brand"> {{ trans('text.categories') }}</h2>                     
-              @foreach($categories as $category)		               
-              <li>		                  
-                <span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>		                  
-                <a href="#">{{ $category->title }}</a>		               
-              </li>		               
-              @endforeach                  
+              <h2 class="sidebar-brand"> {{ trans('text.categories') }}</h2>
+              @if(count($categories)>0)
+                @foreach($categories as $category)
+                  <li>
+                    <span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>
+                    <a href="#">{{ $category->title }}</a>
+                  </li>
+                @endforeach
+              @endif
             </ul>               
           </div>               
           
@@ -136,15 +142,17 @@
                   <div class="row">                      
                     <div class="col-lg-12 col-sm-12">                        
                       <div class="cat-title">                           
-                        <h1>{{ $cat->title }}</h1>
+                        <h1>{{ isset($cat->title) ? $cat->title : null }}</h1>
                       </div>                        
                     </div>                       
                 
                     <div class="cat-description">                           
-                      <div class="col-lg-7 col-sm-7">{{ $cat->description }}</div> 
+                      <div class="col-lg-7 col-sm-7">{{ isset($cat->description) ? $cat->description : null }}</div>
                       <div class="col-lg-5 col-sm-5">
                           <div class="cate_image_bdr">
-                            <img src="{{ asset('uploads/categories/'.$cat->image) }}" alt="{{ $cat->title }}">
+                            @if(isset($cat->image))
+                              <img src="{{ asset('uploads/categories/'.$cat->image) }}" alt="{{ $cat->title }}">
+                            @endif
                           </div>
                        </div>
                     </div>                   
