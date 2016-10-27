@@ -11,7 +11,7 @@
                    <div class="col-md-12">
                         <ol class="breadcrumb">
                            <li><a href="{{ route('home') }}">{{ trans('text.home') }}</a></li>
-                           <li><a href="{{ route('terms_n_conditions') }}">{{ $content->title }}</a></li>
+                           <li><a href="{{ route('terms_n_conditions') }}">{{ isset($content->title) ? $content->title : null }}</a></li>
                         </ol>
                    </div>
                </div>
@@ -19,7 +19,7 @@
            <div class="row">
                <div class="col-md-12">
                     <div class="page_title">
-                        <span>{{ $content->title }}</span>
+                        <span>{{ isset($content->title) ? $content->title : null }}</span>
                     </div>
                </div>
            </div>
@@ -28,7 +28,7 @@
               <div class="row">
                  <div class="col-lg-12">
                   <div class="pag-content">
-                    {{$content->description}}
+                    {{ isset($content->description) ? $content->description : null }}
                   </div>    
                  </div>
               </div>

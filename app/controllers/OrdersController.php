@@ -61,7 +61,7 @@ class OrdersController extends BaseController {
     }
     public function orders()
     {
-        if(Auth::user()->type=='client')
+        if(isset(Auth::user()->type) && Auth::user()->type == 'client')
         {
             $data['categories'] = DB::table('category_content')
                 ->join('categories', 'category_content.cat_id', '=', 'categories.id')
@@ -74,12 +74,11 @@ class OrdersController extends BaseController {
             return View::make('front.orders',$data);
         }else{
             return Redirect::back();
-
         }
     }
     public function order_details($order_id)
     {
-        if(Auth::user()->type=='client') {
+        if( isset(Auth::user()->type) && Auth::user()->type == 'client') {
             $data['categories'] = DB::table('category_content')
                 ->join('categories', 'category_content.cat_id', '=', 'categories.id')
                 ->select('category_content.id', 'category_content.cat_id', 'categories.state', 'categories.image', 'categories.icon', 'category_content.title', 'category_content.description')

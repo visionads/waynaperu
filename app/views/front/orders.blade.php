@@ -46,13 +46,12 @@
                                             $lang_count	= count($orders);
                                             ?>
                                             @if($lang_count > 0)
-
                                                 @foreach ($orders as $order)
                                                     <tr>
 
-                                                        <td><a href="{{ URL::to('order',$order->id) }}">{{ $order->order_number }}</a></td>
-                                                        <td>{{ $order->status }}</td>
-                                                        <td>s./ <?php echo sprintf('%.2f', $order->price / 100); ?></td>
+                                                        <td><a href="{{ URL::to('order',$order->id) }}">{{ isset($order->order_number) ? $order->order_number : null }}</a></td>
+                                                        <td>{{ isset($order->status) ? $order->status : null }}</td>
+                                                        <td>s./ <?php echo number_format($order->price / 100,2); ?></td>
 
                                                     </tr>
                                                 @endforeach
@@ -75,17 +74,9 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
-
-
         </div>
-
-
-
     </div>
     <!-- /#page-content-wrapper -->
 @stop
