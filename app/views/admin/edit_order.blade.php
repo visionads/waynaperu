@@ -27,11 +27,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="status" class="col-sm-12 col-md-4 control-label">{{ trans('provider.order_status') }}:</label>
+                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.order_status') }}:</label>
                         <div class="col-sm-12 col-md-8">
-                            {{Form::select('status', array('PENDING' => 'Pending', 'SUCCESS' => 'Success', 'SHIPPED' => 'Shipped'), $order->status, ['class' => 'form-control'])}}
+                            <strong style="line-height:42px;">
+                                {{ $order->status }}
+                            </strong>
                         </div>
                     </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="status" class="col-sm-12 col-md-4 control-label">{{ trans('provider.order_status') }}:</label>--}}
+                        {{--<div class="col-sm-12 col-md-8">--}}
+                            {{--{{Form::select('status', array('PENDING' => 'Pending', 'SUCCESS' => 'Success', 'SHIPPED' => 'Shipped'), $order->status, ['class' => 'form-control'])}}--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <div class="form-group">
                         <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.total_qty') }}:</label>
                         <div class="col-sm-12 col-md-8">
@@ -45,8 +53,9 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        @if(Auth::user()->type=='admin')
-                            {{ Form::submit('Update Order', $attributes = ['class' => 'btn btn-success pull-right']) }}
+                        @if(Auth::user()->type=='admin' && $order->status != 'SUCCESS')
+                            <a class="btn btn-success pull-right" href="{{ route('ticket',$order->id) }}"><b>Send Ticket</b></a>
+{{--                            {{ Form::submit('Update Order', $attributes = ['class' => 'btn btn-success pull-right']) }}--}}
                         @endif
                     </div>
                     <input type="hidden" name="order_id" value="{{ $order->id }}">
@@ -191,7 +200,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    @if(count($tickets)>1)
+                    @if(count($tickets)>0)
                         <div class="row">
                         @foreach($tickets as $ticket)
                             @if(Auth::user()->type=='admin')

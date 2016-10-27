@@ -117,7 +117,8 @@ class TicketController extends Controller
                 return true;
             }else{
                 Session::flash('message','Ticket has been sent successfully.');
-                return Redirect::to('admin/orders');
+//                return Redirect::to('admin/orders');
+                return Redirect::back();
             }
         }
 
