@@ -3,6 +3,7 @@
 @extends('front.footer')
 @section('content')
         <!-- Page Content -->
+
 <div id="page-content-wrapper">
     <div class="container-fluid">
         <div class="como-toggle">
@@ -11,7 +12,7 @@
                 @foreach($categories as $category)
                     <li>
                         <span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>
-                        <a href="#">{{ $category->title }}</a>
+                        <a href="#">{{ $category->title ? $category->title : '' }}</a>
                     </li>
                 @endforeach
             </ul>
@@ -22,10 +23,11 @@
                     <ol class="breadcrumb">
                         <li><a href="{{ route('home') }}">{{ trans('text.home') }}</a></li>
                         <li>
-                            <a href="{{ route('category', array( Str::slug($cat->title), $cat->id ) ) }}">{{ $cat->title }}</a>
-
+                            @if(isset($cat->title))
+                                <a href="{{ route('category', array( Str::slug($cat->title), $cat->id ) ) }}">{{ $cat->title }}</a>
+                            @endif
                         </li>
-                        <li class="active">{{ $p_content->title }}</li>
+                        <li class="active">{{ $p_content->title ? $p_content->title : '' }}</li>
                     </ol>
                     @if(Input::has('search'))
                         <a class="back" href="#"><span class="breadcrum-back">{{ trans('text.back_to_search') }}</span></a>
@@ -37,7 +39,7 @@
             <div class="col-md-12">
                 <div class="page_title">
                     <img class="icon_title" src="{{ asset('images/icon/adven-icon.png') }}" alt=""/>
-                    <span>{{ $p_content->title }}</span>
+                    <span>{{ $p_content->title ? $p_content->title : '' }}</span>
                 </div>
             </div>
         </div>
@@ -58,14 +60,24 @@
                                                         <!-- main slider carousel items -->
                                                         <div class="carousel-inner">
                                                             <?php $count = 0; ?>
-                                                            @if(!empty($p_images))
+
+                                                            {{--@if(!empty($p_images))--}}
+                                                            @if(count($p_images)>0)
                                                                 @foreach($p_images as $image)
                                                                     <div class=" @if($count == 0)active @endif item" data-slide-number="{{ $count }}">
-                                                                        <img src="{{ asset('uploads/products/'.$image->image) }}" alt="" class="img-responsive">
+                                                                        @if(isset($image->image))
+                                                                            <img src="{{ asset('uploads/products/'.$image->image) }}" alt="" class="img-responsive">
+                                                                        @endif
                                                                     </div>
                                                                     <?php $count++; ?>
                                                                 @endforeach
+                                                            @else
+                                                                <div class=" @if($count == 0)active @endif item" data-slide-number="{{ $count }}">
+                                                                    {{--<img src="{{ asset('assets/images/no-img.jpg') }}" alt="" class="img-responsive" width="100%">--}}
+                                                                    <img src="{{ asset('assets/images/no-image-found.gif') }}" alt="" class="img-responsive" width="100%">
+                                                                </div>
                                                             @endif
+
                                                         </div>
                                                         <!-- main slider carousel nav controls -->
                                                     </div>
@@ -80,6 +92,7 @@
                                             <!-- thumb navigation carousel items -->
                                             <ul class="list-inline">
                                                 <?php $count = 0; ?>
+
                                                 @if(!empty($p_images))
                                                     @foreach($p_images as $image)
                                                         <li> <a id="carousel-selector-{{ $count }}" class=" @if($count == 0)selected @else img-responsive @endif">
@@ -89,11 +102,13 @@
                                                     @endforeach
                                                 @endif
                                             </ul>
+
                                         </div>
-                                        
+
                                         <div class="slide_content">
                                             {{ $p_content->description }}
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
@@ -105,6 +120,7 @@
                                         </li>
                                     </ul>
                                 </div>
+
                             </div>
                             <div class="col-md-4">
                                 <div class="payment_wrapper clearfix">
@@ -204,15 +220,15 @@
                                             <div class="form_row text-center" >
                                                 <ul class="payments_methods crdt-ul clearfix">
 
-                                                        <img src="{{ asset('images/visa-card.jpg') }}" alt="Visa" title="Visa" class="img-responsive" />
+                                                    <img src="{{ asset('images/visa-card.jpg') }}" alt="Visa" title="Visa" class="img-responsive" />
 
-                                                        <img src="{{ asset('images/master-card.jpg') }}" alt="Mastercard" title="Mastercard"  class="img-responsive" />
+                                                    <img src="{{ asset('images/master-card.jpg') }}" alt="Mastercard" title="Mastercard"  class="img-responsive" />
 
-                                                        <img src="{{ asset('images/diners-card.jpg') }}" alt="Diners Club" title="Diners Club"  class="img-responsive" />
+                                                    <img src="{{ asset('images/diners-card.jpg') }}" alt="Diners Club" title="Diners Club"  class="img-responsive" />
 
-                                                        <img src="{{ asset('images/american-card.jpg') }}" alt="American Express" title="American Express" class="img-responsive" />
+                                                    <img src="{{ asset('images/american-card.jpg') }}" alt="American Express" title="American Express" class="img-responsive" />
 
-                                                        <img src="{{ asset('images/bcp-card.jpg') }}" alt="BCP Agente" title="BCP Agente"  class="img-responsive" />
+                                                    <img src="{{ asset('images/bcp-card.jpg') }}" alt="BCP Agente" title="BCP Agente"  class="img-responsive" />
 
 
                                                     {{--<li class="credit-card">
@@ -231,7 +247,7 @@
                                                         <img src="{{ asset('images/bcp-card.jpg') }}" alt="BCP Agente"  class="img-responsive" />
                                                     </li>--}}
                                                 </ul>
-                                           </div>
+                                            </div>
                                         @endif
                                     </form>
                                 </div>
@@ -343,9 +359,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
-                            
+
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -387,7 +403,8 @@
 </div>
 <!-- /#page-content-wrapper -->
 <!-- MODAL -->
-@if($p->is_lead == '1')
+
+@if($p->is_lead == 1)
     <div class="modal fade" id="modal-lead-form" tabindex="-1" role="dialog" aria-labelledby="modal-culqi-button-label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -497,17 +514,22 @@
         </div>
     </div>
     @endif
-@stop
 
-@section('meta')
-<!-- for Facebook -->
-<meta property="og:title" content="{{ $p_content->title }}" />
-<meta property="og:type" content="article" />
-<meta property="og:image" content="{{ asset('uploads/products/'.$p_images[0]->image) }}" />
-<meta property="og:url" content="{{ route('category_experience_id', array(Str::slug($product->category_name), Str::slug($p_content->title), $p_content->product_id)) }}" />
-<meta property="og:description" content="{{ $p_content->mini_description }}" />
 
-@stop
+    @stop
+
+    @section('meta')
+            <!-- for Facebook -->
+    <meta property="og:title" content="{{ $p_content->title }}" />
+
+    <meta property="og:type" content="article" />
+    @if(count($p_images)>0)
+        <meta property="og:image" content="{{ asset('uploads/products/'.$p_images[0]->image) }}" />
+    @endif
+    <meta property="og:url" content="{{ route('category_experience_id', array(Str::slug($product->category_name), Str::slug($p_content->title), $p_content->product_id)) }}" />
+    <meta property="og:description" content="{{ $p_content->mini_description }}" />
+
+    @stop
 
 
 @section('footer_script')
