@@ -285,7 +285,7 @@ class ExperienceController extends BaseController {
 		            ->join('products', 'product_content.product_id', '=', 'products.id')
 		            ->join('categories', 'products.cat_id', '=', 'categories.id')
 		            ->join('category_content', 'categories.id', '=', 'category_content.cat_id')
-		            ->join('product_images', 'product_images.product_id', '=', 'products.id')
+		            ->join('product_images', 'product_images.product_id', '=', 'products.id','left')
 		            ->where('category_content.lang_id', $this->url_language_id)
 		            ->where('product_content.lang_id', $this->url_language_id)
 		            ->where('products.id', $product_id)
@@ -294,6 +294,7 @@ class ExperienceController extends BaseController {
 		if( is_null($product) ) {
 			App::abort(404);
 		}
+		//exit('ok');
 
 		// update hits
 		$product_update = Product::where('id', '=', $product_id)->first();
