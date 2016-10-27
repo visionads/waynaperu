@@ -20,19 +20,22 @@
 		<div class="como-toggle">               
 			<ul class="categories">                     
 				<h2 class="sidebar-brand"> {{ trans('text.categories') }}</h2>                     
-				@foreach($categories as $category)		               
-				<li>		                  
-					<span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>		
-					<a href="#">{{ $category->title }}</a>		               
-				</li>		               
-				@endforeach                  
+				@if(count($categories)>0)
+					@foreach($categories as $category)
+					<li>
+						<span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>
+						<a href="#">{{ $category->title }}</a>
+					</li>
+					@endforeach
+				@endif
 			</ul>               
 		</div>
 		<!-- catory grid-->               
 		<div class="bloque">                  
 			<div class="row">                  	
 				@include('front._productList')
-		</div><!--bloque end here-->            
-	</div>         
+			</div><!--bloque end here-->
+		</div>
+	</div>
 </div>
 @stop
