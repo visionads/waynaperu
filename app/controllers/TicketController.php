@@ -109,7 +109,7 @@ class TicketController extends Controller
             TicketController::sendEmail($order_id);
             $o=Order::find($order_id);
             $o->status='SUCCESS';
-            #$o->save();
+            $o->save();
             #dd($order);
             if(isset($ipn) && !empty($ipn))
             {
@@ -410,7 +410,13 @@ class TicketController extends Controller
 
         $item= (array) $pe;
         if($item['email'] != null) {
-            $pathToFile=public_path('assets/tickets/P-'.$item["ticket_number"].'.jpg');
+            $file_path = public_path('assets/tickets/P-'.$item["ticket_number"].'.jpg');
+            if(file_exists($file_path)){
+                $path = $file_path;
+            }else{
+                $path = public_path('assets/images/default-ticket.png');
+            }
+            $pathToFile=$path;
             Mail::send('emails.ticket', $item, function ($message) use ($item, $pathToFile) {
                 $message->subject('Ticket for new sale.');
                 $message->from('devdhaka404@gmail.com', 'exploor.pe');
