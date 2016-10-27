@@ -205,13 +205,24 @@
                         @foreach($tickets as $ticket)
                             @if(Auth::user()->type=='admin')
                                 <div class="col-md-6">
+                                    @if(file_exists(asset('assets/tickets/'.$ticket->ticket_number.'.jpg')))
                                     <img width="80%" src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.jpg') }}" alt="">
+                                    @else
+                                    <img width="80%" src="{{ asset('assets/images/default-ticket.png'); }}" alt="">
+
+                                    @endif
                                     <br>
                                     <b>{{ trans('provider.ticket_number') }} - </b>{{ $ticket->ticket_number }}
                                 </div>
                             @else
                                 <div class="col-md-6">
-                                    <img width="80%" src="{{ asset('assets/tickets/P-'.$ticket->ticket_number.'.jpg') }}" alt="">
+
+                                    @if(file_exists(asset('assets/tickets/P-'.$ticket->ticket_number.'.jpg')))
+                                        <img width="80%" src="{{ asset('assets/tickets/P-'.$ticket->ticket_number.'.jpg') }}" alt="">
+                                    @else
+                                        <img width="80%" src="{{ asset('assets/images/default-ticket.png'); }}" alt="">
+
+                                    @endif
                                     <br>
                                     <b>{{ trans('provider.ticket_number') }} - </b>{{ substr($ticket->ticket_number,0,-4).'****' }}
                                 </div>
