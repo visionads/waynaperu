@@ -114,8 +114,8 @@
                         <img src="{{ URL::to('assets/admin/img/avatar1.jpg?1403934956') }}" alt="" >
                         {{--<img src="../../assets/img/avatar1.jpg?1403934956" alt="" />--}}
                         <span class="profile-info">
-									Daniel Johnson
-									<small>Administrator</small>
+									{{ Auth::user()->first_name.' '.Auth::user()->last_name }}
+									<small>{{ strtoupper(Auth::user()->type) }}</small>
 								</span>
                     </a>
                     <ul class="dropdown-menu animation-dock">

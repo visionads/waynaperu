@@ -86,11 +86,11 @@
                             <p>{{ trans('text.still_not_register') }}<br/>
                                 {{ trans('text.please') }}, <span>{{ trans('text.register') }}.</span></p>
                             <div class="user_title"><strong>{{ trans('text.user') }}</strong></div>
-                            <div class="form-group">
-                                <label class="sr-only" for="username">{{ trans('text.username') }}</label>
-                                <input type="text" name="username" placeholder="{{ trans('text.username') }}..." class="form-username form-control" id="form-username">
-                                {{ $errors->first('username') }}
-                            </div>
+                            {{--<div class="form-group">--}}
+                                {{--<label class="sr-only" for="username">{{ trans('text.username') }}</label>--}}
+                                {{--<input type="text" name="username" placeholder="{{ trans('text.username') }}..." class="form-username form-control" id="form-username">--}}
+                                {{--{{ $errors->first('username') }}--}}
+                            {{--</div>--}}
                             <div class="form-group">
                                 <label class="sr-only" for="email">{{ trans('text.email') }}</label>
                                 <input type="text" name="email" placeholder="{{ trans('text.email') }}..." class="form-email form-control" id="form-email">
@@ -123,7 +123,7 @@
 
                             <div class="form-group">
                                 <label class="sr-only" for="login-email">{{ trans('text.email') }}</label>
-                                <input type="text" name="email" placeholder="{{ trans('text.email') }}..." class="email form-control" id="email">
+                                <input type="email" name="email" placeholder="{{ trans('text.email') }}..." class="email form-control" id="email">
                             </div>
 
                             <div class="form-group">

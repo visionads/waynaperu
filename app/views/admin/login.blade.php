@@ -45,7 +45,7 @@
                         <div class="card-body">
                             <form class="form floating-label" action="{{ url('admin_login') }}" accept-charset="utf-8" method="post">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="{{ trans('usermanager::all.email') }}" name="email" id="email">
+                                    <input type="email" class="form-control" placeholder="{{ trans('usermanager::all.email') }}" name="email" id="email">
                                     <label for="username">Email</label>
                                 </div>
                                 <div class="form-group">
