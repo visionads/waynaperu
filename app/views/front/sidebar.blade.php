@@ -72,9 +72,11 @@
 		    		<span class="glyphicon glyphicon-triangle-bottom"></span>  
 	    		</a>                  
 	    		<ul class="dropdown-menu categoriess">                      
-		    		@foreach($categories as $category)                        
-		    			<li data-catid="{{ $category->cat_id }}"> {{ $category->title }}</li>   
-		    		@endforeach                  
+		    		@if(count($categories)>0)
+						@foreach($categories as $category)
+		    				<li data-catid="{{ $category->cat_id }}"> {{ $category->title }}</li>
+		    			@endforeach
+					@endif
 	    		</ul>               
 	    	</li>               
 	    	<li role="presentation" class="dropdown distts">                  
@@ -89,10 +91,12 @@
 		    	<input type="hidden" <?php if(Input::has('disttid')){?> name="disttid"<?php }?> id="disttid" value="<?php if(Input::has('disttid')){ echo Input::get('disttid');}?>">
 		    	<span class="glyphicon glyphicon-triangle-bottom"></span>  
 	    	</a>                  
-	    	<ul class="dropdown-menu distt">                      
-		    	@foreach($districts as $district)                        
-		    		<li data-disttid="{{ $district->id }}"> {{ $district->name }}</li>
-		    	@endforeach                  
+	    	<ul class="dropdown-menu distt">
+				@if(count($districts)>0)
+					@foreach($districts as $district)
+						<li data-disttid="{{ isset($district->id) ? $district->id : null }}"> {{ isset($district->name) ? $district->name : null }}</li>
+					@endforeach
+				@endif
 	    	</ul>               
 	    </li>            
 	</ul>            
@@ -100,14 +104,16 @@
 	<!--filtro menu end here-->            
 	<ul class="categories">               
 		<h2 class="sidebar-brand"> {{ trans('text.categories') }}</h2>               
-		@foreach($categories as $category)               
-		<li>                  
-			<a href="{{ route('category', array($category->cat_id)) }}">                   
-				<span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>                   
-				<em>{{ $category->title }}</em>                 
-			</a>               
-		</li>               
-		@endforeach            
+		@if(count($categories)>0)
+			@foreach($categories as $category)
+				<li>
+					<a href="{{ route('category', array($category->cat_id)) }}">
+						<span class="gas" style="background-image:url({{ asset('uploads/categories/'.$category->icon) }})"></span>
+						<em>{{ isset($category->title) ? $category->title : null }}</em>
+					</a>
+				</li>
+			@endforeach
+		@endif
 	</ul>            
 	<ul class="sidebar-nav esp">               
 		<li class="sidebar-brand">{{ trans('text.specials') }}</li>
@@ -118,4 +124,5 @@
 		</ul>        
 		</div>         
 		<!-- /#sidebar-wrapper -->
+	</div>
 @stop
