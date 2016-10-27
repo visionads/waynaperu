@@ -39,26 +39,27 @@
                                                     <div class="form-group">
                                                         <label  class="col-sm-12 col-md-4 control-label">Order Number:</label>
                                                         <div class="col-sm-12 col-md-8">
-                                                            <strong style="line-height:42px;">{{ $order->order_number }}</strong>
+                                                            <strong style="line-height:42px;">{{ isset($order->order_number) ? $order->order_number : null }}</strong>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="status" class="col-sm-12 col-md-4 control-label">Order Status:</label>
                                                         <div class="col-sm-12 col-md-8">
-
-                                                            <strong style="line-height:42px;">{{ $order->status }}</strong>
+                                                            <strong style="line-height:42px;">{{ isset($order->status) ? $order->status : null }}</strong>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label  class="col-sm-12 col-md-4 control-label">Total Qty:</label>
                                                         <div class="col-sm-12 col-md-8">
-                                                            <strong style="line-height:42px;">{{ $order->qty }}</strong>
+                                                            <strong style="line-height:42px;">{{ isset($order->qty) ? $order->qty : '0' }}</strong>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label  class="col-sm-12 col-md-4 control-label">Total Price:</label>
                                                         <div class="col-sm-12 col-md-8">
-                                                            <strong style="line-height:42px;">s./ <?php echo sprintf('%.2f', $order->price / 100); ?></strong>
+                                                            @if(isset($order->price))
+                                                                <strong style="line-height:42px;">s./ <?php echo sprintf('%.2f', $order->price / 100); ?></strong>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -84,7 +85,7 @@
                                                         <div class="form-group">
                                                             <label  class="col-sm-12 col-md-4 control-label">Email:</label>
                                                             <div class="col-sm-12 col-md-8">
-                                                                <strong style="line-height:42px;">{{ $user->email }} </strong>
+                                                                <strong style="line-height:42px;">{{ isset($user->email) ? $user->email : null }} </strong>
                                                             </div>
                                                         </div>
                                                         <div style="clear:both"></div>
@@ -92,7 +93,15 @@
                                                             <label  class="col-sm-12 col-md-4 control-label">Address:</label>
                                                             <div class="col-sm-12 col-md-8">
                                                                 @if($user->direction != '')
-                                                                    <strong >#{{ $user->flat }}, {{ $user->direction }}<br/> {{ $user->city }}, {{ $user->district }}<br/>{{ $user->province }} </strong>
+                                                                    <strong >
+                                                                        #{{ isset($user->flat) ? $user->flat : null }},
+                                                                        {{ isset($user->direction) ? $user->direction : null }}
+                                                                        <br/>
+                                                                        {{ isset($user->city) ? $user->city : null }},
+                                                                        {{ isset($user->district) ? $user->district : null }}
+                                                                        <br/>
+                                                                        {{ isset($user->province) ? $user->province : null }}
+                                                                    </strong>
                                                                 @else
                                                                     <strong style="line-height:42px;">User Didn't add his address. </strong>
                                                                 @endif
@@ -116,138 +125,102 @@
 
                                                     <table  class="table table-striped table-hover" id="sample-table-2">
                                                         <thead>
-                                                        <tr>
-                                                            <th> Product Name </th>
-                                                            <th> Adult Qty </th>
-                                                            <th> Adult Price </th>
-                                                            <th> Child Qty </th>
-                                                            <th> Child Price </th>
-                                                            <th> Gift Qty </th>
-                                                            <th> Gift Price </th>
-                                                            <th> Created At </th>
-                                                            <th> Provider's INFO </th>
-                                                            <th> Ticket Status</th>
-                                                        </tr>
-
+                                                            <tr>
+                                                                <th> Product Name </th>
+                                                                <th> Adult Qty </th>
+                                                                <th> Adult Price </th>
+                                                                <th> Child Qty </th>
+                                                                <th> Child Price </th>
+                                                                <th> Gift Qty </th>
+                                                                <th> Gift Price </th>
+                                                                <th> Created At </th>
+                                                                <th> Provider's INFO </th>
+                                                                <th> Ticket Status</th>
+                                                            </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @foreach($order_items as $item)
-                                                            <tr>
-                                                                <td>
-                                                                    <?php
-                                                                    $product_content = getProductContentPerProductId($item->product_id);
-                                                                    ?>
-                                                                    {{ isset($product_content->title)?$product_content->title: null }}
-                                                                    <br>
-                                                                    Location -
+                                                        @if(isset($order_items))
+                                                            @foreach($order_items as $item)
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php
+                                                                        $product_content = getProductContentPerProductId($item->product_id);
+                                                                        ?>
+                                                                        {{ isset($product_content->title)?$product_content->title: null }}
+                                                                        <br>
+                                                                        Location -
 
-                                                                    <?php $loc_name = getLocName($item->loc_id); ?>
-                                                                    {{ isset($loc_name)?$loc_name: null }}
-                                                                </td>
-                                                                <td> {{ isset($item->pdf_qty)?$item->pdf_qty: null }} </td>
-                                                                <td>  s./ {{ isset($item->pdf_price)?$item->pdf_price: null }} </td>
-                                                                <td> {{ isset($item->mail_qty)?$item->mail_qty: null }} </td>
-                                                                <td>  s./ {{ isset($item->mail_price)?$item->mail_price  : null }} </td>
-                                                                <td> {{ isset($item->gift_qty)?$item->gift_qty: null }} </td>
-                                                                <td>  s./ {{ isset($item->gift_price)?$item->gift_price: null }} </td>
-                                                                <td> {{ isset($item->created_at)?$item->created_at: null }} </td>
-                                                                <td>
-                                                                    <?php
-                                                                    $product = getProductInfoByProductId($item->product_id);
-                                                                    if(count($product)>0)
-                                                                    {
-                                                                        $user_id = $product->user_id;
-                                                                        $provider = getUserInfo($user_id);
-                                                                        if(count($provider)>0)
+                                                                        <?php $loc_name = getLocName($item->loc_id); ?>
+                                                                        {{ isset($loc_name)?$loc_name: null }}
+                                                                    </td>
+                                                                    <td> {{ isset($item->pdf_qty)?$item->pdf_qty: null }} </td>
+                                                                    <td>  s./ {{ isset($item->pdf_price)?$item->pdf_price: null }} </td>
+                                                                    <td> {{ isset($item->mail_qty)?$item->mail_qty: null }} </td>
+                                                                    <td>  s./ {{ isset($item->mail_price)?$item->mail_price  : null }} </td>
+                                                                    <td> {{ isset($item->gift_qty)?$item->gift_qty: null }} </td>
+                                                                    <td>  s./ {{ isset($item->gift_price)?$item->gift_price: null }} </td>
+                                                                    <td> {{ isset($item->created_at)?$item->created_at: null }} </td>
+                                                                    <td>
+                                                                        <?php
+                                                                        $product = getProductInfoByProductId($item->product_id);
+                                                                        if(count($product)>0)
                                                                         {
-                                                                            $provider = $provider;
-                                                                        }else{
-                                                                            $provider = null;
+                                                                            $user_id = $product->user_id;
+                                                                            $provider = getUserInfo($user_id);
+                                                                            if(count($provider)>0)
+                                                                            {
+                                                                                $provider = $provider;
+                                                                            }else{
+                                                                                $provider = null;
+                                                                            }
                                                                         }
-                                                                    }
-                                                                    ?>
-                                                                    {{ isset($provider->first_name)? $provider->first_name : null }}
-                                                                    {{ isset($provider->last_name)? $provider->last_name : null }}
-                                                                    ({{ isset($provider->phone)? $provider->phone : "no phone" }})
-                                                                    <br>
-                                                                    {{ isset($provider->email)? $provider->email : null }}<br>
-                                                                    {{ isset($provider->direction)? $provider->direction : null }}<br>
-                                                                    {{ isset($provider->district)? $provider->district : null }}
-                                                                    {{ isset($provider->city)? $provider->city : null }}
-                                                                    {{ isset($provider->street)? $provider->street : null }}<br>
-                                                                    {{ isset($provider->address)? $provider->address : null }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $item->status }}
-                                                                    {{--@if(isset($item->user_id))
-                                                                        @if($item->status=='used')
-                                                                            Used
-                                                                        @elseif(Auth::user()->type=='admin' || ($item->status=='new' && $item->user_id==Auth::user()->id))
-                                                                            {{ Form::open(['route'=>'submit-ticket']) }}
-                                                                            <input name="order_item_id" type="hidden" value="{{ $item->id }}" class="form-control" placeholder="Enter Ticket Code">
-                                                                            <input name="order_id" type="hidden" value="{{ $order->id }}" class="form-control" placeholder="Enter Ticket Code">
-                                                                            <div class="input-group">
-                                                                                <input required name="ticket_number" type="text" class="form-control" placeholder="Enter Ticket Code">
-                                                                                <span class="input-group-btn"><button class="btn btn-default" type="submit">Go!</button></span>
-                                                                            </div>
-                                                                            {{ Form::close() }}
-                                                                        @endif
-                                                                    @endif--}}
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
+                                                                        ?>
+                                                                        {{ isset($provider->first_name)? $provider->first_name : null }}
+                                                                        {{ isset($provider->last_name)? $provider->last_name : null }}
+                                                                        ({{ isset($provider->phone)? $provider->phone : "no phone" }})
+                                                                        <br>
+                                                                        {{ isset($provider->email)? $provider->email : null }}<br>
+                                                                        {{ isset($provider->direction)? $provider->direction : null }}<br>
+                                                                        {{ isset($provider->district)? $provider->district : null }}
+                                                                        {{ isset($provider->city)? $provider->city : null }}
+                                                                        {{ isset($provider->street)? $provider->street : null }}<br>
+                                                                        {{ isset($provider->address)? $provider->address : null }}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ $item->status }}
+                                                                        {{--@if(isset($item->user_id))
+                                                                            @if($item->status=='used')
+                                                                                Used
+                                                                            @elseif(Auth::user()->type=='admin' || ($item->status=='new' && $item->user_id==Auth::user()->id))
+                                                                                {{ Form::open(['route'=>'submit-ticket']) }}
+                                                                                <input name="order_item_id" type="hidden" value="{{ $item->id }}" class="form-control" placeholder="Enter Ticket Code">
+                                                                                <input name="order_id" type="hidden" value="{{ $order->id }}" class="form-control" placeholder="Enter Ticket Code">
+                                                                                <div class="input-group">
+                                                                                    <input required name="ticket_number" type="text" class="form-control" placeholder="Enter Ticket Code">
+                                                                                    <span class="input-group-btn"><button class="btn btn-default" type="submit">Go!</button></span>
+                                                                                </div>
+                                                                                {{ Form::close() }}
+                                                                            @endif
+                                                                        @endif--}}
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @endif
                                                         </tbody>
                                                     </table>
-
                                                 </fieldset>
                                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                         </div>
                                         <a href="{{ URL::previous() }}" class="btn btn-warning">Back</a>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
-
-
     </div>
-
-
-
-    </div>
+</div>
     <!-- /#page-content-wrapper -->
 @stop
