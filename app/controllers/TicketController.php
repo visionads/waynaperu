@@ -75,7 +75,7 @@ class TicketController extends Controller
                       LEFT JOIN products ON products.id=order_items.product_id
                       LEFT JOIN users ON users.id=orders.user_id
                       LEFT JOIN users as users1 ON users1.id=products.user_id
-                    WHERE order_id=453
+                    WHERE order_id=$order_id
                     GROUP BY order_items.id"));
             $data['tickets']=$x;
 
@@ -99,6 +99,7 @@ class TicketController extends Controller
                 $ticket->type='client';
                 $ticket->ticket_number=$randomString;
                 TicketController::html_to_jpg($ticket);
+//                dd($ticket);
                 $t= new Ticket();
                 $t->ticket_number= $ticket->ticket_number;
                 $t->order_item_id= $ticket->order_item_id;
@@ -360,7 +361,7 @@ class TicketController extends Controller
      */
     private static function sendEmail($order_id)
     {
-        //exit('sdf');
+//        exit($order_id);
         $tickets= Ticket::where('order_id',$order_id)->get();
 //        dd($tickets);
         $admin = User::select('email')->where('type','admin')->get();
@@ -377,21 +378,25 @@ class TicketController extends Controller
         $pathToFile=[];
         foreach ($tickets as $ticket) {
             $file_path = public_path('assets/tickets/'.$ticket->ticket_number.'.jpg');
+//            dd($file_path);
             if(file_exists($file_path)){
                 $path = $file_path;
+//                exit('if');
             }else{
+//                exit('else');
                 $path = public_path('assets/images/default-ticket.png');
             }
             $pathToFile[]=$path;
             //$pathToFile[]=public_path('assets/tickets/'.$ticket->ticket_number.'.jpg');
         }
+//        dd($pathToFile);
+//        dd($email_client);
         Mail::send('emails.ticket', [], function($message) use ($emails,$email_client,$pathToFile)
         {
             $message->subject('Ticket for  no of order from Exploor');
-            $message->from('devdhaka404@gmail.com', 'exploor.pe');
+            $message->from('info@exploor.pe', 'exploor.pe');
 
-            $message->to($email_client)->bcc($emails);
-            $message->to($emails);
+            $message->to($email_client)->cc($emails);
             foreach ($pathToFile as $item) {
                 $message->attach($item);
             }
