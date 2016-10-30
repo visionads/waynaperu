@@ -69,7 +69,7 @@ class ProductController extends BaseController {
 		            ->orderBy('category_content.cat_id', 'asc')
 		            ->groupBy('category_content.cat_id')
 		            ->get();
-        $providers= User::select('id','username','first_name','last_name')->where('type','provider')->get();
+        $providers= User::select('id','email','first_name','last_name')->where('type','provider')->get();
 
 		return View::make('admin.add_product', array('form_url' => $form_url, 'languages' => $languages, 'category' => $category,'providers'=>$providers));
 
@@ -252,7 +252,7 @@ class ProductController extends BaseController {
             $i++;
         }
 
-        $providers= User::select('id','username','first_name','last_name')->where('type','provider')->get();
+        $providers= User::select('id','email','first_name','last_name')->where('type','provider')->get();
         $user_provider = User::where('id', $p->user_id)->first();
 
         return View::make('admin.edit_product', array(

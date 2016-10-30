@@ -234,7 +234,7 @@
                                     <select name="user_id" id="provider" class=" form-control" required>
                                         <option value="">-Select A Provider-</option>
                                         @foreach($providers as $index => $provider)
-                                            <option @if($p->user_id==$provider->id) selected @endif value="{{ $provider->id }}">{{ $provider->username.' ('.$provider->first_name.' '.$provider->last_name.')' }}</option>
+                                            <option @if($p->user_id==$provider->id) selected @endif value="{{ $provider->id }}">{{ $provider->first_name.' '.$provider->last_name.' ('.$provider->email.')' }}</option>
                                         @endforeach
                                     </select>
                                 </div>

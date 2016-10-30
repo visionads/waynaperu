@@ -203,7 +203,7 @@
                                     <select name="user_id" id="provider" class=" form-control" required>
                                         <option value="">-Select A Provider-</option>
                                         @foreach($providers as $index => $provider)
-                                            <option value="{{ $provider->id }}">{{ $provider->username.' ('.$provider->first_name.' '.$provider->last_name.')' }}</option>
+                                            <option value="{{ $provider->id }}">{{ $provider->first_name.' '.$provider->last_name.' ('.$provider->email.')' }}</option>
                                         @endforeach
                                     </select>
                                 </div>
