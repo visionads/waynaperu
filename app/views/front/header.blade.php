@@ -281,14 +281,14 @@
                 <li class="bdr"><img src="{{ asset('images/blog/bdr.png') }}" alt="bdr"></li>
                 <li>
                     @if (Auth::check() && Auth::user()->type=='client')
-                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">{{ Auth::user()->username }}</button>
+                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</button>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('orders') }}">{{ trans('text.orders') }}</a></li>
                             <li><a href="{{ route('account') }}">{{ trans('text.my_account') }}</a></li>
                             <li><a href="{{ route('site_logout') }}">{{ trans('text.logout') }}</a></li>
                         </ul>
                     @elseif (Auth::check() && Auth::user()->type=='admin')
-                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">{{ Auth::user()->username }}</button>
+                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</button>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('admin') }}">{{ trans('text.dashboard') }}</a></li>
                             <li><a href="{{ route('site_logout') }}">{{ trans('text.logout') }}</a></li>

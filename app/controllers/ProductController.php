@@ -20,7 +20,7 @@ class ProductController extends BaseController {
                         ->where('users.type' , '=', 'provider');
                 })
 
-                ->select('product_content.product_id', 'product_content.title','product_content.mini_description', 'category_content.title as cat_title', 'users.username as provider' )
+                ->select('product_content.product_id', 'product_content.title','product_content.mini_description', 'category_content.title as cat_title', 'users.first_name as provider' )
                 ->where('products.state' , '!=', '-1')
                 ->where('product_content.lang_id' , '=', langId())
                 ->orderBy('product_content.product_id', 'asc')

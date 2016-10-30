@@ -42,6 +42,7 @@
                                         <tr><th>{{ trans('provider.email') }}</th><td>:</td><td>{{ $user->email }}</td></tr>
                                         <tr><th>{{ trans('provider.first_name') }}</th><td>:</td><td>{{ $user->first_name }}</td></tr>
                                         <tr><th>{{ trans('provider.last_name') }}</th><td>:</td><td>{{ $user->last_name }}</td></tr>
+                                        <tr><th>{{ trans('provider.date_of_birth') }}</th><td>:</td><td>{{ $user->dob }}</td></tr>
                                         <tr><th>{{ trans('provider.type') }}</th><td>:</td><td>{{ $user->type }}</td></tr>
                                         <tr><th>{{ trans('provider.phone') }}</th><td>:</td><td>{{ $user->phone }}</td></tr>
                                         <tr><th>{{ trans('provider.passport') }}</th><td>:</td><td>{{ $user->passport }}</td></tr>

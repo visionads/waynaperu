@@ -59,11 +59,11 @@
                                                         {{ $errors->first('last_name', '<p class="alert alert-danger">:message</p>') }}
                                                   </div>
                                                   <div class="form_row">
-                                                        <input type="text" name="email" placeholder="{{ trans('text.email') }}" value="{{ Auth::user()->email }}" class="cart_form2int inputbtn1">
+                                                        <input type="email" name="email" placeholder="{{ trans('text.email') }}" value="{{ Auth::user()->email }}" class="cart_form2int inputbtn1" readonly>
                                                         {{ $errors->first('email', '<p class="alert alert-danger">:message</p>') }}
                                                   </div>
                                                   <div class="form_row">
-                                                        <input type="text" name="dob" placeholder="{{ trans('text.dob') }}" value="{{ Auth::user()->dob }}" class="datepicker cart_form2int inputbtn1">
+                                                        <input type="date" name="dob" placeholder="{{ trans('text.dob') }}" value="{{ Auth::user()->dob }}" class="datepicker cart_form2int inputbtn1">
                                                         {{ $errors->first('dob', '<p class="alert alert-danger">:message</p>') }}
                                                   </div>
                                                   <div class="form_row">
@@ -92,7 +92,7 @@
                                                         <input type="text"name="province"  placeholder="{{ trans('text.province') }}" value="{{ Auth::user()->province }}" class="cart_form2int inputbtn1">
                                                   </div>
                                                   <div class="form_row">
-                                                        <input type="text" name="dep" placeholder="{{ trans('text.department') }}" value="{{ Auth::user()->dep }}" class="cart_form2int inputbtn1">
+                                                        <input type="text" name="department" placeholder="{{ trans('text.department') }}" value="{{ Auth::user()->dep }}" class="cart_form2int inputbtn1">
                                                   </div>
                                              </div>
                                         </div>

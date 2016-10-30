@@ -205,7 +205,7 @@
                         @foreach($tickets as $ticket)
                             @if(Auth::user()->type=='admin')
                                 <div class="col-md-6">
-                                    @if(file_exists(asset('assets/tickets/'.$ticket->ticket_number.'.jpg')))
+                                    @if(file_exists(public_path('assets/tickets/'.$ticket->ticket_number.'.jpg')))
                                     <img width="80%" src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.jpg') }}" alt="">
                                     @else
                                     <img width="80%" src="{{ asset('assets/images/default-ticket.png'); }}" alt="">
@@ -217,7 +217,7 @@
                             @else
                                 <div class="col-md-6">
 
-                                    @if(file_exists(asset('assets/tickets/P-'.$ticket->ticket_number.'.jpg')))
+                                    @if(file_exists(public_path('assets/tickets/P-'.$ticket->ticket_number.'.jpg')))
                                         <img width="80%" src="{{ asset('assets/tickets/P-'.$ticket->ticket_number.'.jpg') }}" alt="">
                                     @else
                                         <img width="80%" src="{{ asset('assets/images/default-ticket.png'); }}" alt="">

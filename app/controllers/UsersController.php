@@ -161,7 +161,7 @@ class UsersController extends UserController {
 //	}
 	public function postRegister(){
 		$rules = array(
-					'username' => 'required|min:3|unique:users',
+//					'username' => 'required|min:3|unique:users',
 			        'email' => 'required|email|unique:users',
 			        'email1' => 'required|email|same:email',
 			        'pass'  => 'required|min:6',
@@ -248,7 +248,7 @@ class UsersController extends UserController {
 				$user->city = Input::get('city');
 				$user->district = Input::get('district');
 				$user->province = Input::get('province');
-				$user->dep = Input::get('dep');
+				$user->department = Input::get('department');
 				if (Hash::check(Input::get('old_pass'), $hashedPassword)){
 					$user->password = Hash::make(Input::get('new_pass'));
 				}
