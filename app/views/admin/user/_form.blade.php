@@ -16,10 +16,10 @@
         </div>
     </div>
     <div class="col-md-12">
-        <div class="form-group">
-            <label for="username">{{ trans('provider.username') }}</label>
-            {{ Form::text('username',null,['class'=>'form-control',$required,$readonly]) }}
-        </div>
+        {{--<div class="form-group">--}}
+            {{--<label for="username">{{ trans('provider.username') }}</label>--}}
+            {{--{{ Form::text('username',null,['class'=>'form-control',$required,$readonly]) }}--}}
+        {{--</div>--}}
         <div class="form-group">
             <label for="email">{{ trans('provider.email') }}</label>
             {{ Form::email('email',null,['class'=>'form-control',$required,$readonly]) }}
@@ -40,7 +40,11 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="type">{{ trans('provider.user_type') }}</label>
-            {{ Form::select('type',['client'=>'Client','provider'=>'Provider','admin'=>'Admin'],null,['class'=>'form-control','required']) }}
+            @if(Auth::user()->type=='provider')
+                <input type="text" class="form-control" name="type" value="provider" readonly>
+            @else
+                {{ Form::select('type',['client'=>'Client','provider'=>'Provider','admin'=>'Admin'],null,['class'=>'form-control','required']) }}
+            @endif
         </div>
     </div>
 </div>

@@ -67,7 +67,7 @@ class UserController extends BaseController
         $user->first_name = $input['first_name'];
         $user->last_name = $input['last_name'];
         $user->email = $input['email'];
-        $user->username = $input['username'];
+//        $user->username = $input['username'];
         $user->type = $input['type'];
         if(isset($input['password']) && !empty($input['password']))
         {
@@ -75,7 +75,7 @@ class UserController extends BaseController
         }
         $user->save();
         Session::flash('message','User updated successfully.');
-        return Redirect::to('users/'.$user->type);
+        return Redirect::to('profile/'.$user->id);
     }
     public function profile($user_id=false)
     {
@@ -105,7 +105,7 @@ class UserController extends BaseController
         $user->address = $input['address'];
         $user->save();
         Session::flash('message','User updated successfully.');
-        return Redirect::to('users/'.$user->type);
+        return Redirect::to('profile/'.$user->id);
     }
 
     public function edit_profile($user_id)

@@ -95,12 +95,14 @@ Route::filter('csrf', function()
  * */
 
 Route::filter('adminFilter', function () {
-        if(Auth::user()->type != 'admin' && Auth::user()->type != 'provider')
-        {
-            return Redirect::guest('/');
-        }
+    if(!Auth::check()) {
+            return Redirect::to('/');
+    }
+    if (Auth::user()->type != 'admin' && Auth::user()->type != 'provider') {
+            return Redirect::to('/');
 
-    View::share('currentUser', Sentry::getUser());
+    }
+        View::share('currentUser', Sentry::getUser());
 });
 
 Route::filter('basicAuth', function () {

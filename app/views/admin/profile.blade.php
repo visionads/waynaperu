@@ -38,7 +38,7 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <table class="table">
-                                        <tr><th width="20%">{{ trans('provider.username') }}</th><td width="1%">:</td><td width="79%">{{ $user->username }}</td></tr>
+{{--                                        <tr><th width="20%">{{ trans('provider.username') }}</th><td width="1%">:</td><td width="79%">{{ $user->username }}</td></tr>--}}
                                         <tr><th>{{ trans('provider.email') }}</th><td>:</td><td>{{ $user->email }}</td></tr>
                                         <tr><th>{{ trans('provider.first_name') }}</th><td>:</td><td>{{ $user->first_name }}</td></tr>
                                         <tr><th>{{ trans('provider.last_name') }}</th><td>:</td><td>{{ $user->last_name }}</td></tr>
