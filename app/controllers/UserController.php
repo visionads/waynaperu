@@ -24,7 +24,7 @@ class UserController extends BaseController
         $input=Input::all();
         $validator = Validator::make($input,[
             'email' => 'unique:users',
-            'username' => 'unique:users',
+            //'username' => 'unique:users',
             'password' => 'required'
         ]);
         if($validator->fails())
@@ -35,7 +35,7 @@ class UserController extends BaseController
             $user->first_name = $input['first_name'];
             $user->last_name = $input['last_name'];
             $user->email = $input['email'];
-            $user->username = $input['username'];
+//            $user->username = $input['username'];
             $user->type = $input['type'];
             $user->password = Hash::make($input['password']);
             $user->save();
