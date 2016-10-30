@@ -11,6 +11,7 @@ class PhoneNumber extends Eloquent
     protected $table='user_phone_numbers';
     protected $fillable=[
         'user_id',
-        'number'
+        'number',
+        'type'
     ];
 }

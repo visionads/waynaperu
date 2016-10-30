@@ -9,7 +9,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="number">{{ trans('provider.type') }}</label>
-                {{ Form::select('phone_type',['1'=>trans('provider.telephone'),'2'=>'RPC','3'=>'RPM'],null,['class'=>'form-control']) }}
+                {{ Form::select('type',['1'=>trans('provider.telephone'),'2'=>'RPC','3'=>'RPM'],null,['class'=>'form-control']) }}
             </div>
         </div>
     </div>

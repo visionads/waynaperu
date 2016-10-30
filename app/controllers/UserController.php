@@ -125,6 +125,7 @@ class UserController extends BaseController
         $phone= new PhoneNumber();
         $phone->user_id = $user_id;
         $phone->number = $input['number'];
+        $phone->type = $input['type'];
         $phone->save();
         Session::flash('message','Phone number stored successfully.');
         return Redirect::to('profile/'.$user_id);
@@ -141,6 +142,7 @@ class UserController extends BaseController
 
         $phone= PhoneNumber::find($id);
         $phone->number = $input['number'];
+        $phone->type = $input['type'];
         $phone->save();
         Session::flash('message','Phone number updated successfully.');
         return Redirect::to('profile/'.$phone->user_id);
