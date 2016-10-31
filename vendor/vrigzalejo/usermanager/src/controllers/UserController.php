@@ -144,9 +144,11 @@ class UserController extends BaseController
             }
         } catch (\Cartalyst\Sentry\Users\LoginRequiredException $e){} // already catch by validators
         catch (\Cartalyst\Sentry\Users\PasswordRequiredException $e){} // already catch by validators
-        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e){} catch (\Cartalyst\Sentry\Users\UserExistsException $e) {
-            return json_encode(array('userCreated' => false, 'message' => trans('usermanager::users.messages.user-email-exists'), 'messageType' => 'danger'));
-        } catch(\Exception $e) {
+        catch (\Cartalyst\Sentry\Groups\GroupNotFoundException $e){}
+//        catch (\Cartalyst\Sentry\Users\UserExistsException $e) {
+//            return json_encode(array('userCreated' => false, 'message' => trans('usermanager::users.messages.user-email-exists'), 'messageType' => 'danger'));
+//        }
+        catch(\Exception $e) {
             return Response::json(array('userCreated' => false, 'message' => trans('usermanager::users.messages.user-name-exists'), 'messageType' => 'danger'));
         }
 
@@ -349,7 +351,8 @@ class UserController extends BaseController
             } else {
                 return Response::json(array('userUpdated' => false, 'message' => trans('usermanager::users.messages.update-fail'), 'messageType' => 'danger'));
             }
-        } catch(\Cartalyst\Sentry\Users\UserExistsException $e) {
+        }
+        catch(\Cartalyst\Sentry\Users\UserExistsException $e) {
             return Response::json(array('userUpdated' => false, 'message' => trans('usermanager::users.messages.user-email-exists'), 'messageType' => 'danger'));
         } catch(\Exception $e) {
             return Response::json(array('userUpdated' => false, 'message' => trans('usermanager::users.messages.user-name-exists'), 'messageType' => 'danger'));
