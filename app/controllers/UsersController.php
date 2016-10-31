@@ -120,11 +120,16 @@ class UsersController extends UserController {
                 ]);
                 if($attempt)
                 {
-                    Session::put('email', $user_data->email);
-                    Session::put('user_id', $user_data->id);
-                    Session::put('type', $user_data->type);
-                    Session::flash('message', "Successfully  Logged In.");
-                    return $user_data;
+                    if($user_data->activated==1) {
+                        Session::put('email', $user_data->email);
+                        Session::put('user_id', $user_data->id);
+                        Session::put('type', $user_data->type);
+                        Session::flash('message', "Successfully  Logged In.");
+                        return $user_data;
+                    }else{
+                        Auth::logout();
+                        Session::flash('danger', "Account is inactive");
+                    }
                 }else{
                     Session::flash('danger', "Password Incorrect.Please Try Again");
                 }
