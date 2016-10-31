@@ -148,9 +148,9 @@ class UserController extends BaseController
 //        catch (\Cartalyst\Sentry\Users\UserExistsException $e) {
 //            return json_encode(array('userCreated' => false, 'message' => trans('usermanager::users.messages.user-email-exists'), 'messageType' => 'danger'));
 //        }
-        catch(\Exception $e) {
-            return Response::json(array('userCreated' => false, 'message' => trans('usermanager::users.messages.user-name-exists'), 'messageType' => 'danger'));
-        }
+//        catch(\Exception $e) {
+//            return Response::json(array('userCreated' => false, 'message' => trans('usermanager::users.messages.user-name-exists'), 'messageType' => 'danger'));
+//        }
 
         return json_encode(array('userCreated' => true, 'redirectUrl' => URL::route('listUsers')));
     }
