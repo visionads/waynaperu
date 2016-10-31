@@ -37,6 +37,7 @@ class UserController extends BaseController
             $user->email = $input['email'];
 //            $user->username = $input['username'];
             $user->type = $input['type'];
+            $user->activated = 1;
             $user->password = Hash::make($input['password']);
             $user->save();
             if($user->type=='provider')

@@ -19,7 +19,7 @@
 
                         <th class="hidden-xs">Name</th>
                         <th class="hidden-xs">Email</th>
-                        <th class="hidden-xs">Username</th>
+                        {{--<th class="hidden-xs">Username</th>--}}
                         <th class="hidden-xs">Phone</th>
                         <th class="hidden-xs">Activated at</th>
                         <th class="hidden-xs">Last login</th>
@@ -42,7 +42,7 @@
                             <td>
                                 {{ $user->email }}
                             </td>
-                            <td>{{ $user->username }}</td>
+{{--                            <td>{{ $user->username }}</td>--}}
                             <td class="hidden-xs">
                                 {{ $user->phone }}
                             </td>

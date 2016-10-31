@@ -28,7 +28,7 @@
                                                 <div class="form-group">
                                                     {{ Form::label('title', 'Title', array('class' => 'col-sm-3 control-label')) }}
                                                     <div class="col-sm-9">
-                                                        <input value="{{ $cat->title }}" type="text" name="title[{{ $cat->id }}]" placeholder="Title" class="form-control"/>
+                                                        <input value="{{ $cat->title }}" type="text" name="title[{{ $cat->id }}]" placeholder="Title" class="form-control" required/>
                                                         {{ $errors->first('title['. $cat->id .']') }}
                                                     </div>
                                                 </div>
