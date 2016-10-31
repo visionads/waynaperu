@@ -440,18 +440,27 @@ class TicketController extends Controller
     public function check_ticket()
     {
         $input= Input::all();
+
+        $order_item=OrderItems::find($input['order_item_id']);
+        $order_item->status=$input['status'];
+        $order_item->used_at=date('Y-m-d');
+//        dd($order_item);
+        $order_item->save();
+        Session::flash('message','Ticket status has been changed successfully.');
+        return Redirect::to('admin/order/'.$input['order_id']);
+        /*$input= Input::all();
         $ticket=Ticket::where('order_id',$input['order_id'])->where('ticket_number',$input['ticket_number'])->first();
         if(isset($ticket) && count($ticket)>0)
         {
             $order_item=OrderItems::find($input['order_item_id']);
-            $order_item->status='used';
+            $order_item->status=$input['status'];
             $order_item->save();
             Session::flash('message','Ticket has been activated.');
             return Redirect::to('admin/order/'.$input['order_id']);
         }else{
             Session::flash('error','Invalid ticket number');
             return Redirect::to('admin/order/'.$input['order_id']);
-        }
+        }*/
     }
 
 

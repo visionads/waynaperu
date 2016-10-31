@@ -118,7 +118,15 @@ return array(
     "enter_ticket_code" => "Enter Ticket Code",
     "go" => "Go",
     "used" => "Used",
-    "ticket_number" => "Ticket Number",
+    "unused" => "Unused",
+    "ticket_number" => "Code ticket Client",
+    "status" => "Status",
+    "used_at" => "Used at",
+    "product_id" => "Product ID",
+    "provider_id" => "Provider ID",
+    "provider_name" => "Provider Name",
+    "contact_info" => "Contact Info",
+    "person_in_charge" => "Person in Charge",
 
 
 

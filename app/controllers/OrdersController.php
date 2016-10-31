@@ -30,9 +30,10 @@ class OrdersController extends BaseController {
     {
     	$order = Order::find($id);
     	$order_items = DB::table('order_items')
-            ->select('order_items.*','users.id as user_id')
+            ->select('order_items.*','users.id as user_id','ticket.ticket_number')
             ->join('products','products.id','=','order_items.product_id','left')
             ->join('users','users.id','=','products.user_id','left')
+            ->join('ticket','ticket.order_item_id','=','order_items.id','left')
             ->where('order_items.order_id', $id)
             ->get();
 //        dd($order_items);

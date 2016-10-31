@@ -59,6 +59,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->hasOne('Provider', 'user_id','id');
     }
+    public function relUserProviderInfo()
+    {
+        return $this->hasOne('user_provider_info', 'user_id','id');
+    }
 
     public function relPhoneNumber()
     {

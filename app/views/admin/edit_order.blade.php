@@ -119,6 +119,7 @@
                     <table  class="table table-striped table-hover" id="sample-table-2">
                         <thead>
                             <tr>
+                                <th> {{ trans('provider.product_id') }} </th>
                                 <th> {{ trans('provider.product_name') }} </th>
                                 <th> {{ trans('provider.adult_qty') }} </th>
                                 <th> {{ trans('provider.adult_price') }} </th>
@@ -128,6 +129,8 @@
                                 <th> {{ trans('provider.gift_price') }} </th>
                                 <th> {{ trans('provider.created_at') }} </th>
                                 <th> {{ trans('provider.provider_info') }} </th>
+                                <th> {{ trans('provider.contact_info') }} </th>
+                                <th> {{ trans('provider.ticket_number') }} </th>
                                 <th> {{ trans('provider.use_product') }}</th>
                             </tr>
 
@@ -135,6 +138,7 @@
                         <tbody>
                             @foreach($order_items as $item)
                             <tr>
+                                <td>{{ $item->id }}</td>
                                 <td>
                                     <?php
                                     $product_content = getProductContentPerProductId($item->product_id);
@@ -168,8 +172,10 @@
                                         }
                                     }
                                     ?>
+                                    {{ trans('provider.provider_id').' - ' }} {{ isset($provider->id)? $provider->id : null }}<br>
+                                    {{ trans('provider.provider_name') }} -
                                     {{ isset($provider->first_name)? $provider->first_name : null }}
-                                    {{ isset($provider->last_name)? $provider->last_name : null }}
+                                    {{ isset($provider->last_name)? $provider->last_name : null }}<br>
                                         ({{ isset($provider->phone)? $provider->phone : "no phone" }})
                                         <br>
                                     {{ isset($provider->email)? $provider->email : null }}<br>
@@ -180,20 +186,53 @@
                                     {{ isset($provider->address)? $provider->address : null }}
                                 </td>
                                 <td>
+                                    {{--{{ trans('provider.person_in_charge') }} - {{ $provider->relUserProviderInfo['incharge'] }}--}}
+
+                                </td>
+                                <td>
+                                    {{ $item->ticket_number }}<br>
+
+                                    <b>{{ trans('provider.status') }} : </b> {{ ucfirst($item->status) }}
+                                </td>
+                                <td>
+
                                     @if($item->status=='used')
-                                        {{ trans('provider.used') }}
+                                            {{ trans('provider.used_at').' <b>'.date('d M Y',strtotime($item->used_at)).'</b>' }}
 
                                     @elseif(Auth::user()->type=='admin' || ($item->status=='new' && $item->user_id==Auth::user()->id))
                                         {{ Form::open(['route'=>'submit-ticket']) }}
                                         <input name="order_item_id" type="hidden" value="{{ $item->id }}" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">
                                         <input name="order_id" type="hidden" value="{{ $order->id }}" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">
                                         <div class="input-group">
-                                            <input required name="ticket_number" type="text" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">
+                                            <select class="form-control" name="status">
+                                                <option value="unused" @if($item->status=='unused') selected @endif>{{ trans('provider.unused') }}</option>
+                                                <option value="used" @if($item->status=='used') selected @endif>{{ trans('provider.used') }}</option>
+                                            </select>
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="submit">{{ trans('provider.go') }}!</button>
-                                              </span>
-                                        </div><!-- /input-group -->
+                                                    <button class="btn btn-default" type="submit">{{ trans('provider.go') }}!</button>
+                                                  </span>
+                                        </div>
                                         {{ Form::close() }}
+                                        {{--{{ Form::open(['route'=>'submit-ticket']) }}--}}
+                                        {{--<input name="order_item_id" type="hidden" value="{{ $item->id }}" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">--}}
+                                        {{--<input name="order_id" type="hidden" value="{{ $order->id }}" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">--}}
+                                        {{--<div class="input-group">--}}
+                                            {{--<select class="form-control" name="status">--}}
+                                                {{--<option value="new">{{ trans('provider.unused') }}</option>--}}
+                                                {{--<option value="used">{{ trans('provider.used') }}</option>--}}
+                                            {{--</select>--}}
+                                            {{--<span class="input-group-btn">--}}
+                                                {{--<button class="btn btn-default" type="submit">{{ trans('provider.go') }}!</button>--}}
+                                              {{--</span>--}}
+                                        {{--</div>--}}
+                                        {{--<!-- /input-group -->--}}
+                                        {{--<div class="input-group">--}}
+                                            {{--<input required name="ticket_number" type="text" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">--}}
+                                            {{--<span class="input-group-btn">--}}
+                                                {{--<button class="btn btn-default" type="submit">{{ trans('provider.go') }}!</button>--}}
+                                              {{--</span>--}}
+                                        {{--</div><!-- /input-group -->--}}
+                                        {{--{{ Form::close() }}--}}
                                     @endif
                                 </td>
                             </tr>
@@ -203,30 +242,40 @@
                     @if(count($tickets)>0)
                         <div class="row">
                         @foreach($tickets as $ticket)
-                            @if(Auth::user()->type=='admin')
                                 <div class="col-md-6">
                                     @if(file_exists(public_path('assets/tickets/'.$ticket->ticket_number.'.jpg')))
-                                    <img width="80%" src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.jpg') }}" alt="">
-                                    @else
-                                    <img width="80%" src="{{ asset('assets/images/default-ticket.png'); }}" alt="">
-
-                                    @endif
-                                    <br>
-                                    <b>{{ trans('provider.ticket_number') }} - </b>{{ $ticket->ticket_number }}
-                                </div>
-                            @else
-                                <div class="col-md-6">
-
-                                    @if(file_exists(public_path('assets/tickets/P-'.$ticket->ticket_number.'.jpg')))
-                                        <img width="80%" src="{{ asset('assets/tickets/P-'.$ticket->ticket_number.'.jpg') }}" alt="">
+                                        <img width="80%" src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.jpg') }}" alt="">
                                     @else
                                         <img width="80%" src="{{ asset('assets/images/default-ticket.png'); }}" alt="">
 
                                     @endif
                                     <br>
-                                    <b>{{ trans('provider.ticket_number') }} - </b>{{ substr($ticket->ticket_number,0,-4).'****' }}
+                                    <b>{{ trans('provider.ticket_number') }} - </b>{{ $ticket->ticket_number }}
                                 </div>
-                            @endif
+                            {{--@if(Auth::user()->type=='admin')--}}
+                                {{--<div class="col-md-6">--}}
+                                    {{--@if(file_exists(public_path('assets/tickets/'.$ticket->ticket_number.'.jpg')))--}}
+                                    {{--<img width="80%" src="{{ asset('assets/tickets/'.$ticket->ticket_number.'.jpg') }}" alt="">--}}
+                                    {{--@else--}}
+                                    {{--<img width="80%" src="{{ asset('assets/images/default-ticket.png'); }}" alt="">--}}
+
+                                    {{--@endif--}}
+                                    {{--<br>--}}
+                                    {{--<b>{{ trans('provider.ticket_number') }} - </b>{{ $ticket->ticket_number }}--}}
+                                {{--</div>--}}
+                            {{--@else--}}
+                                {{--<div class="col-md-6">--}}
+
+                                    {{--@if(file_exists(public_path('assets/tickets/P-'.$ticket->ticket_number.'.jpg')))--}}
+                                        {{--<img width="80%" src="{{ asset('assets/tickets/P-'.$ticket->ticket_number.'.jpg') }}" alt="">--}}
+                                    {{--@else--}}
+                                        {{--<img width="80%" src="{{ asset('assets/images/default-ticket.png'); }}" alt="">--}}
+
+                                    {{--@endif--}}
+                                    {{--<br>--}}
+                                    {{--<b>{{ trans('provider.ticket_number') }} - </b>{{ substr($ticket->ticket_number,0,-4).'****' }}--}}
+                                {{--</div>--}}
+                            {{--@endif--}}
                         @endforeach
                         </div>
                     @endif
