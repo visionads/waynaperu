@@ -14,7 +14,7 @@
             .tbl-1 { width: 100%; border-bottom: 1px solid orange; border-left: 1px solid orange; margin-bottom: 15px;}
             .tbl-1 th, .tbl-1 td { border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center}
             .orange-bar { width: 100%; height: 20px; background: orange}
-            .box-1 { width: 19%; height: auto; display: inline-block;}
+            .box-1 { width: 19%; height: auto; float: left;}
             .h-space { width: 100%; height: 20px;}
             .size-20 { font-size: 20px !important; }
         </style>
@@ -60,14 +60,15 @@
                 </div>
                 <div class="orange-bar">&nbsp;</div>
                 <div class="center">
-                    {{--<div class="box-1"><img src="{{ asset('assets/images/email-temp-01.png') }}" width="100%"></div>
-                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-02.png') }}" width="100%"></div>
-                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-03.png') }}" width="100%"></div>
-                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-04.png') }}" width="100%"></div>
-                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-05.png') }}" width="100%"></div>--}}
-                    <table width="100%" style="font-family: Arial; margin-bottom: 20px;">
+                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-01.1.png') }}" width="100%" style="vertical-align: top"><p style="font-size: 14px;">Please visit an agency<br> or actual BPC bank<br> counter</p></div>
+                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-02.1.png') }}" width="100%" style="vertical-align: top"><p style="font-size: 14px;">Transfer the <br> Amount of S/.<span style="color:deeppink">XX.XX</span><br>to : <strong>193-2298769-0-86</strong> </p></div>
+                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-03.1.png') }}" width="100%" style="vertical-align: top"><p style="font-size: 14px;">Send a photo<br>of the voucher to<br><span style="color:dodgerblue;">pago@exploor.pe</span> </p></div>
+                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-04.1.png') }}" width="100%" style="vertical-align: top"><p style="font-size: 14px;">Receive your<br>Ticket </p></div>
+                    <div class="box-1"><img src="{{ asset('assets/images/email-temp-05.1.png') }}" width="100%" style="vertical-align: top"><p style="font-size: 14px;">Enjoy the moment or give an unforgettable gift to someone else</p></div>
+                    <div style="clear: both"></div>
+                    {{--<table width="100%" style="font-family: Arial; margin-bottom: 20px;">
                         <tr style="text-align: center">
-                            <td width="20%">
+                            <td width="20%" style="">
                                 <img src="{{ asset('assets/images/email-temp-01.1.png') }}" width="100%">
                                 <p style="font-size: 14px;">Please visit an agency<br> or actual BPC bank<br> counter</p>
                             </td>
@@ -88,7 +89,7 @@
                                 <p style="font-size: 14px;">Enjoy the moment or give an unforgettable gift to someone else</p>
                             </td>
                         </tr>
-                    </table>
+                    </table>--}}
                 </div>
                 <div class="orange-bar">&nbsp;</div>
                 <div class="h-space">&nbsp;</div>

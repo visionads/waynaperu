@@ -32,8 +32,9 @@
     </header>
     <section>
         <div style="font-size: 30px; text-align: center; padding: 10px 0;">{{ trans('pi.thank_you') }} <span style="color: orange;">{{ $user_name }} !</span></div>
-        <div style="padding: 10px 0;">{{ trans('pi.confirmation_number') }} : <span style="color: orange;">{{ $order->order_number }}</span></div>
+        <div style="padding: 10px 0; font-size: 18px;">{{ trans('pi.confirmation_number') }} : <span style="color: orange;">{{ $order->order_number }}</span></div>
         <div>
+            <div style="border: 0px !important; font-weight: bold;">{{ trans('pi.date') }} : {{ $order->created_at }}</div>
             <table style="width: 100%; border-bottom: 1px solid orange; border-left: 1px solid orange; margin-bottom: 15px;" cellpadding="0" cellspacing="0">
                 <thead>
                 <tr>
@@ -50,7 +51,8 @@
                 @foreach($order_items as $order_item)
                 <tr>
                     <td style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">{{ $order_item->title }}</td>
-                    <td style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">{{ $order_item->city.', '.$order_item->district }}</td>
+                    {{--<td style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">{{ $order_item->city.', '.$order_item->district }}</td>--}}
+                    <td style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">{{ $order_item->district }}</td>
                     <td style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">{{ $order_item->mail_qty+$order_item->pdf_qty }}</td>
                     <td style="border-top: 1px solid orange; border-right: 1px solid orange; padding: 5px; text-align: center">S/.{{ $order_item->mail_price+$order_item->pdf_price }}</td>
                 </tr>
@@ -60,13 +62,30 @@
             </table>
         </div>
         <div style="width: 100%; height: 20px; background: orange;">&nbsp;</div>
-        <div style="text-align: center;">
-            {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-01.png') }}" width="100%"></div>--}}
-            {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-02.png') }}" width="100%"></div>--}}
-            {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-03.png') }}" width="100%"></div>--}}
-            {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-04.png') }}" width="100%"></div>--}}
-            {{--<div style="width: 19%; height: auto; display: inline-block;"><img src="{{ $message->embed('assets/images/email-temp-05.png') }}" width="100%"></div>--}}
-            <table width="100%" style="font-family: Arial; margin-bottom: 20px;">
+
+        <div style="text-align: center; width: 100%;">
+            <div style=" width:19%; height:auto; float:left;">
+                <img src="{{ $message->embed('assets/images/email-temp-01.1.png') }}" width="100%" style="vertical-align: top">
+                <p style="font-size: 14px;">{{ trans('pi.bcp') }}</p>
+            </div>
+            <div style="width: 19%; height: auto; float: left;">
+                <img src="{{ $message->embed('assets/images/email-temp-02.1.png') }}" width="100%" style="vertical-align: top">
+                <p style="font-size: 14px;">{{ trans('pi.transfer') }}<span style="color:deeppink">{{ $total }}</span><br>{{ trans('pi.to') }} : <strong>193-2298769-0-86</strong> </p>
+            </div>
+            <div style="width: 19%; height: auto; float: left;">
+                <img src="{{ $message->embed('assets/images/email-temp-03.1.png') }}" width="100%" style="vertical-align: top">
+                <p style="font-size: 14px;">{{ trans('pi.email') }}<br><span style="color:dodgerblue;">pago@exploor.pe</span> </p>
+            </div>
+            <div style="width: 19%; height: auto; float: left;">
+                <img src="{{ $message->embed('assets/images/email-temp-04.1.png') }}" width="100%" style="vertical-align: top">
+                <p style="font-size: 14px;">{{ trans('pi.receive') }} </p>
+            </div>
+            <div style="width: 19%; height: auto; float: left;">
+                <img src="{{ $message->embed('assets/images/email-temp-05.1.png') }}" width="100%" style="vertical-align: top">
+                <p style="font-size: 14px;">{{ trans('pi.gift') }}</p>
+            </div>
+            <div style="clear: both"></div>
+            {{--<table width="100%" style="font-family: Arial; margin-bottom: 20px;">
                 <tr style="text-align: center" valign="top">
                     <td width="20%" valign="top">
                         <img src="{{ $message->embed('assets/images/email-temp-01.1.png') }}" width="100%">
@@ -89,7 +108,7 @@
                         <p style="font-size: 14px;">{{ trans('pi.gift') }}</p>
                     </td>
                 </tr>
-            </table>
+            </table>--}}
         </div>
         <div style="width: 100%; height: 20px; background: orange;">&nbsp;</div>
         <div style="width: 100%; height: 20px;">&nbsp;</div>
@@ -104,9 +123,9 @@
             <table width="100%">
             <tr>
                 <td style="text-align: center;">
-                    <a href="#"><img src="{{ $message->embed('assets/images/social-1.png') }}" style="height: 4vw"></a>
-                    <a href="#"><img src="{{ $message->embed('assets/images/social-2.png') }}" style="height: 4vw"></a>
-                    <a href="#"><img src="{{ $message->embed('assets/images/social-3.png') }}" style="height: 4vw"></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ $message->embed('assets/images/social-1.png') }}" style="height: 4vw"></a>
+                    <a href="https://www.facebook.com/" target="_blank"><img src="{{ $message->embed('assets/images/social-2.png') }}" style="height: 4vw"></a>
+                    <a href="https://twitter.com/" target="_blank"><img src="{{ $message->embed('assets/images/social-3.png') }}" style="height: 4vw"></a>
                 </td>
             </tr>
             </table>

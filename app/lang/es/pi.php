@@ -7,7 +7,9 @@
  */
 return [
     'thank_you'=>'Gracias',
-    'confirmation_number' => 'Número de confirmación',
+    //'confirmation_number' => 'Número de confirmación',
+    'confirmation_number' => 'Numero de confirmación',
+    'date' => 'Fecha',
     'activity' => 'Actividad',
     'location' => 'Lugar',
     'quantity' => 'Cantidad',

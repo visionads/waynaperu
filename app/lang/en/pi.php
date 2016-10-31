@@ -8,6 +8,7 @@
 return [
     'thank_you'=>'Thank you',
     'confirmation_number' => 'Confirmation number',
+    'date' => 'Date',
     'activity' => 'Activity',
     'location' => 'Location',
     'quantity' => 'Quantity',
