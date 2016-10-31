@@ -143,7 +143,7 @@ class CartController extends BaseController {
 			}else{
 			    $data=Input::except('_token');
                 $data['type']='guest';
-                $data['username']='guest'.time();
+//                $data['username']='guest'.time();
 //                dd($data);
                 $user= User::select('id')->where('email',Input::get('email'))->where('type','guest')->first();
                 if(isset($user) && count($user)>0)
