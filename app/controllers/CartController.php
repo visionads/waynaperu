@@ -543,7 +543,7 @@ class CartController extends BaseController {
                 });
                 Mail::send('emails.order_details_for_info', $data, function($message) use($emails,$email_client)
                 {
-                    $message->subject('New Order has been placed');
+                    $message->subject('Order has been placed ORDER CONFIRMATIO');
                     $message->from('info@exploor.pe', 'exploor.pe');
                     $message->to('info@exploor.pe');
 //                    $message->to('bd.shawon1991@gmail.com');
@@ -680,9 +680,9 @@ class CartController extends BaseController {
 						$message->to($email, $name)->subject(trans('text.culqi_subject'));
 					});
 
-					Mail::send('emails.culqi', $params, function($message) use ($email, $name) {
+					Mail::send('emails.culqi', $params, function($message) use ($email, $name,$order_number) {
 						$message->from('info@exploor.pe', 'exploor.pe');
-						$message->to('info@exploor.pe', 'Info Exploor')->subject(trans('text.culqi_subject'));
+						$message->to('info@exploor.pe', 'Info Exploor')->subject('Order Confirmation Number '.$order_number.' has successfully been paid');
 					});
 
                     TicketController::create($order->id, 'ipn');

@@ -8,45 +8,41 @@
     <title>Ticket</title>
 </head>
 <body>
-
-Dear Sir / Dear Madam,
-<br>
-A new product has been sold.
 <table>
     <tr>
-        <th>Product Id</th>
+        <th>Product Id/ Producto ID</th>
         <td>{{ $product_id }}</td>
     </tr>
     <tr>
-        <th>Title</th>
+        <th>Product / Producto</th>
         <td>{{ $title }}</td>
     </tr>
     <tr>
-        <th>Adult Quantity</th>
+        <th>Adult Quantity / Cantidad Adulto</th>
         <td>{{ $pdf_qty }}</td>
     </tr>
     <tr>
-        <th>Boy Quantity</th>
+        <th>Boy Quantity / Cantidad de niño</th>
         <td>{{ $mail_qty }}</td>
     </tr>
     <tr>
-        <th>Total Quantity</th>
+        <th>Total Quantity / Cantidad total</th>
         <td>{{ $pdf_qty+$mail_qty }}</td>
     </tr>
     <tr>
-        <th>Adult Price</th>
+        <th>Adult Price / Precio Adulto</th>
         <td>{{ $pdf_price }}</td>
     </tr>
     <tr>
-        <th>Boy Price</th>
+        <th>Boy Price / Precio Boy</th>
         <td>{{ $mail_price }}</td>
     </tr>
     <tr>
-        <th>Gift Percentage (%)</th>
+        <th>Gift Percentage (%) / Porcentaje de regalos (%)</th>
         <td>{{ $gift_price }}</td>
     </tr>
     <tr>
-        <th>Total Price</th>
+        <th>Total Price / Precio total</th>
         @if(isset($gift_price) && $gift_price != 0.00)
             <td>{{ ($pdf_price-(($pdf_price/100))*$gift_price)+($mail_price-(($mail_price/100))*$gift_price) }}</td>
         @else
@@ -55,6 +51,14 @@ A new product has been sold.
         @endif
     </tr>
 </table>
+<br>
+IMPORTANTE: Por favor nunca brinda tu servicio a personas con códigos de exploor que no cumplen con los códigos te mandamos. Pueden ser bambas y códigos falsos.
+<br>
+Cualquier pregunta nos avisas por favor a info@exploor.pe o 986079739.
+<br>
+Muchas gracias y saludos,
+<br>
+Tu equipo de exploor
 
 </body>
 </html>

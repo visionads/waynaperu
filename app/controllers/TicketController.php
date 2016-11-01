@@ -185,7 +185,7 @@ class TicketController extends Controller
             </head>
             <body style="background-color: white;">
             <section style="width: 100%; height:auto;">
-                <div style="width: 866px; height:297px; padding: 30px; margin: auto; background: #e0e0e0; border-radius: 15px;">
+                <div style="width: 866px; height:297px; padding: 30px; margin: auto; background: none; border-radius: 15px;">
                     <div style="width: 866px; height: 297px; background: url('.$urll.') no-repeat left top; margin: auto;">
                         <div style="float: left; width: 420px; height: 100%; border-radius: 15px !important;">
                             <div>
