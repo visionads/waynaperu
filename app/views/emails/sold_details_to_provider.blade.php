@@ -8,41 +8,43 @@
     <title>Ticket</title>
 </head>
 <body>
+Hola, como estás? ¡Había una compra en exploor.pe!
+
 <table>
     <tr>
-        <th>Product Id/ Producto ID</th>
+        <th>Producto ID</th>
         <td>{{ $product_id }}</td>
     </tr>
     <tr>
-        <th>Product / Producto</th>
+        <th>Producto</th>
         <td>{{ $title }}</td>
     </tr>
     <tr>
-        <th>Adult Quantity / Cantidad Adulto</th>
+        <th>Cantidad Adulto</th>
         <td>{{ $pdf_qty }}</td>
     </tr>
     <tr>
-        <th>Boy Quantity / Cantidad de niño</th>
+        <th>Cantidad de niño</th>
         <td>{{ $mail_qty }}</td>
     </tr>
     <tr>
-        <th>Total Quantity / Cantidad total</th>
+        <th>Cantidad total</th>
         <td>{{ $pdf_qty+$mail_qty }}</td>
     </tr>
     <tr>
-        <th>Adult Price / Precio Adulto</th>
+        <th>Precio Adulto</th>
         <td>{{ $pdf_price }}</td>
     </tr>
     <tr>
-        <th>Boy Price / Precio Boy</th>
+        <th>Precio Boy</th>
         <td>{{ $mail_price }}</td>
     </tr>
     <tr>
-        <th>Gift Percentage (%) / Porcentaje de regalos (%)</th>
+        <th>Porcentaje de regalos (%)</th>
         <td>{{ $gift_price }}</td>
     </tr>
     <tr>
-        <th>Total Price / Precio total</th>
+        <th>Precio total</th>
         @if(isset($gift_price) && $gift_price != 0.00)
             <td>{{ ($pdf_price-(($pdf_price/100))*$gift_price)+($mail_price-(($mail_price/100))*$gift_price) }}</td>
         @else
