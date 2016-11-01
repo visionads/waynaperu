@@ -127,6 +127,11 @@ return array(
     "provider_name" => "Nombre Proveedor",
     "contact_info" => "Datos de contacto",
     "person_in_charge" => "Persona encargada",
+    "telephone" => "Telefono Fijo",
+    "email_provider" => "Correo Proveedor",
+    "direction_provider" => "Dirección Proveedor",
+    "street" => "Calle",
+    "date_of_activity_made" => "Realizada por Cliente",
 
     // For Email template_1
     "thank_you" => "Gracias",

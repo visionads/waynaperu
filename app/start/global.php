@@ -384,3 +384,10 @@ function getProductContentPerProductId($product_id){
 function getProductInfoByProductId($product_id){
     return  DB::table('products')->where('id','=', $product_id)->first();
 }
+
+/*
+ * Get user phone number by user id
+ * */
+function getUserPhoneNumber($user_id){
+    return  DB::table('user_phone_numbers')->where('user_id', $user_id)->get();
+}

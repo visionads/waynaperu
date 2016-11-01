@@ -127,6 +127,11 @@ return array(
     "provider_name" => "Provider Name",
     "contact_info" => "Contact Info",
     "person_in_charge" => "Person in Charge",
+    "telephone" => "Telephone",
+    "email_provider" => "Email Provider",
+    "direction_provider" => "Direction Provider",
+    "street" => "Street",
+    "date_of_activity_made" => "Date of activity made",
 
 
 

@@ -119,14 +119,9 @@
                     <table  class="table table-striped table-hover" id="sample-table-2">
                         <thead>
                             <tr>
-                                <th> {{ trans('provider.product_id') }} </th>
                                 <th> {{ trans('provider.product_name') }} </th>
-                                <th> {{ trans('provider.adult_qty') }} </th>
-                                <th> {{ trans('provider.adult_price') }} </th>
-                                <th> {{ trans('provider.child_qty') }} </th>
-                                <th> {{ trans('provider.child_price') }} </th>
-                                <th> {{ trans('provider.gift_qty') }} </th>
-                                <th> {{ trans('provider.gift_price') }} </th>
+                                <th> {{ trans('provider.price') }} </th>
+                                <th> {{ trans('provider.quantity') }} </th>
                                 <th> {{ trans('provider.created_at') }} </th>
                                 <th> {{ trans('provider.provider_info') }} </th>
                                 <th> {{ trans('provider.contact_info') }} </th>
@@ -138,8 +133,9 @@
                         <tbody>
                             @foreach($order_items as $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
                                 <td>
+                                    <b>{{ trans('provider.product_id') }} : </b>
+                                    {{ $item->id }}<br>
                                     <?php
                                     $product_content = getProductContentPerProductId($item->product_id);
                                     ?>
@@ -150,12 +146,22 @@
                                         <?php $loc_name = getLocName($item->loc_id); ?>
                                         {{ isset($loc_name)?$loc_name: null }}
                                 </td>
-                                <td> {{ isset($item->pdf_qty)?$item->pdf_qty: null }} </td>
-                                <td>  s./ {{ isset($item->pdf_price)?$item->pdf_price: null }} </td>
-                                <td> {{ isset($item->mail_qty)?$item->mail_qty: null }} </td>
-                                <td>  s./ {{ isset($item->mail_price)?$item->mail_price  : null }} </td>
-                                <td> {{ isset($item->gift_qty)?$item->gift_qty: null }} </td>
-                                <td>  s./ {{ isset($item->gift_price)?$item->gift_price: null }} </td>
+                                <td>
+                                    <b>{{ trans('provider.adult_price') }} : </b>
+                                    s./ {{ isset($item->pdf_price)?$item->pdf_price: null }}
+                                    <br><b>{{ trans('provider.child_price') }} : </b>
+                                    s./ {{ isset($item->mail_price)?$item->mail_price  : null }}
+                                    <br><b>{{ trans('provider.gift_price') }} : </b>
+                                    s./ {{ isset($item->gift_price)?$item->gift_price: null }}
+                                </td>
+                                <td>
+                                    <b>{{ trans('provider.adult_qty') }} : </b>
+                                    {{ isset($item->pdf_qty)?$item->pdf_qty: null }}
+                                    <br><b>{{ trans('provider.child_qty') }} : </b>
+                                    {{ isset($item->mail_qty)?$item->mail_qty: null }}
+                                    <br><b>{{ trans('provider.gift_qty') }} : </b>
+                                    {{ isset($item->gift_qty)?$item->gift_qty: null }}
+                                </td>
                                 <td> {{ isset($item->created_at)?$item->created_at: null }} </td>
                                 <td>
                                     <?php
@@ -172,22 +178,47 @@
                                         }
                                     }
                                     ?>
-                                    {{ trans('provider.provider_id').' - ' }} {{ isset($provider->id)? $provider->id : null }}<br>
-                                    {{ trans('provider.provider_name') }} -
+                                    {{ trans('provider.provider_id').' : ' }} {{ isset($provider->id)? $provider->id : null }}<br>
+                                    {{ trans('provider.provider_name') }} :
                                     {{ isset($provider->first_name)? $provider->first_name : null }}
                                     {{ isset($provider->last_name)? $provider->last_name : null }}<br>
-                                        ({{ isset($provider->phone)? $provider->phone : "no phone" }})
-                                        <br>
-                                    {{ isset($provider->email)? $provider->email : null }}<br>
-                                    {{ isset($provider->direction)? $provider->direction : null }}<br>
-                                    {{ isset($provider->district)? $provider->district : null }}
-                                    {{ isset($provider->city)? $provider->city : null }}
-                                    {{ isset($provider->street)? $provider->street : null }}<br>
-                                    {{ isset($provider->address)? $provider->address : null }}
+                                        {{ isset($provider->phone)? '<br>('.$provider->phone.')' : "" }}
+
                                 </td>
                                 <td>
-                                    {{--{{ trans('provider.person_in_charge') }} - {{ $provider->relUserProviderInfo['incharge'] }}--}}
+                                    <b>{{ trans('provider.person_in_charge') }} :</b> {{ $item->incharge }}<br>
+                                    <b>{{ trans('provider.telephone') }} :</b>
 
+                                    <?php
+                                    if($item->user_id !=0)
+                                    {
+                                        $user_phone_numbers = getUserPhoneNumber($item->user_id);
+                                    }else{
+                                        $user_phone_numbers=[];
+                                    }
+                                    if(!empty($user_phone_numbers) && count($user_phone_numbers)>0){
+                                        $h=1;
+                                        $total=count($user_phone_numbers);
+                                        foreach ($user_phone_numbers as $user_phone_number) {
+                                            echo $user_phone_number->number;
+                                            if($h<$total){
+                                                echo ',';
+                                            }
+                                            $h++;
+
+                                        }
+                                    }
+                                    //                                    dd($user_phone_numbers);
+                                    ?>
+
+
+                                    <br>
+                                    <b>{{ trans('provider.email_provider') }} : </b>{{ isset($provider->email)? $provider->email : null }}<br>
+                                    <b>{{ trans('provider.direction_provider') }} : </b>{{ isset($provider->direction)? $provider->direction : null }}<br>
+                                    <b>{{ trans('provider.district') }} : </b>{{ isset($provider->district)? $provider->district : null }}<br>
+                                    <b>{{ trans('provider.city') }} : </b>{{ isset($provider->city)? $provider->city : null }}<br>
+                                    <b>{{ trans('provider.street') }} : </b>{{ isset($provider->street)? $provider->street : null }}<br>
+                                    <b>{{ trans('provider.department') }} : </b>{{ isset($provider->department)? $provider->department : null }}
                                 </td>
                                 <td>
                                     {{ $item->ticket_number }}<br>
@@ -197,7 +228,7 @@
                                 <td>
 
                                     @if($item->status=='used')
-                                            {{ trans('provider.used_at').' <b>'.date('d M Y',strtotime($item->used_at)).'</b>' }}
+                                            {{ trans('provider.date_of_activity_made').' <b>'.date('d M Y',strtotime($item->used_at)).'</b>' }}
 
                                     @elseif(Auth::user()->type=='admin' || ($item->status=='new' && $item->user_id==Auth::user()->id))
                                         {{ Form::open(['route'=>'submit-ticket']) }}
