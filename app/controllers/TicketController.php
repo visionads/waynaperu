@@ -91,10 +91,10 @@ class TicketController extends Controller
                 for ($i = 0; $i < 8; $i++) {
                     $randomString .= $characters[rand(0, $charactersLength - 1)];
                 }
-                $ticket->type='provider';
-                $ticket->ticket_number=$randomString;
-
-                TicketController::html_to_jpg($ticket);
+//                $ticket->type='provider';
+//                $ticket->ticket_number=$randomString;
+//
+//                TicketController::html_to_jpg($ticket);
 
                 $ticket->type='client';
                 $ticket->ticket_number=$randomString;
@@ -417,7 +417,7 @@ class TicketController extends Controller
         $pe= $pe->first();
         $item= (array) $pe;
         if($item['email'] != null) {
-            $file_path = public_path('assets/tickets/P-'.$item["ticket_number"].'.jpg');
+            $file_path = public_path('assets/tickets/'.$item["ticket_number"].'.jpg');
             if(file_exists($file_path)){
                 $path = $file_path;
             }else{
