@@ -17,41 +17,17 @@
             <div class="col-md-6 col-lg-6 col-sm-12">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">{{ trans('provider.order') }}</legend>
+                    <b>{{ trans('provider.order_number') }} :</b> {{ $order->order_number }}
+                    <br><b>{{ trans('provider.order_status') }} :</b> {{ $order->status }}
+                    <br><b>{{ trans('provider.total_qty') }} :</b> {{ isset($order->qty)?$order->qty:null }}
+                    <br><b>{{ trans('provider.total_price') }} :</b> s./ {{number_format($order->price,2)}}
                     {{ Form::open(array('route' => 'update_order','class' => 'form-horizontal')) }}
-                    <div class="form-group">
-                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.order_number') }}:</label>
-                        <div class="col-sm-12 col-md-8">
-                            <strong style="line-height:42px;">
-                                {{ $order->order_number }}
-                            </strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.order_status') }}:</label>
-                        <div class="col-sm-12 col-md-8">
-                            <strong style="line-height:42px;">
-                                {{ $order->status }}
-                            </strong>
-                        </div>
-                    </div>
                     {{--<div class="form-group">--}}
                         {{--<label for="status" class="col-sm-12 col-md-4 control-label">{{ trans('provider.order_status') }}:</label>--}}
                         {{--<div class="col-sm-12 col-md-8">--}}
                             {{--{{Form::select('status', array('PENDING' => 'Pending', 'SUCCESS' => 'Success', 'SHIPPED' => 'Shipped'), $order->status, ['class' => 'form-control'])}}--}}
                         {{--</div>--}}
                     {{--</div>--}}
-                    <div class="form-group">
-                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.total_qty') }}:</label>
-                        <div class="col-sm-12 col-md-8">
-                            <strong style="line-height:42px;">{{ isset($order->qty)?$order->qty:null }}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.total_price') }}:</label>
-                        <div class="col-sm-12 col-md-8">
-                            <strong style="line-height:42px;">s./ {{number_format($order->price,2)}}</strong>
-                        </div>
-                    </div>
                     <div class="form-actions">
                         @if(Auth::user()->type=='admin' && $order->status != 'SUCCESS')
                             <a class="btn btn-success pull-right" href="{{ route('ticket',$order->id) }}"><b>Send Ticket</b></a>
@@ -71,44 +47,26 @@
                         <?php
                             $user = getUserInfo($order->user_id);
                         ?>
-                        <div class="form-group">
-                            <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.name') }}:</label>
-                            <div class="col-sm-12 col-md-8">
+                            <b>{{ trans('provider.name') }} : </b>
                                 @if($user->first_name != '' || $user->last_name != '' )
-                                    <strong style="line-height:42px;">
                                         {{ $user->first_name }} {{ $user->last_name }}
-                                    </strong>
                                 @else
                                     <strong style="line-height:42px;">
                                         {{ trans('provider.user_has_no_name') }}
                                     </strong>
                                 @endif
-                            </div>
-                        </div>
-                        <div style="clear:both"></div>
-                        @if(Auth::user()->type=='admin')
-                            <div class="form-group">
-                                <label  class="col-sm-12 col-md-4 control-label">
-                                    {{ trans('provider.email') }}:
-                                </label>
-                                <div class="col-sm-12 col-md-8">
-                                    <strong style="line-height:42px;">
+                        {{--@if(Auth::user()->type=='admin')--}}
+                                    <br><b>{{ trans('provider.email') }} : </b>
                                         {{ $user->email }}
-                                    </strong>
-                                </div>
-                            </div>
-                            <div style="clear:both"></div>
-                            <div class="form-group">
-                                <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.address') }}:</label>
-                                <div class="col-sm-12 col-md-8">
+                                    <br><b>{{ trans('provider.telephone') }} : </b>
+                                        {{ $user->phone }}
+                            <br><b>{{ trans('provider.address') }}  </b>
                                     @if($user->direction != '')
                                         <strong >#{{ $user->flat }}, {{ $user->direction }}<br/> {{ $user->city }}, {{ $user->district }}<br/>{{ $user->province }} </strong>
                                     @else
                                         <strong style="line-height:42px;">{{ trans('provider.user_has_no_address') }} </strong>
                                     @endif
-                                </div>
-                            </div>
-                        @endif
+                        {{--@endif--}}
                     @endif
                 </fieldset>
             </div>
@@ -145,6 +103,8 @@
 
                                         <?php $loc_name = getLocName($item->loc_id); ?>
                                         {{ isset($loc_name)?$loc_name: null }}
+                                    <br><b>{{ trans('provider.type_of_payment') }} : </b>
+                                    {{ isset($item->type_of_payment)?$item->type_of_payment: null }}
                                 </td>
                                 <td>
                                     <b>{{ trans('provider.adult_price') }} : </b>

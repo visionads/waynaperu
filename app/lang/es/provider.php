@@ -132,6 +132,7 @@ return array(
     "direction_provider" => "Dirección Proveedor",
     "street" => "Calle",
     "date_of_activity_made" => "Realizada por Cliente",
+    "type_of_payment" => "Tipo de pago",
 
     // For Email template_1
     "thank_you" => "Gracias",
