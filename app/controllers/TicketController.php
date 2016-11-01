@@ -392,7 +392,48 @@ class TicketController extends Controller
         }
 //        dd($pathToFile);
 //        dd($email_client);
-        Mail::send('emails.ticket', [], function($message) use ($emails,$email_client,$pathToFile)
+
+
+
+
+
+        $order = Order::find($order_id);
+        $data['order_items'] = DB::table('order_items')
+            ->select('order_items.*','product_content.title','product_info.city','product_info.district')
+            ->join('product_content','product_content.product_id','=','order_items.product_id','left')
+            ->join('product_info','product_info.product_id','=','order_items.product_id','left')
+            ->where('product_content.lang_id',1)
+            ->where('product_info.language_id',1)
+            ->where('order_items.order_id', $order_id)
+            ->get();
+
+        $user=User::find($order->user_id);
+        $data['user_name']=$user->first_name.' '.$user->last_name;
+
+        $admin=User::select('email')->where('type','admin')->get();
+        $emails=[];
+        foreach ($admin as $item) {
+            $emails[]=$item->email;
+        }
+
+        $data['order'] = $order;
+
+        $client=User::find($data['order']->user_id);
+        $email_client=$client->email;
+
+        foreach ($data['order_items'] as $id=>$order_item) {
+            if(isset($order_item->gift_price) && $order_item->gift_price != 0.00)
+            {
+                $data['order_items'][$id]->pdf_price= $order_item->pdf_price-(($order_item->pdf_price/100))*$order_item->gift_price;
+                $data['order_items'][$id]->mail_price= $order_item->mail_price-(($order_item->mail_price/100))*$order_item->gift_price;
+            }
+        }
+
+
+        //exit('okk');
+
+
+        Mail::send('emails.ticket', $data, function($message) use ($emails,$email_client,$pathToFile)
         {
             $message->subject('Ticket for  no of order from Exploor');
             $message->from('info@exploor.pe', 'exploor.pe');

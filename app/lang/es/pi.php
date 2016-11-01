@@ -26,5 +26,7 @@ return [
     'contact_us' => 'También puede ponerse en contacto con 24/7',
     'translation' => 'Si usted no ha hecho esta transacción por favor póngase en contacto con nosotros bajo',
     'registered_on' => 'Ha recibido este correo de explorar (Wayna Perú S.A.C) porque se ha inscrito en el',
-    'address' => 'con esta dirección de correo electrónico.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.'
+    'address' => 'con esta dirección de correo electrónico.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.',
+    'contact_the_provider' => 'Comuníquese con el Proveedor para concertar su cita',
+    'location_activity' => 'Ir a la ubicación de la actividad en la fecha coordinada'
 ];
