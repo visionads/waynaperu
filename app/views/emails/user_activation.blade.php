@@ -12,7 +12,7 @@
 
 </head>
 <body>
-<table style="width: 80%; margin: auto;">
+<table style="width: 100%; margin: auto;">
 	<thead>
 	<tr>
 		<th style="width: 100%; height: 50px; background: #121528; text-align: left;">
@@ -48,9 +48,9 @@
 	</tr>
 	<tr>
 		<td style="text-align: center;">
-			<a href="#"><img src="{{ $message->embed('assets/images/social-1.png') }}" style="height: 4vw"></a>
-			<a href="#"><img src="{{ $message->embed('assets/images/social-2.png') }}" style="height: 4vw"></a>
-			<a href="#"><img src="{{ $message->embed('assets/images/social-3.png') }}" style="height: 4vw"></a>
+			<a href="https://www.instagram.com/" target="_blank"><img src="{{ $message->embed('assets/images/social-1.png') }}" style="height: 4vw"></a>
+			<a href="https://www.facebook.com/" target="_blank"><img src="{{ $message->embed('assets/images/social-2.png') }}" style="height: 4vw"></a>
+			<a href="https://twitter.com/" target="_blank"><img src="{{ $message->embed('assets/images/social-3.png') }}" style="height: 4vw"></a>
 		</td>
 	</tr>
 	</tbody>
