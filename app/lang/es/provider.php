@@ -134,6 +134,7 @@ return array(
     "date_of_activity_made" => "Realizada por Cliente",
     "type_of_payment" => "Tipo de pago",
     "date_of_purchase" => "Fecha de compra",
+    "valid_until" => "Válido hasta",
 
     // For Email template_1
     "thank_you" => "Gracias",

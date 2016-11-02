@@ -133,7 +133,7 @@
                                                                 <th> Child Price </th>
                                                                 <th> Gift Qty </th>
                                                                 <th> Gift Price </th>
-                                                                <th> Created At </th>
+                                                                <th> Date of Purchase </th>
                                                                 <th> Provider's INFO </th>
                                                                 <th> Ticket Status</th>
                                                             </tr>
@@ -159,7 +159,16 @@
                                                                     <td>  s./ {{ isset($item->mail_price)?$item->mail_price  : null }} </td>
                                                                     <td> {{ isset($item->gift_qty)?$item->gift_qty: null }} </td>
                                                                     <td>  s./ {{ isset($item->gift_price)?$item->gift_price: null }} </td>
-                                                                    <td> {{ isset($item->created_at)?$item->created_at: null }} </td>
+                                                                    <td>
+                                                                        {{ isset($item->created_at)?date('d M Y'): null }}
+                                                                        <br>
+                                                                        <b>Valid Until :</b>
+                                                                        <?php
+
+                                                                        $product_info= getProductDetailsByProductId($item->product_id);
+                                                                        echo date("d M Y",strtotime("+".$product_info->validity." months"))
+                                                                        ?>
+                                                                    </td>
                                                                     <td>
                                                                         <?php
                                                                         $product = getProductInfoByProductId($item->product_id);

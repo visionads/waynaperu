@@ -122,7 +122,16 @@
                                     <br><b>{{ trans('provider.gift_qty') }} : </b>
                                     {{ isset($item->gift_qty)?$item->gift_qty: null }}
                                 </td>
-                                <td> {{ isset($item->created_at)?$item->created_at: null }} </td>
+                                <td>
+                                    {{ isset($item->created_at)?date('d M Y'): null }}
+                                    <br>
+                                    <b>{{ trans('provider.valid_until') }} :</b>
+                                    <?php
+
+                                    $product_info= getProductDetailsByProductId($item->product_id);
+                                    echo date("d M Y",strtotime("+".$product_info->validity." months"))
+                                    ?>
+                                </td>
                                 <td>
                                     <?php
                                     $product = getProductInfoByProductId($item->product_id);

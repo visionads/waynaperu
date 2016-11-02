@@ -384,6 +384,9 @@ function getProductContentPerProductId($product_id){
 function getProductInfoByProductId($product_id){
     return  DB::table('products')->where('id','=', $product_id)->first();
 }
+function getProductDetailsByProductId($product_id){
+    return  DB::table('product_info')->where('product_id','=', $product_id)->first();
+}
 
 /*
  * Get user phone number by user id

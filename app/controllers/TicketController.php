@@ -136,21 +136,25 @@ class TicketController extends BaseController
 
         $conv = new  \Anam\PhantomMagick\Converter();
 
-        if($ticket->type=='provider')
-        {
-            $tnm= $ticket->ticket_number;
-            $ticket->ticket_number= substr($ticket->ticket_number,0,-4).'****';
-            $conv->addPage(TicketController::ticket_html($ticket))
-                ->setImageOptions($options)
-                ->toJpg()
-                ->save(public_path().'/assets/tickets/P-'.$tnm.'.jpg');
-
-        }else{
-            $conv->addPage(TicketController::ticket_html($ticket))
-                ->setImageOptions($options)
-                ->toJpg()
-                ->save(public_path().'/assets/tickets/'.$ticket->ticket_number.'.jpg');
-        }
+        $conv->addPage(TicketController::ticket_html($ticket))
+            ->setImageOptions($options)
+            ->toJpg()
+            ->save(public_path().'/assets/tickets/'.$ticket->ticket_number.'.jpg');
+//        if($ticket->type=='provider')
+//        {
+//            $tnm= $ticket->ticket_number;
+//            $ticket->ticket_number= substr($ticket->ticket_number,0,-4).'****';
+//            $conv->addPage(TicketController::ticket_html($ticket))
+//                ->setImageOptions($options)
+//                ->toJpg()
+//                ->save(public_path().'/assets/tickets/P-'.$tnm.'.jpg');
+//
+//        }else{
+//            $conv->addPage(TicketController::ticket_html($ticket))
+//                ->setImageOptions($options)
+//                ->toJpg()
+//                ->save(public_path().'/assets/tickets/'.$ticket->ticket_number.'.jpg');
+//        }
     }
     public static function ticket_html($ticket)
     {
