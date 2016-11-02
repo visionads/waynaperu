@@ -198,14 +198,19 @@ Route::group(array('before' => 'adminFilter'), function () {
     Route::get('admin/slider/delete/{id}',['as'=>'delete_slide','uses'=>'SliderController@destroy']);
 
 });
+
+Route::group(array('before' => 'clientFilter'), function () {
+    Route::get('orders',['as'=>'orders','uses'=>'OrdersController@orders']);
+    Route::get('order/{order_id}',['as'=>'order-details','uses'=>'OrdersController@order_details']);
+    Route::get('account', array('as' => 'account', 'uses' => 'UsersController@getAccount'));
+    Route::post('account', array('as' => 'save_account', 'uses' => 'UsersController@postAccount'));
+});
 //
 //Route::group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter'], function()
 //{
 	// root route of this site
 	Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showWelcome'));
     // clients orders
-    Route::get('orders',['as'=>'orders','uses'=>'OrdersController@orders']);
-    Route::get('order/{order_id}',['as'=>'order-details','uses'=>'OrdersController@order_details']);
 
     Route::post('newsletter', array('as' => 'newsletter', 'uses' => 'CampaignController@newsletter'));
 	// admin login route here
@@ -214,8 +219,6 @@ Route::group(array('before' => 'adminFilter'), function () {
 	Route::post('login', array('as' => 'post_login', 'uses' => 'UsersController@postLogin'));
 	Route::post('register', array('as' => 'post_register', 'uses' => 'UsersController@postRegister'));
 	Route::get('logout', array('as' => 'site_logout', 'uses' => 'UsersController@logout'));
-	Route::get('account', array('as' => 'account', 'uses' => 'UsersController@getAccount'));
-	Route::post('account', array('as' => 'save_account', 'uses' => 'UsersController@postAccount'));
 	
     Route::get('agente-bcp/{order}', array('as' => 'agente_bcp', 'uses' => 'CartController@agenteBCP'));
     

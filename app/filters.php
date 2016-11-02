@@ -104,6 +104,13 @@ Route::filter('adminFilter', function () {
     }
         View::share('currentUser', Sentry::getUser());
 });
+Route::filter('clientFilter', function () {
+    if(Auth::check() && Auth::user()->type!='client'){
+
+        return Redirect::route('home');
+    }
+        View::share('currentUser', Sentry::getUser());
+});
 
 Route::filter('basicAuth', function () {
     if(!Sentry::check()) {
