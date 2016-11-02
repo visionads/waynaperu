@@ -319,8 +319,6 @@ class CartController extends BaseController {
 		}
 
 		$order_number = str_random(15);
-		$total_qty = Input::get('qty');
-		$total_price = Input::get('price');
 		$status = 'PENDING';
 		$order = new Order;
 		$order->order_number = $order_number;
@@ -331,12 +329,12 @@ class CartController extends BaseController {
 		    $order->user_id=Session::get('guest.id.0');
         }
 		$order->status = $status;
-		$order->qty = $total_qty;
-		$order->price = $total_price;
 
 
 		if($order->save()){
 
+            $total_qty = 0;
+            $total_price = 0;
 			foreach (Cart::content() as $cart) {
 				$gift = array();
 				$mail= array();
@@ -410,7 +408,22 @@ class CartController extends BaseController {
 				$order_items->gift_price = getGiftPrice($cart->options['loc_id'], 1);
 				$order_items->details = json_encode($detail);
 				$order_items->save();
+
+                $total_qty+=$order_items->pdf_qty+$order_items->mail_qty;
+                if(isset($order_items->gift_price) && $order_items->gift_price != 0.00)
+                {
+                    $pdf= $order_items->pdf_price-(($order_items->pdf_price/100))*$order_items->gift_price;
+                    $mail= $order_items->mail_price-(($order_items->mail_price/100))*$order_items->gift_price;
+                    $total_price+=$pdf+$mail;
+                }else{
+                    $total_price+=$order_items->pdf_price+$order_items->mail_price;
+                }
+
 			}
+
+            $order->qty = $total_qty;
+            $order->price = $total_price;
+            $order->save();
 
 			/*
 			 * Start Sent mail to provider,admin and client with order details

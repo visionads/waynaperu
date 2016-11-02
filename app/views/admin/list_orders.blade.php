@@ -19,10 +19,10 @@
                     <th class="hidden-xs">Clients Info </th>
                     <th class="hidden-xs">Order Status</th>
                     <th class="hidden-xs">Order Price</th>
+                    <th> Qty</th>
                     @if(Auth::user()->type== 'admin')
                         <th>Tickets</th>
                     @endif
-                    <th> Qty</th>
                     <th> Created At</th>
                     <th> Actions </th>
 
@@ -56,6 +56,7 @@
                             </td>
                             <td>{{ $order->status }}</td>
                             <td>s./ {{number_format($order->price, 2)}}</td>
+                            <td>{{ $order->qty }}</td>
                             @if(Auth::user()->type== 'admin')
                                 <td>
                                         <?php
@@ -69,7 +70,6 @@
                                     @endif
                                 </td>
                             @endif
-                            <td>{{ $order->qty }}</td>
                             <td>{{ $order->created_at }}</td>
                             <td>
                                 @if(Auth::user()->type=='admin' && $order->status == 'PENDING')
