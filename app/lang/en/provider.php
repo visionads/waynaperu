@@ -133,6 +133,7 @@ return array(
     "street" => "Street",
     "date_of_activity_made" => "Date of activity made",
     "type_of_payment" => "Type of Payment",
+    "date_of_purchase" => "Date of purchase",
 
 
 
