@@ -92,12 +92,9 @@
                                             @foreach($languages as $index => $language)
                                                 <div class="tab-pane @if($index == 0)active @endif" id="{{ isset($language->name)?$language->name:null }}">
                                                     <div class="form-group">
-                                                        {{ Form::label('name', 'Name', array('class' => 'col-sm-3 control-label')) }}
-                                                        <div class="col-sm-9">
-                                                            <input type="text" name="name[{{ $language->code }}]" placeholder="Name" class="form-control">
-
-                                                            {{ $errors->first('name['. $language->code .']') }}
-                                                        </div>
+                                                        {{ Form::label('name', 'Name', array('class' => 'control-label')) }}
+                                                        <input type="text" name="name[{{ $language->code }}]" placeholder="Name" class="form-control" required>
+                                                        {{ $errors->first('name['. $language->code .']') }}
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="details_{{ $language->code }}">
