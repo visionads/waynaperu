@@ -196,7 +196,11 @@
                                                                         {{ isset($provider->address)? $provider->address : null }}
                                                                     </td>
                                                                     <td>
-                                                                        {{ $item->status }}
+                                                                        {{ $item->status }}<br>
+                                                                        <b>Ticket Number : </b>
+                                                                        {{ $item->ticket_number }}<br>
+                                                                        <b>Date of Activity : </b>
+                                                                        {{ $item->used_at }}
                                                                         {{--@if(isset($item->user_id))
                                                                             @if($item->status=='used')
                                                                                 Used

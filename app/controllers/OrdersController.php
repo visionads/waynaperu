@@ -90,6 +90,8 @@ class OrdersController extends BaseController {
             //CartController::sentOrderConfirmMail($order_id);
             $data['order'] = Order::find($order_id);
             $data['order_items'] = DB::table('order_items')
+                ->select('order_items.*','ticket.ticket_number')
+                ->join('ticket','ticket.order_item_id','=','order_items.id','left')
                 ->where('order_items.order_id', $order_id)
                 ->get();
             return View::make('front.order_details', $data);
