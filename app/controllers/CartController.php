@@ -152,7 +152,7 @@ class CartController extends BaseController {
                     {
                         $user->update($data);
                     }else{
-                        Session::flash('message','<b style="color : red">'.$data['email'].'</b> is already registered. Please login to checkout.');
+                        Session::flash('error','<b>'.$data['email'].'</b> is already registered. Please login to checkout.');
                         return Redirect::to('login-checkout')->withInput();
                     }
                 }else{
