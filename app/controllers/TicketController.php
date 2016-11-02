@@ -170,6 +170,18 @@ class TicketController extends Controller
 
         $urll = asset("assets/images/ticket3.3.png");
 
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 8; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        $total_char= count($ticket_title);
+        if($total_char<=20)
+        {
+            $font_size= 10;
+        }
         //print_r($urll);exit();
         $html = '<!DOCTYPE html>
             <html lang="en">
@@ -233,7 +245,15 @@ class TicketController extends Controller
                                 <span style="width:74%; position: absolute; top: 92px; right:-10px; font-size: 12px; display: block; text-align: left; background:none; padding: 8px  0;  color:#fff;">'. trans('text.carry_your_ticket') .'</span>
                                 <span style="width:74%; position: absolute; top: 130px; right: -10px; font-size: 12px; display: block; text-align: left; background:none; padding: 8px  0; color:#fff;">'. trans('text.enjoy_every_moment') .'</span>
                             </div>
-                            <div style="border-radius: 8px !important; width:80%; height:10%; vertical-align:middle; position:absolute; top:80%; text-align:center; padding-left: 20px;border: 0px solid;">'.$ticket_title.'</div>
+                            <div style="
+                            border-radius: 8px !important; 
+                            width:80%; height:10%; 
+                            vertical-align:middle; 
+                            position:absolute; top:80%; 
+                            text-align:center; 
+                            padding-left: 20px;
+                            font-size: '.$font_size.'px !important;
+                            border: 0px solid;">'.$ticket_title.'</div>
                         </div>
                         <div style="float: left; width: 187px; height: 100%; background:none; border-radius: 15px !important;position: relative !important;">
                             <img src="'. asset('assets/images/ticket-box-2.png') .'" width="99%;" style="padding-left:2px; border-radius:15px;">
@@ -252,8 +272,8 @@ class TicketController extends Controller
             </body>
             </html>
         ';
-//echo $html;
-//exit();
+echo $html;
+exit();
         return $html;
 
     }
