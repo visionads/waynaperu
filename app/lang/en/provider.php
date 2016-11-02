@@ -16,6 +16,8 @@ return array(
     "phone" => "Phone",
     "passport" => "Passport",
     "department" => "Department",
+    "department_of_country" => "Department of country",
+    "Mobile_number_provider_movistar_RPM" => "Mobile Number Provider Movistar RPM",
     "direction" => "Direction",
     "district" => "District",
     "city" => "City",
@@ -131,6 +133,7 @@ return array(
     "email_provider" => "Email Provider",
     "direction_provider" => "Direction Provider",
     "street" => "Street",
+    "number" => "Number",
     "date_of_activity_made" => "Date of activity made",
     "type_of_payment" => "Type of Payment",
 
