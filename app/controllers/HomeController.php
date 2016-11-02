@@ -53,7 +53,7 @@ class HomeController extends BaseController {
 		            ->where('category_content.title', '!=', '')
 		            ->groupBy('product_images.product_id')
 		            ->take(18)
-		            //->orderBy(DB::raw('RAND()'))
+		            ->orderBy(DB::raw('RAND()'))
 		            ->get();
 		$how_wayna_work = DB::table('contents')
 		            ->where('contents.lang_id', $this->url_language_id)
