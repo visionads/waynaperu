@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Anam\PhantomMagick\Converter;
 
 
-class TicketController extends Controller
+class TicketController extends BaseController
 {
     /**
      * @param $order_id
@@ -427,7 +427,7 @@ class TicketController extends Controller
 //        dd($email_client);
 
 
-
+        $url_language_id = getLangId(LaravelLocalization::getCurrentLocale());
 
 
         $order = Order::find($order_id);
@@ -435,8 +435,8 @@ class TicketController extends Controller
             ->select('order_items.*','product_content.title','product_info.city','product_info.district')
             ->join('product_content','product_content.product_id','=','order_items.product_id','left')
             ->join('product_info','product_info.product_id','=','order_items.product_id','left')
-            ->where('product_content.lang_id',1)
-            ->where('product_info.language_id',1)
+            ->where('product_content.lang_id',$url_language_id)
+            ->where('product_info.language_id',$url_language_id)
             ->where('order_items.order_id', $order_id)
             ->get();
 

@@ -1,6 +1,6 @@
 <?php
 class CartController extends BaseController {
-	
+	private $url_language_id;
 	public function __construct()
 	{
 		$lang_code = LaravelLocalization::getCurrentLocale();
@@ -510,8 +510,8 @@ class CartController extends BaseController {
                     ->select('order_items.*','product_content.title','product_info.city','product_info.district')
                     ->join('product_content','product_content.product_id','=','order_items.product_id','left')
                     ->join('product_info','product_info.product_id','=','order_items.product_id','left')
-                    ->where('product_content.lang_id',1)
-                    ->where('product_info.language_id',1)
+                    ->where('product_content.lang_id',$this->url_language_id)
+                    ->where('product_info.language_id',$this->url_language_id)
                     ->where('order_items.order_id', $order->id)
                     ->get();
                 $user=User::find($order->user_id);
