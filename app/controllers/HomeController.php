@@ -49,9 +49,11 @@ class HomeController extends BaseController {
 		            ->where('category_content.lang_id', $this->url_language_id)
 		            ->where('product_content.lang_id', $this->url_language_id)
 		            ->where('products.state', '1')
+		            ->where('product_content.title', '!=', '')
+		            ->where('category_content.title', '!=', '')
 		            ->groupBy('product_images.product_id')
 		            ->take(18)
-		            ->orderBy(DB::raw('RAND()'))
+		            //->orderBy(DB::raw('RAND()'))
 		            ->get();
 		$how_wayna_work = DB::table('contents')
 		            ->where('contents.lang_id', $this->url_language_id)
@@ -96,6 +98,8 @@ class HomeController extends BaseController {
 		            ->where('product_content.lang_id', $this->url_language_id)
 		            ->where('products.cat_id', $id)
 		            ->where('products.state', '1')
+                    ->where('product_content.title', '!=', '')
+                    ->where('category_content.title', '!=', '')
 		            ->groupBy('product_images.product_id')
 		            ->orderBy(DB::raw('RAND()'))
 		            ->get();
@@ -131,6 +135,8 @@ class HomeController extends BaseController {
 		            ->where('category_content.lang_id', $this->url_language_id)
 		            ->where('product_content.lang_id', '=', $this->url_language_id)
 		            ->where('products.state', '1')
+                    ->where('product_content.title', '!=', '')
+                    ->where('category_content.title', '!=', '')
 		            //->where('product_content.title', 'LIKE', $q.'%')
 		            ->where(function($query) use ($q)
 			            {
@@ -221,11 +227,15 @@ class HomeController extends BaseController {
 		$q = Input::get('q');
 		
 		$products = DB::table('product_content')
+                    ->select('product_content.*', 'product_images.*')
 		            ->join('products', 'product_content.product_id', '=', 'products.id')
 		            ->join('categories', 'products.cat_id', '=', 'categories.id')
+		            ->join('category_content', 'category_content.cat_id', '=', 'categories.id')
 		            ->join('product_images', 'product_images.product_id', '=', 'products.id')
 		            ->where('product_content.lang_id', $this->url_language_id)
 		            ->where('products.state', '1')
+		            ->where('product_content.title', '!=', '')
+		            ->where('category_content.title', '!=', '')
 		            ->where('product_content.title', 'LIKE', $q.'%')
 		            ->where(function($query) use ($q)
 			            {
