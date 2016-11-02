@@ -1,6 +1,6 @@
 <?php
 class CartController extends BaseController {
-	
+	private $url_language_id;
 	public function __construct()
 	{
 		$lang_code = LaravelLocalization::getCurrentLocale();
@@ -145,10 +145,16 @@ class CartController extends BaseController {
                 $data['type']='guest';
 //                $data['username']='guest'.time();
 //                dd($data);
-                $user= User::select('id')->where('email',Input::get('email'))->where('type','guest')->first();
+                $user= User::select('id')->where('email',Input::get('email'))->first();
                 if(isset($user) && count($user)>0)
                 {
-                    $user->update($data);
+                    if($user->type=='guest')
+                    {
+                        $user->update($data);
+                    }else{
+                        Session::flash('error','<b>'.$data['email'].'</b> is already registered. Please login to checkout.');
+                        return Redirect::to('login-checkout')->withInput();
+                    }
                 }else{
                     $user=User::create($data);
                 }
@@ -313,8 +319,6 @@ class CartController extends BaseController {
 		}
 
 		$order_number = str_random(15);
-		$total_qty = Input::get('qty');
-		$total_price = Input::get('price');
 		$status = 'PENDING';
 		$order = new Order;
 		$order->order_number = $order_number;
@@ -325,12 +329,12 @@ class CartController extends BaseController {
 		    $order->user_id=Session::get('guest.id.0');
         }
 		$order->status = $status;
-		$order->qty = $total_qty;
-		$order->price = $total_price;
 
 
 		if($order->save()){
 
+            $total_qty = 0;
+            $total_price = 0;
 			foreach (Cart::content() as $cart) {
 				$gift = array();
 				$mail= array();
@@ -404,7 +408,22 @@ class CartController extends BaseController {
 				$order_items->gift_price = getGiftPrice($cart->options['loc_id'], 1);
 				$order_items->details = json_encode($detail);
 				$order_items->save();
+
+                $total_qty+=$order_items->pdf_qty+$order_items->mail_qty;
+                if(isset($order_items->gift_price) && $order_items->gift_price != 0.00)
+                {
+                    $pdf= $order_items->pdf_price-(($order_items->pdf_price/100))*$order_items->gift_price;
+                    $mail= $order_items->mail_price-(($order_items->mail_price/100))*$order_items->gift_price;
+                    $total_price+=$pdf+$mail;
+                }else{
+                    $total_price+=$order_items->pdf_price+$order_items->mail_price;
+                }
+
 			}
+
+            $order->qty = $total_qty;
+            $order->price = $total_price;
+            $order->save();
 
 			/*
 			 * Start Sent mail to provider,admin and client with order details
@@ -504,8 +523,8 @@ class CartController extends BaseController {
                     ->select('order_items.*','product_content.title','product_info.city','product_info.district')
                     ->join('product_content','product_content.product_id','=','order_items.product_id','left')
                     ->join('product_info','product_info.product_id','=','order_items.product_id','left')
-                    ->where('product_content.lang_id',1)
-                    ->where('product_info.language_id',1)
+                    ->where('product_content.lang_id',$this->url_language_id)
+                    ->where('product_info.language_id',$this->url_language_id)
                     ->where('order_items.order_id', $order->id)
                     ->get();
                 $user=User::find($order->user_id);

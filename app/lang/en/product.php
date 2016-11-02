@@ -38,4 +38,11 @@ return [
     'enter_tags_for_experience'=>'Enter Tags for Experience',
     'payment_type'=>'Payment Type',
     'provider_name'=>'Provider Name',
+    'direction_of_activity'=>'Direction of Activity',
+    'provider_info'=>'Provider Information',
+    'person_incharge'=>'Person Incharge',
+    'email_provider'=>'Email Provider',
+    'price_of_activity'=>'Price of Activity',
+    'pay_to_provider'=>'Pay to Provider',
+    'type_of_payment'=>'Type of Payment',
 ];

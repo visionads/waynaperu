@@ -34,12 +34,10 @@
 
                                     <div class="tab-pane @if($index == 0)active @endif" id="edit_{{ $location->lang_name }}">
                                         <div class="form-group">
-                                            {{ Form::label('name', 'Name', array('class' => 'col-sm-3 control-label')) }}
+                                            {{ Form::label('name', 'Name', array('class' => 'control-label')) }}
 
-                                            <div class="col-sm-9">
-                                                <input value="{{ $location->name }}" type="text" name="name[{{ $location->id }}]" placeholder="Name" class="form-control"/>
-                                                {{ $errors->first('name['. $location->id .']') }}
-                                            </div>
+                                            <input value="{{ $location->name }}" type="text" name="name[{{ $location->id }}]" placeholder="Name" class="form-control" required/>
+                                            {{ $errors->first('name['. $location->id .']') }}
 
                                         </div>
 

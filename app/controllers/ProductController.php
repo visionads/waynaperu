@@ -405,19 +405,37 @@ class ProductController extends BaseController {
         }elseif(Auth::user()->type=='provider')
         {
             $products = DB::table('product_content')
+                ->select('users.email',
+                    'user_provider_info.incharge',
+                    'products.type_of_payment',
+                    'product_content.product_id',
+                    'product_info.street',
+                    'product_info.final_commission_of_25',
+                    'product_info.provider_price',
+                    'product_info.city',
+                    'product_info.district',
+                    'product_content.title',
+                    'product_content.mini_description',
+                    'category_content.title as cat_title',
+                    'locations.*' )
 
                 ->join('products', 'product_content.product_id', '=', 'products.id')
+                ->join('locations', 'locations.product_id', '=', 'products.id')
+                ->join('product_info', 'product_info.product_id', '=', 'products.id')
                 ->join('categories', 'products.cat_id', '=', 'categories.id')
                 ->join('category_content', 'category_content.cat_id', '=', 'categories.id')
+                ->join('users', 'users.id', '=', 'products.user_id')
+                ->join('user_provider_info', 'user_provider_info.user_id', '=', 'products.user_id')
 
-                ->select('product_content.product_id', 'product_content.title','product_content.mini_description', 'category_content.title as cat_title' )
                 ->where('products.state' , '!=', '-1')
                 ->where('product_content.lang_id' , '=', langId())
+                ->where('product_info.language_id' , '=', langId())
                 ->where('products.user_id' , '=', $provider_id)
                 ->orderBy('product_content.product_id', 'asc')
                 ->groupBy('product_content.product_id')
                 ->get();
         }
+//        dd($products);
         return View::make('admin.views.list_products_per_provider', array(
             'products' => $products, 'provider_id'=>$provider_id
         ));

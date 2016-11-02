@@ -80,7 +80,7 @@
                                 <th> {{ trans('provider.product_name') }} </th>
                                 <th> {{ trans('provider.price') }} </th>
                                 <th> {{ trans('provider.quantity') }} </th>
-                                <th> {{ trans('provider.created_at') }} </th>
+                                <th> {{ trans('provider.date_of_purchase') }} </th>
                                 <th> {{ trans('provider.provider_info') }} </th>
                                 <th> {{ trans('provider.contact_info') }} </th>
                                 <th> {{ trans('provider.ticket_number') }} </th>
@@ -122,7 +122,16 @@
                                     <br><b>{{ trans('provider.gift_qty') }} : </b>
                                     {{ isset($item->gift_qty)?$item->gift_qty: null }}
                                 </td>
-                                <td> {{ isset($item->created_at)?$item->created_at: null }} </td>
+                                <td>
+                                    {{ isset($item->created_at)?date('d M Y'): null }}
+                                    <br>
+                                    <b>{{ trans('provider.valid_until') }} :</b>
+                                    <?php
+
+                                    $product_info= getProductDetailsByProductId($item->product_id);
+                                    echo date("d M Y",strtotime("+".$product_info->validity." months"))
+                                    ?>
+                                </td>
                                 <td>
                                     <?php
                                     $product = getProductInfoByProductId($item->product_id);
@@ -190,7 +199,7 @@
                                     @if($item->status=='used')
                                             {{ trans('provider.date_of_activity_made').' <b>'.date('d M Y',strtotime($item->used_at)).'</b>' }}
 
-                                    @elseif(Auth::user()->type=='admin' || ($item->status=='new' && $item->user_id==Auth::user()->id))
+                                    @elseif(!empty($item->ticket_number) && Auth::user()->type=='admin' || ($item->status=='unused' && $item->user_id==Auth::user()->id))
                                         {{ Form::open(['route'=>'submit-ticket']) }}
                                         <input name="order_item_id" type="hidden" value="{{ $item->id }}" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">
                                         <input name="order_id" type="hidden" value="{{ $order->id }}" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">
