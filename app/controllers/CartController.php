@@ -145,10 +145,16 @@ class CartController extends BaseController {
                 $data['type']='guest';
 //                $data['username']='guest'.time();
 //                dd($data);
-                $user= User::select('id')->where('email',Input::get('email'))->where('type','guest')->first();
+                $user= User::select('id')->where('email',Input::get('email'))->first();
                 if(isset($user) && count($user)>0)
                 {
-                    $user->update($data);
+                    if($user->type=='guest')
+                    {
+                        $user->update($data);
+                    }else{
+                        Session::flash('message','<b style="color : red">'.$data['email'].'</b> is already registered. Please login to checkout.');
+                        return Redirect::to('login-checkout')->withInput();
+                    }
                 }else{
                     $user=User::create($data);
                 }
