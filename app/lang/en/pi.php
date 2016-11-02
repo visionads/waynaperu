@@ -25,5 +25,7 @@ return [
     'contact_us' => 'You can also contact us 24/7',
     'translation' => 'If you have not made this transaction please contact us under',
     'registered_on' => 'You received this mail from exploor (Exploor S.A.C) because you registered on',
-    'address' => 'with this email address.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.'
+    'address' => 'with this email address.<br>Avenida Aviacion 4004 Districto de Surquillo, Lima, Peru.',
+    'contact_the_provider' => 'Contact the Provider to arrange your appointment',
+    'location_activity' => 'Go to the location of the activity on the coordinated date'
 ];
