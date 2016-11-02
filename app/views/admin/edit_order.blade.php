@@ -190,7 +190,7 @@
                                     @if($item->status=='used')
                                             {{ trans('provider.date_of_activity_made').' <b>'.date('d M Y',strtotime($item->used_at)).'</b>' }}
 
-                                    @elseif(Auth::user()->type=='admin' || ($item->status=='unused' && $item->user_id==Auth::user()->id))
+                                    @elseif(!empty($item->ticket_number) && Auth::user()->type=='admin' || ($item->status=='unused' && $item->user_id==Auth::user()->id))
                                         {{ Form::open(['route'=>'submit-ticket']) }}
                                         <input name="order_item_id" type="hidden" value="{{ $item->id }}" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">
                                         <input name="order_id" type="hidden" value="{{ $order->id }}" class="form-control" placeholder="{{ trans('provider.enter_ticket_code') }}">

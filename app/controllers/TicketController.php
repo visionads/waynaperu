@@ -170,17 +170,30 @@ class TicketController extends Controller
 
         $urll = asset("assets/images/ticket3.3.png");
 
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < 8; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
+//        $characters = 'ABCDE FGH IJKL MNOP QRS TUV WXYZ';
+//        $charactersLength = strlen($characters);
+//        $randomString = '';
+//        for ($i = 0; $i < 99; $i++) {
+//            $randomString .= $characters[rand(0, $charactersLength - 1)];
+//        }
+//        $ticket_title= $randomString;
 
-        $total_char= count($ticket_title);
+        $total_char= strlen($ticket_title);
         if($total_char<=20)
         {
+            $font_size= 20;
+        }elseif($total_char<=40)
+        {
+            $font_size= 16;
+        }elseif($total_char<=60)
+        {
+            $font_size= 12;
+        }elseif($total_char<=80)
+        {
+            $font_size= 11;
+        }else{
             $font_size= 10;
+
         }
         //print_r($urll);exit();
         $html = '<!DOCTYPE html>
@@ -272,8 +285,8 @@ class TicketController extends Controller
             </body>
             </html>
         ';
-echo $html;
-exit();
+//echo $html;
+//exit();
         return $html;
 
     }
