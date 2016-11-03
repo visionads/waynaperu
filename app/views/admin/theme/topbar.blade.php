@@ -5,7 +5,7 @@
             <ul class="header-nav header-nav-options">
                 <li class="header-nav-brand" >
                     <div class="brand-holder">
-                        <a href="#">
+                        <a href="{{ URL::to('/') }}">
                             <span class="text-lg text-bold text-primary">Exploor.pe</span>
                         </a>
                     </div>

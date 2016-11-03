@@ -335,7 +335,6 @@ class CartController extends BaseController {
 
             $total_qty = 0;
             $total_price = 0;
-            $z=0;
 			foreach (Cart::content() as $cart_id=>$cart) {
 				$gift = array();
 				$mail= array();
@@ -569,6 +568,7 @@ class CartController extends BaseController {
                     #$message->attach($pathToFile);
                 });
 				//exit("ELSE");
+                Cart::destroy();
 				return Response::json(array('method' => 'agente_bcp', 'state' => 'success', 'order_number' => $order_number));
 				//return Redirect::route('agente_bcp', array($order_number));
 			}
