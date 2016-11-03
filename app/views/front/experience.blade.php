@@ -539,6 +539,13 @@
     @endif
     <script type="text/javascript">
         $(document).ready(function() {
+            var location= $('#basic').val();
+            if(location=='')
+            {
+                $('.cart-btn').addAttr('disabled');
+
+            }
+            //alert(location);
             $('.lead-btn').click(function(e){$('#modal-lead-form').modal('show');e.preventDefault();});
             $('.cart-btn').removeAttr('disabled');
         })
