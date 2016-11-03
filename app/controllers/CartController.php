@@ -335,7 +335,8 @@ class CartController extends BaseController {
 
             $total_qty = 0;
             $total_price = 0;
-			foreach (Cart::content() as $cart) {
+            $z=0;
+			foreach (Cart::content() as $cart_id=>$cart) {
 				$gift = array();
 				$mail= array();
 				$pdf= array();
@@ -403,9 +404,9 @@ class CartController extends BaseController {
 				$order_items->pdf_qty = $cart->options['pdf'];
 				$order_items->pdf_price = getPdfPriceWithoutDecimal($cart->options['loc_id'], $cart->options['pdf']);
 				$order_items->mail_qty = $cart->options['mail'];
-				$order_items->mail_price = getMailPrice($cart->options['loc_id'], $cart->options['mail']);
+				$order_items->mail_price = getMailPriceWithoutDecimal($cart->options['loc_id'], $cart->options['mail']);
 				$order_items->gift_qty = $cart->options['gift'];
-				$order_items->gift_price = getGiftPrice($cart->options['loc_id'], 1);
+				$order_items->gift_price = getGiftPrice($cart->options['loc_id'],$cart->options['gift']);
 				$order_items->details = json_encode($detail);
 				$order_items->save();
 

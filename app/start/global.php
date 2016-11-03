@@ -236,6 +236,11 @@ function getMailPrice($id, $qty){
     $price = number_format($price * $qty, 2);
     return $price;
 }
+function getMailPriceWithoutDecimal($id, $qty,$decimal = true){
+    $price  = DB::table('locations')->where('id','=', $id)->pluck('price2');
+    $price  = $price * $qty;
+    return $price;
+}
 
 function getGiftPrice($id, $qty){
     $price  = DB::table('locations')->where('id','=', $id)->pluck('price3');
