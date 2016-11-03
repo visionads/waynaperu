@@ -20,6 +20,10 @@ Hola, como estás? ¡Había una compra en exploor.pe!
         <td>{{ $title }}</td>
     </tr>
     <tr>
+        <th>Cliente</th>
+        <td>{{ $first_name.' '.$last_name }}</td>
+    </tr>
+    <tr>
         <th>Cantidad Adulto</th>
         <td>{{ $pdf_qty }}</td>
     </tr>

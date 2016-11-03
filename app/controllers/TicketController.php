@@ -485,7 +485,9 @@ class TicketController extends BaseController
     public static function emailProvider($order_item_id)
     {
         $pe= DB::table('order_items');
-        $pe= $pe->select('order_items.*','ticket.ticket_number','users.email','product_content.title');
+        $pe= $pe->select('order_items.*','ticket.ticket_number','users.email','client.first_name','client.last_name','product_content.title');
+        $pe= $pe->join('orders','orders.id','=','order_items.order_id','left');
+        $pe= $pe->join('users as client','client.id','=','orders.user_id','left');
         $pe= $pe->join('products','products.id','=','order_items.product_id','left');
         $pe= $pe->join('product_content','product_content.product_id','=','products.id','left');
         $pe= $pe->join('users','users.id','=','products.user_id','left');
