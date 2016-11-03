@@ -113,7 +113,6 @@
                                             100% afterwords
                                         @endif
                                     @endif
-                                    {{ isset($item->type_of_payment)?$item->type_of_payment: null }}
                                 </td>
                                 <td>
                                     <b>{{ trans('provider.adult_price') }} : </b>

@@ -330,7 +330,7 @@ class CartController extends BaseController {
         }
 		$order->status = $status;
 
-
+//dd(Cart::content());
 		if($order->save()){
 
             $total_qty = 0;
@@ -396,7 +396,6 @@ class CartController extends BaseController {
 					'mail' => $mail,
 					'gift' => $gift
 				);
-
 				$order_items = new OrderItems;
 				$order_items->order_id = $order->id;
 				$order_items->product_id = $cart->id;
@@ -406,8 +405,9 @@ class CartController extends BaseController {
 				$order_items->mail_qty = $cart->options['mail'];
 				$order_items->mail_price = getMailPriceWithoutDecimal($cart->options['loc_id'], $cart->options['mail']);
 				$order_items->gift_qty = $cart->options['gift'];
-				$order_items->gift_price = getGiftPrice($cart->options['loc_id'],$cart->options['gift']);
+				$order_items->gift_price = getGiftPriceWithoutDecimal($cart->options['loc_id'],$cart->options['gift']);
 				$order_items->details = json_encode($detail);
+                dd($order_items);
 				$order_items->save();
 
                 $total_qty+=$order_items->pdf_qty+$order_items->mail_qty;

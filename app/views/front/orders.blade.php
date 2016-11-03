@@ -51,7 +51,7 @@
 
                                                         <td><a href="{{ URL::to('order',$order->id) }}">{{ isset($order->order_number) ? $order->order_number : null }}</a></td>
                                                         <td>{{ isset($order->status) ? $order->status : null }}</td>
-                                                        <td>s./ <?php echo number_format($order->price / 100,2); ?></td>
+                                                        <td>s./ <?php echo number_format($order->price,2); ?></td>
 
                                                     </tr>
                                                 @endforeach
