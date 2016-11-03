@@ -253,14 +253,20 @@ class ProductController extends BaseController {
         }
 
         $providers= User::select('id','email','first_name','last_name')->where('type','provider')->get();
-        $user_provider = User::where('id', $p->user_id)->first();
-
+        $user_provider = DB::table('users')
+            ->select('users.*','user_provider_info.incharge')
+            ->join('user_provider_info','user_provider_info.user_id','=','users.id')
+            ->where('users.id',$p->user_id)
+            ->first();
+        $provider_phones= PhoneNumber::where('user_id',$p->user_id)->get();
+//dd($provider_phones);
         return View::make('admin.edit_product', array(
             'form_url' => $form_url,
             'p' => $p,'locations' => $locations,
             'languages' => $languages, 'category' => $category,
             'products' => $product, 'product_images' => $product_images,
-            'providers'=>$providers, 'user_provider'=>$user_provider
+            'providers'=>$providers, 'user_provider'=>$user_provider,
+            'provider_phones'=>$provider_phones
         ));
 
 	}

@@ -240,11 +240,37 @@
                                 </div>
                                 <p style="padding: 10px; background: #efefef;">
                                     @if(count($user_provider)>0)
+                                        Provider ID : {{isset($user_provider->id)?$user_provider->id:null}}
+                                        <br>
                                         Provider Name : {{isset($user_provider->first_name)?$user_provider->first_name:null}} {{isset($user_provider->last_name)?$user_provider->last_name:'N/A'}}
                                         <br>
                                         Provider Email : {{isset($user_provider->email)?$user_provider->email:'N/A'}}
                                         <br>
                                         Provider Phone : {{isset($user_provider->phone)?$user_provider->phone:'N/A'}}
+                                        <br>
+                                        District : {{isset($user_provider->district)?$user_provider->district:'N/A'}}
+                                        <br>
+                                        City : {{isset($user_provider->city)?$user_provider->city:'N/A'}}
+                                        <br>
+                                        In-charge : {{isset($user_provider->incharge)?$user_provider->incharge:'N/A'}}
+                                        <br>
+                                        <u>Phone Numbers</u>
+                                        <br>
+                                        @if(isset($provider_phones) && count($provider_phones)>0)
+                                            @foreach($provider_phones as $provider_phone)
+                                                <b>
+                                                    @if($provider_phone->type==1)
+                                                        Telephone
+                                                    @elseif($provider_phone->type==2)
+                                                        RPC
+                                                    @elseif($provider_phone->type==3)
+                                                        RPM
+                                                    @endif
+                                                    : </b>
+                                                {{ $provider_phone->number }}
+                                            @endforeach
+                                        @endif
+
                                     @endif
                                 </p>
                             </div>
