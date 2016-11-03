@@ -140,6 +140,8 @@ return array(
     "type_of_payment" => "Type of Payment",
     "date_of_purchase" => "Date of purchase",
     "valid_until" => "Valid Until",
+    "my_information" => "My Information",
+    "ticket_status" => "Ticket Status",
 
 
 

@@ -142,6 +142,8 @@ return array(
     "type_of_payment" => "Tipo de pago",
     "date_of_purchase" => "Compra Cliente (fecha)",
     "valid_until" => "Vigencia hasta (fecha)",
+    "my_information" => "Mi informacion",
+    "ticket_status" => "Estado del boleto",
 
     // For Email template_1
     "thank_you" => "Gracias",

@@ -35,9 +35,9 @@
                                             <thead>
                                             <tr>
 
-                                                <th class="hidden-xs">Order Number</th>
-                                                <th class="hidden-xs">Order Status</th>
-                                                <th class="hidden-xs">Order Price</th>
+                                                <th class="hidden-xs">{{ trans('provider.order_number') }}</th>
+                                                <th class="hidden-xs">{{ trans('provider.order_status') }}</th>
+                                                <th class="hidden-xs">{{ trans('provider.order_price') }}</th>
 
                                             </tr>
                                             </thead>

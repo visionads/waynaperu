@@ -35,27 +35,27 @@
                                         <div class="row">
                                             <div class="col-md-6 col-lg-6 col-sm-12">
                                                 <fieldset class="scheduler-border">
-                                                    <legend class="scheduler-border">Order</legend>
+                                                    <legend class="scheduler-border">{{ trans('provider.order') }}</legend>
                                                     <div class="form-group">
-                                                        <label  class="col-sm-12 col-md-4 control-label">Order Number:</label>
+                                                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.order_number') }}:</label>
                                                         <div class="col-sm-12 col-md-8">
                                                             <strong style="line-height:42px;">{{ isset($order->order_number) ? $order->order_number : null }}</strong>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="status" class="col-sm-12 col-md-4 control-label">Order Status:</label>
+                                                        <label for="status" class="col-sm-12 col-md-4 control-label">{{ trans('provider.order_status') }}:</label>
                                                         <div class="col-sm-12 col-md-8">
                                                             <strong style="line-height:42px;">{{ isset($order->status) ? $order->status : null }}</strong>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label  class="col-sm-12 col-md-4 control-label">Total Qty:</label>
+                                                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.total_qty') }}:</label>
                                                         <div class="col-sm-12 col-md-8">
                                                             <strong style="line-height:42px;">{{ isset($order->qty) ? $order->qty : '0' }}</strong>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label  class="col-sm-12 col-md-4 control-label">Total Price:</label>
+                                                        <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.total_price') }}:</label>
                                                         <div class="col-sm-12 col-md-8">
                                                             @if(isset($order->price))
                                                                 <strong style="line-height:42px;">s./ <?php echo sprintf('%.2f', $order->price); ?></strong>
@@ -66,13 +66,13 @@
                                             </div>
                                             <div class="col-md-6 col-lg-6 col-sm-12">
                                                 <fieldset class="scheduler-border">
-                                                    <legend class="scheduler-border">My Information</legend>
+                                                    <legend class="scheduler-border">{{ trans('provider.my_information') }}</legend>
                                                     @if($order->user_id == NULL)
                                                         <p>This Order is by guest user and You can get his details on "Order Items" section.</p>
                                                     @else
                                                         <?php $user = getUserInfo($order->user_id);?>
                                                         <div class="form-group">
-                                                            <label  class="col-sm-12 col-md-4 control-label">Name:</label>
+                                                            <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.name') }}:</label>
                                                             <div class="col-sm-12 col-md-8">
                                                                 @if($user->first_name != '' || $user->last_name != '' )
                                                                     <strong style="line-height:42px;">{{ $user->first_name }} {{ $user->last_name }}</strong>
@@ -83,14 +83,14 @@
                                                         </div>
                                                         <div style="clear:both"></div>
                                                         <div class="form-group">
-                                                            <label  class="col-sm-12 col-md-4 control-label">Email:</label>
+                                                            <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.email') }}:</label>
                                                             <div class="col-sm-12 col-md-8">
                                                                 <strong style="line-height:42px;">{{ isset($user->email) ? $user->email : null }} </strong>
                                                             </div>
                                                         </div>
                                                         <div style="clear:both"></div>
                                                         <div class="form-group">
-                                                            <label  class="col-sm-12 col-md-4 control-label">Address:</label>
+                                                            <label  class="col-sm-12 col-md-4 control-label">{{ trans('provider.address') }}:</label>
                                                             <div class="col-sm-12 col-md-8">
                                                                 @if($user->direction != '')
                                                                     <strong >
@@ -121,21 +121,21 @@
 
                                             <div class="col-md-12 col-lg-12 col-sm-12">
                                                 <fieldset class="scheduler-border">
-                                                    <legend class="scheduler-border">Order Items</legend>
+                                                    <legend class="scheduler-border">{{ trans('provider.order_items') }}</legend>
 
                                                     <table  class="table table-striped table-hover" id="sample-table-2">
                                                         <thead>
                                                             <tr>
-                                                                <th> Product Name </th>
-                                                                <th> Adult Qty </th>
-                                                                <th> Adult Price </th>
-                                                                <th> Child Qty </th>
-                                                                <th> Child Price </th>
-                                                                <th> Gift Qty </th>
-                                                                <th> Gift Price </th>
-                                                                <th> Date of Purchase </th>
-                                                                <th> Provider's INFO </th>
-                                                                <th> Ticket Status</th>
+                                                                <th> {{ trans('provider.product_name') }} </th>
+                                                                <th> {{ trans('provider.adult_qty') }} </th>
+                                                                <th> {{ trans('provider.adult_price') }} </th>
+                                                                <th> {{ trans('provider.child_qty') }} </th>
+                                                                <th> {{ trans('provider.child_price') }} </th>
+                                                                <th> {{ trans('provider.gift_qty') }} </th>
+                                                                <th> {{ trans('provider.gift_price') }} </th>
+                                                                <th> {{ trans('provider.date_of_purchase') }} </th>
+                                                                <th> {{ trans('provider.provider_info') }} </th>
+                                                                <th> {{ trans('provider.ticket_status') }}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
