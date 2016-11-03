@@ -52,8 +52,7 @@ Hola, como estás? ¡Había una compra en exploor.pe!
         @if(isset($gift_price) && $gift_price != 0.00)
             <td>{{ ($pdf_price-(($pdf_price/100))*$gift_price)+($mail_price-(($mail_price/100))*$gift_price) }}</td>
         @else
-            <td>{{ ($pdf_price*$pdf_qty)+($mail_price*$mail_qty) }}</td>
-
+            <td>{{ ($pdf_price)+($mail_price) }}</td>
         @endif
     </tr>
 </table>

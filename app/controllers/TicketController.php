@@ -468,11 +468,11 @@ class TicketController extends BaseController
 
 
         //exit('okk');
+        $order_number= $order->order_number;
 
-
-        Mail::send('emails.ticket', $data, function($message) use ($emails,$email_client,$pathToFile)
+        Mail::send('emails.ticket', $data, function($message) use ($emails,$email_client,$pathToFile,$order_number)
         {
-            $message->subject('Ticket for  no of order from Exploor');
+            $message->subject('Ticket for '.$order_number.' no of order from Exploor');
             $message->from('info@exploor.pe', 'exploor.pe');
 
             $message->to($email_client)->cc($emails);

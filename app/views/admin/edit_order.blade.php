@@ -104,6 +104,15 @@
                                         <?php $loc_name = getLocName($item->loc_id); ?>
                                         {{ isset($loc_name)?$loc_name: null }}
                                     <br><b>{{ trans('provider.type_of_payment') }} : </b>
+                                    @if(isset($item->type_of_payment) && !empty($item->type_of_payment))
+                                        @if($item->type_of_payment==1)
+                                            100% before
+                                        @elseif($item->type_of_payment==2)
+                                            50-50%
+                                        @elseif($item->type_of_payment==3)
+                                            100% afterwords
+                                        @endif
+                                    @endif
                                     {{ isset($item->type_of_payment)?$item->type_of_payment: null }}
                                 </td>
                                 <td>
