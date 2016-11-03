@@ -58,7 +58,7 @@
                                                         <label  class="col-sm-12 col-md-4 control-label">Total Price:</label>
                                                         <div class="col-sm-12 col-md-8">
                                                             @if(isset($order->price))
-                                                                <strong style="line-height:42px;">s./ <?php echo sprintf('%.2f', $order->price / 100); ?></strong>
+                                                                <strong style="line-height:42px;">s./ <?php echo sprintf('%.2f', $order->price); ?></strong>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -140,7 +140,7 @@
                                                         </thead>
                                                         <tbody>
                                                         @if(isset($order_items))
-                                                            @foreach($order_items as $item)
+                                                            @foreach($order_items as $item_id=>$item)
                                                                 <tr>
                                                                     <td>
                                                                         <?php
@@ -176,6 +176,7 @@
                                                                         {
                                                                             $user_id = $product->user_id;
                                                                             $provider = getUserInfo($user_id);
+                                                                            $provider_phones = getUserPhoneNumber($user_id);
                                                                             if(count($provider)>0)
                                                                             {
                                                                                 $provider = $provider;
@@ -186,14 +187,31 @@
                                                                         ?>
                                                                         {{ isset($provider->first_name)? $provider->first_name : null }}
                                                                         {{ isset($provider->last_name)? $provider->last_name : null }}
-                                                                        ({{ isset($provider->phone)? $provider->phone : "no phone" }})
+{{--                                                                        ({{ isset($provider->phone)? $provider->phone : "no phone" }})--}}
                                                                         <br>
-                                                                        {{ isset($provider->email)? $provider->email : null }}<br>
-                                                                        {{ isset($provider->direction)? $provider->direction : null }}<br>
-                                                                        {{ isset($provider->district)? $provider->district : null }}
-                                                                        {{ isset($provider->city)? $provider->city : null }}
-                                                                        {{ isset($provider->street)? $provider->street : null }}<br>
+                                                                        {{ isset($provider->email)? $provider->email.'<br>' : null }}
+                                                                        {{ isset($provider->direction)? $provider->direction.'<br>' : null }}
+                                                                        {{ isset($provider->district)? $provider->district.'<br>' : null }}
+                                                                        {{ isset($provider->city)? $provider->city.'<br>' : null }}
+                                                                        {{ isset($provider->street)? $provider->street.'<br>' : null }}
                                                                         {{ isset($provider->address)? $provider->address : null }}
+                                                                            @if(isset($provider_phones) && count($provider_phones)>0)
+                                                                                <br>
+                                                                                <u>{{ trans('provider.phone_number') }}</u>
+                                                                            <br>
+                                                                                @foreach($provider_phones as $provider_phone)
+                                                                                    <b>
+                                                                                        @if($provider_phone->type==1)
+                                                                                            Telephone
+                                                                                        @elseif($provider_phone->type==2)
+                                                                                            RPC
+                                                                                        @elseif($provider_phone->type==3)
+                                                                                            RPM
+                                                                                        @endif
+                                                                                        : </b>
+                                                                                    {{ $provider_phone->number }}
+                                                                                @endforeach
+                                                                            @endif
                                                                     </td>
                                                                     <td>
                                                                         {{ $item->status }}<br>

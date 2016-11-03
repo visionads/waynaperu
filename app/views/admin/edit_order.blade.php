@@ -79,7 +79,7 @@
                             <tr>
                                 <th> {{ trans('provider.product_name') }} </th>
                                 <th> {{ trans('provider.price') }} </th>
-                                <th> {{ trans('provider.quantity') }} </th>
+                                <th> {{ trans('provider.participants') }} </th>
                                 <th> {{ trans('provider.date_of_purchase') }} </th>
                                 <th> {{ trans('provider.provider_info') }} </th>
                                 <th> {{ trans('provider.contact_info') }} </th>
