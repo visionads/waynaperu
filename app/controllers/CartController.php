@@ -407,7 +407,6 @@ class CartController extends BaseController {
 				$order_items->gift_qty = $cart->options['gift'];
 				$order_items->gift_price = getGiftPriceWithoutDecimal($cart->options['loc_id'],$cart->options['gift']);
 				$order_items->details = json_encode($detail);
-                dd($order_items);
 				$order_items->save();
 
                 $total_qty+=$order_items->pdf_qty+$order_items->mail_qty;
