@@ -11,7 +11,7 @@ return array(
     "username" => "Nombre de usuario",
     "email" => "cor r eo electr ónico",
     "first_name" => "Nombre de pila",
-    "last_name" => "Apellido",
+    "last_name" => "Apellido Cliente",
     "type" => "Tipo",
     "phone" => "Teléfono",
     "passport" => "Pasaporte",
@@ -83,7 +83,10 @@ return array(
     // Route :: add_phone
     "add_new_phone_number_for" => "Agregar nuevo número de teléfono",
     "phone_number" => "Número de teléfono",
-    "telephone" => "Teléfono",
+    "phone_client"=>"Telefono Cliente",
+    //"telephone" => "Teléfono",
+    "telephone" => "Telefono Fijo",
+    "mobile_phone_client"=>"Movil Celular Cliente",
 
     // Route :: add_bank
     "add_new_bank_account_for" => "Agregar nueva cuenta bancaria para",
@@ -92,7 +95,8 @@ return array(
 
     // Route :: add_additional_info
     "update_provider_information_for" => "Actualización de información de proveedores para",
-    "person_in_charge" => "Persona a cargo",
+    //"person_in_charge" => "Persona a cargo",
+    "person_in_charge" => "Persona encargada",
     "date_of_closing_contract" => "Fecha de la conclusión del contrato",
     "contract_valid_until" => "Hasta contrato válido",
     "Date of Inscription" => "Fecha de Inscripción",
@@ -136,8 +140,8 @@ return array(
     "number" => "Numero",
     "date_of_activity_made" => "Realizada por Cliente",
     "type_of_payment" => "Tipo de pago",
-    "date_of_purchase" => "Fecha de compra",
-    "valid_until" => "Válido hasta",
+    "date_of_purchase" => "Compra Cliente (fecha)",
+    "valid_until" => "Vigencia hasta (fecha)",
 
     // For Email template_1
     "thank_you" => "Gracias",
@@ -153,5 +157,15 @@ return array(
     "if_you_have_not" => "Si usted no ha hecho esta transacción por favor póngase en contacto con nosotros bajo",
     "you_received" => "Ha recibido este correo de explorar (Wayna Perú S.A.C) porque se ha inscrito en el",
     "with_this" => "con esta dirección de correo electrónico",
+
+
+    "participants" => "Participantes",
+    "adults" => "Adultos",
+    "participants_adults" => "Participantes(adultos)",
+    "participants_children" => "Participantes(niños)",
+
+    "discount_used_by_client" => "Uso Descuento por cliente",
+    "date_of_payment_to_the_provider" => "Pago a proveedor hecho (fecha)",
+    "name_client" => "Nombre Cliente",
 
 );

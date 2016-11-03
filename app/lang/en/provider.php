@@ -83,7 +83,9 @@ return array(
     // Route :: add_phone
     "add_new_phone_number_for" => "Add New phone number for",
     "phone_number" => "Phone Number",
+    "phone_client"=>"Phone Client",
     "telephone" => "Telephone",
+    "mobile_phone_client"=>"Mobile Phone Client",
 
     // Route :: add_bank
     "add_new_bank_account_for" => "Add New bank account for",
@@ -155,5 +157,16 @@ return array(
     "if_you_have_not" => "If you have not made this transaction please contact us under",
     "you_received" => "You received this mail from exploor (Exploor S.A.C) because you registered on",
     "with_this" => "with this email address",
+
+
+    "participants" => "Participants",
+    "adults" => "Adults",
+    "participants_adults" => "Participants(adults)",
+    "participants_children" => "Participants(children)",
+
+    "discount_used_by_client" => "Discount used by client",
+    "date_of_payment_to_the_provider" => "Date of payment to the provider",
+    "name_client" => "Name client",
+
 
 );
