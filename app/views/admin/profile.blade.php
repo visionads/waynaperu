@@ -14,7 +14,7 @@
                 <a href="{{ URL::route('edit-profile',$user->id) }}" class="btn btn-info btn-blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-user"></i> {{ trans('provider.edit_profile') }}</a>
                 <!-- <a href="{{ URL::to('/') }}/admin/page/delete/{{ $user->page_id }}" class="btn btn-xs btn-red tooltips" data-placement="top" data-original-title="Remove" ><i class="fa fa-times fa fa-white"></i></a> -->
 
-                    <a class="link btn btn-info" href="{{ URL::to('user/edit/'.Auth::user()->id) }}"><i class="fa fa-pencil">&nbsp;</i>{{ trans('provider.edit') }}</a>
+                    <a class="link btn btn-info" href="{{ URL::to('user/edit/'.$user->id) }}"><i class="fa fa-pencil">&nbsp;</i>{{ trans('provider.edit') }}</a>
                     <a class="link btn btn-primary" href="{{ URL::route('user-activity',$user->id) }}">{{ trans('provider.user_activity') }}</a>
                     @if($user['type']!=='client')
                         <a class="link btn btn-success" href="{{ URL::route('products-provider',$user->id) }}">{{ trans('provider.product_list') }}</a>
